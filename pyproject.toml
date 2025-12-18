@@ -1,0 +1,71 @@
+[project]
+name = "dialogue-yoinker"
+version = "0.1.0"
+description = "Extract situated dialogue from Bethesda games for ML training corpora"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "bigboi" }]
+keywords = ["ml", "training-data", "dialogue", "games", "bethesda", "esm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+# Core dependencies - intentionally minimal
+# The parser uses only stdlib (struct, zlib, json, pathlib)
+dependencies = []
+
+[project.optional-dependencies]
+# Web API server (includes networkx for graph analysis)
+server = [
+    "fastapi>=0.109",
+    "uvicorn[standard]>=0.27",
+    "networkx>=3.0",
+    "numpy>=1.24",  # Required for networkx PageRank/centrality
+    "scipy>=1.10",  # Required for networkx community detection
+    "lz4>=4.0",     # Required for Skyrim SE BSA decompression
+]
+# Analysis tools for corpus exploration
+analysis = [
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+]
+# For building relationship graphs
+graphs = [
+    "networkx>=3.0",
+]
+# All extras
+dev = [
+    "dialogue-yoinker[server,analysis,graphs]",
+    "pytest>=7.0",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+dialogue-yoinker = "extract_dialogue:main"
+yoink = "extract_dialogue:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]  # line length handled separately
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
