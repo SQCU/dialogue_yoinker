@@ -7,7 +7,7 @@ Outputs combined dialogue files with DLC content merged.
 
 import json
 from pathlib import Path
-from yoinkems import ESMParser
+from esm_dialogue_parser import ESMParser
 from dataclasses import asdict
 
 

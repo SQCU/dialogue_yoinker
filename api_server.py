@@ -36,6 +36,7 @@ from chain_linker import ChainLinker
 from topic_graph import TopicGraph
 from cross_game import CrossGameLinker
 from emotion_bridge import EmotionBridgeGraph, load_emotion_bridge
+from query_graph import QueryGraph, load_query_graph
 
 
 # =============================================================================
@@ -47,6 +48,7 @@ CACHE: Dict[str, DialogueGraph] = {}
 TOPIC_CACHE: Dict[str, TopicGraph] = {}
 CROSS_GAME_CACHE: Optional[CrossGameLinker] = None
 BRIDGE_CACHE: Optional[EmotionBridgeGraph] = None
+QUERY_CACHE: Optional[QueryGraph] = None
 
 
 # =============================================================================
@@ -210,6 +212,21 @@ class CoverageRequest(BaseModel):
     target_games: Optional[List[str]] = Field(default=None, description="Games to cover (all if not specified)")
 
 
+class QuerySampleRequest(BaseModel):
+    """Request to sample responses for a topic/query."""
+    topic: Optional[str] = Field(default=None, description="Specific topic to sample from")
+    category: Optional[str] = Field(default=None, description="Semantic category (GREETING, COMBAT, QUEST, etc.)")
+    n: int = Field(default=5, ge=1, le=20, description="Number of responses to sample")
+    cross_game: bool = Field(default=False, description="Try to sample from different games")
+
+
+class QueryWalkRequest(BaseModel):
+    """Request for topic chain walk."""
+    start_topic: Optional[str] = Field(default=None, description="Starting topic (random if not specified)")
+    max_steps: int = Field(default=5, ge=2, le=15, description="Maximum chain length")
+    cross_game: bool = Field(default=True, description="Prefer cross-game transitions")
+
+
 # =============================================================================
 # Graph Loading & Caching
 # =============================================================================
@@ -356,6 +373,15 @@ async def api_overview():
             "POST /api/bridge/walk": "Cross-game walk via emotion bridges",
             "POST /api/bridge/coverage": "Coverage trajectory across all games",
             "GET /api/bridge/visualization": "D3.js visualization data for bridge graph",
+            "GET /api/query/stats": "Query graph stats (topics as gaps)",
+            "GET /api/query/topics": "List topics by category",
+            "GET /api/query/categories": "Semantic category breakdown",
+            "POST /api/query/sample": "Sample responses for a topic/category",
+            "POST /api/query/walk": "Topic chain walk (interleaved query-text)",
+            "GET /api/query/cross-game": "Topics shared across games",
+            "GET /api/query/visualization": "Bipartite topic-text graph data",
+            "GET /api/query/transitions": "Topic-to-topic transition stats",
+            "GET /api/query/cycles": "Find conversational cycles in topic graph",
             "GET /docs": "Interactive OpenAPI documentation",
         },
         "example_request": {
@@ -1070,6 +1096,230 @@ async def get_bridge_visualization():
 
 
 # =============================================================================
+# Query Graph Endpoints (Topics as Gaps Between Text)
+# =============================================================================
+
+async def get_query_graph() -> QueryGraph:
+    """Get or load the query graph."""
+    global QUERY_CACHE
+    if QUERY_CACHE is not None:
+        return QUERY_CACHE
+
+    loop = asyncio.get_event_loop()
+    QUERY_CACHE = await loop.run_in_executor(None, load_query_graph, DATA_DIR)
+    return QUERY_CACHE
+
+
+@app.get("/api/query/stats")
+async def get_query_stats():
+    """
+    Get statistics about the query graph.
+
+    The query graph models topics as "gaps" or "queries" that text nodes respond to.
+    This is a bipartite graph: Topic nodes <-> Text nodes.
+    """
+    graph = await get_query_graph()
+    return graph.get_statistics()
+
+
+@app.get("/api/query/topics")
+async def get_query_topics(
+    category: str = Query(default=None, description="Filter by category (GREETING, COMBAT, QUEST, etc.)"),
+    cross_game: bool = Query(default=False, description="Only topics appearing in multiple games"),
+    top_n: int = Query(default=50, ge=10, le=200, description="Number of topics to return"),
+):
+    """
+    List topics (query nodes) in the graph.
+
+    Topics are the semantic "gaps" that dialogue responds to.
+    Categories: GREETING, FAREWELL, COMBAT, TRADE, QUEST, RUMORS, AMBIENT, SERVICE, COMPANION, CRIME
+    """
+    graph = await get_query_graph()
+
+    if cross_game:
+        topics = graph.get_cross_game_topics()
+    elif category:
+        topics = graph.get_topics_by_category(category.upper())
+    else:
+        topics = sorted(graph.topic_nodes.values(), key=lambda t: t.response_count, reverse=True)
+
+    return {
+        'count': len(topics[:top_n]),
+        'topics': [
+            {
+                'id': t.id,
+                'category': t.category,
+                'games': list(t.games),
+                'response_count': t.response_count,
+                'dominant_emotion': t.dominant_emotion(),
+                'sample_texts': t.sample_texts[:2],
+            }
+            for t in topics[:top_n]
+        ],
+    }
+
+
+@app.get("/api/query/categories")
+async def get_query_categories():
+    """
+    List all semantic categories and their topic counts.
+
+    Categories represent types of conversational moves/gaps.
+    """
+    graph = await get_query_graph()
+    stats = graph.get_statistics()
+    return {
+        'categories': stats['categories'],
+        'total_topics': stats['topic_nodes'],
+        'categorized_topics': sum(stats['categories'].values()),
+    }
+
+
+@app.post("/api/query/sample")
+async def sample_query_responses(request: QuerySampleRequest):
+    """
+    Sample text responses for a topic/category.
+
+    Topics are the "queries" or "gaps" - this returns the text nodes that fill them.
+    Use cross_game=true to get responses from different games for the same topic.
+    """
+    graph = await get_query_graph()
+
+    result = graph.sample_topic_responses(
+        topic=request.topic,
+        category=request.category.upper() if request.category else None,
+        n=request.n,
+        cross_game=request.cross_game,
+    )
+
+    if 'error' in result:
+        raise HTTPException(404, result['error'])
+
+    return result
+
+
+@app.post("/api/query/walk")
+async def query_walk(request: QueryWalkRequest):
+    """
+    Walk through topics following semantic connections.
+
+    Creates a topic→text→topic→text chain, showing how different
+    semantic gaps connect through their responses.
+
+    This is the "interleaved" view: alternating between query nodes
+    and response nodes.
+    """
+    graph = await get_query_graph()
+
+    path = graph.walk_topic_chain(
+        start_topic=request.start_topic,
+        max_steps=request.max_steps,
+        cross_game=request.cross_game,
+    )
+
+    # Analyze the walk
+    games_visited = set()
+    categories_visited = set()
+    for step in path:
+        games_visited.add(step['response']['game'])
+        if step['category']:
+            categories_visited.add(step['category'])
+
+    return {
+        'path': path,
+        'length': len(path),
+        'games_visited': list(games_visited),
+        'categories_visited': list(categories_visited),
+    }
+
+
+@app.get("/api/query/cross-game")
+async def get_cross_game_topics():
+    """
+    Get topics that appear across multiple games.
+
+    These represent universal dialogue patterns - the same semantic "gap"
+    appearing in different game worlds (e.g., GREETING, Attack, Flee).
+    """
+    graph = await get_query_graph()
+    topics = graph.get_cross_game_topics()
+
+    return {
+        'count': len(topics),
+        'topics': [
+            {
+                'id': t.id,
+                'category': t.category,
+                'games': list(t.games),
+                'response_count': t.response_count,
+                'dominant_emotion': t.dominant_emotion(),
+                'responses_by_game': {
+                    game: len([
+                        tid for tid in graph.topic_to_texts[t.id]
+                        if graph.text_nodes[tid].game == game
+                    ])
+                    for game in t.games
+                },
+            }
+            for t in sorted(topics, key=lambda t: t.response_count, reverse=True)
+        ],
+    }
+
+
+@app.get("/api/query/visualization")
+async def get_query_visualization(
+    max_topics: int = Query(default=30, ge=10, le=100, description="Max topic nodes to include"),
+):
+    """
+    Get D3.js-compatible visualization data for the query graph.
+
+    Returns a bipartite graph with:
+    - Topic nodes (queries/gaps)
+    - Text nodes (responses)
+    - Edges connecting topics to their responses
+    """
+    graph = await get_query_graph()
+    return graph.get_visualization_data(max_topics=max_topics)
+
+
+@app.get("/api/query/transitions")
+async def get_topic_transitions():
+    """
+    Get statistics about topic-to-topic transitions.
+
+    Shows how topics connect to each other through their text responses.
+    Identifies hub topics (high in/out degree) in the conversation flow.
+    """
+    graph = await get_query_graph()
+    return graph.get_topic_transition_stats()
+
+
+@app.get("/api/query/cycles")
+async def get_topic_cycles(
+    max_cycles: int = Query(default=10, ge=1, le=30, description="Maximum cycles to return"),
+    max_cycle_length: int = Query(default=5, ge=2, le=8, description="Maximum cycle length"),
+):
+    """
+    Find cycles in the topic transition graph.
+
+    Cycles show conversational loops: topic → text → topic → text → ... → (back to start)
+
+    Example cycle: GOODBYE → ThievesGuild → GREETING → QuestTopic → GOODBYE
+    This reveals how dialogue can loop through related topics.
+    """
+    graph = await get_query_graph()
+    cycles = graph.get_cycle_examples(
+        max_cycles=max_cycles,
+        max_cycle_length=max_cycle_length,
+    )
+
+    return {
+        'count': len(cycles),
+        'cycles': cycles,
+    }
+
+
+# =============================================================================
 # Landing Page
 # =============================================================================
 
@@ -1304,6 +1554,38 @@ LANDING_HTML = """
                     </div>
                     <div id="bridgeMatrix" style="margin-bottom:15px"></div>
                     <div id="bridgeWalkResults"></div>
+                </div>
+
+                <h2>🔗 Query Graph (Topics as Gaps)</h2>
+                <div class="card">
+                    <p style="font-size:12px;color:#888;margin-bottom:10px">
+                        Topics are semantic "gaps" that text responses fill. Explore the bipartite topic↔text structure and find conversational cycles.
+                    </p>
+                    <div style="margin-bottom:10px">
+                        <button onclick="loadQueryStats()">📊 Load Stats</button>
+                        <button onclick="loadQueryCycles()" class="secondary">🔄 Find Cycles</button>
+                        <button onclick="loadQueryTransitions()" class="secondary">🔀 Transitions</button>
+                        <button onclick="sampleQueryWalk()" class="secondary">🚶 Topic Walk</button>
+                    </div>
+                    <div style="margin-bottom:10px">
+                        <select id="queryCategory" style="width:140px">
+                            <option value="">Any Category</option>
+                            <option value="GREETING">GREETING</option>
+                            <option value="FAREWELL">FAREWELL</option>
+                            <option value="COMBAT">COMBAT</option>
+                            <option value="QUEST">QUEST</option>
+                            <option value="TRADE">TRADE</option>
+                            <option value="CRIME">CRIME</option>
+                            <option value="COMPANION">COMPANION</option>
+                            <option value="RUMORS">RUMORS</option>
+                        </select>
+                        <button onclick="sampleQueryCategory()" class="secondary">Sample Category</button>
+                        <label><input type="checkbox" id="queryCrossGame"> Cross-game</label>
+                    </div>
+                    <div id="queryStats" style="display:none;margin-bottom:15px">
+                        <div class="stats-grid" id="queryStatsGrid"></div>
+                    </div>
+                    <div id="queryResults"></div>
                 </div>
             </div>
         </div>
@@ -1856,6 +2138,157 @@ requests.get('http://localhost:8000/api/games').json()</pre>
             });
 
             document.getElementById('bridgeWalkResults').innerHTML = html;
+        }
+
+        // ===== Query Graph Functions =====
+
+        async function loadQueryStats() {
+            document.getElementById('queryResults').innerHTML = '<p>Loading query graph stats...</p>';
+
+            const resp = await fetch(`${API}/query/stats`);
+            const data = await resp.json();
+
+            document.getElementById('queryStats').style.display = 'block';
+            document.getElementById('queryStatsGrid').innerHTML = `
+                <div class="stat-item"><div class="stat-value">${data.topic_nodes.toLocaleString()}</div><div class="stat-label">Topics (Gaps)</div></div>
+                <div class="stat-item"><div class="stat-value">${data.text_nodes.toLocaleString()}</div><div class="stat-label">Text Responses</div></div>
+                <div class="stat-item"><div class="stat-value">${data.cross_game_topics}</div><div class="stat-label">Cross-Game</div></div>
+            `;
+
+            let html = '<div style="font-size:12px"><strong>Categories:</strong> ';
+            html += Object.entries(data.categories).map(([k, v]) => `${k}(${v})`).join(', ');
+            html += '</div>';
+            document.getElementById('queryResults').innerHTML = html;
+        }
+
+        async function loadQueryCycles() {
+            document.getElementById('queryResults').innerHTML = '<p>Finding topic cycles...</p>';
+
+            const resp = await fetch(`${API}/query/cycles?max_cycles=8&max_cycle_length=5`);
+            const data = await resp.json();
+
+            let html = `<p style="font-size:12px;color:#888">Found ${data.count} conversational cycles</p>`;
+
+            data.cycles.forEach((cycle, idx) => {
+                html += `<div class="sample" style="margin:8px 0">`;
+                html += `<strong>Cycle ${idx + 1}</strong> <span style="color:#888">(${cycle.cycle_length} topics, games: ${cycle.games.join(', ')})</span>`;
+                html += `<div style="font-size:11px;color:#fbbf24;margin:5px 0">${cycle.topics.join(' → ')} → ↩</div>`;
+
+                cycle.steps.slice(0, 3).forEach(step => {
+                    if (step.sample_response) {
+                        const gameColor = {'skyrim': '#60a5fa', 'falloutnv': '#4ade80', 'oblivion': '#f472b6'}[step.sample_response.game] || '#888';
+                        html += `<div style="margin:3px 0;padding:5px;background:#0f3460;border-radius:3px;font-size:12px">`;
+                        html += `<span style="color:#00d9ff">[${step.topic}]</span>`;
+                        html += `<span style="color:${gameColor};font-size:10px;float:right">${step.sample_response.game}</span>`;
+                        html += `<br>"${step.sample_response.text.slice(0, 60)}..."`;
+                        html += `</div>`;
+                    }
+                });
+                if (cycle.steps.length > 3) {
+                    html += `<div style="color:#888;font-size:11px">... +${cycle.steps.length - 3} more steps</div>`;
+                }
+                html += '</div>';
+            });
+
+            document.getElementById('queryResults').innerHTML = html;
+        }
+
+        async function loadQueryTransitions() {
+            document.getElementById('queryResults').innerHTML = '<p>Loading topic transitions...</p>';
+
+            const resp = await fetch(`${API}/query/transitions`);
+            const data = await resp.json();
+
+            let html = `<p style="font-size:12px;color:#888">${data.total_transitions.toLocaleString()} topic→topic transitions</p>`;
+
+            html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">';
+
+            html += '<div><strong style="color:#4ade80">Top Sources (outgoing):</strong>';
+            data.top_sources.slice(0, 6).forEach(t => {
+                html += `<div style="margin:3px 0;padding:3px;background:#0f3460;border-radius:3px">`;
+                html += `${t.topic} <span style="color:#888">(${t.category || 'misc'})</span>`;
+                html += `<span style="float:right;color:#4ade80">${t.out_degree}→</span></div>`;
+            });
+            html += '</div>';
+
+            html += '<div><strong style="color:#f472b6">Top Sinks (incoming):</strong>';
+            data.top_sinks.slice(0, 6).forEach(t => {
+                html += `<div style="margin:3px 0;padding:3px;background:#0f3460;border-radius:3px">`;
+                html += `${t.topic} <span style="color:#888">(${t.category || 'misc'})</span>`;
+                html += `<span style="float:right;color:#f472b6">→${t.in_degree}</span></div>`;
+            });
+            html += '</div>';
+
+            html += '</div>';
+            document.getElementById('queryResults').innerHTML = html;
+        }
+
+        async function sampleQueryWalk() {
+            document.getElementById('queryResults').innerHTML = '<p>Walking topic chain...</p>';
+
+            const crossGame = document.getElementById('queryCrossGame').checked;
+            const resp = await fetch(`${API}/query/walk`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({max_steps: 6, cross_game: crossGame})
+            });
+            const data = await resp.json();
+
+            let html = `<p style="font-size:12px;color:#888">Topic walk: ${data.length} steps, games: ${data.games_visited.join(', ')}</p>`;
+
+            data.path.forEach((step, i) => {
+                const gameColor = {'skyrim': '#60a5fa', 'falloutnv': '#4ade80', 'oblivion': '#f472b6'}[step.response.game] || '#888';
+                const emo = step.response.emotion || 'neutral';
+
+                html += `<div class="sample emotion-${emo}">`;
+                html += `<span style="color:#fbbf24;font-size:11px">[${step.topic}]</span>`;
+                html += `<span style="color:#888;font-size:10px"> (${step.category || 'misc'})</span>`;
+                html += `<span style="font-size:10px;color:${gameColor};float:right">${step.response.game}</span>`;
+                html += `<br><span class="speaker">${step.response.speaker || 'NPC'}</span>`;
+                if (emo !== 'neutral') html += `<span class="emotion-tag">${emo}</span>`;
+                html += `<br>${step.response.text || '(no text)'}`;
+                html += '</div>';
+
+                if (i < data.path.length - 1) {
+                    html += '<div style="text-align:center;color:#444;font-size:10px">↓ topic transition ↓</div>';
+                }
+            });
+
+            document.getElementById('queryResults').innerHTML = html;
+        }
+
+        async function sampleQueryCategory() {
+            const category = document.getElementById('queryCategory').value;
+            const crossGame = document.getElementById('queryCrossGame').checked;
+
+            document.getElementById('queryResults').innerHTML = '<p>Sampling category...</p>';
+
+            const body = {n: 5, cross_game: crossGame};
+            if (category) body.category = category;
+
+            const resp = await fetch(`${API}/query/sample`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(body)
+            });
+            const data = await resp.json();
+
+            let html = `<p style="font-size:12px;color:#888">Topic: <strong>${data.topic}</strong>`;
+            html += ` (${data.category || 'misc'}) - ${data.total_responses} total responses</p>`;
+
+            data.sampled_responses.forEach(r => {
+                const gameColor = {'skyrim': '#60a5fa', 'falloutnv': '#4ade80', 'oblivion': '#f472b6'}[r.game] || '#888';
+                const emo = r.emotion || 'neutral';
+
+                html += `<div class="sample emotion-${emo}">`;
+                html += `<span style="font-size:10px;color:${gameColor};float:right">${r.game}</span>`;
+                html += `<span class="speaker">${r.speaker || 'NPC'}</span>`;
+                if (emo !== 'neutral') html += `<span class="emotion-tag">${emo}</span>`;
+                html += `<br>${r.text || '(no text)'}`;
+                html += '</div>';
+            });
+
+            document.getElementById('queryResults').innerHTML = html;
         }
 
         init();
