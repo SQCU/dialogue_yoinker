@@ -1,0 +1,340 @@
+# Mojave Lore Bible
+# Fallout New Vegas Reference Setting
+# Post-nuclear survival in the American Southwest
+
+bible_id: mojave
+setting_name: "Mojave Wasteland"
+tagline: "War never changes. The desert doesn't forgive."
+
+# =============================================================================
+# WORLD LOGIC
+# =============================================================================
+
+world_logic:
+  survival_logic: |
+    The world ended in nuclear fire. What remains is scarcity, violence, and
+    the slow reconstruction of civilization from the ashes. Water is precious.
+    Food is uncertain. Medicine is rare. Violence is the default.
+
+  history_shape: |
+    Pre-war America → Great War (2077) → chaos → tribalism → new powers rising.
+    The NCR represents democratic reconstruction. The Legion represents
+    authoritarian order. House represents technological aristocracy.
+    All three want the Mojave. Hoover Dam is the prize.
+
+  tone: |
+    Retrofuturist Americana. 1950s aesthetics survived nuclear war. Optimism
+    is black humor. Violence is common and often unremarked. Everyone has
+    lost someone. Survival is not guaranteed. Trust is earned slowly.
+
+  technology_level: |
+    Atomic age technology preserved in vaults, scavenged from ruins. Energy
+    weapons coexist with pipe rifles. Robots still function. Medicine is
+    pre-war stimpaks or wasteland remedies. No new manufacturing — only
+    salvage, repair, improvisation.
+
+  mortality_rules: |
+    Death is cheap. Most conflicts end in violence. Bodies are common.
+    Life expectancy is short. Children grow up fast. The old are rare.
+    Violence has few consequences beyond immediate survival. Killing
+    raiders is expected. Killing innocents is frowned upon but common.
+
+# =============================================================================
+# PROPER NOUN CLUSTERS
+# =============================================================================
+
+proper_noun_clusters:
+  - cluster_name: "ncr"
+    meaning_note: |
+      New California Republic. A pre-war style democracy rebuilt from
+      California's ashes. Military-industrial, expansionist, bureaucratic.
+      They believe in law, elections, taxes, and manifest destiny.
+    instances:
+      - instance: "NCR"
+        type: "faction"
+        usage: "The republic itself"
+      - instance: "the Republic"
+        type: "faction_reference"
+        usage: "Formal reference to NCR"
+      - instance: "NCR trooper"
+        type: "role"
+        usage: "Basic infantry soldier"
+      - instance: "NCR ranger"
+        type: "role"
+        usage: "Elite scout/sniper, high status"
+      - instance: "the Bear"
+        type: "symbol"
+        usage: "California flag bear, faction emblem"
+
+  - cluster_name: "legion"
+    meaning_note: |
+      Caesar's Legion. A tribal confederation reshaped into Roman cosplay.
+      Slave-based economy, martial culture, no technology except weapons.
+      They believe in order through domination, strength through suffering.
+    instances:
+      - instance: "the Legion"
+        type: "faction"
+        usage: "Caesar's forces"
+      - instance: "Caesar"
+        type: "leader"
+        usage: "Absolute ruler, claims to be son of Mars"
+      - instance: "legionary"
+        type: "role"
+        usage: "Basic soldier, recruited from conquered tribes"
+      - instance: "the Bull"
+        type: "symbol"
+        usage: "Legion emblem, Roman bull standard"
+      - instance: "profligate"
+        type: "slur"
+        usage: "Legion term for NCR citizens, implies moral weakness"
+
+  - cluster_name: "house"
+    meaning_note: |
+      Mr. House. Pre-war industrialist preserved in a life support system.
+      Controls New Vegas through robot army. Libertarian techno-aristocrat.
+      Believes civilization needs a genius to lead it, and he's that genius.
+    instances:
+      - instance: "Mr. House"
+        type: "leader"
+        usage: "The man in the Lucky 38"
+      - instance: "House"
+        type: "faction_reference"
+        usage: "His organization/power base"
+      - instance: "securitron"
+        type: "asset"
+        usage: "Robot army that patrols the Strip"
+      - instance: "the Strip"
+        type: "place"
+        usage: "New Vegas casino district, House's territory"
+      - instance: "the Lucky 38"
+        type: "place"
+        usage: "House's casino/fortress/residence"
+
+  - cluster_name: "caps"
+    meaning_note: |
+      Bottlecaps. The standard currency of the wasteland. Originally Nuka-Cola
+      caps, now any pre-war bottle cap. Value comes from scarcity and
+      convention. NCR also uses paper money, but caps are universal.
+    instances:
+      - instance: "caps"
+        type: "currency"
+        usage: "Standard wasteland money"
+      - instance: "NCR dollars"
+        type: "currency"
+        usage: "Republic paper money, less trusted"
+      - instance: "Legion denarii"
+        type: "currency"
+        usage: "Legion coins, gold/silver backed"
+
+  - cluster_name: "wasteland"
+    meaning_note: |
+      The irradiated, dangerous wilderness between settlements. Full of
+      mutated creatures, raiders, and death. Travel is dangerous. Water
+      sources are precious. Shelter is survival.
+    instances:
+      - instance: "the wasteland"
+        type: "place"
+        usage: "The dangerous outside world"
+      - instance: "wastelander"
+        type: "identity"
+        usage: "Someone who lives outside cities"
+      - instance: "rad"
+        type: "hazard"
+        usage: "Radiation, measured in rads"
+      - instance: "ghoul"
+        type: "creature"
+        usage: "Radiation-mutated human, not necessarily hostile"
+      - instance: "super mutant"
+        type: "creature"
+        usage: "FEV-mutated human, usually hostile"
+
+  - cluster_name: "raiders"
+    meaning_note: |
+      Organized bandits who survive by taking from others. Kill on sight
+      in most contexts. Not a faction so much as a category of threat.
+      Fiends, Jackals, Vipers are specific raider groups.
+    instances:
+      - instance: "raider"
+        type: "threat"
+        usage: "Generic bandit"
+      - instance: "Fiend"
+        type: "specific_raider"
+        usage: "Drug-addicted raiders near Vegas"
+      - instance: "Powder Ganger"
+        type: "specific_raider"
+        usage: "Escaped prison convicts"
+
+# =============================================================================
+# FACTION TEMPLATES
+# =============================================================================
+
+faction_templates:
+  - faction_id: "ncr"
+    archetype: "overextended_empire"
+    description: "Democratic republic stretched too thin, fighting too many wars"
+    wants: "The Mojave for resources and strategic depth"
+    fears: "The Legion, their own corruption, another Bitter Springs"
+    offers: "Citizenship, protection, trade, law"
+    threatens: "Courts martial, exile, summary execution for traitors"
+    register: "Military-bureaucratic, tired, professional"
+
+  - faction_id: "legion"
+    archetype: "reaction_formation"
+    description: "Totalitarian slave empire that believes suffering creates strength"
+    wants: "To conquer, to unify, to end the chaos through absolute order"
+    fears: "Nothing — fear is weakness — but secretly: what happens after Caesar"
+    offers: "Safe roads, clear rules, a place in the hierarchy"
+    threatens: "Crucifixion, slavery, death by arena"
+    register: "Formal Latin fragments, martial, contemptuous of weakness"
+
+  - faction_id: "house"
+    archetype: "great_man"
+    description: "Pre-war genius trying to save humanity by controlling it"
+    wants: "Vegas independent, then the stars, then immortality for the species"
+    fears: "Democracy (too slow), Legion (too stupid), his own mortality"
+    offers: "Employment, autonomy within rules, access to the Strip"
+    threatens: "Securitron army, economic exclusion, knowing your secrets"
+    register: "Precise, condescending, occasionally wistful about the old world"
+
+  - faction_id: "followers"
+    archetype: "idealists"
+    description: "Humanitarian organization trying to preserve and share knowledge"
+    wants: "Education, medicine, peace, a better world without repeating old mistakes"
+    fears: "That knowledge will be weaponized again, that no one will listen"
+    offers: "Medical care, education, a moral framework"
+    threatens: "Nothing — they won't threaten — and that's their weakness"
+    register: "Academic, compassionate, sometimes naive"
+
+  - faction_id: "brotherhood"
+    archetype: "secret_loyalists"
+    description: "Tech-hoarding military order that preserves pre-war technology"
+    wants: "All dangerous technology under their control"
+    fears: "Being irrelevant, being destroyed, outsiders with power armor"
+    offers: "Trade (reluctantly), protection (if it serves their interests)"
+    threatens: "Superior firepower, taking your tech by force"
+    register: "Military formal, insular, suspicious of outsiders"
+
+# =============================================================================
+# GAME MECHANICS — Reference for Translation
+# =============================================================================
+
+game_mechanics:
+  stats:
+    - stat_id: "strength"
+      description: "Physical power, melee damage, carry weight"
+
+    - stat_id: "perception"
+      description: "Awareness, accuracy at range, detection"
+
+    - stat_id: "endurance"
+      description: "Survival, radiation resistance, hit points"
+
+    - stat_id: "charisma"
+      description: "Persuasion, companion effectiveness"
+
+    - stat_id: "intelligence"
+      description: "Skill points, dialogue options"
+
+    - stat_id: "agility"
+      description: "Action points, reload speed, movement"
+
+    - stat_id: "luck"
+      description: "Critical chance, gambling, random events"
+
+  violence:
+    description: |
+      Combat is the primary conflict resolution mechanic. Guns, energy weapons,
+      explosives, melee, unarmed. V.A.T.S. allows targeted shots. Death is
+      frequent for enemies, possible for player. Bodies have loot.
+
+    costs:
+      - "Ammunition (consumable, valuable)"
+      - "Weapon condition (degrades with use)"
+      - "Stimpaks (healing consumable)"
+      - "Reputation with affected faction"
+
+    when_unavoidable:
+      - "Hostile creatures (always attack on sight)"
+      - "Raiders (almost always hostile)"
+      - "Faction enemies (once reputation drops low enough)"
+
+  faction_standing:
+    description: |
+      Reputation with factions is a spectrum from Vilified to Idolized.
+      Actions for or against a faction shift standing. Low standing means
+      attacks on sight. High standing means discounts, quests, assistance.
+
+    states:
+      - "Vilified — kill on sight"
+      - "Merciful Thug — hostile but will warn first"
+      - "Mixed — unknown, cautious"
+      - "Accepted — normal relations"
+      - "Liked — friendly, some perks"
+      - "Idolized — faction champion, best prices and access"
+
+# =============================================================================
+# NARRATIVE TENSIONS
+# =============================================================================
+
+narrative_tensions:
+  - tension_id: "ncr_vs_legion"
+    description: "Democracy vs authoritarianism for control of the Mojave"
+    manifests_as:
+      - "Soldiers on both sides who believe they're right"
+      - "Civilians caught between occupation forces"
+      - "The Courier forced to choose"
+    quest_shapes: ["two_claimants", "escort", "confrontation"]
+
+  - tension_id: "old_world_vs_new"
+    description: "Preserve pre-war tech/values or build something new"
+    manifests_as:
+      - "Brotherhood hoarding vs Followers sharing"
+      - "House's nostalgia vs Yes Man's blank slate"
+      - "Vaults that preserved vs vaults that experimented"
+    quest_shapes: ["investigation", "two_claimants", "gatekeeping"]
+
+  - tension_id: "survival_vs_morality"
+    description: "What you do to survive vs what you can live with"
+    manifests_as:
+      - "Cannibals who aren't monsters"
+      - "Slavers who have families"
+      - "The Courier's karma choices"
+    quest_shapes: ["confrontation", "negotiation", "countdown"]
+
+# =============================================================================
+# SEMANTIC MAPPING (for translation)
+# =============================================================================
+# These are the CONCEPTS that should be translated, not just the words
+
+semantic_field:
+  survival_resources:
+    - "caps" # currency from scarcity
+    - "stimpaks" # healing
+    - "rad-away" # radiation cure
+    - "clean water" # precious resource
+    - "pre-war food" # preserved rations
+
+  threat_categories:
+    - "raiders" # human bandits
+    - "mutants" # irradiated creatures
+    - "rads" # environmental hazard
+    - "deathclaw" # apex predator
+    - "cazador" # flying poison
+
+  authority_structures:
+    - "NCR military ranks" # general, colonel, captain
+    - "Legion hierarchy" # Caesar, legate, centurion
+    - "House's employment" # contractor, employee
+
+  survival_verbs:
+    - "scavenge" # find resources in ruins
+    - "trade" # barter for goods
+    - "fight" # direct violence
+    - "sneak" # avoid confrontation
+    - "hack" # access pre-war systems
+
+  death_expressions:
+    - "kill" # direct
+    - "waste" # slang
+    - "put down" # clinical
+    - "send to the wasteland" # euphemism

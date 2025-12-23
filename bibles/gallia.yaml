@@ -399,3 +399,4 @@ revelation_rules:
   - rule: "Violence ends conversations, procedure continues them"
     example_good: "Once the Leclerc arrived, there was nothing more to discuss."
     example_bad: "They fought, and then negotiated terms."
+

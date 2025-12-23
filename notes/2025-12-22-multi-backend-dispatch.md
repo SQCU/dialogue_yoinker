@@ -182,12 +182,89 @@ notes/2025-12-22-ticket-queue-run.md    - Ticket queue session notes
 notes/2025-12-22-multi-backend-dispatch.md - This file
 ```
 
+## Translation Confusion Fix (Applied)
+
+### Root Cause Confirmed
+
+The user identified that **source setting bibles were missing**. Translation
+agents received:
+- Target bible (gallia.yaml) - comprehensive
+- Few-shot examples - showed patterns but not concepts
+- **NO source bibles** explaining what Mojave/Cyrodiil/Skyrim concepts MEAN
+
+Without knowing what "NCR" represents conceptually, agents couldn't map it
+to "the Hexagon". They just saw French-sounding "Gallia" and did language
+translation.
+
+### Fix Applied
+
+1. **Created source bibles**:
+   - `bibles/mojave.yaml` - Fallout NV setting (220 lines)
+   - `bibles/cyrodiil.yaml` - TES4 Oblivion setting (230 lines)
+   - `bibles/skyrim.yaml` - Skyrim setting (240 lines)
+
+   Each includes:
+   - World logic (survival rules, history, tone)
+   - Proper noun clusters (factions, currency, threats)
+   - Faction templates (archetypes, wants, fears, register)
+   - Semantic field mappings (concepts that need translation)
+
+2. **Updated translation-engine agent** (`.claude/agents/translation-engine.md`):
+   - Added "CRITICAL: This is SETTING TRANSPOSITION, not LANGUAGE TRANSLATION"
+   - Added WRONG vs RIGHT contrastive examples
+   - Added explicit concept mapping table
+   - Clarified that input and output are BOTH English
+
+3. **Revised architecture** (standalone bibles, not embedded mappings):
+   - REMOVED cross_setting_mappings from gallia.yaml (combinatorial explosion)
+   - Each bible is now standalone, describing only its own setting
+   - Translation tickets include FULL TEXT of both source and target bibles
+   - Agent reasons about conceptual mapping at runtime
+
+### Files Created/Modified
+
+```
+bibles/mojave.yaml              - NEW: Fallout NV source bible (~220 lines)
+bibles/cyrodiil.yaml            - NEW: TES4 Oblivion source bible (~230 lines)
+bibles/skyrim.yaml              - NEW: Skyrim source bible (~240 lines)
+bibles/morrowind.yaml           - NEW: Morrowind source bible (~280 lines) [scalability proof]
+bibles/gallia.yaml              - MODIFIED: Removed cross_setting_mappings (standalone now)
+.claude/agents/translation-engine.md - MODIFIED: Expects two standalone bibles, reasons about mapping
+workflow/ticket_queue.py        - MODIFIED: load_bible(), injects full bible content into tickets
+```
+
+### Scalable Architecture
+
+The key insight: with N settings, embedding cross-mappings in each bible requires O(N²) content.
+
+**Old approach (rejected)**:
+```yaml
+# gallia.yaml
+cross_setting_mappings:
+  from_mojave: ...   # N-1 sections per bible
+  from_cyrodiil: ... # = O(N²) total content
+  from_skyrim: ...
+```
+
+**New approach (implemented)**:
+```
+1. Each bible is standalone (O(N) total content)
+2. Translation tickets include BOTH bibles as full text
+3. Agent reasons about conceptual mapping at dispatch time
+4. Adding Morrowind = add morrowind.yaml, done (no other files touched)
+```
+
+This means:
+- Mojave→Gallia: agent reads both, maps concepts
+- Gallia→Morrowind: agent reads both, maps concepts (reverse direction works!)
+- Cyrodiil→Skyrim: works without any pre-computed mapping
+- Any pair works without combinatorial explosion
+
 ## Next Steps
 
-1. **Fix translation prompts**: Reframe as "setting transposition" with
-   contrastive examples showing what NOT to do
+1. ~~**Fix translation prompts**~~: DONE - explicit "NOT language translation"
 
-2. **Enhance Gallia bible**: Add explicit semantic field mappings
+2. ~~**Enhance Gallia bible**~~: DONE - added cross_setting_mappings
 
 3. **Add validation**: Check that output language matches input language
    (both English) while setting vocabulary differs
@@ -197,3 +274,6 @@ notes/2025-12-22-multi-backend-dispatch.md - This file
 
 5. **Implement graph growth**: Use batch review to dispatch in-fill tasks
    that create linking edges between synthetic nodes
+
+6. **Re-run translation with fixed prompts**: Test that agents now do
+   proper setting transposition instead of language translation

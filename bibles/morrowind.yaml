@@ -1,0 +1,383 @@
+# Morrowind Lore Bible
+# The Elder Scrolls III: Morrowind Reference Setting
+# Alien volcanic province under imperial occupation
+
+bible_id: morrowind
+setting_name: "Morrowind"
+tagline: "Wake up. We're here. Why are you shaking?"
+
+# =============================================================================
+# WORLD LOGIC
+# =============================================================================
+
+world_logic:
+  alien_logic: |
+    Morrowind is NOT a standard fantasy world. The Dunmer (dark elves) have
+    culture, religion, and architecture utterly unlike anything in Cyrodiil.
+    Giant mushrooms, cliff racers, silt striders. The gods walk among mortals.
+    The Tribunal (living gods) rule alongside Great Houses. Nothing is familiar.
+
+  history_shape: |
+    Dunmer were Chimer (changed people) who followed the prophet Velothi away
+    from the Aldmeri. They became dark-skinned after the Battle of Red Mountain.
+    The Tribunal (Vivec, Almalexia, Sotha Sil) drew power from the Heart of
+    Lorkhan and have ruled as living gods for millennia. The Nerevarine prophecy
+    threatens everything: the reincarnation of Nerevar will break the Tribunal.
+
+  tone: |
+    Dreamlike, alien, uncomfortable. This is not a welcoming land. Outlanders
+    are resented. The weather is ash and blight. The landscape is volcanic,
+    fungal, bizarre. Religion is syncretic and strange — ancestor worship,
+    living gods, the Good Daedra. Violence is clan-sanctioned (Morag Tong) or
+    outlawed (Dark Brotherhood). Honor operates differently here.
+
+  technology_level: |
+    Pre-industrial with Dwemer ruins providing clockwork artifacts. Dunmer
+    use chitin, bone, volcanic glass. Transportation is by silt strider
+    (giant insects) or boat. Magic is regulated by the Mages Guild (imperial
+    import) but the native Telvanni are independent mage-lords.
+
+  mortality_rules: |
+    Death is real, but ancestor worship means the dead remain involved.
+    Ancestral tombs are sacred. The Dunmer cremate or inter with great
+    ceremony. Corpse desecration (necromancy) is the ultimate taboo.
+    The Morag Tong conducts legal assassinations via writ. Violence without
+    writ is murder.
+
+# =============================================================================
+# PROPER NOUN CLUSTERS
+# =============================================================================
+
+proper_noun_clusters:
+  - cluster_name: "tribunal"
+    meaning_note: |
+      The three living gods of Morrowind: Vivec, Almalexia, Sotha Sil. They
+      drew power from the Heart of Lorkhan after the Battle of Red Mountain.
+      They are worshipped in the Tribunal Temple. Their power is waning.
+    instances:
+      - instance: "the Tribunal"
+        type: "faction/divine"
+        usage: "The three gods collectively"
+      - instance: "Vivec"
+        type: "divine"
+        usage: "Warrior-poet, protector of Vvardenfell"
+      - instance: "Almalexia"
+        type: "divine"
+        usage: "Mother Morrowind, patron of Mournhold"
+      - instance: "Sotha Sil"
+        type: "divine"
+        usage: "Clockwork god, reclusive in his city"
+      - instance: "ALMSIVI"
+        type: "divine"
+        usage: "Acrostic of all three names, sacred word"
+
+  - cluster_name: "great_houses"
+    meaning_note: |
+      The five Great Houses control Morrowind through political maneuvering,
+      not war. Each has distinct culture and territory. House Hlaalu is
+      pro-Imperial. House Redoran is martial. House Telvanni is mage-lords.
+      House Indoril is theocratic. House Dres is slavers (not in game).
+    instances:
+      - instance: "House Hlaalu"
+        type: "faction"
+        usage: "Merchant house, pro-Imperial, Balmora"
+      - instance: "House Redoran"
+        type: "faction"
+        usage: "Warrior house, honor-bound, Ald'ruhn"
+      - instance: "House Telvanni"
+        type: "faction"
+        usage: "Mage-lords in mushroom towers, Sadrith Mora"
+      - instance: "House Indoril"
+        type: "faction"
+        usage: "Temple-aligned nobility, traditional"
+      - instance: "House Dagoth"
+        type: "faction"
+        usage: "The destroyed sixth house, now awakening"
+
+  - cluster_name: "nerevarine"
+    meaning_note: |
+      The prophesied reincarnation of Lord Indoril Nerevar, who will destroy
+      the false Tribunal and drive out the Empire. The Ashlanders (nomadic
+      Dunmer) believe in this prophecy. The Temple suppresses it.
+    instances:
+      - instance: "Nerevarine"
+        type: "title"
+        usage: "The prophesied reincarnation"
+      - instance: "Nerevar"
+        type: "historical_figure"
+        usage: "The original hero, betrayed at Red Mountain"
+      - instance: "failed incarnate"
+        type: "category"
+        usage: "Those who tried to be Nerevarine and died"
+      - instance: "prophecy"
+        type: "concept"
+        usage: "The Seven Visions, the stranger's path"
+
+  - cluster_name: "empire_morrowind"
+    meaning_note: |
+      The Septim Empire occupies Morrowind via treaty, not conquest. The
+      Armistice guarantees Dunmer customs (including slavery). The Legion
+      maintains order in towns. The Empire is tolerated, not loved.
+    instances:
+      - instance: "the Empire"
+        type: "faction"
+        usage: "Imperial occupation"
+      - instance: "outlander"
+        type: "slur"
+        usage: "Any non-Dunmer, especially humans"
+      - instance: "n'wah"
+        type: "slur"
+        usage: "Slave, foreigner (extremely offensive)"
+      - instance: "the Armistice"
+        type: "treaty"
+        usage: "Peace treaty preserving Dunmer customs"
+      - instance: "Legion"
+        type: "military"
+        usage: "Imperial soldiers, Fort Moonmoth, etc."
+
+  - cluster_name: "gold_morrowind"
+    meaning_note: |
+      Currency is drakes (gold coins), same as the Empire. But the Dunmer
+      also trade in services, debts, and favors. The slave trade is legal
+      here and uses Khajiit and Argonian slaves as currency of sorts.
+    instances:
+      - instance: "gold"
+        type: "currency"
+        usage: "Standard"
+      - instance: "drakes"
+        type: "currency"
+        usage: "Coins"
+      - instance: "slaves"
+        type: "trade_good"
+        usage: "Khajiit, Argonians (legal in Morrowind)"
+
+  - cluster_name: "blight"
+    meaning_note: |
+      The blight storms from Red Mountain carry the influence of Dagoth Ur.
+      Corprus disease transforms victims into mindless monsters. The Ghostfence
+      contains (barely) the worst of it. This is the setting's creeping doom.
+    instances:
+      - instance: "blight"
+        type: "hazard"
+        usage: "Disease-carrying ash storms"
+      - instance: "corprus"
+        type: "disease"
+        usage: "The divine disease, transforms the body"
+      - instance: "Ghostfence"
+        type: "structure"
+        usage: "Magic barrier containing Red Mountain"
+      - instance: "Red Mountain"
+        type: "place"
+        usage: "Volcanic center, Dagoth Ur's stronghold"
+      - instance: "Dagoth Ur"
+        type: "antagonist"
+        usage: "Awakened god beneath the mountain"
+
+  - cluster_name: "morag_tong"
+    meaning_note: |
+      The Morag Tong is a legal assassin's guild, sanctioned by the Temple.
+      They carry writs of execution. A kill with writ is legal. The Dark
+      Brotherhood is their illegal competitor, hated and hunted.
+    instances:
+      - instance: "Morag Tong"
+        type: "faction"
+        usage: "Legal assassins"
+      - instance: "writ"
+        type: "document"
+        usage: "License to kill a specific person"
+      - instance: "honorable execution"
+        type: "phrase"
+        usage: "A Morag Tong killing"
+      - instance: "Dark Brotherhood"
+        type: "faction"
+        usage: "Illegal assassins, foreign import, hunted"
+
+# =============================================================================
+# FACTION TEMPLATES
+# =============================================================================
+
+faction_templates:
+  - faction_id: "hlaalu"
+    archetype: "secret_loyalists"
+    description: "Merchant house profiting from Imperial presence"
+    wants: "Trade, gold, influence, to remain relevant as times change"
+    fears: "The Tribunal's fall, which would empower anti-Imperial houses"
+    offers: "Trade connections, political cover, flexible ethics"
+    threatens: "Morag Tong writs, economic ruin, political isolation"
+    register: "Mercantile, pragmatic, veiled double-meanings"
+
+  - faction_id: "redoran"
+    archetype: "reaction_formation"
+    description: "Warrior house clinging to ancient honor codes"
+    wants: "Honor, martial excellence, to protect Morrowind the old way"
+    fears: "Irrelevance as commerce replaces combat, loss of tradition"
+    offers: "Protection, straightforward dealing, martial training"
+    threatens: "Duel, challenge, honorable combat"
+    register: "Formal, martial, invokes ancestors and tradition"
+
+  - faction_id: "telvanni"
+    archetype: "great_man"
+    description: "Mage-lords who answer to no one but themselves"
+    wants: "Power, knowledge, to be left alone to pursue magical mastery"
+    fears: "Nothing — arrogance is their defining trait"
+    offers: "Magical power (if you can take it), knowledge, employment for the useful"
+    threatens: "Magical annihilation, but more often just indifference"
+    register: "Condescending, elliptical, assumes you are beneath notice"
+
+  - faction_id: "temple"
+    archetype: "overextended_empire"
+    description: "The Tribunal Temple, keepers of the official faith"
+    wants: "To maintain the Tribunal's divinity, suppress the Nerevarine prophecy"
+    fears: "The prophecy is true, the Tribunal is dying, the people will lose faith"
+    offers: "Healing, blessing, community, meaning"
+    threatens: "Excommunication, Temple Ordinator justice, religious condemnation"
+    register: "Pious, formal, brooks no heresy"
+
+  - faction_id: "ashlanders"
+    archetype: "desperate_outlaws"
+    description: "Nomadic Dunmer who reject the Tribunal and keep old ways"
+    wants: "To preserve the true Velothi tradition, to see the Nerevarine come"
+    fears: "Extinction as sedentary Dunmer encroach on their lands"
+    offers: "Prophecy knowledge, survival skills, legitimacy for the Nerevarine"
+    threatens: "Nothing material — but their curse is considered potent"
+    register: "Formal, prophetic, riddling, references ancestors constantly"
+
+# =============================================================================
+# GAME MECHANICS — Reference for Translation
+# =============================================================================
+
+game_mechanics:
+  stats:
+    - stat_id: "strength"
+      description: "Physical power, damage, encumbrance"
+
+    - stat_id: "intelligence"
+      description: "Magicka pool"
+
+    - stat_id: "willpower"
+      description: "Magicka regeneration, spell success"
+
+    - stat_id: "agility"
+      description: "Hit rate, evasion"
+
+    - stat_id: "speed"
+      description: "Movement, attack speed"
+
+    - stat_id: "endurance"
+      description: "Health, fatigue"
+
+    - stat_id: "personality"
+      description: "Disposition, mercantile"
+
+    - stat_id: "luck"
+      description: "Everything slightly"
+
+  violence:
+    description: |
+      Combat is real-time first-person with dice rolls beneath. Weapon skill
+      affects hit chance. Magic can fail to cast. Death is real for NPCs;
+      essential characters can die (breaking quests). The game trusts you
+      to navigate consequences.
+
+    costs:
+      - "Fatigue (affects success chance)"
+      - "Magicka (for spells)"
+      - "Weapon/armor condition"
+      - "Potions (consumable)"
+      - "Reputation with faction if witnessed"
+
+    when_unavoidable:
+      - "Creatures (usually hostile)"
+      - "Outlaws (bandits, smugglers)"
+      - "Sixth House cultists (always hostile)"
+      - "Cliff racers (the eternal torment)"
+
+  faction_standing:
+    description: |
+      Reputation is numerical. Disposition is per-NPC. Faction rank requires
+      attributes, skills, and favor. You can join multiple factions but some
+      conflict. Killing the wrong person can break the main quest permanently
+      (the game warns you).
+
+    states:
+      - "Hostile — attacks on sight"
+      - "Unfriendly — won't help"
+      - "Neutral — normal"
+      - "Friendly — discounts, information"
+      - "Faction member — advancing ranks"
+
+# =============================================================================
+# NARRATIVE TENSIONS
+# =============================================================================
+
+narrative_tensions:
+  - tension_id: "native_vs_outlander"
+    description: "Dunmer resentment of Imperial occupation"
+    manifests_as:
+      - "'Outlander' and 'n'wah' as constant reminders"
+      - "Hlaalu collaborators vs Redoran/Telvanni traditionalists"
+      - "Slavery as contested institution"
+    quest_shapes: ["investigation", "two_claimants", "gatekeeping"]
+
+  - tension_id: "tribunal_vs_prophecy"
+    description: "Living gods vs the prophecy that will unmake them"
+    manifests_as:
+      - "Temple suppression of Nerevarine cult"
+      - "Ashlanders as keepers of forbidden knowledge"
+      - "The player becoming the thing the gods fear"
+    quest_shapes: ["investigation", "confrontation", "countdown"]
+
+  - tension_id: "tradition_vs_change"
+    description: "Old Velothi ways vs Tribunal religion vs Imperial culture"
+    manifests_as:
+      - "Three competing visions of what Dunmer should be"
+      - "Great Houses positioning for a post-Tribunal future"
+      - "Slavery abolition as Imperial pressure vs Dunmer custom"
+    quest_shapes: ["two_claimants", "negotiation", "investigation"]
+
+  - tension_id: "blight_and_doom"
+    description: "Dagoth Ur's slow awakening threatens everything"
+    manifests_as:
+      - "Corprus victims as tragedy and horror"
+      - "The Ghostfence failing"
+      - "Dreams of Dagoth Ur reaching sleepers"
+    quest_shapes: ["countdown", "confrontation", "investigation"]
+
+# =============================================================================
+# SEMANTIC MAPPING (for translation)
+# =============================================================================
+
+semantic_field:
+  survival_resources:
+    - "gold/drakes" # currency
+    - "potions" # healing and buffs
+    - "sujamma" # Dunmer alcohol, restores strength
+    - "moon sugar" # illegal drug
+    - "skooma" # refined moon sugar, addictive
+
+  threat_categories:
+    - "cliff racers" # flying pests
+    - "nix-hounds" # dog-like creatures
+    - "ash creatures" # blight-mutated monsters
+    - "corprus beasts" # disease victims
+    - "Sixth House" # Dagoth Ur's cult
+
+  authority_structures:
+    - "Great House ranks" # Hireling, Retainer, Lawman, Councilman
+    - "Temple ranks" # Layman, Novice, Initiate, Curate, Disciple
+    - "Guild ranks" # (same as Cyrodiil, Imperial import)
+    - "Ashlander hierarchy" # Clanfriend, Hearthfriend, kinsman
+
+  survival_verbs:
+    - "fight" # weapons and magic
+    - "sneak" # avoid detection
+    - "bribe" # gold solves many problems
+    - "intimidate" # for the strong
+    - "admire" # raise disposition through flattery
+
+  death_expressions:
+    - "kill" # direct
+    - "execute" # Morag Tong formal
+    - "send to ancestors" # Dunmer phrasing
+    - "die with honor" # Redoran
+    - "be unmade" # for the terrible fates

@@ -28,6 +28,60 @@ from pathlib import Path
 from typing import Optional, Any
 from enum import Enum
 
+# =============================================================================
+# Bible Loader
+# =============================================================================
+
+# Path to bibles directory (relative to project root)
+BIBLES_DIR = Path(__file__).parent.parent / "bibles"
+
+# Bible name to filename mapping (extensible)
+BIBLE_MAPPING = {
+    # Source settings (from extracted games)
+    "mojave": "mojave.yaml",
+    "falloutnv": "mojave.yaml",
+    "cyrodiil": "cyrodiil.yaml",
+    "oblivion": "cyrodiil.yaml",
+    "skyrim": "skyrim.yaml",
+    "morrowind": "morrowind.yaml",
+    # Target settings (synthetic)
+    "gallia": "gallia.yaml",
+}
+
+
+def load_bible(name: str) -> str:
+    """
+    Load a lore bible by name.
+
+    Returns the full text content for injection into translation tickets.
+    Raises FileNotFoundError if bible doesn't exist.
+    """
+    # Normalize name
+    filename = BIBLE_MAPPING.get(name.lower())
+    if not filename:
+        # Try direct filename
+        filename = f"{name}.yaml"
+
+    bible_path = BIBLES_DIR / filename
+    if not bible_path.exists():
+        raise FileNotFoundError(f"Bible not found: {name} (looked for {bible_path})")
+
+    return bible_path.read_text()
+
+
+def get_source_bible_name(game: str) -> str:
+    """Map game name to source bible name."""
+    mapping = {
+        "falloutnv": "mojave",
+        "falloutnv_full": "mojave",
+        "oblivion": "cyrodiil",
+        "oblivion_full": "cyrodiil",
+        "skyrim": "skyrim",
+        "skyrim_full": "skyrim",
+        "morrowind": "morrowind",
+    }
+    return mapping.get(game.lower(), game)
+
 
 class TicketStatus(str, Enum):
     PENDING = "pending"
@@ -115,7 +169,26 @@ class RunQueue:
         return ticket
 
     def add_translate_ticket(self, triplet: dict, source_game: str) -> Ticket:
-        """Add a translation ticket (after parsing completes)."""
+        """
+        Add a translation ticket (after parsing completes).
+
+        The ticket includes FULL bible content for both source and target settings,
+        so the translation agent can reason about concept mappings without
+        pre-computed cross-setting tables.
+        """
+        source_bible_name = get_source_bible_name(source_game)
+
+        # Load both bibles - translation requires understanding BOTH settings
+        try:
+            source_bible_content = load_bible(source_bible_name)
+        except FileNotFoundError:
+            source_bible_content = f"# Bible not found: {source_bible_name}\n# Agent must work from context"
+
+        try:
+            target_bible_content = load_bible(self.target_bible)
+        except FileNotFoundError:
+            target_bible_content = f"# Bible not found: {self.target_bible}\n# Agent must work from context"
+
         ticket = Ticket(
             ticket_id=f"translate_{len(self.translate_tickets):04d}",
             run_id=self.run_id,
@@ -123,8 +196,12 @@ class RunQueue:
             input_data={
                 "triplet": triplet,
                 "source_game": source_game,
-                "source_bible": "mojave" if source_game == "falloutnv" else "cyrodiil",
-                "target_bible": self.target_bible,
+                # Names for reference
+                "source_bible_name": source_bible_name,
+                "target_bible_name": self.target_bible,
+                # FULL CONTENT for agent reasoning
+                "source_bible": source_bible_content,
+                "target_bible": target_bible_content,
             }
         )
         self.translate_tickets.append(ticket)

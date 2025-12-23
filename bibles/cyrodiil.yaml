@@ -1,0 +1,341 @@
+# Cyrodiil Lore Bible
+# The Elder Scrolls IV: Oblivion Reference Setting
+# High fantasy imperial heartland
+
+bible_id: cyrodiil
+setting_name: "Cyrodiil"
+tagline: "The Empire is law. The law is sacred."
+
+# =============================================================================
+# WORLD LOGIC
+# =============================================================================
+
+world_logic:
+  imperial_logic: |
+    Cyrodiil is the heart of the Septim Empire. Law, trade, and the Emperor's
+    peace extend from the Imperial City to the provinces. The Amulet of Kings
+    binds the covenant between Emperor and gods. The legions keep the peace.
+    Civilization is order; the wilds are chaos.
+
+  history_shape: |
+    Alessia's slave rebellion → Reman's empire → Interregnum → Tiber Septim's
+    conquest → the Third Era of relative peace. The current Emperor, Uriel VII,
+    has ruled for decades. Stability feels eternal but is fragile.
+
+  tone: |
+    High fantasy with Roman and medieval European aesthetics. Magic is real and
+    regulated. Gods are present and interventionist. Good and evil exist as
+    cosmic forces. Violence is common but has weight. Honor matters. Oaths bind.
+
+  technology_level: |
+    Medieval with magic augmentation. Steel swords, stone castles, horse travel.
+    Alchemy produces potions. Enchantment empowers items. The Mages Guild
+    regulates magic. No machinery — all power is labor or magical.
+
+  mortality_rules: |
+    Death is real but soul-involved. The afterlife exists — Aetherius for the
+    blessed, Oblivion for the damned or those claimed by Daedric princes.
+    Violence has social and legal consequences. Murder is a crime. Self-defense
+    is recognized. Guards respond. Bounties accrue.
+
+# =============================================================================
+# PROPER NOUN CLUSTERS
+# =============================================================================
+
+proper_noun_clusters:
+  - cluster_name: "empire"
+    meaning_note: |
+      The Septim Empire. A multi-province realm united under the dragon banner.
+      The Emperor is both political leader and religious figure — the covenant
+      with Akatosh depends on Septim blood wearing the Amulet of Kings.
+    instances:
+      - instance: "the Empire"
+        type: "faction"
+        usage: "The political entity"
+      - instance: "the Emperor"
+        type: "title"
+        usage: "Uriel Septim VII, divine-right ruler"
+      - instance: "Imperial Legion"
+        type: "military"
+        usage: "The empire's professional army"
+      - instance: "Imperial City"
+        type: "place"
+        usage: "Capital, seat of power"
+      - instance: "the Dragon"
+        type: "symbol"
+        usage: "Septim dragon, empire's emblem"
+
+  - cluster_name: "aedra"
+    meaning_note: |
+      The Nine Divines — gods who gave of themselves to create the world.
+      They are distant but present. Their blessings are real. Their shrines
+      grant power. The Temple worships them; the law protects their worship.
+    instances:
+      - instance: "the Nine"
+        type: "divine"
+        usage: "The Nine Divines collectively"
+      - instance: "Akatosh"
+        type: "divine"
+        usage: "Dragon god of time, chief of the Nine"
+      - instance: "Arkay"
+        type: "divine"
+        usage: "God of death and burial rites"
+      - instance: "by the Nine"
+        type: "oath"
+        usage: "Common swear/exclamation"
+
+  - cluster_name: "daedra"
+    meaning_note: |
+      The Daedric Princes — powerful beings from Oblivion who did not sacrifice
+      themselves to create the world. Not evil by nature, but alien, self-interested,
+      and dangerous. Their worship is generally illegal; their artifacts are powerful.
+    instances:
+      - instance: "Daedra"
+        type: "category"
+        usage: "Beings from Oblivion"
+      - instance: "Oblivion"
+        type: "place"
+        usage: "The realm(s) of the Daedra"
+      - instance: "Mehrunes Dagon"
+        type: "daedric_prince"
+        usage: "Prince of destruction, main antagonist"
+      - instance: "Daedric artifact"
+        type: "item_category"
+        usage: "Powerful items tied to princes"
+
+  - cluster_name: "guilds"
+    meaning_note: |
+      Professional organizations with legal standing. The Fighters Guild sells
+      muscle. The Mages Guild regulates magic. The Thieves Guild operates in
+      shadow. The Dark Brotherhood kills for pay. Guild membership is identity.
+    instances:
+      - instance: "Fighters Guild"
+        type: "faction"
+        usage: "Legal mercenaries"
+      - instance: "Mages Guild"
+        type: "faction"
+        usage: "Magic regulation and research"
+      - instance: "Thieves Guild"
+        type: "faction"
+        usage: "Criminal organization with code"
+      - instance: "Dark Brotherhood"
+        type: "faction"
+        usage: "Religious assassin cult"
+
+  - cluster_name: "gold"
+    meaning_note: |
+      Septims — gold coins stamped with the Emperor's face. The universal
+      currency of the empire. Also called "gold" or "drakes." Value is stable,
+      backed by imperial authority.
+    instances:
+      - instance: "gold"
+        type: "currency"
+        usage: "Generic reference"
+      - instance: "septims"
+        type: "currency"
+        usage: "Formal name of coins"
+      - instance: "drakes"
+        type: "currency"
+        usage: "Slang for coins"
+
+  - cluster_name: "magic"
+    meaning_note: |
+      Magic is real, studied, regulated. Spells are categorized by school.
+      Enchanted items are common among the wealthy. Alchemy produces potions.
+      Magic is power; the Mages Guild controls access. Unlicensed magic is risky.
+    instances:
+      - instance: "spell"
+        type: "ability"
+        usage: "Magical effect"
+      - instance: "enchantment"
+        type: "item_property"
+        usage: "Magic bound to an object"
+      - instance: "potion"
+        type: "consumable"
+        usage: "Alchemical product"
+      - instance: "Destruction"
+        type: "school"
+        usage: "Combat magic (fire, frost, shock)"
+      - instance: "Restoration"
+        type: "school"
+        usage: "Healing magic"
+
+# =============================================================================
+# FACTION TEMPLATES
+# =============================================================================
+
+faction_templates:
+  - faction_id: "empire"
+    archetype: "overextended_empire"
+    description: "The Septim Empire, trying to hold civilization together"
+    wants: "Peace, law, trade, the provinces paying tribute"
+    fears: "Rebellion, Daedric incursion, the Emperor's bloodline ending"
+    offers: "Protection, law, citizenship, access to trade"
+    threatens: "Imperial Legion, imprisonment, execution for treason"
+    register: "Formal, law-invoking, appeals to tradition and order"
+
+  - faction_id: "fighters_guild"
+    archetype: "desperate_outlaws"
+    description: "Licensed mercenaries, muscle for hire"
+    wants: "Contracts, reputation, to be seen as legitimate"
+    fears: "The Blackwood Company (rival), irrelevance, disrepute"
+    offers: "Combat services, training, guild membership"
+    threatens: "Violence (legally sanctioned), blacklisting"
+    register: "Professional, direct, military-adjacent"
+
+  - faction_id: "mages_guild"
+    archetype: "secret_loyalists"
+    description: "Academic institution that regulates magic"
+    wants: "To control magical knowledge, advance research, maintain monopoly"
+    fears: "Rogue mages, Necromancy's return, loss of imperial charter"
+    offers: "Training, spell purchase, enchanting services, legitimacy"
+    threatens: "Magical enforcement, expulsion, reporting to authorities"
+    register: "Academic, precise, slightly condescending"
+
+  - faction_id: "thieves_guild"
+    archetype: "secret_loyalists"
+    description: "Criminal organization with a code of honor"
+    wants: "Wealth, influence, to operate without interference"
+    fears: "The Gray Fox being caught, guild war, imperial crackdown"
+    offers: "Fencing services, information, safe passage in shadow"
+    threatens: "Theft, exposure, 'accidents'"
+    register: "Casual, euphemistic, never says crime directly"
+
+  - faction_id: "dark_brotherhood"
+    archetype: "reaction_formation"
+    description: "Religious assassin cult serving Sithis and the Night Mother"
+    wants: "Souls for Sithis, contracts honored, the Dread Father pleased"
+    fears: "Nothing — death is service — but betrayal ends in worse than death"
+    offers: "Death delivered professionally, brotherhood (literally)"
+    threatens: "Death (obviously), but more: being marked for the Void"
+    register: "Intimate, familial, unsettling calm about murder"
+
+# =============================================================================
+# GAME MECHANICS — Reference for Translation
+# =============================================================================
+
+game_mechanics:
+  stats:
+    - stat_id: "strength"
+      description: "Physical power, melee damage, encumbrance"
+
+    - stat_id: "intelligence"
+      description: "Magicka pool, learning speed"
+
+    - stat_id: "willpower"
+      description: "Magicka regeneration, resistance to magic"
+
+    - stat_id: "agility"
+      description: "Speed, balance, archery accuracy"
+
+    - stat_id: "speed"
+      description: "Movement rate"
+
+    - stat_id: "endurance"
+      description: "Health, fatigue, stamina"
+
+    - stat_id: "personality"
+      description: "Disposition, persuasion, mercantile"
+
+    - stat_id: "luck"
+      description: "Everything slightly"
+
+  violence:
+    description: |
+      Combat uses swords, bows, and magic. First-person or third-person real-time.
+      Enemies have health; death is permanent for them. The player resurrects at
+      last save. Bodies persist briefly. Violence has legal consequences.
+
+    costs:
+      - "Fatigue (regenerates)"
+      - "Magicka (regenerates slowly)"
+      - "Weapon/armor condition (degrades)"
+      - "Healing potions (consumable)"
+      - "Bounty if witnessed"
+
+    when_unavoidable:
+      - "Creatures (always hostile)"
+      - "Bandits (usually hostile)"
+      - "Daedra (almost always hostile)"
+      - "Guards if bounty is high enough"
+
+  faction_standing:
+    description: |
+      Fame and Infamy track overall reputation. Guild rank tracks standing
+      within organizations. Disposition is individual NPC opinion. Crimes
+      generate bounty. Bounty can be paid off or resisted.
+
+    states:
+      - "Expelled — removed from guild, cannot rejoin easily"
+      - "Associate — lowest rank, limited access"
+      - "Journeyman — mid-rank, trusted"
+      - "Master — high rank, authority within guild"
+      - "Leader — runs the guild (player achievable)"
+
+# =============================================================================
+# NARRATIVE TENSIONS
+# =============================================================================
+
+narrative_tensions:
+  - tension_id: "order_vs_freedom"
+    description: "Imperial law vs individual choice"
+    manifests_as:
+      - "Guilds operating in legal gray areas"
+      - "The Thieves Guild's code vs imperial law"
+      - "The Dark Brotherhood's religious murder vs secular morality"
+    quest_shapes: ["gatekeeping", "two_claimants", "confrontation"]
+
+  - tension_id: "mortal_vs_daedric"
+    description: "The mundane world vs the planes of Oblivion"
+    manifests_as:
+      - "Daedric shrines hidden in the wilderness"
+      - "The Oblivion Crisis threatening to consume Tamriel"
+      - "Artifacts that offer power at a cost"
+    quest_shapes: ["investigation", "countdown", "confrontation"]
+
+  - tension_id: "nobility_vs_commons"
+    description: "Class structure and its tensions"
+    manifests_as:
+      - "Nobles who are corrupt or cruel"
+      - "Commoners with more virtue than their betters"
+      - "The player as classless outsider who can climb"
+    quest_shapes: ["escort", "negotiation", "investigation"]
+
+# =============================================================================
+# SEMANTIC MAPPING (for translation)
+# =============================================================================
+
+semantic_field:
+  survival_resources:
+    - "gold/septims" # currency backed by empire
+    - "potions" # healing and buffs
+    - "food" # exists but rarely matters
+    - "soul gems" # power source for enchanting
+    - "reagents" # alchemy ingredients
+
+  threat_categories:
+    - "bandits" # human outlaws
+    - "creatures" # wolves, bears, ogres
+    - "daedra" # otherworldly monsters
+    - "undead" # zombies, ghosts, liches
+    - "vampires" # specifically dangerous undead
+
+  authority_structures:
+    - "Imperial titles" # Emperor, Count, Countess
+    - "Guild ranks" # Associate, Journeyman, Master
+    - "Military ranks" # Captain, Legate, General
+    - "Religious titles" # Primate, Prophet, Priest
+
+  survival_verbs:
+    - "fight" # with sword or spell
+    - "sneak" # avoid detection
+    - "persuade" # talk your way through
+    - "buy" # merchants everywhere
+    - "enchant" # add magic to items
+
+  death_expressions:
+    - "kill" # direct
+    - "slay" # slightly archaic
+    - "strike down" # formal
+    - "send to Arkay" # religious euphemism
+    - "embrace the Void" # Dark Brotherhood

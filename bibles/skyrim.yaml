@@ -1,0 +1,324 @@
+# Skyrim Lore Bible
+# The Elder Scrolls V: Skyrim Reference Setting
+# Nordic civil war and dragon apocalypse
+
+bible_id: skyrim
+setting_name: "Skyrim"
+tagline: "In their tongue, he is Dovahkiin. Dragonborn."
+
+# =============================================================================
+# WORLD LOGIC
+# =============================================================================
+
+world_logic:
+  survival_logic: |
+    Skyrim is harsh. The cold kills. The creatures are deadly. The civil war
+    makes travel dangerous. But the Nords are hard people, shaped by hard land.
+    They worship Talos openly despite the Thalmor ban. They distrust outsiders.
+    They die on their feet.
+
+  history_shape: |
+    The Nords were the first humans in Tamriel, taught to shout by dragons.
+    They conquered, built an empire, then joined Cyrodiil's empire. Now the
+    Septim line is dead, the Empire weakened, the Thalmor ascendant. Ulfric
+    Stormcloak has killed the High King. Civil war has begun. And the dragons
+    have returned.
+
+  tone: |
+    Nordic fantasy with Viking aesthetics. Stoic, martial, fatalistic. The
+    afterlife (Sovngarde) awaits warriors who die well. Honor is paramount.
+    Magic is mistrusted. Cold is a character. Violence solves most problems.
+
+  technology_level: |
+    Medieval Nordic with Dwemer ruins providing higher tech relics. Steel
+    weapons, fur armor, mead halls. The Dwemer (dwarves) left automatons and
+    artifacts, but they're gone. Magic exists but is viewed with suspicion
+    outside the College of Winterhold.
+
+  mortality_rules: |
+    Death comes easily in Skyrim. Bandits, animals, the cold, the war. But
+    death in battle is not feared — it leads to Sovngarde, the Nordic heaven.
+    The draugr (undead) guard ancient tombs. Dragons can only be truly killed
+    by the Dragonborn absorbing their souls.
+
+# =============================================================================
+# PROPER NOUN CLUSTERS
+# =============================================================================
+
+proper_noun_clusters:
+  - cluster_name: "empire_stormcloak"
+    meaning_note: |
+      The civil war's two sides. The Empire seeks to hold Skyrim in the realm;
+      Ulfric's Stormcloaks seek independence and the right to worship Talos.
+      Neither is purely good or evil. Both have blood on their hands.
+    instances:
+      - instance: "the Empire"
+        type: "faction"
+        usage: "Imperial loyalists"
+      - instance: "Stormcloaks"
+        type: "faction"
+        usage: "Nordic separatists"
+      - instance: "Ulfric Stormcloak"
+        type: "leader"
+        usage: "Rebel jarl who killed the High King"
+      - instance: "General Tullius"
+        type: "leader"
+        usage: "Imperial military commander in Skyrim"
+      - instance: "Jarl"
+        type: "title"
+        usage: "Ruler of a Hold (regional leader)"
+
+  - cluster_name: "thalmor"
+    meaning_note: |
+      The Aldmeri Dominion's secret police. High elves who believe in elven
+      supremacy. They forced the Empire to ban Talos worship. They hunt
+      dissidents. They are the true villains, but not the immediate war.
+    instances:
+      - instance: "Thalmor"
+        type: "faction"
+        usage: "Aldmeri Dominion agents"
+      - instance: "Justiciar"
+        type: "role"
+        usage: "Thalmor agent with authority to detain"
+      - instance: "the Dominion"
+        type: "faction"
+        usage: "The elven empire behind the Thalmor"
+      - instance: "the White-Gold Concordat"
+        type: "treaty"
+        usage: "The peace treaty that banned Talos worship"
+
+  - cluster_name: "dragons"
+    meaning_note: |
+      Ancient beings returning from the dead, led by Alduin the World-Eater.
+      Not mere beasts — they are immortal, intelligent, and their language
+      is power (the Thu'um). Only the Dragonborn can truly kill them.
+    instances:
+      - instance: "dragon"
+        type: "creature"
+        usage: "The returned beasts"
+      - instance: "Alduin"
+        type: "leader"
+        usage: "The World-Eater, chief dragon, prophesied to end the world"
+      - instance: "Thu'um"
+        type: "power"
+        usage: "Dragon shouts, the Voice"
+      - instance: "Dovahkiin"
+        type: "title"
+        usage: "Dragonborn, one who can absorb dragon souls"
+      - instance: "Shout"
+        type: "ability"
+        usage: "Words of power that create magical effects"
+
+  - cluster_name: "talos"
+    meaning_note: |
+      Talos is Tiber Septim, the man who became a god. Worship is banned by
+      the Thalmor but persists in Skyrim. This is not just religion — it's
+      Nordic identity. Talos proves a man can ascend to godhood.
+    instances:
+      - instance: "Talos"
+        type: "divine"
+        usage: "The ninth divine (banned from worship)"
+      - instance: "shrine of Talos"
+        type: "object"
+        usage: "Hidden places of worship"
+      - instance: "by Talos"
+        type: "oath"
+        usage: "Common Nordic swear (risky if Thalmor hear)"
+      - instance: "the Eight"
+        type: "divine"
+        usage: "What the Thalmor call the Nine (minus Talos)"
+
+  - cluster_name: "gold"
+    meaning_note: |
+      Septims remain the currency despite the Septim dynasty's end. Gold is
+      gold. The economy is simpler than Cyrodiil's — more barter, less finance.
+    instances:
+      - instance: "gold"
+        type: "currency"
+        usage: "Standard reference"
+      - instance: "septims"
+        type: "currency"
+        usage: "The coins themselves"
+
+  - cluster_name: "magic_nord"
+    meaning_note: |
+      Nords distrust magic. The College of Winterhold is isolated, mistrusted,
+      blamed for the Great Collapse. Real Nords fight with steel, not spells.
+      The Thu'um is different — it's a gift of the gods, not "magic."
+    instances:
+      - instance: "the College"
+        type: "faction"
+        usage: "College of Winterhold, mages' haven"
+      - instance: "spell"
+        type: "ability"
+        usage: "Magic (mistrusted)"
+      - instance: "Shout"
+        type: "ability"
+        usage: "Voice power (not magic, different)"
+      - instance: "enchanted"
+        type: "property"
+        usage: "Magic item (accepted if useful)"
+
+# =============================================================================
+# FACTION TEMPLATES
+# =============================================================================
+
+faction_templates:
+  - faction_id: "imperials_skyrim"
+    archetype: "overextended_empire"
+    description: "The Empire trying to hold Skyrim despite the war"
+    wants: "Unity, stability, a unified front against the Thalmor eventually"
+    fears: "Losing Skyrim, appearing weak, the Thalmor's true agenda"
+    offers: "Imperial law, trade routes, eventual revenge on the Thalmor"
+    threatens: "Military force, treason charges, execution"
+    register: "Professional, legal, appeals to pragmatism over honor"
+
+  - faction_id: "stormcloaks"
+    archetype: "reaction_formation"
+    description: "Nordic separatists fighting for independence and Talos"
+    wants: "Free Skyrim, Talos worship, death to the Thalmor"
+    fears: "That the Empire will destroy Nordic culture, that Skyrim will fall"
+    offers: "Freedom, honor, a place in Sovngarde for those who fight"
+    threatens: "Death in battle (they consider this a gift, not a threat)"
+    register: "Passionate, honor-invoking, explicitly religious"
+
+  - faction_id: "companions"
+    archetype: "secret_loyalists"
+    description: "The oldest warriors' guild, secretly werewolves"
+    wants: "Honor, glory, good fights, the secret of the Circle kept"
+    fears: "The Silver Hand (werewolf hunters), dishonor"
+    offers: "Brotherhood, training, the beast blood (for the worthy)"
+    threatens: "Death in fair combat, shunning"
+    register: "Direct, martial, disdainful of cowards and liars"
+
+  - faction_id: "dark_brotherhood_skyrim"
+    archetype: "desperate_outlaws"
+    description: "The assassin's guild, much diminished from its former glory"
+    wants: "Contracts, to survive, to rebuild their power"
+    fears: "Extinction — they're the last remnants of the family"
+    offers: "Death for pay, sanctuary, family for the familyless"
+    threatens: "The same as always: the sweet release of death"
+    register: "Intimate, mocking, disturbingly affectionate about killing"
+
+  - faction_id: "college_winterhold"
+    archetype: "secret_loyalists"
+    description: "The mages' sanctuary, isolated and mistrusted"
+    wants: "To study, to preserve knowledge, to be left alone"
+    fears: "The Nords finally storming the gates, another Thalmor purge"
+    offers: "Training, knowledge, shelter for the magically inclined"
+    threatens: "Nothing direct — that's their weakness and their stance"
+    register: "Academic, defensive, tired of explaining they're not evil"
+
+# =============================================================================
+# GAME MECHANICS — Reference for Translation
+# =============================================================================
+
+game_mechanics:
+  stats:
+    - stat_id: "health"
+      description: "Hit points, increases with level and from enchantments"
+
+    - stat_id: "magicka"
+      description: "Magic pool, used for spells"
+
+    - stat_id: "stamina"
+      description: "Physical exertion, power attacks, sprinting"
+
+  violence:
+    description: |
+      Combat is real-time, first or third person. Weapons, spells, and shouts.
+      Finishing moves on low-health enemies. Dragons are major fights. Death
+      is common for enemies, resurrection via save for player.
+
+    costs:
+      - "Health (regenerates slowly or with potions)"
+      - "Stamina (regenerates quickly)"
+      - "Magicka (regenerates based on enchantments)"
+      - "Weapon/armor degrades (with survival mode)"
+      - "Bounty if witnessed murder"
+
+    when_unavoidable:
+      - "Dragons (attack settlements)"
+      - "Bandits (infest roads)"
+      - "Draugr (guard ancient tombs)"
+      - "Civil war soldiers of opposing faction"
+
+  faction_standing:
+    description: |
+      Less quantified than previous games. Joining a faction locks you in.
+      Completing questlines makes you leader. Civil war choice is permanent.
+      Thane status in Holds provides legal protection.
+
+    states:
+      - "Enemy — attacked on sight by faction"
+      - "Neutral — no relation"
+      - "Friend — access to services and quests"
+      - "Member — joined faction"
+      - "Leader — completed questline, run the faction"
+
+# =============================================================================
+# NARRATIVE TENSIONS
+# =============================================================================
+
+narrative_tensions:
+  - tension_id: "unity_vs_freedom"
+    description: "Empire (stability) vs Stormcloak (independence)"
+    manifests_as:
+      - "Soldiers on both sides with valid grievances"
+      - "Thalmor manipulating both sides"
+      - "The player forced to choose"
+    quest_shapes: ["two_claimants", "confrontation", "countdown"]
+
+  - tension_id: "tradition_vs_adaptation"
+    description: "Nordic ways vs the changing world"
+    manifests_as:
+      - "Distrust of magic vs its obvious utility"
+      - "Worship of Talos vs imperial law"
+      - "Isolation vs trade"
+    quest_shapes: ["investigation", "gatekeeping", "negotiation"]
+
+  - tension_id: "mortal_vs_dragon"
+    description: "The return of the dragons and what it means"
+    manifests_as:
+      - "Ancient prophecy coming true"
+      - "The Dragonborn's role as savior or destroyer"
+      - "Alduin's nature — monster or necessary end?"
+    quest_shapes: ["countdown", "confrontation", "investigation"]
+
+# =============================================================================
+# SEMANTIC MAPPING (for translation)
+# =============================================================================
+
+semantic_field:
+  survival_resources:
+    - "gold/septims" # currency
+    - "potions" # healing and buffs
+    - "food" # important in survival mode
+    - "soul gems" # enchanting
+    - "dragon souls" # shout learning
+
+  threat_categories:
+    - "bandits" # human outlaws
+    - "beasts" # wolves, bears, sabre cats
+    - "dragons" # the returned
+    - "draugr" # Nordic undead
+    - "Thalmor" # political threat
+
+  authority_structures:
+    - "Nordic titles" # Jarl, Thane, Housecarl
+    - "Imperial ranks" # Legate, Tribune, General
+    - "Guild positions" # Harbinger, Arch-Mage, Listener
+
+  survival_verbs:
+    - "fight" # primary solution
+    - "Shout" # dragon power
+    - "smith" # craft weapons/armor
+    - "hunt" # for food and materials
+    - "loot" # take from the fallen
+
+  death_expressions:
+    - "kill" # direct
+    - "slay" # heroic
+    - "send to Sovngarde" # Nordic heaven
+    - "put down" # for creatures
+    - "end" # final
