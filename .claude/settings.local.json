@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(uv:*)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(python extract_all_dlc.py:*)",
+      "Bash(.venv/bin/python:*)",
+      "Bash(wc:*)",
+      "Bash(python:*)",
+      "Bash(mkdir:*)",
+      "Bash(pkill:*)",
+      "Bash(pgrep:*)"
+    ]
+  }
+}

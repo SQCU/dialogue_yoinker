@@ -1,0 +1,401 @@
+# Gallia Lore Bible
+# France-for-Franceless-World
+# A bureaucratic survival RPG
+
+bible_id: gallia
+setting_name: "Gallia"
+tagline: "Forms in triplicate. Wine with lunch. Violence by appointment."
+
+# =============================================================================
+# WORLD LOGIC
+# =============================================================================
+
+world_logic:
+  terroir_equivalent: |
+    Places have essences (terroir) that affect everything produced there —
+    wine, cheese, people, ideas, institutions. A person "of" a region carries
+    its character. This is not metaphor; it has mechanical weight.
+    
+  history_shape: |
+    Empire, revolution, empire, republic, repeat. Gallia is always restarting.
+    The current republic is the Fifth (or Sixth, depending on who you ask).
+    Every generation relitigates the Revolution. The past is never settled.
+    
+  tone: |
+    Bureaucratic absurdism. Passionate about abstractions. Violence mediated 
+    through procedure. Food is sacred. Regional identity is life-or-death.
+    Formal register masks genuine emotion. Cynicism and idealism coexist.
+    
+  technology_level: |
+    Near-future bureaucratic-industrial. The Leclerc tanks exist alongside 
+    pneumatic tube message systems and hand-stamped documents. Technology 
+    serves procedure, not efficiency. Nothing is fully automated because 
+    automation would eliminate jobs.
+    
+  mortality_rules: |
+    Death is real but bureaucratically complicated. A body generates paperwork.
+    Violence is costly because it requires forms. Most conflicts are resolved
+    through exhaustion, resignation, or transfer to another département.
+    When violence happens, it is sudden and final — no one wants the paperwork
+    of a wounded enemy.
+
+# =============================================================================
+# GAME MECHANICS — Gallia Specific
+# =============================================================================
+# These are DIFFERENT from the reference games (FNV/Oblivion/Skyrim)
+# to ensure translations don't just reskin combat RPG conventions
+
+game_mechanics:
+
+  # --- PRIMARY STATS (Not Physical Combat) ---
+  stats:
+    # Instead of Strength/Agility/Intelligence:
+    - stat_id: "dossier"
+      description: "The thickness and completeness of your official file"
+      affects: ["institutional_access", "bureaucratic_leverage", "threat_credibility"]
+      note: "High dossier = the system knows you. Good and bad."
+      
+    - stat_id: "terroir"
+      description: "How strongly you're marked by regional origin"
+      affects: ["regional_trust", "parisian_suspicion", "dialect_options"]
+      note: "High terroir = authentic but provincial. Low = cosmopolitan but rootless."
+      
+    - stat_id: "patience"
+      description: "Tolerance for procedural delay and bureaucratic friction"
+      affects: ["queue_endurance", "form_completion", "appeal_success"]
+      note: "The primary survival stat. Running out = breakdown or violence."
+      
+    - stat_id: "connections"
+      description: "Who owes you favors, who you owe"
+      affects: ["shortcut_access", "information_quality", "debt_burden"]
+      note: "A resource that depletes when used. Debts are tracked."
+      
+    - stat_id: "presentation"
+      description: "How correct your documents, dress, and manner are"
+      affects: ["first_impressions", "forgery_detection", "formal_register_access"]
+      note: "Wrong tie = wrong class = wrong treatment."
+
+  # --- DERIVED STATS ---
+  derived:
+    - derived_id: "standing"
+      formula: "(dossier + connections) / 2"
+      description: "Your official position in the social hierarchy"
+      
+    - derived_id: "suspicion"
+      formula: "actions_taken - dossier_justification"
+      description: "How much attention you're attracting"
+      note: "High suspicion = audits, questions, delays"
+      
+    - derived_id: "debt_load"
+      formula: "sum(outstanding_favors_owed)"
+      description: "What you owe to whom"
+      note: "Unpayable debt = loss condition for some factions"
+
+  # --- INTERACTION TYPES (Not Combat) ---
+  interaction_types:
+    - type_id: "queue"
+      description: "Waiting for service. Patience depletes. Connections can skip."
+      outcomes: ["service_received", "office_closed", "patience_exhausted", "bribe_opportunity"]
+      
+    - type_id: "form_filing"
+      description: "Completing bureaucratic requirements"
+      outcomes: ["accepted", "rejected_incomplete", "rejected_suspicious", "lost_in_system"]
+      modifiers: ["presentation", "patience", "connections"]
+      
+    - type_id: "meal"
+      description: "Sharing food. Information and favors flow more easily."
+      outcomes: ["trust_built", "debt_incurred", "secret_revealed", "alliance_formed"]
+      note: "Refusing a meal is a serious insult. Consequences."
+      
+    - type_id: "inspection"
+      description: "Your papers/premises/story being examined"
+      outcomes: ["passed", "delayed", "detained", "fine_levied", "dossier_flagged"]
+      modifiers: ["presentation", "dossier", "patience"]
+      
+    - type_id: "negotiation"
+      description: "Reaching agreement on terms"
+      outcomes: ["deal_struck", "impasse", "favor_owed", "favor_called"]
+      note: "Everything is negotiable. Nothing is free."
+      
+    - type_id: "confrontation"
+      description: "When procedure fails. Rare. Costly."
+      outcomes: ["submission", "escalation", "violence", "mutual_withdrawal"]
+      note: "Violence generates paperwork. Both parties lose standing."
+
+  # --- VIOLENCE MECHANICS (De-emphasized) ---
+  violence:
+    description: |
+      Combat exists but is mechanically punishing. Not morally — procedurally.
+      Every violent act creates a paper trail. Bodies require forms. Witnesses
+      require silencing or bribing. The Hexagon notices.
+      
+    costs:
+      - "Standing loss (automatic)"
+      - "Suspicion increase (significant)"
+      - "Debt to whoever cleans up"
+      - "Regional reputation hit"
+      - "Potential dossier flag (permanent)"
+      
+    when_unavoidable:
+      - "Durendal protocols (military/emergency — pre-authorized violence)"
+      - "Terroir defense (protecting regional honor — socially sanctioned)"
+      - "Debt collection (final resort — accepted but not approved)"
+      
+    mechanics: |
+      No HP. No damage numbers. Violence is succeed/fail.
+      Success = target eliminated, costs incurred.
+      Failure = you are eliminated, your dossier closed.
+      The question is never "can I win?" but "can I afford to try?"
+
+  # --- FACTION STANDING (Not Simple Rep) ---
+  faction_standing:
+    description: |
+      Standing with factions is not a number. It's a dossier annotation.
+      You are "known to be sympathetic," "under observation," "in good standing,"
+      "flagged for audit," "transferred to inactive status."
+      
+    states:
+      - "unknown — no dossier entry, clean slate, no access"
+      - "observed — they know you exist, watching"
+      - "provisional — probationary relationship, must prove yourself"
+      - "standing — normal member/ally, access granted"
+      - "flagged — something wrong, under scrutiny"
+      - "suspended — access revoked, pending review"
+      - "liquidated — relationship terminated, cannot be restored"
+      
+    note: |
+      Unlike FNV/Skyrim where you can grind rep back, liquidated is permanent.
+      Some factions WILL liquidate you for a single act. Choose carefully.
+
+# =============================================================================
+# PROPER NOUN CLUSTERS
+# =============================================================================
+
+proper_noun_clusters:
+  - cluster_name: "leclerc"
+    meaning_note: |
+      The clerk who rose — Philippe Leclerc de Hauteclocque was a WWII general
+      who liberated Paris. Name now attached to tanks, grocery chains, prizes.
+      Represents: merit over birth, but also commodification of heroism.
+    instances:
+      - instance: "General Leclerc"
+        type: "historical_figure"
+        usage: "Reference point for legitimacy"
+      - instance: "Leclerc tank"
+        type: "military_hardware"
+        usage: "Implicit threat, state violence"
+      - instance: "Prix Leclerc"
+        type: "award"
+        usage: "Recognition of merit"
+      - instance: "Leclerc's"
+        type: "franchise"
+        usage: "Ubiquitous grocery chain, mundane reference"
+        
+  - cluster_name: "durendal"
+    meaning_note: |
+      Roland's indestructible sword from the chansons de geste. Name applied
+      to missiles, wines, streets, stances. Represents: mythic weight on
+      mundane things, Gallia's tendency to over-dignify.
+    instances:
+      - instance: "Durendal"
+        type: "mythic_reference"
+        usage: "The original sword, invoked for weight"
+      - instance: "Durendal missile"
+        type: "military_hardware"
+        usage: "Air-to-ground, suggests precision strike"
+      - instance: "Durendal protocols"
+        type: "procedure"
+        usage: "Emergency authorization for violence"
+      - instance: "Rue Durendal"
+        type: "place"
+        usage: "Street name, ubiquitous"
+      - instance: "Durendal stance"
+        type: "posture"
+        usage: "Formal position of non-negotiation"
+        
+  - cluster_name: "hexagon"
+    meaning_note: |
+      France is literally l'Hexagone due to its six-sided shape. Extended to
+      ideology (hexagonal thinking = systematic, rigid) and institution
+      (the Hexagon = central government). Represents: geometric rationalism,
+      centralized control, imposed uniformity.
+    instances:
+      - instance: "the Hexagon"
+        type: "institution"
+        usage: "Central government, ultimate authority"
+      - instance: "hexagonal thinking"
+        type: "ideology"
+        usage: "Systematic, rigid, anti-particular"
+      - instance: "Hex Command"
+        type: "military"
+        usage: "Centralized military authority"
+      - instance: "hexagonal"
+        type: "adjective"
+        usage: "Official, approved, standardized"
+        
+  - cluster_name: "marianne"
+    meaning_note: |
+      The female personification of the Republic. Appears on stamps, statues,
+      official seals. Represents: the nation as nurturing mother AND 
+      revolutionary violence (she wears the Phrygian cap of freed slaves).
+    instances:
+      - instance: "Marianne"
+        type: "symbol"
+        usage: "The Republic personified"
+      - instance: "she"
+        type: "pronoun"
+        usage: "Referring to Gallia/the Republic"
+      - instance: "Marianne's children"
+        type: "phrase"
+        usage: "Citizens, with implication of duty"
+        
+  - cluster_name: "prefecture"
+    meaning_note: |
+      The préfecture is the local arm of central government. The préfet is
+      appointed by Paris, not elected. Represents: central control at local
+      level, bureaucratic interface with citizens.
+    instances:
+      - instance: "Préfecture"
+        type: "institution"
+        usage: "Local government office"
+      - instance: "Préfet"
+        type: "title"
+        usage: "Appointed administrator, local power"
+      - instance: "sous-préfet"
+        type: "title"
+        usage: "Deputy administrator"
+      - instance: "prefectoral"
+        type: "adjective"
+        usage: "Official, stamped, authorized"
+        
+  - cluster_name: "terroir"
+    meaning_note: |
+      The essence of a place — soil, climate, tradition — that marks everything
+      produced there. Wine, cheese, people. Not metaphor; has mechanical weight
+      in Gallia. Represents: regional identity, authenticity, resistance to
+      standardization.
+    instances:
+      - instance: "terroir"
+        type: "concept"
+        usage: "The essence of a place"
+      - instance: "terroirist"
+        type: "slur/badge"
+        usage: "One who prioritizes regional over national"
+      - instance: "de terroir"
+        type: "adjective"
+        usage: "Authentic, rooted, particular"
+      - instance: "hors terroir"
+        type: "adjective"
+        usage: "Rootless, generic, suspicious"
+
+# =============================================================================
+# FACTION TEMPLATES
+# =============================================================================
+
+faction_templates:
+  - faction_id: "centralistes"
+    archetype: "overextended_empire"
+    description: "The Hexagon's administrators. Believe in uniformity, legibility, procedure."
+    wants: "A Gallia that can be read, measured, and managed from Paris"
+    fears: "The provinces, the particular, the ungovernable"
+    offers: "Infrastructure, credentials, access to the system"
+    threatens: "Audit, reclassification, transfer to inactive status"
+    register: "Formal, procedural, never raises voice, threat through paperwork"
+    
+  - faction_id: "terroir_guards"
+    archetype: "reaction_formation"
+    description: "Regional defenders. Wine, dialect, tradition über alles."
+    wants: "Authenticity, recognition, autonomy from Paris"
+    fears: "The generic, the franchised, the loss of distinctiveness"
+    offers: "Regional trust, local knowledge, safe passage"
+    threatens: "Exclusion, shame, 'you're not from here'"
+    register: "Dialect-inflected, passionate, appeals to tradition"
+    
+  - faction_id: "les_affranchis"
+    archetype: "desperate_outlaws"
+    description: "The freed/indebted. Former clerks, failed entrepreneurs, debt refugees."
+    wants: "What they're owed, or escape from what they owe"
+    fears: "Legitimacy they'll never have, audit that finds them"
+    offers: "Grey economy access, no-questions labor, debts forgiven (by being forgotten)"
+    threatens: "Nothing official. That's the point."
+    register: "Informal, cynical, dark humor about procedure"
+    
+  - faction_id: "le_notariat"
+    archetype: "great_man" 
+    description: "The notaries. Keepers of records, validators of transactions, holders of truth."
+    wants: "To be the ledger — the authoritative record that cannot be questioned"
+    fears: "Digitization, disintermediation, audit of the auditors"
+    offers: "Legitimacy, documentation, the stamp that makes things real"
+    threatens: "Refusal to notarize. Without them, nothing is official."
+    register: "Archaic formal, Latin phrases, refers to precedent"
+    
+  - faction_id: "la_table"
+    archetype: "secret_loyalists"
+    description: "The dinner table. Informal networks of power that meet over meals."
+    wants: "To arrange things quietly, without procedure, among friends"
+    fears: "Transparency, audit, the death of the long lunch"
+    offers: "Introductions, arrangements, problems that disappear"
+    threatens: "Exclusion from the table. You eat alone. No one helps you."
+    register: "Casual-formal, food metaphors, 'let's discuss over lunch'"
+
+# =============================================================================
+# NARRATIVE TENSIONS
+# =============================================================================
+
+narrative_tensions:
+  - tension_id: "center_periphery"
+    description: "Paris vs everywhere else"
+    manifests_as:
+      - "Dialect shame / dialect pride"
+      - "Credentials only valid in one direction"
+      - "Resources flow to center, resentment flows out"
+    quest_shapes: ["gatekeeping", "negotiation", "investigation"]
+    
+  - tension_id: "procedure_vs_reality"
+    description: "What the forms say vs what actually happened"
+    manifests_as:
+      - "Officially you don't exist / unofficially everyone knows you"
+      - "The correct process that produces the wrong result"
+      - "The bribe that makes the system work"
+    quest_shapes: ["investigation", "negotiation", "countdown"]
+    
+  - tension_id: "authenticity_vs_efficiency"
+    description: "Traditional methods vs modern optimization"
+    manifests_as:
+      - "Artisan vs factory"
+      - "Terroir vs brand"
+      - "Hand-stamp vs digital signature"
+    quest_shapes: ["two_claimants", "investigation", "escort"]
+    
+  - tension_id: "debt_and_obligation"
+    description: "What is owed, to whom, and what happens when it can't be paid"
+    manifests_as:
+      - "Favors that compound"
+      - "Debts inherited"
+      - "The person who helped you, needing help"
+    quest_shapes: ["countdown", "confrontation", "escort"]
+
+# =============================================================================
+# REVELATION RULES
+# =============================================================================
+
+revelation_rules:
+  - rule: "Proper nouns before definitions"
+    example_good: "'The Préfet has signed.' [reader infers Préfet = authority]"
+    example_bad: "'The Préfet, who is the appointed local administrator, has signed.'"
+    
+  - rule: "Faction perspective before truth"
+    example_good: "'The Centralistes say it's for unity. The terroirists say it's erasure.'"
+    example_bad: "'The Centralistes are trying to erase regional identity, though they claim it's for unity.'"
+    
+  - rule: "Consequences before context"
+    example_good: "'Your dossier has been flagged.' [reader learns what flagging means later]"
+    example_bad: "'Because of the new regulations, your dossier has been flagged, which means...'"
+    
+  - rule: "Meals reveal more than interrogations"
+    example_good: "The real information comes out over the second bottle."
+    example_bad: "He interrogated her until she confessed."
+    
+  - rule: "Violence ends conversations, procedure continues them"
+    example_good: "Once the Leclerc arrived, there was nothing more to discuss."
+    example_bad: "They fought, and then negotiated terms."

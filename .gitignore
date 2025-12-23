@@ -1,4 +1,7 @@
 dialogue_data
 .venv
 __pycache__
-.claude
+runs
+traces
+claudefiles
+adjunct

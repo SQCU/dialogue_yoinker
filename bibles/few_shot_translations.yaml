@@ -1,0 +1,268 @@
+# Few-Shot Translation Examples
+# Mojave/Cyrodiil → Gallia
+# 
+# These examples are deliberately OBVIOUS — clear structural mappings that
+# demonstrate the pattern without requiring sophisticated reasoning.
+# Goal: Even a 2024-era dense open-weights model should be able to learn
+# these patterns through in-context learning alone.
+
+# =============================================================================
+# EXAMPLE SET 1: AUTHORITY THREAT (3-beat escalation)
+# =============================================================================
+
+example_1:
+  name: "NCR Warning → Préfecture Warning"
+  structural_type: "escalating_threat"
+  emotion_arc: ["neutral", "neutral", "anger"]
+  archetype: "authority_to_subject"
+  barrier: "countdown"
+  
+  source:
+    setting: "mojave"
+    beats:
+      - text: "Three days."
+        emotion: "neutral"
+        function: "establish_stakes"
+      - text: "We're back - you've got two days left to improve your NCR reputation. After that we find you and end you. Clear?"
+        emotion: "neutral"
+        function: "threaten"
+      - text: "I gave you three days - you should have crawled in a hole somewhere. Time to die."
+        emotion: "anger"
+        function: "react"
+        
+  target:
+    setting: "gallia"
+    beats:
+      - text: "Seventy-two hours."
+        emotion: "neutral"
+        function: "establish_stakes"
+        notes: "Same flat delivery. Number is bureaucratic-precise."
+      - text: "Forty-eight hours remain. Your dossier goes to the Hexagon at deadline. I suggest you regularize your situation."
+        emotion: "neutral"
+        function: "threaten"
+        notes: "'Regularize your situation' = bureaucratic threat. 'The Hexagon' = ultimate authority."
+      - text: "The deadline has passed. The Leclerc is outside. You can walk to it or we can file the additional paperwork."
+        emotion: "anger"
+        function: "react"
+        notes: "'The Leclerc' = tank = implicit violence. 'Additional paperwork' = dark humor about violence generating forms."
+
+  pattern_notes: |
+    The structural beat (countdown → reminder → execution) is preserved exactly.
+    Mojave: Violence is direct ("find you and end you", "time to die")
+    Gallia: Violence is procedural ("dossier goes to Hexagon", "additional paperwork")
+    Both: Authority speaks, subject listens, countdown is real.
+
+# =============================================================================
+# EXAMPLE SET 2: MERCHANT TRANSACTION (2-beat negotiation)
+# =============================================================================
+
+example_2:
+  name: "Belethor's Greeting → Leclerc's Grocery"
+  structural_type: "negotiation_arc"
+  emotion_arc: ["happy", "happy"]
+  archetype: "merchant_to_customer"
+  barrier: "negotiation"
+  
+  source:
+    setting: "cyrodiil"
+    beats:
+      - text: "Looking to protect yourself? Or deal some damage?"
+        emotion: "happy"
+        function: "query"
+      - text: "Do come back."
+        emotion: "happy"
+        function: "farewell"
+        
+  target:
+    setting: "gallia"
+    beats:
+      - text: "Something for the table? Or perhaps something for... later?"
+        emotion: "happy"
+        function: "query"
+        notes: "Food framing ('the table'). 'Later' implies grey market goods."
+      - text: "The receipt is in the bag. For your dossier."
+        emotion: "happy"
+        function: "farewell"
+        notes: "Everything documented. Even casual transaction has bureaucratic residue."
+
+  pattern_notes: |
+    Short exchange, same emotional register throughout.
+    Mojave/Cyrodiil: Direct offer of goods.
+    Gallia: Food framing, documentation mentioned even in casual context.
+    Both: Merchant is friendly, wants return business.
+
+# =============================================================================
+# EXAMPLE SET 3: INVESTIGATION OBSTACLE (3-beat gatekeeping)
+# =============================================================================
+
+example_3:
+  name: "Skyrim Guard → Préfecture Clerk"
+  structural_type: "status_assertion"
+  emotion_arc: ["neutral", "neutral", "anger"]
+  archetype: "authority_to_subject"
+  barrier: "gatekeeping"
+  
+  source:
+    setting: "skyrim"
+    beats:
+      - text: "She thinks she can find out who's been killing the women..."
+        emotion: "neutral"
+        function: "deliver_information"
+      - text: "Captain, I've been receiving complaints about this Giordano woman."
+        emotion: "neutral"
+        function: "deliver_information"
+      - text: "I don't care if she can find a living dwarf -- I can't have her stirring up trouble. We have enough problems as it is."
+        emotion: "anger"
+        function: "refuse"
+        
+  target:
+    setting: "gallia"
+    beats:
+      - text: "She's been making inquiries. About the missing clerks."
+        emotion: "neutral"
+        function: "deliver_information"
+        notes: "Same structure: reporting on an investigator."
+      - text: "Monsieur le Préfet, there have been complaints. The Duval woman is asking questions outside her prérogatives."
+        emotion: "neutral"
+        function: "deliver_information"
+        notes: "Formal address. 'Outside her prérogatives' = bureaucratic framing of transgression."
+      - text: "I don't care if she can find the original ledger — I will not have some provincial clerk destabilizing the entire arrondissement. Stamp her transfer. Today."
+        emotion: "anger"
+        function: "refuse"
+        notes: "'Stamp her transfer' = bureaucratic violence. She's not killed, she's transferred. Same effect."
+
+  pattern_notes: |
+    Three-beat: report → escalate → shut down.
+    Skyrim: Physical violence implied ("can't have her stirring up trouble").
+    Gallia: Bureaucratic violence explicit ("stamp her transfer").
+    Both: Authority protects itself from scrutiny by eliminating the investigator.
+
+# =============================================================================
+# EXAMPLE SET 4: AMBIENT BARK (1-beat atmosphere)
+# =============================================================================
+
+example_4:
+  name: "NCR Trooper Bark → Gendarme Bark"
+  structural_type: "single_beat"
+  emotion_arc: ["neutral"]
+  archetype: "peer_to_peer" # internal monologue, effectively
+  barrier: "ambient"
+  
+  source:
+    setting: "mojave"
+    beats:
+      - text: "Patrolling the Mojave almost makes you wish for a nuclear winter."
+        emotion: "neutral"
+        function: "bark"
+        
+  target:
+    setting: "gallia"
+    beats:
+      - text: "Another audit. As if the terroir cares about their spreadsheets."
+        emotion: "neutral"
+        function: "bark"
+        notes: "Same structure: complaint about job conditions. Regional framing."
+
+  pattern_notes: |
+    Single line, world-building through complaint.
+    Mojave: Environmental complaint (heat, nuclear reference).
+    Gallia: Bureaucratic complaint (audit), regional pride (terroir vs Hexagon).
+    Both: Reveals setting through grunt-level frustration.
+
+# =============================================================================
+# EXAMPLE SET 5: PLEA ARC (2-beat supplication)
+# =============================================================================
+
+example_5:
+  name: "Legion Prisoner → Debtor"
+  structural_type: "plea_arc"
+  emotion_arc: ["fear", "fear"]
+  archetype: "supplicant_to_power"
+  barrier: "confrontation"
+  
+  source:
+    setting: "mojave"
+    beats:
+      - text: "Please, I have children. I didn't know it was Legion territory."
+        emotion: "fear"
+        function: "plead"
+      - text: "I'll do anything. Work the fields. Carry supplies. Anything."
+        emotion: "fear"
+        function: "plead"
+        
+  target:
+    setting: "gallia"
+    beats:
+      - text: "Please. I have family in the south. I didn't know the forms had changed."
+        emotion: "fear"
+        function: "plead"
+        notes: "Regional identity ('the south'). Bureaucratic transgression ('forms had changed')."
+      - text: "I'll sign anything. Retroactive filings. Penalty assessments. Whatever the Préfecture requires."
+        emotion: "fear"
+        function: "plead"
+        notes: "Submission is bureaucratic, not physical. 'Sign anything' = complete surrender."
+
+  pattern_notes: |
+    Two beats of escalating desperation.
+    Mojave: Offers labor, physical service.
+    Gallia: Offers signatures, bureaucratic compliance.
+    Both: The powerless offers everything, receives no guarantee.
+
+# =============================================================================
+# EXAMPLE SET 6: REVELATION BEAT (1-beat information)
+# =============================================================================
+
+example_6:
+  name: "Quest Information → Quest Information"
+  structural_type: "single_beat"
+  emotion_arc: ["neutral"]
+  archetype: "stranger_to_stranger"
+  barrier: "investigation"
+  
+  source:
+    setting: "cyrodiil"
+    beats:
+      - text: "I've heard he's good with his bow, and he'll train you, for a price. I like the wine he makes, too."
+        emotion: "neutral"
+        function: "deliver_information"
+        
+  target:
+    setting: "gallia"
+    beats:
+      - text: "The old notaire in Saint-Hubert still has the original cadastre. He'll show you, if you bring something for his table. He's partial to the Durendal red."
+        emotion: "neutral"
+        function: "deliver_information"
+        notes: |
+          Same structure: person + skill + price + personal detail.
+          Gallia: 'cadastre' (land registry) = bureaucratic MacGuffin.
+          'Something for his table' = meal as transaction.
+          'Durendal red' = proper noun cluster + food culture.
+
+  pattern_notes: |
+    Single beat delivering quest-relevant information.
+    Both: Name-drop, useful skill, transaction hint, humanizing detail.
+    Difference is texture: bows → notaires, wine he makes → specific wine preference.
+
+# =============================================================================
+# USAGE NOTES FOR FEW-SHOT PROMPTING
+# =============================================================================
+
+usage_notes: |
+  When using these examples for in-context learning:
+  
+  1. INCLUDE THE PATTERN_NOTES — they make the structural mapping explicit
+  
+  2. VARY THE EXAMPLES — don't use all 6 for every translation; pick 2-3 
+     that match the structural type of the input
+  
+  3. EMPHASIZE THE INVARIANTS — emotion arc, beat count, archetype relation
+     These MUST match between source and target.
+  
+  4. EMPHASIZE THE VARIANTS — specific words, proper nouns, register
+     These MUST change between source and target.
+  
+  5. FOR SIMPLER MODELS — use examples 2, 4, 6 (shorter, cleaner patterns)
+     FOR CAPABLE MODELS — use examples 1, 3, 5 (longer, more nuanced)
+  
+  The goal is that a model reading these examples learns:
+  "Oh, I keep the shape and change the words. The shape is sacred. The words serve the setting."

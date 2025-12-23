@@ -1,0 +1,21 @@
+{
+  "ticket_id": "translate_0004",
+  "output_data": {
+    "translated_texts": [
+      "Bon sang!",
+      "Homme à terre!",
+      "Je vais vous réduire en pièces.",
+      "Crétin.",
+      "Oh oui! Ça fait plus pour moi."
+    ],
+    "proper_nouns_introduced": [],
+    "register_notes": "French administrative/military combat language, maintains anger->neutral emotional arc",
+    "structural_fidelity": {
+      "emotion_arc_match": true,
+      "beat_count_match": true,
+      "archetype_preserved": true
+    },
+    "confidence": 0.89
+  },
+  "worker_concerns": []
+}

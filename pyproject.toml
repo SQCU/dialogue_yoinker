@@ -31,6 +31,11 @@ server = [
     "scipy>=1.10",  # Required for networkx community detection
     "lz4>=4.0",     # Required for Skyrim SE BSA decompression
 ]
+# Subagent orchestration (synthetic dialogue generation)
+subagents = [
+    "anthropic>=0.40",
+    "pyyaml>=6.0",
+]
 # Analysis tools for corpus exploration
 analysis = [
     "pandas>=2.0",
@@ -43,7 +48,7 @@ graphs = [
 ]
 # All extras
 dev = [
-    "dialogue-yoinker[server,analysis,graphs]",
+    "dialogue-yoinker[server,analysis,graphs,subagents]",
     "pytest>=7.0",
     "ruff>=0.1",
 ]
