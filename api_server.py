@@ -56,6 +56,14 @@ except ImportError:
     ticket_router = None
     dispatch_router = None
 
+# Synthetic data routes (compiled translations)
+try:
+    from workflow.synthetic_routes import router as synthetic_data_router
+    SYNTHETIC_DATA_AVAILABLE = True
+except ImportError:
+    SYNTHETIC_DATA_AVAILABLE = False
+    synthetic_data_router = None
+
 # Landing page HTML (extracted to reduce file size)
 from landing_html import LANDING_HTML
 
@@ -367,6 +375,10 @@ if TICKET_QUEUE_AVAILABLE and ticket_router:
 if TICKET_QUEUE_AVAILABLE and dispatch_router:
     app.include_router(dispatch_router)
 
+# Include synthetic data routes if available
+if SYNTHETIC_DATA_AVAILABLE and synthetic_data_router:
+    app.include_router(synthetic_data_router)
+
 
 # =============================================================================
 # API Endpoints
@@ -430,6 +442,14 @@ async def api_overview():
             "GET /api/traces": "List workflow traces (observability)",
             "GET /api/traces/stats": "Aggregate trace statistics",
             "GET /api/traces/{workflow_id}": "Get specific workflow trace",
+            # Compiled synthetic data (from translation runs)
+            "GET /api/synthetic/settings": "List compiled synthetic settings",
+            "GET /api/synthetic/{setting}/stats": "Stats for synthetic setting",
+            "GET /api/synthetic/{setting}/dialogue": "Raw dialogue entries",
+            "GET /api/synthetic/{setting}/trajectories": "Full trajectory view with arcs",
+            "POST /api/synthetic/{setting}/sample": "Sample from synthetic data",
+            "GET /api/synthetic/{setting}/concept-mappings": "View concept transformations",
+            "GET /api/synthetic/{setting}/compare/{source}": "Side-by-side source/target",
         },
         "example_request": {
             "endpoint": "POST /api/sample",

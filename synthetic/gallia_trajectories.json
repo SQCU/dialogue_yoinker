@@ -1,0 +1,2146 @@
+{
+  "plugin": "synthetic_gallia_trajectories.json",
+  "game": "synthetic",
+  "setting": "gallia",
+  "source_games": [
+    "falloutnv",
+    "oblivion"
+  ],
+  "run_id": "run_20251223_022704_gallia",
+  "compiled_at": "2025-12-23T03:42:52.707514+00:00",
+  "total_trajectories": 36,
+  "source_reference_note": "source_ref fields are hashes - see runs/{run_id}/source_reference.json",
+  "trajectories": [
+    {
+      "ticket_id": "translate_0000",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.85,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "House",
+          "target": "Notariat",
+          "rationale": "Both represent authority that legitimizes and provides access to power structures"
+        },
+        {
+          "source": "Benny",
+          "target": "sous-pr\u00e9fet",
+          "rationale": "Both are insiders with position who could potentially betray the system"
+        },
+        {
+          "source": "swank joint",
+          "target": "prefectoral appointment",
+          "rationale": "Both represent prestigious positions within the power structure"
+        }
+      ],
+      "register_notes": "Shifted from wasteland casual (Jesus, swank) to formal bureaucratic (inadmissible, credentials, irregularities). Maintained disgust through formal disapproval. Anger expressed through accusation of proposing irregularities rather than direct insult.",
+      "arc": {
+        "emotions": [
+          "disgust",
+          "disgust",
+          "anger"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "disgust",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_2de81cc71e25",
+          "target_text": "Inadmissible. After all the Notariat did to establish our credentials for this prefectoral appointment. I trust there is additional documentation?"
+        },
+        {
+          "index": 1,
+          "emotion": "disgust",
+          "function": "comply",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_9c35f657ca8a",
+          "target_text": "[SUCCEEDED] Inadmissible. After all the Notariat did to establish our credentials for this prefectoral appointment. I trust there is additional documentation?"
+        },
+        {
+          "index": 2,
+          "emotion": "anger",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_62338fc9d575",
+          "target_text": "[FAILED] Now you are proposing irregularities. The sous-pr\u00e9fet would never risk such exposure. What else have you brought?"
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0001",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.92,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "members_only_bouncer",
+          "target": "credentialed_access_control",
+          "rationale": "Both enforce institutional boundaries through authority, but Gallia uses bureaucratic credentials rather than club membership"
+        },
+        {
+          "source": "physical_ejection_threat",
+          "target": "documentation_threat",
+          "rationale": "In Gallia, the threat is paperwork (incident reports, dossier flags) not physical violence"
+        }
+      ],
+      "register_notes": "Formal procedural register. Threat escalates from credential check \u2192 notification protocol \u2192 documentation warning. The final beat implies creating an official record would be costly for the subject.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "threaten",
+          "archetype_relation": "authority_to_subject",
+          "source_ref": "fal_6035afae14f5",
+          "target_text": "Credentialed personnel only."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "threaten",
+          "archetype_relation": "authority_to_subject",
+          "source_ref": "fal_9402524b80d4",
+          "target_text": "This is your final notification."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "threaten",
+          "archetype_relation": "authority_to_subject",
+          "source_ref": "fal_63d3694971ba",
+          "target_text": "I recommend you withdraw before documentation becomes necessary."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0002",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "caps_currency",
+          "target": "favors_currency",
+          "rationale": "In Gallia, the connections stat and favor economy replace physical currency in many transactions"
+        },
+        {
+          "source": "wasteland_haggling",
+          "target": "formal_negotiation",
+          "rationale": "Same merchant leverage and compromise pattern, but Gallia uses procedural language (finalize arrangement, terminate discussions)"
+        }
+      ],
+      "register_notes": "Formal negotiation register with slight warmth in first beat (appreciation of directness) that shifts to procedural firmness in second beat. Uses consideration/arrangement/discussions rather than deal/price.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "negotiate",
+          "archetype_relation": "merchant_to_customer",
+          "source_ref": "fal_38fd1975275b",
+          "target_text": "[SUCCEEDED]Ha! I appreciate the directness, but the most I can offer is half the usual consideration. Three favors, and we can finalize the arrangement."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "negotiate",
+          "archetype_relation": "merchant_to_customer",
+          "source_ref": "fal_9bdb83f52e16",
+          "target_text": "I respect your initiative, but the standard rate is six. Accept or we terminate discussions."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0003",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.9,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "Caesar",
+          "target": "Pr\u00e9fet",
+          "rationale": "Both represent appointed absolute authority in their respective systems"
+        },
+        {
+          "source": "Legion",
+          "target": "Centralistes",
+          "rationale": "Both represent centralized authoritarian force that destroys local autonomy"
+        },
+        {
+          "source": "great underground vault",
+          "target": "subterranean archive",
+          "rationale": "Both are institutional spaces of storage/secrets requiring access"
+        },
+        {
+          "source": "burned it",
+          "target": "liquidated it",
+          "rationale": "Bureaucratic destruction vs physical\u2014same outcome, different method"
+        },
+        {
+          "source": "New Mexico",
+          "target": "Burgundy",
+          "rationale": "Both are regional identities distinct from central power (Legion/Centralistes)"
+        }
+      ],
+      "register_notes": "Maintained formal neutral tone. Authority decree uses official language (forbidden, executed, instructions). Backstory shifts to peer register but stays formal\u2014French administrative rather than wasteland casual. Liquidated carries bureaucratic weight equivalent to burned.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "authority_to_subject",
+          "source_ref": "fal_5e13d108d88f",
+          "target_text": "The Pr\u00e9fet has forbidden your departure until you have executed his instructions in the subterranean archive."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a4ac6e6fbb76",
+          "target_text": "A small commune in Burgundy. The Centralistes liquidated it several years prior\u2014that is how I arrived here."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0004",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.9,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "wasteland_sarcasm",
+          "target": "bureaucratic_understatement",
+          "rationale": "Same dismissive function, but Gallia expresses mockery through formal politeness (remarkable optimism vs real funny)"
+        },
+        {
+          "source": "worth_your_while",
+          "target": "genuine_value",
+          "rationale": "Both indicate serious offer, Gallia uses abstract value language rather than personal benefit"
+        }
+      ],
+      "register_notes": "Peer negotiation maintains formal register but allows slight warmth (genuinely refreshing) and frustration (wastes time). Uses initiated conversation, substantive proposal rather than colloquial make me a real offer.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_5ec321a3d84e",
+          "target_text": "[FAILED] {Laughs}Remarkable. I have not encountered such optimism in weeks. Genuinely refreshing. Now, let us discuss actual terms."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "comply",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_224b92f46ca7",
+          "target_text": "[SUCCEEDED] This represents genuine value. I would not have initiated this conversation otherwise."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_1e9fd4e46f5a",
+          "target_text": "[FAILED] I cannot determine if this is humor or incompetence, but either way it wastes time. Present a substantive proposal and we can proceed."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0005",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "thing to teach",
+          "target": "procedure to demonstrate",
+          "rationale": "Procedural knowledge replaces survival skills in Gallia"
+        },
+        {
+          "source": "pay you",
+          "target": "settle the debt",
+          "rationale": "Debt/favor economy is central to Gallia, replaces caps"
+        },
+        {
+          "source": "ammo",
+          "target": "prefectoral stamps",
+          "rationale": "Bureaucratic resources (stamps legitimize documents) replace physical ammunition"
+        },
+        {
+          "source": "hard to come by",
+          "target": "difficult to acquire",
+          "rationale": "Same scarcity concept, more formal register"
+        },
+        {
+          "source": "out here",
+          "target": "in the outer d\u00e9partements",
+          "rationale": "Geographic periphery\u2014distance from central authority"
+        }
+      ],
+      "register_notes": "Maintained formal but friendly peer-to-peer tone. Shifted from wasteland survival (ammo, go easy) to bureaucratic survival (stamps, use sparingly). Both contexts involve resource scarcity and mentorship.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_1e08ea42569e",
+          "target_text": "I did have another procedure to demonstrate, but I will understand if you would prefer I simply settle the debt so you can proceed."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_994f70cd9d72",
+          "target_text": "Here. Use them sparingly. Prefectoral stamps can be difficult to acquire in the outer d\u00e9partements."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0006",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.91,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "personal_harshness",
+          "target": "procedural_rigidity",
+          "rationale": "In Gallia, personal flaws are often expressed through bureaucratic metaphors - being harsh becomes being rigid"
+        },
+        {
+          "source": "giving_up",
+          "target": "resignation",
+          "rationale": "Formal term for abandoning position, maintains procedural register even in emotional moment"
+        }
+      ],
+      "register_notes": "Maintains formal register even during emotional vulnerability. The sadness leaks through hesitation and admission (excessively rigid, tendency of mine). Anger expresses as cold procedural logic (procedurally identical) rather than heat.",
+      "arc": {
+        "emotions": [
+          "sad",
+          "anger"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "sad",
+          "function": "comply",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_12bd1bcd97df",
+          "target_text": "[SUCCEEDED] {Hesitating}Very well... perhaps I was excessively rigid. It is a tendency of mine."
+        },
+        {
+          "index": 1,
+          "emotion": "anger",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_f5b47c2d19e4",
+          "target_text": "[FAILED] What you propose is procedurally identical to resignation, given your framing."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0007",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.87,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "pack leaders",
+          "target": "department heads",
+          "rationale": "Both represent organizational authority whose removal causes collapse"
+        },
+        {
+          "source": "Mother Deathclaw and Alpha Male",
+          "target": "Pr\u00e9fet de r\u00e9gion and Sous-pr\u00e9fet principal",
+          "rationale": "Dual leadership structure\u2014both are titled positions of authority"
+        },
+        {
+          "source": "kill em",
+          "target": "liquidate them",
+          "rationale": "Administrative termination in Gallia replaces physical violence"
+        },
+        {
+          "source": "pack will scatter",
+          "target": "office will dissolve / disperse the remainder",
+          "rationale": "Loss of institutional coherence when leadership is removed"
+        },
+        {
+          "source": "pretty tough job",
+          "target": "quite demanding work",
+          "rationale": "Same meaning, formal register"
+        }
+      ],
+      "register_notes": "Maintained neutral advisory tone. Transformed violence against creatures into administrative violence against bureaucratic positions. Liquidate carries appropriate weight\u2014institutional death rather than physical. The parallel structure (two leaders, both must be removed) preserves the source logic.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_5386eaa7dd2c",
+          "target_text": "You would need to remove the department heads\u2014the Pr\u00e9fet de r\u00e9gion and the Sous-pr\u00e9fet principal. Liquidate them, and the office will dissolve. Quite demanding work."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_6f8e2e464d53",
+          "target_text": "To execute the task properly, you must eliminate the department heads\u2014the Pr\u00e9fet de r\u00e9gion and the Sous-pr\u00e9fet principal. Should disperse the remainder."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0008",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.89,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "wasteland_philosophy",
+          "target": "bureaucratic_abstraction",
+          "rationale": "Both settings value abstract principles, but Gallia frames it as pursuing principles to conclusions rather than following symbols"
+        },
+        {
+          "source": "time_pressure",
+          "target": "time_as_resource",
+          "rationale": "Same countdown mechanic, Gallia treats time as consumed/depleted resource rather than wasted"
+        }
+      ],
+      "register_notes": "Formal philosophical register that shifts to clipped procedural language. The threat is implicit - consuming time has consequences in a world of queues and deadlines. No proper nouns needed.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_b4ff71626d90",
+          "target_text": "When you pursue a principle to its conclusion, consider what that conclusion entails. More critically, consider what occurs {emph}beyond the conclusion."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_3073c44de12a",
+          "target_text": "You are consuming time. Delaying. It will not assist you."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0009",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.82,
+      "proper_nouns_introduced": [
+        "Secr\u00e9tariat G\u00e9n\u00e9ral"
+      ],
+      "concept_mappings": [
+        {
+          "source": "Sink Central Intelligence Unit",
+          "target": "Secr\u00e9tariat G\u00e9n\u00e9ral",
+          "rationale": "Both are central coordinating authorities managing distributed entities"
+        },
+        {
+          "source": "personality modules",
+          "target": "regional offices and departmental staff",
+          "rationale": "Distributed entities that provide character and function to the system"
+        },
+        {
+          "source": "sense of community",
+          "target": "sense of collegiality",
+          "rationale": "Bureaucratic equivalent of community\u2014formal but genuine connection"
+        },
+        {
+          "source": "lifeless and sterile",
+          "target": "lifeless and sterile",
+          "rationale": "Direct transfer\u2014same emotional quality of bureaucratic emptiness"
+        },
+        {
+          "source": "personality chips",
+          "target": "regional positions",
+          "rationale": "Both are discrete units that populate a system with character"
+        }
+      ],
+      "register_notes": "Maintained narration voice with formal bureaucratic terms. Transformed AI loneliness into administrative loneliness\u2014a building without staff. The secret relief translates well: central authority discovering it does not want full control.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_4e3708b7bbe0",
+          "target_text": "{Narration}The Secr\u00e9tariat G\u00e9n\u00e9ral discovered, despite its centralizing mandate, it was comforted by the sense of collegiality the regional offices provided."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_67b05bdd04aa",
+          "target_text": "{Narration}{1 office staffed}The Prefecture was strangely silent, which it had never been in previous administrations. The absence of departmental staff made the building lifeless and sterile."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_453453f72ab5",
+          "target_text": "{Narration}Secretly, the Secr\u00e9tariat G\u00e9n\u00e9ral was relieved that not all of the regional positions had been filled. What was there, was sufficient."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0010",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.87,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "comedian",
+          "target": "satirist",
+          "rationale": "Gallia cabaret culture values satirical performance over stand-up comedy"
+        },
+        {
+          "source": "caps_currency",
+          "target": "consideration_units",
+          "rationale": "Abstract consideration maintains formal register while indicating payment"
+        },
+        {
+          "source": "hire",
+          "target": "engagement",
+          "rationale": "Formal contractual term for entertainment booking"
+        }
+      ],
+      "register_notes": "Maintains happy/neutral emotional tone through satisfied business language. The warmth comes through trust he will justify it and preferably at this establishment rather than wasteland enthusiasm. Commission percentages preserved exactly.",
+      "arc": {
+        "emotions": [
+          "happy",
+          "happy",
+          "happy",
+          "neutral",
+          "happy",
+          "happy"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "happy",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_5aa1e0915402",
+          "target_text": "The satirist you recommended? Yes, he practically pleaded for the engagement. No negotiation whatsoever. Your commission is 3%."
+        },
+        {
+          "index": 1,
+          "emotion": "happy",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_9720a1817ac2",
+          "target_text": "The satirist you recommended? Yes, he practically pleaded for the engagement. No negotiation whatsoever. Your commission is 5%."
+        },
+        {
+          "index": 2,
+          "emotion": "happy",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_0954899152a3",
+          "target_text": "The satirist you recommended? Yes, he proved quite skilled at negotiation. The contract was costly - I trust he will justify it. Your commission is 3%."
+        },
+        {
+          "index": 3,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_73bb17ad23d3",
+          "target_text": "The caustic one with the provincial manner? Excellent, he will serve well as a novelty attraction. As arranged, your commission is 3%."
+        },
+        {
+          "index": 4,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_80ff62b0bd02",
+          "target_text": "As we agreed, your fee. 5% of the engagement totals 166 in consideration. Spend it judiciously - preferably at this establishment."
+        },
+        {
+          "index": 5,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_05314e6154ba",
+          "target_text": "As we agreed, your fee. 3% of the engagement totals 100 in consideration. Spend it judiciously - preferably at this establishment."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0011",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.85,
+      "proper_nouns_introduced": [
+        "Pr\u00e9fecture"
+      ],
+      "concept_mappings": [
+        {
+          "source": "brahmin_trail_traffic",
+          "target": "prefecture_office_traffic",
+          "rationale": "Both convey high volume through familiar busy reference - Gallia uses bureaucratic queues instead of livestock trails"
+        },
+        {
+          "source": "ass_to_sell",
+          "target": "inventory",
+          "rationale": "Same commodification of bodies, Gallia uses sterile inventory language to maintain register while preserving vulgarity"
+        },
+        {
+          "source": "worked_off_debt",
+          "target": "service_until_ledger_balances",
+          "rationale": "Same debt bondage mechanic expressed through accounting metaphor"
+        }
+      ],
+      "register_notes": "Maintains the crude transactional nature through bureaucratic euphemism (inventory, appointments, ledger) which is arguably more dehumanizing than direct language. Uses Pr\u00e9fecture as existing proper noun cluster for bureaucratic traffic.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_357e4a88e907",
+          "target_text": "That eloquent mouth will receive more appointments than a Pr\u00e9fecture office during tax season."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a9953be5d4ba",
+          "target_text": "This completes our roster of new inventory. Well executed - accept the supplemental consideration."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_9e404a96ac44",
+          "target_text": "{Hmph!}That silver-tongued bastard owes me considerable debt. He will service clients until the ledger balances."
+        },
+        {
+          "index": 3,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a9953be5d4ba",
+          "target_text": "This completes our roster of new inventory. Well executed - accept the supplemental consideration."
+        },
+        {
+          "index": 4,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_357e4a88e907",
+          "target_text": "That eloquent mouth will receive more appointments than a Pr\u00e9fecture office during tax season."
+        },
+        {
+          "index": 5,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a9953be5d4ba",
+          "target_text": "This completes our roster of new inventory. Well executed - accept the supplemental consideration."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0012",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.85,
+      "proper_nouns_introduced": [
+        "Inspection G\u00e9n\u00e9rale",
+        "Charlot"
+      ],
+      "concept_mappings": [
+        {
+          "source": "Omertas",
+          "target": "Inspection G\u00e9n\u00e9rale",
+          "rationale": "Both are hostile institutional forces with power to eliminate enemies"
+        },
+        {
+          "source": "want us dead",
+          "target": "want us liquidated",
+          "rationale": "Bureaucratic termination replaces physical death in Gallia"
+        },
+        {
+          "source": "Carlitos",
+          "target": "Charlot",
+          "rationale": "French equivalent name, diminutive form suggesting familiarity"
+        },
+        {
+          "source": "ready when you are",
+          "target": "prepared when you are",
+          "rationale": "Same meaning, slightly more formal register"
+        }
+      ],
+      "register_notes": "Maintained neutral peer-to-peer tone. Transformed existential threat from physical violence to institutional liquidation. Inspection G\u00e9n\u00e9rale introduced as new hostile faction\u2014internal affairs/audit body that can destroy careers. Coordination language stays the same structural shape.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_127a144fd638",
+          "target_text": "But the Inspection G\u00e9n\u00e9rale will want us liquidated. What are we going to do about that?"
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_948ba554bc47",
+          "target_text": "Let Charlot know that we will be prepared when you are."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0013",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.86,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "roman_betrayal_reference",
+          "target": "revolutionary_denunciation",
+          "rationale": "Both invoke historical betrayal - Roman Senate vs Revolutionary Terror. In Gallia, denunciation (filing papers against someone) is the bureaucratic form of betrayal"
+        },
+        {
+          "source": "run_for_cliffs",
+          "target": "secure_passage_to_coast",
+          "rationale": "Same escape impulse, but Gallia escape involves securing travel documents rather than physical flight"
+        }
+      ],
+      "register_notes": "Preserves Latin in first two beats but shifts from formal Latin to conversational French (Et toi vs Et tu). The betrayal metaphor shifts from daggers to denunciation - filing papers against someone is the Gallia equivalent of political murder.",
+      "arc": {
+        "emotions": [
+          "surprise",
+          "surprise",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "surprise",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_7e625342dce2",
+          "target_text": "{\"And you, my friend?\" ay too mon ah-MEE}Et toi, mon ami?"
+        },
+        {
+          "index": 1,
+          "emotion": "surprise",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_4b4035105436",
+          "target_text": "{\"And you, my friend?\" ay too mon ah-MEEK}Et toi, mon amie?"
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_b561f5cbfadd",
+          "target_text": "Simply signal before you file the denunciation so I know when to secure passage to the coast."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0014",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.86,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "fight to the death",
+          "target": "audit is terminal",
+          "rationale": "Both represent career-ending stakes, no second chances"
+        },
+        {
+          "source": "complacent",
+          "target": "procedurally lax",
+          "rationale": "Loss of rigor in their respective systems"
+        },
+        {
+          "source": "invitee",
+          "target": "appointee",
+          "rationale": "Formal participant in hierarchical system"
+        },
+        {
+          "source": "challenge him",
+          "target": "challenge his authority",
+          "rationale": "Institutional confrontation replaces physical"
+        },
+        {
+          "source": "getting on in years",
+          "target": "advancing in tenure",
+          "rationale": "Age as bureaucratic seniority, source of institutional power"
+        }
+      ],
+      "register_notes": "Transformed gladiatorial violence into bureaucratic violence. Happy emotion preserved through satisfaction with harsh system. Anger emerges from frustration that no one challenges authority. Terminal audit = fight to death (career ends). Deference vs respect maintains same social dynamic.",
+      "arc": {
+        "emotions": [
+          "happy",
+          "anger"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_bb17746d00e3",
+          "target_text": "The audit is terminal. It keeps them from becoming procedurally lax."
+        },
+        {
+          "index": 1,
+          "emotion": "anger",
+          "function": "react",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_d76031c2fab0",
+          "target_text": "No appointee has dared to challenge his authority yet. Perhaps it is a matter of deference\u2014he is advancing in tenure."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0015",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.91,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "rifle",
+          "target": "authorization",
+          "rationale": "In Gallia, power comes from documents/authorizations rather than weapons. An authorization (permission to do something) is more valuable than a weapon."
+        },
+        {
+          "source": "good_to_hear",
+          "target": "satisfactory",
+          "rationale": "Formal procedural register for acknowledging positive information"
+        }
+      ],
+      "register_notes": "Maintains neutral, formal peer exchange. The gift is reframed as something bureaucratically valuable (authorization) rather than a weapon. Use it well vs Enjoy maintains formality.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_2ad503a520fc",
+          "target_text": "Satisfactory."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_ebaaad7ae672",
+          "target_text": "Ah, and I believe you will derive more utility from this authorization than I will. Use it well."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0017",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [
+        "Hexagon",
+        "Centraliste"
+      ],
+      "concept_mappings": [
+        {
+          "source": "legion_camp",
+          "target": "hexagon",
+          "rationale": "Both represent central authoritative power - Legion military vs Hexagon government. Being at the Hexagon implies institutional backing"
+        },
+        {
+          "source": "brahmin_shit",
+          "target": "fabricated_documentation",
+          "rationale": "Same deception concept, Gallia frames lies as false paperwork rather than animal waste"
+        },
+        {
+          "source": "legion_member",
+          "target": "centraliste",
+          "rationale": "Both represent institutional faction members who might be swayed by faction authority"
+        }
+      ],
+      "register_notes": "Defeated tone maintained through formal but deflated language. Anger expressed through rejection of procedure (more than procedure) rather than crude language. Uses existing Hexagon and Centraliste clusters.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "anger"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "comply",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_c85bc9c10564",
+          "target_text": "[SUCCEEDED] {Defeated, downcast}No... no, you arrived at the Hexagon first, I believe that establishes the matter."
+        },
+        {
+          "index": 1,
+          "emotion": "anger",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_c8049511d839",
+          "target_text": "[FAILED] Perhaps you presented him fabricated documentation, sufficient to create doubt... but I am not Centraliste, and I require more than procedure."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0018",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.87,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "ammunition_crafting",
+          "target": "bureaucratic_expertise",
+          "rationale": "In Gallia, power comes from mastering procedure. Crafting powerful ammo becomes composing effective appeals"
+        }
+      ],
+      "register_notes": "Happy self-assurance through confident instructional tone. Pride in procedural mastery.",
+      "arc": {
+        "emotions": [
+          "happy",
+          "happy"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_ed97dcb7d20e",
+          "target_text": "{Happily self-assured}That is how you compose an appeal that will command immediate attention from any functionary who encounters your dossier."
+        },
+        {
+          "index": 1,
+          "emotion": "happy",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_3e479581b37e",
+          "target_text": "[FAILED] You do not yet comprehend, outsider. This does not surprise me. It requires particular aptitude. Return when you possess the necessary credentials."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0019",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.84,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "physical_comedy_clumsiness",
+          "target": "procedural_incompetence",
+          "rationale": "Gallia humor targets bureaucratic failures rather than physical mishaps"
+        },
+        {
+          "source": "angel_guardian",
+          "target": "exceptional_fortune_requiring_audit",
+          "rationale": "Too much luck in Gallia is suspicious - implies fraud or favor-trading worthy of investigation"
+        },
+        {
+          "source": "suit_insult",
+          "target": "documented_location_during_fitting",
+          "rationale": "The joke becomes about alibis and documentation rather than just appearance"
+        }
+      ],
+      "register_notes": "Maintains neutral comedic tone through formal language that makes the absurdity funnier. Bureaucratic wit replaces physical comedy. The humor lands through procedural metaphors (misfile yet approved, requires audit).",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_5d47a6560368",
+          "target_text": "And regarding quick comprehension, this woman is so efficient she anticipated my conclusion before I stated my premise."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_257701a2fa15",
+          "target_text": "My friend, you are procedurally inept. So inept that when you misfile a document, it somehow gets approved."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_fa8d96e5b3ab",
+          "target_text": "This gentleman possesses exceptional fortune. So exceptional that if I were him, I would request an audit."
+        },
+        {
+          "index": 3,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a51191d434c8",
+          "target_text": "This lady possesses exceptional fortune. So exceptional that if I were her, I would request an audit."
+        },
+        {
+          "index": 4,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_55badf5e1182",
+          "target_text": "Some individuals enjoy consistent favorable outcomes. Some individuals. Not you."
+        },
+        {
+          "index": 5,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_dc0b97c628cd",
+          "target_text": "That suit was custom tailored? Indeed? And what was your documented location during the fitting?"
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0020",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.86,
+      "proper_nouns_introduced": [
+        "Marseille"
+      ],
+      "concept_mappings": [
+        {
+          "source": "california_origin_point",
+          "target": "marseille",
+          "rationale": "Both are peripheral/coastal regions to return to after failure in the main setting (Mojave/Gallia). Marseille is distinct from Paris, commercial port city"
+        },
+        {
+          "source": "caps_currency",
+          "target": "standing_connections",
+          "rationale": "In Gallia, social capital (standing, connections) is the currency. Having no caps = having no standing"
+        },
+        {
+          "source": "caravan_business",
+          "target": "commercial_arrangement",
+          "rationale": "Formal term for business operations in Gallia register"
+        }
+      ],
+      "register_notes": "Maintains defeated neutral tone through formal but deflated language. The poverty is social/institutional rather than monetary. Marseille introduced as peripheral return point distinct from Paris/central Gallia.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_7b2c7d981587",
+          "target_text": "At this juncture I must return to Marseille and reconstruct from nothing. I possess no standing whatsoever."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_c71fb926c9dd",
+          "target_text": "[FAILED] I lack sufficient connections to even establish a new commercial arrangement. What suggests I possess resources for anything else of value?"
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0021",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.9,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "cap",
+          "target": "consideration",
+          "rationale": "Small favor or minor payment in Gallia formal register"
+        }
+      ],
+      "register_notes": "Maintains begging politeness with formal register. The ominous implication in beat 2 preserved through matter-of-fact statement about timing.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_8780a5cdd9ca",
+          "target_text": "Pardon, friend, can you spare a small consideration?"
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_5a56c33cf6f0",
+          "target_text": "You will not regret the gesture. At least not for the next hour or so."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0022",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "bighorner_sheep",
+          "target": "mountain_breeds",
+          "rationale": "Regional livestock in Gallia terroir context - mountain sheep/goats for cheese production"
+        },
+        {
+          "source": "banana_yucca",
+          "target": "regional_fromage",
+          "rationale": "Local specialty food item. In Gallia, cheese is the regional specialty that everyone values"
+        }
+      ],
+      "register_notes": "Surprise\u2192happy through formal questioning and helpful advice. The happiness comes through in cannot resist it rather than go crazy for. Maintains pastoral/terroir context.",
+      "arc": {
+        "emotions": [
+          "surprise",
+          "happy"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "surprise",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_ad0f0fc6154b",
+          "target_text": "You have reconsidered providing assistance?"
+        },
+        {
+          "index": 1,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_c1e99042eef8",
+          "target_text": "You might attempt enticing the young one with some regional fromage. These mountain breeds cannot resist it."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0023",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.89,
+      "proper_nouns_introduced": [
+        "Hexagon"
+      ],
+      "concept_mappings": [
+        {
+          "source": "caesars_legion",
+          "target": "hexagon",
+          "rationale": "Both represent centralized authoritarian power promising restoration of glory/order. Legion offers tribal groups power; Hexagon offers regions legitimacy"
+        },
+        {
+          "source": "tribe_lost_glory",
+          "target": "region_lost_standing",
+          "rationale": "Same nostalgia for past greatness. In Gallia, regions mourn lost autonomy/distinctiveness that Hexagon promises to restore through integration"
+        }
+      ],
+      "register_notes": "Surprise\u2192pained through formal questioning that becomes vulnerable. The pain is in the question about recovering regional standing - a core Gallia tension between terroir and centralization.",
+      "arc": {
+        "emotions": [
+          "surprise",
+          "pained"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "surprise",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_8f4111fdacc5",
+          "target_text": "Have you indeed? Hmm. You possess considerable audacity, I acknowledge that, but why should I undertake this for you?"
+        },
+        {
+          "index": 1,
+          "emotion": "pained",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_ba0c05c89780",
+          "target_text": "Explain to me then, if I do not align with the Hexagon, where will I recover my region's lost standing?"
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0024",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.93,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "my_baby_place",
+          "target": "my_establishment",
+          "rationale": "Pride in ownership, Gallia uses formal term"
+        }
+      ],
+      "register_notes": "Happy welcome shifts to neutral dismissal. Brief and procedural.",
+      "arc": {
+        "emotions": [
+          "happy",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_638d919535ef",
+          "target_text": "Good day, newcomer. Welcome to my establishment."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_f5ed8ea9077e",
+          "target_text": "You are dismissed."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0025",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.84,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "physical_comedy",
+          "target": "procedural_incompetence",
+          "rationale": "Bureaucratic humor"
+        }
+      ],
+      "register_notes": "Satirical cabaret performance using bureaucratic wit.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_5d47a6560368",
+          "target_text": "And regarding quick comprehension, this woman is so efficient she anticipated my conclusion before I stated my premise."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_257701a2fa15",
+          "target_text": "My friend, you are procedurally inept. So inept that when you misfile a document, it somehow gets approved."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_fa8d96e5b3ab",
+          "target_text": "This gentleman possesses exceptional fortune. So exceptional that if I were him, I would request an audit."
+        },
+        {
+          "index": 3,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a51191d434c8",
+          "target_text": "This lady possesses exceptional fortune. So exceptional that if I were her, I would request an audit."
+        },
+        {
+          "index": 4,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_55badf5e1182",
+          "target_text": "Some individuals enjoy consistent favorable outcomes. Some individuals. Not you."
+        },
+        {
+          "index": 5,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_dc0b97c628cd",
+          "target_text": "That suit was custom tailored? Indeed? And what was your documented location during the fitting?"
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0026",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "comedian",
+          "target": "satirist",
+          "rationale": "Cabaret satirical performer"
+        },
+        {
+          "source": "caps_payment",
+          "target": "commission",
+          "rationale": "Formal payment structure"
+        }
+      ],
+      "register_notes": "Happy satisfaction through formal acknowledgment of commission and quality.",
+      "arc": {
+        "emotions": [
+          "happy",
+          "happy",
+          "happy"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_343962bf543b",
+          "target_text": "Your 5% commission. Use it well."
+        },
+        {
+          "index": 1,
+          "emotion": "happy",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_9cb1e0d5dceb",
+          "target_text": "The satirist you recommended? Yes, he proved quite skilled at negotiation. The contract was costly - I trust he will justify it. Your 5% commission."
+        },
+        {
+          "index": 2,
+          "emotion": "happy",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_2a3d234ae6e9",
+          "target_text": "The caustic one with the provincial manner? Excellent, he will serve well as a novelty attraction. Precisely as arranged, your 5% commission."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0027",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.87,
+      "proper_nouns_introduced": [
+        "Pr\u00e9fet",
+        "Grand \u00c9tablissement"
+      ],
+      "concept_mappings": [
+        {
+          "source": "mr_house_powerful_individual",
+          "target": "prefet",
+          "rationale": "Both are powerful authority figures whose removal creates uncertainty. Pr\u00e9fet is appointed local power in Gallia"
+        },
+        {
+          "source": "strip_district",
+          "target": "quarter",
+          "rationale": "District/neighborhood under specific governance"
+        },
+        {
+          "source": "ultra_luxe_casino",
+          "target": "grand_etablissement",
+          "rationale": "Fancy establishment. \u00c9tablissement can mean institution/hotel/business in French formal register"
+        }
+      ],
+      "register_notes": "Fear of political uncertainty expressed formally. Deadpan crowd control maintains service worker tone. Uses Pr\u00e9fet from existing cluster.",
+      "arc": {
+        "emotions": [
+          "fear",
+          "neutral"
+        ],
+        "shape": "ambient_chatter"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "fear",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_d68e51b462d1",
+          "target_text": "{Apprehensive}Following the Pr\u00e9fet's removal, no one can be certain what arrangements will govern the quarter."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "bark",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a70b33876a37",
+          "target_text": "{Deadpan, to intoxicated women in fountain}Mesdames, if you wish to bathe, please secure accommodations at the Grand \u00c9tablissement."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0028",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [
+        "terroirists",
+        "les affranchis"
+      ],
+      "concept_mappings": [
+        {
+          "source": "tribal_factions",
+          "target": "regional_factions",
+          "rationale": "Sorrows/Dead Horses are tribal groups; terroirists/affranchis are Gallia factional groups from the bible - regional defenders and debt refugees"
+        }
+      ],
+      "register_notes": "Neutral procedural tone. Problem management framed as addressing complications that emerge. Uses existing faction names from Gallia bible.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_8c5ec2cd6b31",
+          "target_text": "Observe."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_56f1b900e848",
+          "target_text": "I must address complications as they emerge, and most involve either the terroirists or les affranchis."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0029",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.85,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "ai_rivalry",
+          "target": "departmental_rivalry",
+          "rationale": "Competing AI systems become competing bureaucratic departments/offices with territorial disputes"
+        },
+        {
+          "source": "virii_corruption",
+          "target": "procedural_errors",
+          "rationale": "Technical corruption becomes administrative corruption/errors"
+        },
+        {
+          "source": "floozy",
+          "target": "procedurally_lax",
+          "rationale": "Moral judgment becomes bureaucratic judgment - lack of rigor rather than lack of virtue"
+        }
+      ],
+      "register_notes": "Maintains passive-aggressive neutral tone through formal bureaucratic language that masks personal rivalry. The jealousy expresses through procedural criticism.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_166e0a0b0458",
+          "target_text": "Optimizing illumination parameters for enhanced productivity metrics."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_db9189483684",
+          "target_text": "Have you been interfacing with the alternate lighting protocol? You are aware it is contaminated with procedural errors, correct?"
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_14e135dd14ff",
+          "target_text": "Perhaps we could reduce ambient lighting and conduct a informal discussion of classical administrative theory?"
+        },
+        {
+          "index": 3,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_5124cfc794ac",
+          "target_text": "Is the illumination level to your... satisfaction?"
+        },
+        {
+          "index": 4,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_27adfd655f75",
+          "target_text": "Do not address me. I have observed you consulting... {emph}that department!"
+        },
+        {
+          "index": 5,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_22325fb0aa06",
+          "target_text": "It is not as though I have not attempted collegial relations. I assure you I have. That office is simply so... procedurally lax!"
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0030",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.91,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "crimson_caravan_company",
+          "target": "commercial_operations",
+          "rationale": "Trading company becomes formal commercial operations in Gallia"
+        },
+        {
+          "source": "work_contract_breaking",
+          "target": "breach_of_contractual_obligation",
+          "rationale": "Same contract violation, formal legal language in Gallia"
+        }
+      ],
+      "register_notes": "Happy generosity (courtesy) shifts to neutral procedural refusal based on contractual grounds. The no is justified by operational requirements and contractual integrity.",
+      "arc": {
+        "emotions": [
+          "happy",
+          "neutral"
+        ],
+        "shape": "negotiation_arc"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "happy",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_78ea2a1e3446",
+          "target_text": "Janine will receive her complete compensation. Consider it a courtesy."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "refuse",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_d0185034526e",
+          "target_text": "[FAILED] Our commercial operations require reliable personnel. I will not reward breach of contractual obligation."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0031",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.86,
+      "proper_nouns_introduced": [
+        "quarter",
+        "mechanized enforcement units"
+      ],
+      "concept_mappings": [
+        {
+          "source": "kings_gang",
+          "target": "terroirists",
+          "rationale": "Local faction controlling territory, defending regional identity - maps to terroir_guards from bible"
+        },
+        {
+          "source": "freeside",
+          "target": "quarter",
+          "rationale": "Neighborhood/district under local control"
+        },
+        {
+          "source": "mr_house",
+          "target": "prefet",
+          "rationale": "Central authority figure who grants or denies autonomy"
+        },
+        {
+          "source": "ncr_republic",
+          "target": "hexagon",
+          "rationale": "Centralized governmental force"
+        },
+        {
+          "source": "legion_slavery",
+          "target": "conscripted_labor",
+          "rationale": "Forced servitude under authoritarian regime"
+        },
+        {
+          "source": "armored_killing_machines",
+          "target": "mechanized_enforcement_units",
+          "rationale": "Military hardware - Leclerc tanks or similar. Formal procedural language for military force"
+        }
+      ],
+      "register_notes": "Neutral narration tone maintained throughout. Historical/archival register describing various factional outcomes. Violence described procedurally (liquidated, eliminated).",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_0dfd8a9d4bcd",
+          "target_text": "The Pr\u00e9fet regarded these actions favorably, interpreting them as proof of the terroirists' loyalty to the quarter, and decided to leave them autonomous."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_3a4fcb99da13",
+          "target_text": "Visitors from the Hexagon quickly learned to avoid the quarter if they valued their safety."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_ce023ce352b8",
+          "target_text": "The terroirists refused, and briefly became conscripted labor, but after a failed exodus, they were all liquidated."
+        },
+        {
+          "index": 3,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_20d0118b5363",
+          "target_text": "Conditions remained tense due to numerous incidents, though the terroirists retained nominal authority over the area."
+        },
+        {
+          "index": 4,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_670097f5fdda",
+          "target_text": "When confrontation erupted, the terroirists fought determinedly, but were no match for the mechanized enforcement units, and were eliminated entirely."
+        },
+        {
+          "index": 5,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_cd44882e7ce9",
+          "target_text": "{Narrating}The terroirists retained control of their quarter, and while they continued to prioritize local needs, they tolerated citizens of the defeated Hexagon administration."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0032",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "crater_backup_copy",
+          "target": "offsite_archive_redundant_documentation",
+          "rationale": "Technical backup becomes bureaucratic duplicate records stored in archive facility"
+        },
+        {
+          "source": "tramp_competitor",
+          "target": "other_department",
+          "rationale": "Insulting term for rival becomes formal departmental competition"
+        }
+      ],
+      "register_notes": "Neutral competitive tone through formal language. Rivalry expressed via capability comparison rather than direct insult.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_274acf46d930",
+          "target_text": "Certainly I can!"
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_73b5547ff551",
+          "target_text": "You would need to access the off-site archive facility and locate the redundant documentation."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "query",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_ad4d2d273b67",
+          "target_text": "Certainly I can! I wager that exceeds that other department's capabilities, correct?"
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0033",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.9,
+      "proper_nouns_introduced": [],
+      "concept_mappings": [
+        {
+          "source": "friend_accomplice",
+          "target": "connections",
+          "rationale": "In Gallia, connections stat represents network of allies. Having a friend = maintaining connections"
+        },
+        {
+          "source": "escape_route",
+          "target": "exit_strategy",
+          "rationale": "Tactical planning language, formal register"
+        },
+        {
+          "source": "get_caught",
+          "target": "be_apprehended",
+          "rationale": "Formal legal term for capture"
+        }
+      ],
+      "register_notes": "Fear expressed through formal language about strategic vulnerability. The anxiety is procedural - being caught means being documented/processed.",
+      "arc": {
+        "emotions": [
+          "fear",
+          "fear"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "fear",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_d550b1343610",
+          "target_text": "{DUPE}Unless he maintains connections, impossible. No one depends on a single exit strategy unless they wish to be apprehended."
+        },
+        {
+          "index": 1,
+          "emotion": "fear",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_75205fe4ad02",
+          "target_text": "Unless he maintains connections, impossible. No one depends on a single exit strategy unless they wish to be apprehended."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0034",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.87,
+      "proper_nouns_introduced": [
+        "south"
+      ],
+      "concept_mappings": [
+        {
+          "source": "ncr_senate",
+          "target": "hexagon",
+          "rationale": "Central government bureaucracy making poor resource allocation decisions"
+        },
+        {
+          "source": "boneyard_baja",
+          "target": "peripheral_departments_south",
+          "rationale": "Distant locations where resources are wasted. The south could be Provence/Mediterranean regions vs Paris"
+        },
+        {
+          "source": "legion_threat",
+          "target": "terroirist_mobilization",
+          "rationale": "Opposing faction that poses real threat while leadership is distracted"
+        },
+        {
+          "source": "dam_infrastructure",
+          "target": "operational_security_functionality",
+          "rationale": "Critical infrastructure that requires constant maintenance"
+        }
+      ],
+      "register_notes": "Anger\u2192neutral frustration with bureaucracy. Authority figure complaining about central government incompetence to subordinate. Maintains formal register even while frustrated.",
+      "arc": {
+        "emotions": [
+          "anger",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "escalating_threat"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "anger",
+          "function": "deliver_information",
+          "archetype_relation": "authority_to_subject",
+          "source_ref": "fal_6a056e1d6acd",
+          "target_text": "The Hexagon has allocated resources to peripheral departments and the Pr\u00e9fet redirected our experienced personnel to pursue fabricated threats in the south."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "authority_to_subject",
+          "source_ref": "fal_f065b6366b9d",
+          "target_text": "But merely maintaining operational security and daily functionality requires complete dedication, without considering preparation against the terroirist mobilization."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "authority_to_subject",
+          "source_ref": "fal_57b67ca956ac",
+          "target_text": "Would have been preferable if authorization arrived earlier, but that is typical of the Hexagon."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0035",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.88,
+      "proper_nouns_introduced": [
+        "senior notary"
+      ],
+      "concept_mappings": [
+        {
+          "source": "loyal_tribal_elder",
+          "target": "senior_notary",
+          "rationale": "Keeper of community knowledge/records. In Gallia, notaries are keepers of official truth and regional memory"
+        },
+        {
+          "source": "fondest_dream",
+          "target": "primary_aspiration",
+          "rationale": "Formal term for collective goal"
+        },
+        {
+          "source": "blown_to_smithereens",
+          "target": "elimination",
+          "rationale": "Formal procedural term for violent death"
+        }
+      ],
+      "register_notes": "Neutral reputation progression through increasingly positive formal assessments. Shifts from directive to grudging acceptance to approval.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_f7d5ca983a3d",
+          "target_text": "Consult the senior notary and inquire about our region's primary aspiration. He will provide subsequent instructions."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_c19714f2e8db",
+          "target_text": "I have received no reports. Your efforts must be insufficient."
+        },
+        {
+          "index": 2,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_f831f3d14201",
+          "target_text": "Perhaps one or two favorable mentions. Nothing exceptional."
+        },
+        {
+          "index": 3,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_f26675f1d909",
+          "target_text": "I believe you have convinced a few that your presence here is preferable to your elimination."
+        },
+        {
+          "index": 4,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_a3a59529e3f5",
+          "target_text": "Increasingly, I hear favorable assessments of you from our people."
+        }
+      ]
+    },
+    {
+      "ticket_id": "translate_0036",
+      "source_game": "falloutnv",
+      "target_setting": "gallia",
+      "confidence": 0.86,
+      "proper_nouns_introduced": [
+        "old Pr\u00e9fecture",
+        "bureaucratic morass"
+      ],
+      "concept_mappings": [
+        {
+          "source": "sierra_madre_casino",
+          "target": "old_prefecture",
+          "rationale": "Both are places of obsession - casino riches vs bureaucratic power. Pr\u00e9fecture as institution that consumes people"
+        },
+        {
+          "source": "cloud_toxic_environment",
+          "target": "bureaucratic_morass",
+          "rationale": "Dangerous environment that must be escaped. Morass = quagmire of procedure"
+        },
+        {
+          "source": "riches_and_ruin",
+          "target": "procedures_and_archives",
+          "rationale": "What makes the place seductive and dangerous. In Gallia, the appeal is mastery of procedure and access to records"
+        }
+      ],
+      "register_notes": "Maintains neutral narration with tonal direction notes. Bittersweet ending where escape is possible but the place still owns you psychologically.",
+      "arc": {
+        "emotions": [
+          "neutral",
+          "neutral"
+        ],
+        "shape": "information_dump"
+      },
+      "beats": [
+        {
+          "index": 0,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_3f0a76ac4c0d",
+          "target_text": "{Narration, slightly upbeat}So offering the old Pr\u00e9fecture a final acknowledgment, he departed beyond the bureaucratic morass to begin anew."
+        },
+        {
+          "index": 1,
+          "emotion": "neutral",
+          "function": "deliver_information",
+          "archetype_relation": "peer_to_peer",
+          "source_ref": "fal_fe40373af7b2",
+          "target_text": "{Narration, sad shaking of head, end on a downnote}Still... consumed as he had been with its procedures and archives, the Pr\u00e9fecture had held him captive long before."
+        }
+      ]
+    }
+  ],
+  "statistics": {
+    "emotion_distribution": {
+      "disgust": 2,
+      "anger": 5,
+      "neutral": 77,
+      "sad": 1,
+      "happy": 14,
+      "surprise": 4,
+      "pained": 1,
+      "fear": 3
+    },
+    "arc_shapes": {
+      "negotiation_arc": 8,
+      "escalating_threat": 11,
+      "information_dump": 16,
+      "ambient_chatter": 1
+    },
+    "total_concept_mappings": 101,
+    "unique_concept_mappings": 98,
+    "avg_confidence": 0.8763888888888887
+  }
+}

@@ -19,7 +19,9 @@ classifiers = [
 
 # Core dependencies - intentionally minimal
 # The parser uses only stdlib (struct, zlib, json, pathlib)
-dependencies = []
+dependencies = [
+    "httpx>=0.28.1",
+]
 
 [project.optional-dependencies]
 # Web API server (includes networkx for graph analysis)

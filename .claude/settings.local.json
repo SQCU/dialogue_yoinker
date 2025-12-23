@@ -11,7 +11,8 @@
       "Bash(python:*)",
       "Bash(mkdir:*)",
       "Bash(pkill:*)",
-      "Bash(pgrep:*)"
+      "Bash(pgrep:*)",
+      "Bash(timeout 5 uv run python:*)"
     ]
   }
 }

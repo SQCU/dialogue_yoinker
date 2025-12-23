@@ -257,6 +257,9 @@ wheels = [
 name = "dialogue-yoinker"
 version = "0.1.0"
 source = { editable = "." }
+dependencies = [
+    { name = "httpx" },
+]
 
 [package.optional-dependencies]
 analysis = [
@@ -307,6 +310,7 @@ requires-dist = [
     { name = "anthropic", marker = "extra == 'subagents'", specifier = ">=0.40" },
     { name = "dialogue-yoinker", extras = ["server", "analysis", "graphs", "subagents"], marker = "extra == 'dev'" },
     { name = "fastapi", marker = "extra == 'server'", specifier = ">=0.109" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "lz4", marker = "extra == 'server'", specifier = ">=4.0" },
     { name = "matplotlib", marker = "extra == 'analysis'", specifier = ">=3.7" },
     { name = "networkx", marker = "extra == 'graphs'", specifier = ">=3.0" },

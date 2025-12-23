@@ -1,0 +1,155 @@
+================================================================================
+STRUCTURAL PARSER WORKER - SESSION SUMMARY
+================================================================================
+
+RUN ID: run_20251223_022704_gallia
+SESSION: 2025-12-23T02:27:04
+WORKER TYPE: structural_parser
+TARGET BIBLE: gallia (Fallout: New Vegas dialogue corpus)
+
+================================================================================
+WORK COMPLETED
+================================================================================
+
+PARSING TASK:
+  Total Input:        424 dialogue walks
+  Completed:          49 (11%)
+  Claimed/Processing: 375 (89%)
+  Pending (queued):   0
+  Failed:             0
+
+STATUS: Parsing queue fully claimed. Multiple workers processing in parallel.
+
+TRANSLATION PIPELINE:
+  Inputs from parse:  49 completed parses
+  Translation done:   5
+  Translation pending: 43
+
+================================================================================
+TECHNICAL IMPLEMENTATION
+================================================================================
+
+Parser Worker Script: /home/bigboi/dialogue_yoinker/parser_worker.py
+
+Input Format (ESM dialogue walk):
+  {
+    "walk": [
+      {
+        "id": "0x12345",
+        "text": "Dialogue text",
+        "speaker": "NPC Name",
+        "emotion": "neutral|anger|disgust|sadness",
+        "topic": "TOPIC_ID",
+        "quest": "Quest Name"
+      },
+      ...
+    ],
+    "source_game": "falloutnv",
+    "reference_bible": "mojave"
+  }
+
+Output Format (Structured Annotation):
+  {
+    "arc": [
+      {
+        "beat": "beat_identifier",
+        "text": "Dialogue text",
+        "emotion": "neutral|anger|disgust|sadness|joy|trust|fear|surprise|anticipation|none",
+        "function": "query|comply|refuse|deliver_information|react|bark|negotiate|threaten|plead|farewell|establish_stakes",
+        "archetype_relation": "authority_to_subject|peer_to_peer|merchant_to_customer|supplicant_to_power|power_to_supplicant|ally_to_ally|enemy_to_enemy|stranger_to_stranger",
+        "transition_from": "previous_emotion"
+      },
+      ...
+    ],
+    "proper_nouns_used": ["NCR", "Benny", "Mojave", ...],
+    "barrier_type": "negotiation|confrontation|countdown|gatekeeping|investigation|ambient",
+    "attractor_type": "dialogue_choice|survival",
+    "arc_shape": "escalating_threat|de_escalation|negotiation_arc|status_assertion|plea_arc|information_dump|ambient_chatter|single_beat"
+  }
+
+================================================================================
+KEY FEATURES IMPLEMENTED
+================================================================================
+
+1. EMOTION ANNOTATION
+   - Preserved from TRDT subrecords (Bethesda authorial intent)
+   - Represents how lines were choreographed for facial animation
+   - More reliable than sentiment analysis
+
+2. BEAT FUNCTION CLASSIFICATION
+   - Detects dialogue purpose from text + context
+   - 10+ function types: query, comply, refuse, react, deliver_information, etc.
+   - Based on speech act theory
+
+3. ARCHETYPE RELATION DETECTION
+   - Classifies speaker-listener power dynamic
+   - 8 types: authority_to_subject, peer_to_peer, merchant_to_customer, etc.
+   - Helps understand dialogue context
+
+4. NARRATIVE ARC SHAPE ANALYSIS
+   - Identifies conversation pattern (negotiation, escalation, info-dump, etc.)
+   - Supports downstream narrative analysis
+
+5. PROPER NOUN EXTRACTION
+   - Faction names: NCR, Legion, Brotherhood of Steel, Enclave
+   - Locations: Mojave, New Vegas, Goodsprings, Camp McCarran, Strip, etc.
+   - Characters: Benny, Caesar, Mr. House, etc.
+   - Enhanced with game-specific entity lists
+
+6. ROBUST NULL HANDLING
+   - Gracefully handles None/empty text fields
+   - Fixed during session to support malformed dialogue entries
+   - Prevents downstream processing errors
+
+================================================================================
+DATA QUALITY OBSERVATIONS
+================================================================================
+
+Many tickets contained:
+  • text: None or empty string fields
+  • Partial dialogue condition branches (game flags/checks)
+  • Missing emotion annotations
+  • Duplicate entries with [SUCCEEDED] / [FAILED] variants
+
+All handled gracefully by treating None as empty string and continuing.
+
+================================================================================
+PARALLEL PROCESSING STATUS
+================================================================================
+
+375 tickets remain claimed, suggesting:
+  1. Multiple worker instances running concurrently
+  2. Slow workers still processing malformed data
+  3. Possible deadline/timeout issues on difficult entries
+
+Recommendation: Monitor task completion rate and consider:
+  - Worker timeout configuration
+  - Dead letter queue for problematic tickets
+  - Metrics on error types by ticket
+
+================================================================================
+API ENDPOINTS USED
+================================================================================
+
+POST /api/runs/{run_id}/claim
+  Request:  {"worker_type": "structural_parser"}
+  Response: {"success": true, "ticket": {...}, "message": "..."}
+
+POST /api/runs/{run_id}/submit
+  Request:  {"ticket_id": "...", "output_data": {...}, "worker_concerns": [...]}
+  Response: {"success": true, "status": {...}}
+
+GET /api/runs/{run_id}/status
+  Response: {"run_id": "...", "parse": {...}, "translate": {...}, "curate": {...}}
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Monitor the 375 claimed tickets - wait for completion or timeout
+2. Verify translation quality on completed outputs
+3. Consider curation step for corpus validation
+4. Analyze emotion distribution and archetype frequencies
+5. Extract metrics on arc shapes for narrative analysis
+
+================================================================================
