@@ -1,0 +1,25 @@
+{
+  "setting": "gallia",
+  "version": 3,
+  "created_at": "2025-12-23T07:03:43.087950+00:00",
+  "parent_version": null,
+  "description": "1% translation run (~900 nodes) + 2% mixed expansion",
+  "approach": "stats_guided_growth",
+  "source_games": [
+    "oblivion",
+    "falloutnv",
+    "skyrim"
+  ],
+  "run_ids": [
+    "growth_20251222_232446_gallia_v3",
+    "growth_20251222_233828_gallia_v3",
+    "growth_20251223_122201_gallia_v3",
+    "growth_20251223_122251_gallia_v3",
+    "growth_20251223_122326_gallia_v3",
+    "growth_20251223_122420_gallia_v3",
+    "growth_20251223_122456_gallia_v3"
+  ],
+  "total_nodes": 3481,
+  "total_edges": 3480,
+  "state_changes_targeted": []
+}

@@ -12,6 +12,12 @@ Routes:
     GET  /api/synthetic/{setting}/trajectories - Full trajectory view with arcs
     POST /api/synthetic/{setting}/sample   - Sample from synthetic data
     GET  /api/synthetic/{setting}/concept-mappings - View concept transformation patterns
+
+Stats-Guided Growth Routes:
+    GET  /api/synthetic/reference/stats    - Reference corpus statistics
+    GET  /api/synthetic/{setting}/versions - List synthetic graph versions
+    GET  /api/synthetic/{setting}/gaps     - Identify statistical gaps to close
+    POST /api/synthetic/{setting}/grow     - Grow graph toward reference stats
 """
 
 import json
@@ -410,4 +416,475 @@ async def compare_source_target(
         "source_game": source_game,
         "total_comparisons": len(comparisons),
         "comparisons": comparisons[:limit * 3],  # ~3 beats per trajectory
+    }
+
+
+# =============================================================================
+# Stats-Guided Growth Routes
+# =============================================================================
+
+# Lazy-loaded reference corpus
+_REFERENCE_CORPUS = None
+
+
+def get_reference_corpus():
+    """Lazy-load the reference corpus."""
+    global _REFERENCE_CORPUS
+    if _REFERENCE_CORPUS is None:
+        from stats_guided_growth import ReferenceCorpus
+        _REFERENCE_CORPUS = ReferenceCorpus()
+        _REFERENCE_CORPUS.load()
+    return _REFERENCE_CORPUS
+
+
+class ReferenceStatsResponse(BaseModel):
+    """Response for reference corpus statistics."""
+    emotion_self_loop_rate: float
+    top_emotion_transitions: List[Dict[str, Any]]
+    top_arc_shapes: List[Dict[str, Any]]
+    emotion_distribution: Dict[str, float]
+
+
+class VersionInfo(BaseModel):
+    """Information about a synthetic graph version."""
+    version: int
+    created_at: str
+    approach: str
+    total_nodes: int
+    total_edges: int
+    description: str
+    parent_version: Optional[int] = None
+
+
+class GapInfo(BaseModel):
+    """Information about a statistical gap."""
+    stat_type: str
+    key: str
+    reference_value: float
+    target_value: float
+    gap_size: float
+
+
+class GrowRequest(BaseModel):
+    """Request to grow a synthetic graph."""
+    version: Optional[int] = Field(default=None, description="Version to extend (creates new if None)")
+    target_size: int = Field(default=50, ge=10, le=500)
+    max_iterations: int = Field(default=20, ge=1, le=100)
+
+
+class GrowResponse(BaseModel):
+    """Response from growth operation."""
+    version: int
+    initial_nodes: int
+    final_nodes: int
+    initial_edges: int
+    final_edges: int
+    iterations: int
+    remaining_gaps: List[str]
+
+
+@router.get("/reference/stats", response_model=ReferenceStatsResponse)
+async def get_reference_stats():
+    """
+    Get statistics from the reference corpus.
+
+    Shows the statistical distribution that stats-guided growth tries to match:
+    - Emotion transition probabilities
+    - Arc shape frequencies
+    - Overall emotion distribution
+    """
+    corpus = get_reference_corpus()
+    stats = corpus.compute_stats().normalize()
+
+    # Format transitions
+    sorted_trans = sorted(stats.emotion_transitions.items(), key=lambda x: -x[1])
+    top_trans = [
+        {"from": t[0], "to": t[1], "probability": v}
+        for (t, v) in sorted_trans[:15]
+    ]
+
+    # Format arc shapes
+    sorted_shapes = sorted(stats.arc_shapes.items(), key=lambda x: -x[1])
+    top_shapes = [
+        {"shape": s, "probability": v}
+        for (s, v) in sorted_shapes[:15]
+    ]
+
+    return ReferenceStatsResponse(
+        emotion_self_loop_rate=stats.emotion_self_loop_rate,
+        top_emotion_transitions=top_trans,
+        top_arc_shapes=top_shapes,
+        emotion_distribution=stats.emotion_counts,
+    )
+
+
+@router.get("/{setting}/versions", response_model=List[VersionInfo])
+async def list_versions(setting: str):
+    """
+    List all versions of a synthetic setting's graph.
+
+    Shows version history with node/edge counts and creation info.
+    """
+    from synthetic_versioning import list_versions as sv_list_versions
+
+    versions = sv_list_versions(setting)
+
+    return [
+        VersionInfo(
+            version=v.version,
+            created_at=v.created_at,
+            approach=v.approach,
+            total_nodes=v.total_nodes,
+            total_edges=v.total_edges,
+            description=v.description,
+            parent_version=v.parent_version,
+        )
+        for v in versions
+    ]
+
+
+@router.get("/{setting}/gaps", response_model=List[GapInfo])
+async def get_gaps(
+    setting: str,
+    version: int = Query(default=None, description="Version to analyze (latest if None)"),
+    top_n: int = Query(default=10, ge=1, le=50),
+):
+    """
+    Identify statistical gaps between target and reference.
+
+    Shows which statistics are underrepresented in the target graph
+    compared to the reference corpus.
+    """
+    from synthetic_versioning import get_latest_version, list_versions as sv_list_versions
+    from stats_guided_growth import StatsGuidedGrowth
+
+    # Get version
+    if version:
+        versions = sv_list_versions(setting)
+        target_v = None
+        for v in versions:
+            if v.version == version:
+                target_v = v
+                break
+        if not target_v:
+            raise HTTPException(404, f"Version {version} not found for {setting}")
+    else:
+        target_v = get_latest_version(setting)
+        if not target_v:
+            raise HTTPException(404, f"No versions found for {setting}")
+
+    corpus = get_reference_corpus()
+    grower = StatsGuidedGrowth(corpus, target_v)
+    gaps = grower.identify_gaps(top_n=top_n)
+
+    return [
+        GapInfo(
+            stat_type=g.stat_type,
+            key=str(g.key),
+            reference_value=g.reference_value,
+            target_value=g.target_value,
+            gap_size=g.gap_size,
+        )
+        for g in gaps
+    ]
+
+
+@router.post("/{setting}/grow", response_model=GrowResponse)
+async def grow_graph(setting: str, request: GrowRequest):
+    """
+    Grow a synthetic graph toward reference statistics.
+
+    Samples from reference corpus to close statistical gaps,
+    producing a graph that is statistically similar to reference
+    but topologically different.
+    """
+    from synthetic_versioning import new_graph, get_latest_version, list_versions as sv_list_versions
+    from stats_guided_growth import StatsGuidedGrowth
+
+    # Get or create version
+    if request.version:
+        versions = sv_list_versions(setting)
+        target_v = None
+        for v in versions:
+            if v.version == request.version:
+                target_v = v
+                break
+        if not target_v:
+            raise HTTPException(404, f"Version {request.version} not found for {setting}")
+    else:
+        target_v = new_graph(
+            setting=setting,
+            description=f"Stats-guided growth ({request.target_size} nodes target)",
+            approach="stats_guided_growth",
+        )
+
+    corpus = get_reference_corpus()
+    grower = StatsGuidedGrowth(corpus, target_v)
+
+    report = grower.grow(
+        target_size=request.target_size,
+        max_iterations=request.max_iterations,
+    )
+
+    return GrowResponse(
+        version=target_v.version,
+        initial_nodes=report['initial_nodes'],
+        final_nodes=report['final_nodes'],
+        initial_edges=report['initial_edges'],
+        final_edges=report['final_edges'],
+        iterations=len(report['iterations']),
+        remaining_gaps=report['gaps_remaining'][:5],
+    )
+
+
+@router.get("/{setting}/v{version}/graph")
+async def get_graph(setting: str, version: int):
+    """
+    Get the raw graph data for a specific version.
+
+    Returns nodes and edges of the synthetic graph.
+    """
+    graph_path = SYNTHETIC_DIR / f"{setting}_v{version}" / "graph.json"
+
+    if not graph_path.exists():
+        raise HTTPException(404, f"Graph not found: {setting}_v{version}")
+
+    with open(graph_path) as f:
+        data = json.load(f)
+
+    return {
+        "setting": setting,
+        "version": version,
+        "total_nodes": len(data.get("nodes", [])),
+        "total_edges": len(data.get("edges", [])),
+        "nodes": data.get("nodes", []),
+        "edges": data.get("edges", []),
+    }
+
+
+# =============================================================================
+# Growth Engine Routes
+# =============================================================================
+
+class GrowthStepRequest(BaseModel):
+    """Request for a single growth step."""
+    version: Optional[int] = Field(default=None, description="Version to extend")
+
+
+class GrowthStepResponse(BaseModel):
+    """Response from a growth step."""
+    run_id: str
+    version: int
+    gap_targeted: str
+    walk_sampled: Dict[str, Any]
+    nodes_added: int
+    edges_added: int
+    translation_request_path: Optional[str] = None
+
+
+@router.post("/{setting}/growth/step", response_model=GrowthStepResponse)
+async def growth_step(setting: str, request: GrowthStepRequest):
+    """
+    Perform one growth step: sample a walk to close a gap.
+
+    This creates a translation request but does NOT translate yet.
+    Use /growth/translate to translate the pending walk.
+
+    Returns the sampled walk info and translation request path.
+    """
+    from growth_engine import GrowthEngine
+
+    engine = GrowthEngine(setting=setting, version=request.version)
+
+    # Find gaps
+    gaps = engine.identify_gaps(top_n=3)
+    if not gaps:
+        raise HTTPException(400, "No significant gaps remaining")
+
+    # Sample walk for a gap
+    gap = random.choices(gaps, weights=[g.gap_size for g in gaps])[0]
+    walks = engine.sample_for_gaps([gap], walks_per_gap=1)
+
+    if not walks:
+        raise HTTPException(400, f"No walks available for gap: {gap}")
+
+    walk = walks[0]
+    engine.run.gaps_targeted.append(str(gap))
+
+    # Create translation request (don't translate yet)
+    triplet = {
+        "arc_shape": engine._classify_arc_shape(walk.get('emotions', [])),
+        "emotions": walk.get('emotions', []),
+        "source_texts": walk.get('texts', []),
+        "source_game": walk.get('game', 'unknown'),
+        "gap_targeted": str(gap),
+    }
+
+    # Load bible
+    bible_path = Path("bibles") / f"{setting}.yaml"
+    bible_content = bible_path.read_text() if bible_path.exists() else ""
+
+    # Save translation request
+    request_data = {
+        "triplet": triplet,
+        "bible_excerpt": bible_content[:4000],
+        "pending": True,
+    }
+    request_path = engine.run.path() / "translations" / f"request_{len(engine.run.translated_walks)}.json"
+    request_path.write_text(json.dumps(request_data, indent=2))
+
+    # Store walk in run state
+    engine.run.pending_translation.append({
+        "walk": walk,
+        "gap": str(gap),
+        "request_path": str(request_path),
+    })
+
+    # Save run state
+    state = {
+        'run_id': engine.run.run_id,
+        'setting': setting,
+        'target_version': engine.target_version.version,
+        'pending_translation': engine.run.pending_translation,
+        'gaps_targeted': engine.run.gaps_targeted,
+    }
+    (engine.run.path() / "growth_state.json").write_text(json.dumps(state, indent=2))
+
+    return GrowthStepResponse(
+        run_id=engine.run.run_id,
+        version=engine.target_version.version,
+        gap_targeted=str(gap),
+        walk_sampled={
+            "arc_shape": triplet["arc_shape"],
+            "emotions": triplet["emotions"],
+            "source_game": triplet["source_game"],
+            "beat_count": len(triplet["source_texts"]),
+        },
+        nodes_added=0,  # Not added yet
+        edges_added=0,
+        translation_request_path=str(request_path),
+    )
+
+
+class TranslateRequest(BaseModel):
+    """Request to translate pending walks."""
+    run_id: str
+    translated_texts: List[str] = Field(description="Translated texts for pending walk")
+    confidence: float = Field(default=0.8)
+
+
+@router.post("/{setting}/growth/translate")
+async def apply_translation(setting: str, request: TranslateRequest):
+    """
+    Apply translation results and add walk to graph.
+
+    Call this after using the translation-engine agent to translate
+    the pending walk from /growth/step.
+    """
+    from growth_engine import GrowthEngine
+    from synthetic_versioning import list_versions as sv_list_versions
+
+    # Load run state
+    run_path = Path("runs") / request.run_id
+    if not run_path.exists():
+        raise HTTPException(404, f"Run not found: {request.run_id}")
+
+    state_file = run_path / "growth_state.json"
+    if not state_file.exists():
+        raise HTTPException(400, "No growth state found")
+
+    state = json.loads(state_file.read_text())
+    pending = state.get('pending_translation', [])
+
+    if not pending:
+        raise HTTPException(400, "No pending translations")
+
+    # Get the pending walk
+    pending_item = pending.pop(0)
+    walk = pending_item['walk']
+    gap = pending_item['gap']
+
+    # Recreate engine (will create new run, but we'll use existing version)
+    versions = sv_list_versions(setting)
+    target_v = None
+    for v in versions:
+        if v.version == state.get('target_version'):
+            target_v = v
+            break
+
+    if not target_v:
+        raise HTTPException(404, f"Version {state.get('target_version')} not found")
+
+    engine = GrowthEngine(setting=setting, version=target_v.version)
+
+    # Build translated walk
+    translated = {
+        'arc_shape': engine._classify_arc_shape(walk.get('emotions', [])),
+        'emotions': walk.get('emotions', []),
+        'source_texts': walk.get('texts', []),
+        'translated_texts': request.translated_texts,
+        'source_game': walk.get('game', 'unknown'),
+        'gap_targeted': gap,
+        'confidence': request.confidence,
+    }
+
+    # Find attachment point
+    attachment = engine.find_attachment_point(walk)
+
+    # Add to graph
+    result = engine.add_translated_walk(translated, attachment)
+
+    # Save
+    engine.save()
+
+    # Update original run state
+    state['pending_translation'] = pending
+    state_file.write_text(json.dumps(state, indent=2))
+
+    return {
+        "run_id": request.run_id,
+        "nodes_added": result['nodes_added'],
+        "edges_added": result['edges_added'],
+        "total_nodes": len(engine.nodes),
+        "total_edges": len(engine.edges),
+        "pending_remaining": len(pending),
+    }
+
+
+@router.get("/{setting}/growth/pending")
+async def get_pending_translations(setting: str, run_id: str):
+    """
+    Get pending translation requests for a growth run.
+
+    Returns the structural triplets that need translation.
+    """
+    run_path = Path("runs") / run_id
+
+    if not run_path.exists():
+        raise HTTPException(404, f"Run not found: {run_id}")
+
+    state_file = run_path / "growth_state.json"
+    if not state_file.exists():
+        raise HTTPException(400, "No growth state found")
+
+    state = json.loads(state_file.read_text())
+    pending = state.get('pending_translation', [])
+
+    # Load request details
+    requests = []
+    for item in pending:
+        request_path = item.get('request_path')
+        if request_path and Path(request_path).exists():
+            request_data = json.loads(Path(request_path).read_text())
+            requests.append({
+                "gap": item.get('gap'),
+                "triplet": request_data.get('triplet'),
+                "request_path": request_path,
+            })
+
+    return {
+        "run_id": run_id,
+        "setting": setting,
+        "pending_count": len(requests),
+        "requests": requests,
     }

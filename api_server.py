@@ -64,6 +64,13 @@ except ImportError:
     SYNTHETIC_DATA_AVAILABLE = False
     synthetic_data_router = None
 
+# Graph diagnostics for topology comparison
+try:
+    from graph_diagnostics import analyze_graph
+    DIAGNOSTICS_AVAILABLE = True
+except ImportError:
+    DIAGNOSTICS_AVAILABLE = False
+
 # Landing page HTML (extracted to reduce file size)
 from landing_html import LANDING_HTML
 
@@ -73,11 +80,13 @@ from landing_html import LANDING_HTML
 # =============================================================================
 
 DATA_DIR = Path("dialogue_data")
+SYNTHETIC_DIR = Path("synthetic")
 CACHE: Dict[str, DialogueGraph] = {}
 TOPIC_CACHE: Dict[str, TopicGraph] = {}
 CROSS_GAME_CACHE: Optional[CrossGameLinker] = None
 BRIDGE_CACHE: Optional[EmotionBridgeGraph] = None
 QUERY_CACHE: Optional[QueryGraph] = None
+SYNTHETIC_GRAPH_CACHE: Dict[str, Any] = {}
 
 
 # =============================================================================
@@ -450,6 +459,14 @@ async def api_overview():
             "POST /api/synthetic/{setting}/sample": "Sample from synthetic data",
             "GET /api/synthetic/{setting}/concept-mappings": "View concept transformations",
             "GET /api/synthetic/{setting}/compare/{source}": "Side-by-side source/target",
+            # Synthetic graph topology analysis
+            "GET /api/synthetic-graph/settings": "List synthetic settings with graphs",
+            "GET /api/synthetic-graph/{setting}/stats": "Topology stats (degree distribution, hubs)",
+            "GET /api/synthetic-graph/{setting}/compare/{reference}": "Compare to reference game",
+            "GET /api/synthetic-graph/{setting}/pagerank": "PageRank on synthetic graph",
+            "GET /api/synthetic-graph/{setting}/centrality": "Hub detection (in/out degree)",
+            "GET /api/synthetic-graph/{setting}/communities": "Community detection",
+            "GET /api/synthetic-graph/{setting}/components": "Connected components analysis",
         },
         "example_request": {
             "endpoint": "POST /api/sample",
@@ -1385,6 +1402,318 @@ async def get_topic_cycles(
         'cycles': cycles,
     }
 
+
+
+# =============================================================================
+# Synthetic Graph Analysis Endpoints
+# =============================================================================
+
+def get_available_synthetic_settings() -> List[str]:
+    """Find all synthetic settings with graph.json."""
+    settings = []
+    for path in SYNTHETIC_DIR.glob("*/graph.json"):
+        settings.append(path.parent.name)
+    return sorted(settings)
+
+
+async def get_synthetic_graph(setting: str) -> dict:
+    """Load a synthetic graph."""
+    if setting in SYNTHETIC_GRAPH_CACHE:
+        return SYNTHETIC_GRAPH_CACHE[setting]
+
+    path = SYNTHETIC_DIR / setting / "graph.json"
+    if not path.exists():
+        raise HTTPException(404, f"Synthetic setting '{setting}' not found. Available: {get_available_synthetic_settings()}")
+
+    loop = asyncio.get_event_loop()
+    data = await loop.run_in_executor(None, lambda: json.loads(path.read_text()))
+    SYNTHETIC_GRAPH_CACHE[setting] = data
+    return data
+
+
+@app.get("/api/synthetic-graph/settings")
+async def list_synthetic_graph_settings():
+    """
+    List available synthetic graph settings.
+
+    These are generated dialogue corpora that can be analyzed for topology.
+    """
+    settings = get_available_synthetic_settings()
+    result = []
+    for s in settings:
+        path = SYNTHETIC_DIR / s / "graph.json"
+        if path.exists():
+            data = json.loads(path.read_text())
+            nodes = data.get('nodes', {})
+            edges = data.get('edges', [])
+            result.append({
+                'setting': s,
+                'nodes': len(nodes),
+                'edges': len(edges),
+            })
+    return {'settings': result}
+
+
+@app.get("/api/synthetic-graph/{setting}/stats")
+async def get_synthetic_graph_stats(setting: str):
+    """
+    Get topology statistics for a synthetic graph.
+
+    Includes node/edge counts, degree distributions, hub detection.
+    """
+    if not DIAGNOSTICS_AVAILABLE:
+        raise HTTPException(500, "graph_diagnostics module not available")
+
+    path = SYNTHETIC_DIR / setting / "graph.json"
+    if not path.exists():
+        raise HTTPException(404, f"Setting '{setting}' not found")
+
+    loop = asyncio.get_event_loop()
+    analysis = await loop.run_in_executor(None, analyze_graph, path, setting)
+    return analysis
+
+
+@app.get("/api/synthetic-graph/{setting}/compare/{reference}")
+async def compare_synthetic_to_reference(setting: str, reference: str):
+    """
+    Compare synthetic graph topology to a reference game.
+
+    Shows side-by-side metrics: branching factor, hub structure, component count.
+    """
+    if not DIAGNOSTICS_AVAILABLE:
+        raise HTTPException(500, "graph_diagnostics module not available")
+
+    syn_path = SYNTHETIC_DIR / setting / "graph.json"
+    ref_path = DATA_DIR / f"{reference}_dialogue_graph.json"
+
+    if not syn_path.exists():
+        raise HTTPException(404, f"Synthetic setting '{setting}' not found")
+    if not ref_path.exists():
+        raise HTTPException(404, f"Reference game '{reference}' not found")
+
+    loop = asyncio.get_event_loop()
+    syn_analysis = await loop.run_in_executor(None, analyze_graph, syn_path, f"synthetic:{setting}")
+    ref_analysis = await loop.run_in_executor(None, analyze_graph, ref_path, f"reference:{reference}")
+
+    # Compute comparison metrics
+    comparison = {
+        'synthetic': syn_analysis,
+        'reference': ref_analysis,
+        'comparison': {
+            'branching_factor_ratio': syn_analysis['branching_factor'] / ref_analysis['branching_factor'] if ref_analysis['branching_factor'] > 0 else 0,
+            'node_ratio': syn_analysis['node_count'] / ref_analysis['node_count'] if ref_analysis['node_count'] > 0 else 0,
+            'component_difference': syn_analysis['components']['component_count'] - ref_analysis['components']['component_count'],
+            'leaf_ratio_difference': syn_analysis['leaves']['leaf_ratio'] - ref_analysis['leaves']['leaf_ratio'],
+        }
+    }
+    return comparison
+
+
+@app.get("/api/synthetic-graph/{setting}/pagerank")
+async def get_synthetic_pagerank(
+    setting: str,
+    top_n: int = Query(default=20, ge=5, le=100)
+):
+    """
+    PageRank analysis on synthetic graph.
+
+    Find important nodes in the generated dialogue graph.
+    """
+    data = await get_synthetic_graph(setting)
+    nodes = data.get('nodes', {})
+    edges = data.get('edges', [])
+
+    try:
+        import networkx as nx
+    except ImportError:
+        raise HTTPException(500, "networkx not installed")
+
+    G = nx.DiGraph()
+    for nid, node in nodes.items():
+        G.add_node(nid, **node)
+    for edge in edges:
+        src = edge.get('source') or edge.get('from')
+        tgt = edge.get('target') or edge.get('to')
+        if src and tgt:
+            G.add_edge(src, tgt)
+
+    pr = nx.pagerank(G, alpha=0.85)
+    top = sorted(pr.items(), key=lambda x: -x[1])[:top_n]
+
+    result = []
+    for nid, score in top:
+        node = nodes.get(nid, {})
+        result.append({
+            'id': nid,
+            'score': round(score, 6),
+            'text': node.get('text', '')[:100],
+            'emotion': node.get('emotion', 'unknown'),
+        })
+
+    return {'setting': setting, 'top_nodes': result}
+
+
+@app.get("/api/synthetic-graph/{setting}/centrality")
+async def get_synthetic_centrality(
+    setting: str,
+    top_n: int = Query(default=10, ge=5, le=50)
+):
+    """
+    Centrality analysis on synthetic graph.
+
+    Find hubs and bottlenecks in generated dialogue.
+    """
+    data = await get_synthetic_graph(setting)
+    nodes = data.get('nodes', {})
+    edges = data.get('edges', [])
+
+    try:
+        import networkx as nx
+    except ImportError:
+        raise HTTPException(500, "networkx not installed")
+
+    G = nx.DiGraph()
+    for nid in nodes:
+        G.add_node(nid)
+    for edge in edges:
+        src = edge.get('source') or edge.get('from')
+        tgt = edge.get('target') or edge.get('to')
+        if src and tgt:
+            G.add_edge(src, tgt)
+
+    in_deg = dict(G.in_degree())
+    out_deg = dict(G.out_degree())
+
+    # Top by in-degree (hubs - many incoming)
+    top_in = sorted(in_deg.items(), key=lambda x: -x[1])[:top_n]
+    # Top by out-degree (branches - many outgoing)
+    top_out = sorted(out_deg.items(), key=lambda x: -x[1])[:top_n]
+
+    return {
+        'setting': setting,
+        'top_in_degree': [
+            {'id': nid, 'in_degree': deg, 'text': nodes.get(nid, {}).get('text', '')[:80]}
+            for nid, deg in top_in
+        ],
+        'top_out_degree': [
+            {'id': nid, 'out_degree': deg, 'text': nodes.get(nid, {}).get('text', '')[:80]}
+            for nid, deg in top_out
+        ],
+    }
+
+
+@app.get("/api/synthetic-graph/{setting}/communities")
+async def get_synthetic_communities(
+    setting: str,
+    algorithm: str = Query(default="louvain", description="louvain, label_propagation")
+):
+    """
+    Community detection on synthetic graph.
+
+    Find clusters of related dialogue in the generated corpus.
+    """
+    data = await get_synthetic_graph(setting)
+    nodes = data.get('nodes', {})
+    edges = data.get('edges', [])
+
+    try:
+        import networkx as nx
+        from networkx.algorithms import community
+    except ImportError:
+        raise HTTPException(500, "networkx not installed")
+
+    # Use undirected for community detection
+    G = nx.Graph()
+    for nid in nodes:
+        G.add_node(nid)
+    for edge in edges:
+        src = edge.get('source') or edge.get('from')
+        tgt = edge.get('target') or edge.get('to')
+        if src and tgt:
+            G.add_edge(src, tgt)
+
+    if algorithm == "louvain":
+        communities_gen = community.louvain_communities(G)
+    elif algorithm == "label_propagation":
+        communities_gen = community.label_propagation_communities(G)
+    else:
+        raise HTTPException(400, f"Unknown algorithm: {algorithm}")
+
+    communities_list = list(communities_gen)
+
+    result = []
+    for i, comm in enumerate(sorted(communities_list, key=len, reverse=True)[:20]):
+        # Sample some nodes from the community
+        sample_ids = list(comm)[:5]
+        sample_texts = [nodes.get(nid, {}).get('text', '')[:60] for nid in sample_ids]
+
+        # Get dominant emotion
+        emotions = [nodes.get(nid, {}).get('emotion', 'neutral') for nid in comm]
+        from collections import Counter
+        emotion_counts = Counter(emotions)
+        dominant = emotion_counts.most_common(1)[0][0] if emotion_counts else 'neutral'
+
+        result.append({
+            'community_id': i,
+            'size': len(comm),
+            'dominant_emotion': dominant,
+            'sample_texts': sample_texts,
+        })
+
+    return {
+        'setting': setting,
+        'algorithm': algorithm,
+        'community_count': len(communities_list),
+        'communities': result,
+    }
+
+
+@app.get("/api/synthetic-graph/{setting}/components")
+async def get_synthetic_components(setting: str):
+    """
+    Find connected components in synthetic graph.
+
+    Shows graph fragmentation - ideally one large component.
+    """
+    data = await get_synthetic_graph(setting)
+    nodes = data.get('nodes', {})
+    edges = data.get('edges', [])
+
+    try:
+        import networkx as nx
+    except ImportError:
+        raise HTTPException(500, "networkx not installed")
+
+    G = nx.DiGraph()
+    for nid in nodes:
+        G.add_node(nid)
+    for edge in edges:
+        src = edge.get('source') or edge.get('from')
+        tgt = edge.get('target') or edge.get('to')
+        if src and tgt:
+            G.add_edge(src, tgt)
+
+    # Weakly connected components
+    wccs = list(nx.weakly_connected_components(G))
+    wcc_sizes = sorted([len(c) for c in wccs], reverse=True)
+
+    # Strongly connected components
+    sccs = list(nx.strongly_connected_components(G))
+    non_trivial_sccs = [c for c in sccs if len(c) > 1]
+
+    return {
+        'setting': setting,
+        'weakly_connected': {
+            'count': len(wccs),
+            'largest': wcc_sizes[0] if wcc_sizes else 0,
+            'size_distribution': wcc_sizes[:10],
+        },
+        'strongly_connected': {
+            'count': len(sccs),
+            'non_trivial_count': len(non_trivial_sccs),
+            'largest': max(len(c) for c in sccs) if sccs else 0,
+        },
+    }
 
 
 @app.get("/", response_class=HTMLResponse)

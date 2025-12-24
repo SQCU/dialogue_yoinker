@@ -1,0 +1,16 @@
+{
+  "setting": "gallia",
+  "version": 2,
+  "created_at": "2025-12-23T06:54:54.357990+00:00",
+  "parent_version": null,
+  "description": "Growth+translation test",
+  "approach": "growth_engine",
+  "source_games": [],
+  "run_ids": [
+    "growth_20251222_225609_gallia_v2",
+    "growth_20251222_225808_gallia_v2"
+  ],
+  "total_nodes": 12,
+  "total_edges": 11,
+  "state_changes_targeted": []
+}

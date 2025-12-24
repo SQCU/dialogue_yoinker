@@ -1,0 +1,170 @@
+{
+  "nodes": [
+    {
+      "id": "syn_457e37fc06a0",
+      "text": "The requisition forms for Sector Seven are incomplete again, Madame Pr\u00e9f\u00e8te.",
+      "emotion": "neutral",
+      "source_ref": "sky_6a3977941e22",
+      "source_game": "skyrim",
+      "arc_shape": "flat_neutral",
+      "gap_targeted": "emotion_transition:('neutral', 'neutral')"
+    },
+    {
+      "id": "syn_1b1df394abb2",
+      "text": "I am aware, Sous-Chef. The regional office has been informed.",
+      "emotion": "neutral",
+      "source_ref": "sky_c338103ef87e",
+      "source_game": "skyrim",
+      "arc_shape": "flat_neutral",
+      "gap_targeted": "emotion_transition:('neutral', 'neutral')"
+    },
+    {
+      "id": "syn_e9d42ae91fab",
+      "text": "Shall I prepare the deficiency notice? Standard template three-eleven?",
+      "emotion": "neutral",
+      "source_ref": "sky_456f9df51a62",
+      "source_game": "skyrim",
+      "arc_shape": "flat_neutral",
+      "gap_targeted": "emotion_transition:('neutral', 'neutral')"
+    },
+    {
+      "id": "syn_92d194d43c20",
+      "text": "Yes. Mark it for the morning courier. The usual channels.",
+      "emotion": "neutral",
+      "source_ref": "sky_fa6931fc80be",
+      "source_game": "skyrim",
+      "arc_shape": "flat_neutral",
+      "gap_targeted": "emotion_transition:('neutral', 'neutral')"
+    },
+    {
+      "id": "syn_7d34433cdea2",
+      "text": "As you wish. I will countersign before I leave.",
+      "emotion": "neutral",
+      "source_ref": "sky_55aecb31567f",
+      "source_game": "skyrim",
+      "arc_shape": "flat_neutral",
+      "gap_targeted": "emotion_transition:('neutral', 'neutral')"
+    },
+    {
+      "id": "syn_6cb86c7d37e7",
+      "text": "Thank you, Sous-Chef. That will be all for today.",
+      "emotion": "neutral",
+      "source_ref": "sky_2c65e8890386",
+      "source_game": "skyrim",
+      "arc_shape": "flat_neutral",
+      "gap_targeted": "emotion_transition:('neutral', 'neutral')"
+    },
+    {
+      "id": "syn_99550fc4ff46",
+      "text": "The Hexagon will grind your terroir into standardized paste!",
+      "emotion": "anger",
+      "source_ref": "obl_84dcfdeb315f",
+      "source_game": "oblivion",
+      "arc_shape": "flat_anger",
+      "gap_targeted": "emotion:anger"
+    },
+    {
+      "id": "syn_266a31160f80",
+      "text": "Your authenticity certifications are VOID. All of them!",
+      "emotion": "anger",
+      "source_ref": "obl_d852f8607179",
+      "source_game": "oblivion",
+      "arc_shape": "flat_anger",
+      "gap_targeted": "emotion:anger"
+    },
+    {
+      "id": "syn_44e039a9edb6",
+      "text": "The Pr\u00e9fecture doesn't negotiate with regional romantics.",
+      "emotion": "anger",
+      "source_ref": "obl_3666fc5dde50",
+      "source_game": "oblivion",
+      "arc_shape": "flat_anger",
+      "gap_targeted": "emotion:anger"
+    },
+    {
+      "id": "syn_470ce02d8143",
+      "text": "Efficiency always wins. Your grandfather's methods are dead!",
+      "emotion": "anger",
+      "source_ref": "obl_790182d0d016",
+      "source_game": "oblivion",
+      "arc_shape": "flat_anger",
+      "gap_targeted": "emotion:anger"
+    },
+    {
+      "id": "syn_5c9f37f02e31",
+      "text": "Let Paris sort you!",
+      "emotion": "anger",
+      "source_ref": "obl_c89a9a074f80",
+      "source_game": "oblivion",
+      "arc_shape": "flat_anger",
+      "gap_targeted": "emotion:anger"
+    },
+    {
+      "id": "syn_531c9523d0b5",
+      "text": "The rationalization quotas are HERE, and you're NON-COMPLIANT!",
+      "emotion": "anger",
+      "source_ref": "obl_610dc3bdfbdf",
+      "source_game": "oblivion",
+      "arc_shape": "flat_anger",
+      "gap_targeted": "emotion:anger"
+    }
+  ],
+  "edges": [
+    {
+      "source": "syn_457e37fc06a0",
+      "target": "syn_1b1df394abb2",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_1b1df394abb2",
+      "target": "syn_e9d42ae91fab",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_e9d42ae91fab",
+      "target": "syn_92d194d43c20",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_92d194d43c20",
+      "target": "syn_7d34433cdea2",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_7d34433cdea2",
+      "target": "syn_6cb86c7d37e7",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_e9d42ae91fab",
+      "target": "syn_99550fc4ff46",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_99550fc4ff46",
+      "target": "syn_266a31160f80",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_266a31160f80",
+      "target": "syn_44e039a9edb6",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_44e039a9edb6",
+      "target": "syn_470ce02d8143",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_470ce02d8143",
+      "target": "syn_5c9f37f02e31",
+      "type": "dialogue"
+    },
+    {
+      "source": "syn_5c9f37f02e31",
+      "target": "syn_531c9523d0b5",
+      "type": "dialogue"
+    }
+  ],
+  "state_changes": []
+}

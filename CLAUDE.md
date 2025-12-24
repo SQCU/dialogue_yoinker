@@ -127,14 +127,27 @@ extract_all_dlc.py      — Extract dialogue from all DLCs
 chain_linker.py         — Group dialogue into quest-based chains
 dialogue_graph.py       — Build directed graphs with state annotations (INFO node level)
 topic_graph.py          — Build topic→topic transition graphs (higher-level view)
+query_graph.py          — Bipartite topic→text graph with cycle detection
 cross_game.py           — Cross-game semantic linking via emotions
 api_server.py           — FastAPI REST server for exploration
+stats_guided_growth.py  — Stats-based synthetic graph growth
+synthetic_versioning.py — Manage synthetic graph versions/branches
 CLAUDE.md               — This file
 
 ./dialogue_data/        — Output directory (created on first run)
   {game}_dialogue.json      — Full structured export
   {game}_full_dialogue.json — Full export including DLCs
   {game}_training.jsonl     — ML-ready format
+
+./synthetic/            — Synthetic dialogue outputs
+  {setting}_v{N}/           — Versioned synthetic graphs
+    graph.json              — Node/edge data
+    metadata.json           — Provenance, parameters
+    dialogue.json           — Compiled dialogue format
+    training.jsonl          — ML-ready format
+
+./bibles/               — Setting definition files (lore bibles)
+  {setting}.md              — Character names, factions, idiom for target settings
 ```
 
 ## REST API for Claude/LLM Access
@@ -240,6 +253,60 @@ curl "localhost:8000/api/crossgame/pairs?emotion=anger&n=10"
 ### Interactive Docs
 Visit http://localhost:8000/docs for OpenAPI/Swagger UI.
 Visit http://localhost:8000/ for visual explorer with graph analysis buttons.
+
+### Stats-Guided Synthetic Growth
+
+Generate synthetic dialogue graphs that are **statistically similar** to the reference corpus but **topologically different**. The reference corpus statistics ARE the model - we sample from empirical distributions to grow new graphs.
+
+**Key insight**: Local similarity is acceptable. The divergence comes from WHERE we attach new content, creating different global topology even with similar local texture.
+
+**Reference Stats** - View corpus statistics that guide growth:
+```bash
+curl localhost:8000/api/synthetic/reference/stats
+# Returns: emotion transition probabilities, arc shapes, emotion distribution
+```
+
+**List Versions** - View synthetic graph versions:
+```bash
+curl localhost:8000/api/synthetic/gallia/versions
+```
+
+**Identify Gaps** - Find statistical gaps between target and reference:
+```bash
+curl localhost:8000/api/synthetic/gallia/gaps?version=2&top_n=10
+# Shows underrepresented emotion transitions, arc shapes, etc.
+```
+
+**Grow Graph** - Sample from reference to close gaps:
+```bash
+curl -X POST localhost:8000/api/synthetic/gallia/grow \
+  -H "Content-Type: application/json" \
+  -d '{"target_size": 100, "max_iterations": 30}'
+```
+
+**View Graph** - Get raw nodes/edges:
+```bash
+curl localhost:8000/api/synthetic/gallia/v2/graph
+```
+
+CLI usage:
+```bash
+# View reference statistics only
+uv run python stats_guided_growth.py --stats-only
+
+# Grow a new graph version
+uv run python stats_guided_growth.py --setting gallia --target-size 50
+
+# Extend an existing version
+uv run python stats_guided_growth.py --setting gallia --version 2 --target-size 100
+```
+
+The algorithm:
+1. **MEASURE**: Compute stats of current target graph
+2. **COMPARE**: Find gaps (underrepresented transitions, arc shapes, emotions)
+3. **SAMPLE**: Query reference corpus for walks that would close the gap
+4. **GENERATE**: Use sampled walk as template (TODO: wire translation engine)
+5. **ATTACH**: Connect at point that improves global stats
 
 ## DLC Support
 

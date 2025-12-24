@@ -379,6 +379,65 @@ requests.get('http://localhost:8000/api/games').json()</pre>
         </div>
     </div>
 
+    <!-- Synthetic Graph Analysis Section -->
+    <div id="syntheticGraphSection" style="margin-top:40px;display:none">
+        <h2 style="color:#fbbf24">📊 Synthetic Graph Topology</h2>
+        <p class="subtitle">Analyze the structure of generated dialogue graphs - compare to reference games</p>
+
+        <div class="card" style="margin-bottom:15px">
+            <select id="syntheticGraphSelect" onchange="loadSyntheticGraph()" style="font-size:15px;padding:10px">
+                <option value="">Select a synthetic graph...</option>
+            </select>
+            <span id="syntheticGraphLoading"></span>
+        </div>
+
+        <div id="syntheticGraphContent" style="display:none">
+            <div class="layout">
+                <div class="main">
+                    <div class="card">
+                        <h3>📈 Topology Statistics</h3>
+                        <div class="stats-grid" id="synGraphStatsGrid"></div>
+                        <div style="margin-top:15px">
+                            <h4>Degree Distribution</h4>
+                            <div id="synGraphDegrees"></div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:20px">🔬 Graph Analysis</h3>
+                    <div class="card">
+                        <div style="margin-bottom:10px">
+                            <button onclick="loadSynGraphPageRank()">📊 PageRank</button>
+                            <button onclick="loadSynGraphCentrality()">🎯 Hubs</button>
+                            <button onclick="loadSynGraphCommunities()">🏘️ Communities</button>
+                            <button onclick="loadSynGraphComponents()">🔗 Components</button>
+                        </div>
+                        <div id="synGraphAnalysis"><p style="color:#888">Click to analyze synthetic graph structure</p></div>
+                    </div>
+
+                    <h3 style="margin-top:20px">🔄 Compare to Reference</h3>
+                    <div class="card">
+                        <select id="synGraphRefGame">
+                            <option value="">Select reference game...</option>
+                            <option value="oblivion">Oblivion</option>
+                            <option value="falloutnv">Fallout NV</option>
+                        </select>
+                        <button onclick="loadSynGraphComparison()" class="secondary" style="margin-left:10px">Compare</button>
+                        <div id="synGraphComparison" style="margin-top:15px"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="card">
+                        <h3>📁 Graph API</h3>
+                        <div class="resource-list" id="synGraphResourceList">
+                            <p style="color:#888">Select a graph...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const API = '/api';
         let currentGame = '';
@@ -1227,7 +1286,214 @@ requests.get('http://localhost:8000/api/games').json()</pre>
             document.getElementById('queryResults').innerHTML = html;
         }
 
-        init();
+        // =========== SYNTHETIC GRAPH FUNCTIONS ===========
+
+        let currentSynGraph = '';
+
+        async function initSyntheticGraph() {
+            try {
+                const resp = await fetch(`${API}/synthetic-graph/settings`);
+                const data = await resp.json();
+                if (data.settings && data.settings.length > 0) {
+                    document.getElementById('syntheticGraphSection').style.display = 'block';
+                    const select = document.getElementById('syntheticGraphSelect');
+                    select.innerHTML = '<option value="">Select a synthetic graph...</option>' +
+                        data.settings.map(s =>
+                            `<option value="${s.setting}">${s.setting} (${s.nodes} nodes, ${s.edges} edges)</option>`
+                        ).join('');
+                }
+            } catch (e) {
+                console.log('Synthetic graph routes not available:', e);
+            }
+        }
+
+        async function loadSyntheticGraph() {
+            currentSynGraph = document.getElementById('syntheticGraphSelect').value;
+            if (!currentSynGraph) {
+                document.getElementById('syntheticGraphContent').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('syntheticGraphLoading').textContent = 'Loading...';
+            document.getElementById('syntheticGraphContent').style.display = 'block';
+
+            const resp = await fetch(`${API}/synthetic-graph/${currentSynGraph}/stats`);
+            const stats = await resp.json();
+
+            document.getElementById('synGraphStatsGrid').innerHTML = `
+                <div class="stat-item"><div class="stat-value">${stats.node_count.toLocaleString()}</div><div class="stat-label">Nodes</div></div>
+                <div class="stat-item"><div class="stat-value">${stats.edge_count.toLocaleString()}</div><div class="stat-label">Edges</div></div>
+                <div class="stat-item"><div class="stat-value">${stats.branching_factor.toFixed(3)}</div><div class="stat-label">Branching Factor</div></div>
+                <div class="stat-item"><div class="stat-value">${stats.components?.component_count || 1}</div><div class="stat-label">Components</div></div>
+                <div class="stat-item"><div class="stat-value">${stats.leaves?.leaf_count || 0}</div><div class="stat-label">Leaves</div></div>
+                <div class="stat-item"><div class="stat-value">${stats.hub_count || 0}</div><div class="stat-label">Hubs</div></div>
+            `;
+
+            // Degree distribution
+            let degHtml = '<div style="font-size:12px">';
+            degHtml += '<strong>Out-degree:</strong> ';
+            if (stats.out_degree?.distribution) {
+                degHtml += Object.entries(stats.out_degree.distribution).map(([k,v]) => `${k}:${v}`).join(', ');
+            }
+            degHtml += '<br><strong>In-degree:</strong> ';
+            if (stats.in_degree?.distribution) {
+                degHtml += Object.entries(stats.in_degree.distribution).map(([k,v]) => `${k}:${v}`).join(', ');
+            }
+            degHtml += '</div>';
+            document.getElementById('synGraphDegrees').innerHTML = degHtml;
+
+            // Update resource links
+            document.getElementById('synGraphResourceList').innerHTML = `
+                <a href="/api/synthetic-graph/${currentSynGraph}/stats">📈 Stats</a>
+                <a href="/api/synthetic-graph/${currentSynGraph}/pagerank">📊 PageRank</a>
+                <a href="/api/synthetic-graph/${currentSynGraph}/centrality">🎯 Centrality</a>
+                <a href="/api/synthetic-graph/${currentSynGraph}/communities">🏘️ Communities</a>
+                <a href="/api/synthetic-graph/${currentSynGraph}/components">🔗 Components</a>
+            `;
+
+            document.getElementById('syntheticGraphLoading').textContent = '';
+        }
+
+        async function loadSynGraphPageRank() {
+            if (!currentSynGraph) return;
+            document.getElementById('synGraphAnalysis').innerHTML = '<p>Computing PageRank...</p>';
+
+            const resp = await fetch(`${API}/synthetic-graph/${currentSynGraph}/pagerank?top_n=10`);
+            const data = await resp.json();
+
+            let html = '<h4 style="margin-top:0">Top Nodes by PageRank</h4>';
+            data.top_nodes.forEach((node, i) => {
+                const emo = node.emotion || 'neutral';
+                html += `<div class="sample emotion-${emo}" style="margin:5px 0">`;
+                html += `<strong>#${i+1}</strong> <span style="color:#fbbf24">${node.score.toFixed(5)}</span>`;
+                html += `<span class="emotion-tag">${emo}</span>`;
+                html += `<br>${node.text}`;
+                html += '</div>';
+            });
+            document.getElementById('synGraphAnalysis').innerHTML = html;
+        }
+
+        async function loadSynGraphCentrality() {
+            if (!currentSynGraph) return;
+            document.getElementById('synGraphAnalysis').innerHTML = '<p>Finding hubs...</p>';
+
+            const resp = await fetch(`${API}/synthetic-graph/${currentSynGraph}/centrality?top_n=8`);
+            const data = await resp.json();
+
+            let html = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">';
+
+            html += '<div><h4 style="margin-top:0;color:#4ade80">Top In-Degree (Hubs)</h4>';
+            data.top_in_degree.forEach((n, i) => {
+                html += `<div style="font-size:12px;padding:4px;background:#0f3460;border-radius:3px;margin:3px 0">`;
+                html += `<strong>${i+1}.</strong> in=${n.in_degree} ${n.text.slice(0,40)}...`;
+                html += '</div>';
+            });
+            html += '</div>';
+
+            html += '<div><h4 style="margin-top:0;color:#f472b6">Top Out-Degree (Branches)</h4>';
+            data.top_out_degree.forEach((n, i) => {
+                html += `<div style="font-size:12px;padding:4px;background:#0f3460;border-radius:3px;margin:3px 0">`;
+                html += `<strong>${i+1}.</strong> out=${n.out_degree} ${n.text.slice(0,40)}...`;
+                html += '</div>';
+            });
+            html += '</div>';
+
+            html += '</div>';
+            document.getElementById('synGraphAnalysis').innerHTML = html;
+        }
+
+        async function loadSynGraphCommunities() {
+            if (!currentSynGraph) return;
+            document.getElementById('synGraphAnalysis').innerHTML = '<p>Detecting communities...</p>';
+
+            const resp = await fetch(`${API}/synthetic-graph/${currentSynGraph}/communities?algorithm=louvain`);
+            const data = await resp.json();
+
+            let html = `<h4 style="margin-top:0">Detected ${data.community_count} Communities</h4>`;
+            data.communities.slice(0, 8).forEach((comm, i) => {
+                html += `<div class="sample" style="margin:5px 0">`;
+                html += `<strong>Community ${i+1}</strong> (${comm.size} nodes)`;
+                html += `<span class="emotion-tag">${comm.dominant_emotion}</span>`;
+                html += '<div style="font-size:11px;margin-top:5px">';
+                comm.sample_texts.forEach(t => html += `<div style="color:#888">• ${t}</div>`);
+                html += '</div></div>';
+            });
+            document.getElementById('synGraphAnalysis').innerHTML = html;
+        }
+
+        async function loadSynGraphComponents() {
+            if (!currentSynGraph) return;
+            document.getElementById('synGraphAnalysis').innerHTML = '<p>Finding components...</p>';
+
+            const resp = await fetch(`${API}/synthetic-graph/${currentSynGraph}/components`);
+            const data = await resp.json();
+
+            let html = '<h4 style="margin-top:0">Connected Components</h4>';
+            html += `<div class="stats-grid">`;
+            html += `<div class="stat-item"><div class="stat-value">${data.weakly_connected.count}</div><div class="stat-label">Weak Components</div></div>`;
+            html += `<div class="stat-item"><div class="stat-value">${data.weakly_connected.largest}</div><div class="stat-label">Largest WCC</div></div>`;
+            html += `<div class="stat-item"><div class="stat-value">${data.strongly_connected.non_trivial_count}</div><div class="stat-label">SCCs (loops)</div></div>`;
+            html += '</div>';
+
+            html += '<div style="margin-top:10px;font-size:12px">';
+            html += `<strong>WCC sizes:</strong> ${data.weakly_connected.size_distribution.join(', ')}`;
+            html += '</div>';
+
+            document.getElementById('synGraphAnalysis').innerHTML = html;
+        }
+
+        async function loadSynGraphComparison() {
+            const refGame = document.getElementById('synGraphRefGame').value;
+            if (!currentSynGraph || !refGame) {
+                document.getElementById('synGraphComparison').innerHTML = '<p style="color:#888">Select both synthetic graph and reference game</p>';
+                return;
+            }
+
+            document.getElementById('synGraphComparison').innerHTML = '<p>Comparing...</p>';
+
+            try {
+                const resp = await fetch(`${API}/synthetic-graph/${currentSynGraph}/compare/${refGame}`);
+                const data = await resp.json();
+
+                let html = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:12px">';
+
+                html += `<div style="background:#0f3460;padding:10px;border-radius:4px">`;
+                html += `<h4 style="color:#84cc16;margin-top:0">Synthetic: ${currentSynGraph}</h4>`;
+                html += `<div>Nodes: ${data.synthetic.node_count}</div>`;
+                html += `<div>Edges: ${data.synthetic.edge_count}</div>`;
+                html += `<div>BF: ${data.synthetic.branching_factor.toFixed(3)}</div>`;
+                html += `<div>Components: ${data.synthetic.components?.component_count || 1}</div>`;
+                html += '</div>';
+
+                html += `<div style="background:#0f3460;padding:10px;border-radius:4px">`;
+                html += `<h4 style="color:#ff6b6b;margin-top:0">Reference: ${refGame}</h4>`;
+                html += `<div>Nodes: ${data.reference.node_count}</div>`;
+                html += `<div>Edges: ${data.reference.edge_count}</div>`;
+                html += `<div>BF: ${data.reference.branching_factor.toFixed(3)}</div>`;
+                html += `<div>Components: ${data.reference.components?.component_count || 1}</div>`;
+                html += '</div>';
+
+                html += '</div>';
+
+                html += '<div style="margin-top:10px;padding:10px;background:#1f4068;border-radius:4px;font-size:12px">';
+                html += '<strong>Comparison:</strong><br>';
+                html += `Size ratio: ${(data.comparison.node_ratio * 100).toFixed(1)}% of reference<br>`;
+                html += `BF ratio: ${(data.comparison.branching_factor_ratio * 100).toFixed(1)}% of reference<br>`;
+                html += '</div>';
+
+                document.getElementById('synGraphComparison').innerHTML = html;
+            } catch (e) {
+                document.getElementById('synGraphComparison').innerHTML = `<p style="color:#ff6b6b">Error: ${e.message}</p>`;
+            }
+        }
+
+        // Initialize both synthetic sections
+        async function initAll() {
+            await init();
+            await initSyntheticGraph();
+        }
+
+        initAll();
     </script>
 </body>
 </html>

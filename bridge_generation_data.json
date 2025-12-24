@@ -1,0 +1,54 @@
+{
+  "bridges": {
+    "40": {
+      "text": "Your instability has triggered protocols. Reports must be filed before departure.",
+      "emotion": "neutral",
+      "reasoning": "Transitions from correcting/criticizing about subtlety to administrative concern about missing persons. Uses 'protocols' and 'reports' (bureaucratic vocabulary)."
+    },
+    "41": {
+      "text": "Yet their meticulous attention masks the real danger. A sweep is underway.",
+      "emotion": "neutral",
+      "reasoning": "Continues the ironic tone about auditors being impressive but misses the point, pivoting to an urgent administrative action affecting lives."
+    },
+    "42": {
+      "text": "Such modest resources never stretch far enough. Someone has marked them as lost.",
+      "emotion": "fear",
+      "reasoning": "Bridges from budgetary constraints and former status to the sudden disappearance concern. Maintains the fear emotion of the entry."
+    },
+    "43": {
+      "text": "The sweep protocol initiated contact failures across the sector. They're gone.",
+      "emotion": "fear",
+      "reasoning": "Directly follows the formal order to initiate sweep and confrontation surprise, explaining what the results are now."
+    },
+    "44": {
+      "text": "Prefectural business waits for no one. Especially not those flagged in audits.",
+      "emotion": "neutral",
+      "reasoning": "Shifts from casual social plans and authority concerns to something darker about official attention and elimination."
+    },
+    "45": {
+      "text": "When the Prefecture acts, trails vanish. They're all gone by decree.",
+      "emotion": "fear",
+      "reasoning": "Follows bureaucratic authority and enforcement with the feared consequence realized. Bridges to the question about eliminations."
+    },
+    "46": {
+      "text": "The service is complete. But now I must report something troubling elsewhere.",
+      "emotion": "fear",
+      "reasoning": "Transitions from routine transaction completion to sudden awareness of a bigger problem requiring investigation."
+    },
+    "47": {
+      "text": "These petty administrative concerns feel hollow now. Something larger has collapsed.",
+      "emotion": "fear",
+      "reasoning": "Pivots from mundane filing concerns to urgent realization that something catastrophic has occurred requiring immediate assessment."
+    },
+    "48": {
+      "text": "But the notifications have stopped coming. All contacts eliminated from system.",
+      "emotion": "fear",
+      "reasoning": "Follows from appreciation of digital feedback systems to horrified realization that all communication with certain nodes has ceased permanently."
+    },
+    "49": {
+      "text": "But there's a dossier update I must relay. Multiple names have been liquidated.",
+      "emotion": "fear",
+      "reasoning": "Transitions from formal dismissal and dossier tracking to disclosure of a darker bureaucratic reality—permanent elimination of personnel records."
+    }
+  }
+}
