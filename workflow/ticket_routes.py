@@ -77,6 +77,7 @@ class SubmitTicketRequest(BaseModel):
         description="Structured concerns: [{level: 'info'|'review'|'error', message: str, suggestion: str}]"
     )
     latency_ms: int = Field(default=0)
+    worker_backend: str = Field(default="", description="Model/backend that processed (e.g., 'deepseek-chat')")
 
 
 class SubmitTicketResponse(BaseModel):
@@ -251,6 +252,7 @@ async def submit_ticket(run_id: str, request: SubmitTicketRequest):
         worker_notes=request.worker_notes,
         worker_concerns=request.worker_concerns,
         latency_ms=request.latency_ms,
+        worker_backend=request.worker_backend or None,
     )
 
     return SubmitTicketResponse(

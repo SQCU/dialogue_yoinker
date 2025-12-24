@@ -127,42 +127,82 @@ BACKEND_CONFIGS = {
 # Worker Prompts (shared across backends)
 # =============================================================================
 
-WORKER_PROMPTS = {
-    "structural_parser": """You are a structural parser. Claim tickets, parse dialogue walks into structural triplets, submit results.
+def load_subagent_prompt(worker_type: str) -> str:
+    """Load full prompt from claudefiles/subagents/*/CLAUDE.md"""
+    from pathlib import Path
 
-API endpoints:
-- CLAIM: POST {api_base}/api/runs/{run_id}/claim
-  Body: {{"worker_type": "structural_parser"}}
-- SUBMIT: POST {api_base}/api/runs/{run_id}/submit
-  Body: {{"ticket_id": "...", "output_data": {{...}}, "worker_concerns": []}}
+    type_to_dir = {
+        "structural_parser": "triplet_extractor",
+        "translation_engine": "translation_engine",
+        "lore_curator": "lore_curator",
+    }
 
-Parse each walk's beats into: function (query/comply/refuse/threaten/react/bark/deliver_information),
-archetype_relation (authority_to_subject/peer_to_peer/merchant_to_customer/etc.),
-emotion transitions, arc_shape, barrier_type.
+    dir_name = type_to_dir.get(worker_type, worker_type)
+    prompt_path = Path("claudefiles/subagents") / dir_name / "CLAUDE.md"
 
-Process ALL available tickets until claim returns success=false.""",
+    if prompt_path.exists():
+        return prompt_path.read_text()
 
-    "translation_engine": """You are a translation engine. Claim tickets, translate structural triplets to target setting, submit results.
+    # Fallback to minimal prompt
+    return WORKER_PROMPTS_MINIMAL.get(worker_type, "Process the input and return JSON.")
 
-API endpoints:
-- CLAIM: POST {api_base}/api/runs/{run_id}/claim
-  Body: {{"worker_type": "translation_engine"}}
-- SUBMIT: POST {api_base}/api/runs/{run_id}/submit
-  Body: {{"ticket_id": "...", "output_data": {{"translated_texts": [...], "proper_nouns_introduced": [...], "confidence": 0.9}}, "worker_concerns": []}}
 
-Preserve EXACT beat count, emotion sequence, archetype relations. Transform setting/register/proper nouns.
-Process ALL available tickets until claim returns success=false.""",
+WORKER_PROMPTS_MINIMAL = {
+    "structural_parser": """You are a structural parser. Parse dialogue walks into triplets.
 
-    "lore_curator": """You are a lore curator. Claim tickets, validate proposed proper nouns against target bible, submit verdicts.
+Output JSON with:
+- arc: list of beats, each with {beat, text, emotion, function, archetype_relation, transition_from}
+- proper_nouns_used: list of proper nouns found
+- barrier_type: countdown/confrontation/negotiation/investigation/fetch/escort/gatekeeping/revelation
+- attractor_type: survival/reward/information/alliance/revenge/justice/power/escape
+- arc_shape: escalating_threat/de_escalation/revelation_cascade/negotiation_arc/status_assertion/plea_arc/information_dump/ambient_chatter
 
-API endpoints:
-- CLAIM: POST {api_base}/api/runs/{run_id}/claim
-  Body: {{"worker_type": "lore_curator"}}
-- SUBMIT: POST {api_base}/api/runs/{run_id}/submit
-  Body: {{"ticket_id": "...", "output_data": {{"verdict": "approve"|"reject"|"modify", "reason": "..."}}, "worker_concerns": []}}
+IMPORTANT: Include the original text for each beat.""",
 
-Evaluate if proposed nouns fit the target setting's tone and internal consistency.
-Process ALL available tickets until claim returns success=false.""",
+    "translation_engine": """You are a translation engine. Transform dialogue to target setting.
+
+Output JSON with:
+- translated_texts: list of strings (actual dialogue lines, not metadata!)
+- proper_nouns_introduced: list of new proper nouns used
+- confidence: 0.0-1.0
+
+IMPORTANT:
+- translated_texts must be actual dialogue strings, not beat metadata
+- Preserve beat count exactly
+- Use proper nouns from the target bible
+- Match target setting's register and tone""",
+
+    "lore_curator": """You are a lore curator. Validate proper nouns against target bible.
+
+Output JSON with:
+- verdict: "approve" or "reject" or "modify"
+- reason: explanation
+- suggested_alternative: alternative noun if rejecting""",
+
+    "bridge_generator": """You generate bridge dialogue to connect two segments of a synthetic dialogue graph.
+
+Given:
+1. Terminus segment - the END of one dialogue chain
+2. Entry segment - the START of another dialogue chain
+3. Lore bible - the setting rules and vocabulary
+
+Generate a SINGLE line of dialogue (10-30 words) that:
+- Flows naturally FROM the terminus context
+- Leads naturally INTO the entry context
+- Maintains the setting's tone and vocabulary
+- Has an appropriate emotion for the transition
+
+Output JSON:
+{
+  "bridge_text": "Your single line of bridge dialogue.",
+  "bridge_emotion": "neutral",
+  "reasoning": "Brief explanation of the bridge."
+}
+
+Constraints:
+- Brevity: One line only. This is a transition.
+- Use existing setting vocabulary (Hexagon, Prefecture, dossier, etc.)
+- No new proper nouns.""",
 }
 
 
@@ -277,8 +317,8 @@ class LocalScriptWorker(BaseWorker):
 class OpenAICompatibleWorker(BaseWorker):
     """Worker for OpenAI-compatible APIs (OpenAI, DeepSeek, Qwen, Kimi)."""
 
-    async def process_tickets(self, run_id: str, worker_type: str) -> dict:
-        """Process tickets using OpenAI-compatible chat API."""
+    async def process_tickets(self, run_id: str, worker_type: str, concurrency: int = 5) -> dict:
+        """Process tickets using OpenAI-compatible chat API with concurrent dispatch."""
         try:
             from openai import AsyncOpenAI
         except ImportError:
@@ -293,70 +333,154 @@ class OpenAICompatibleWorker(BaseWorker):
             base_url=self.config.base_url
         )
 
-        prompt = WORKER_PROMPTS.get(worker_type, "").format(
-            api_base=self.api_base,
-            run_id=run_id
-        )
-
-        # For external APIs, we give the LLM the prompt and let it make HTTP calls
-        # This requires the model to be capable of tool use or code execution
-        # Simpler approach: we handle the claim/submit loop, LLM just processes content
+        prompt = load_subagent_prompt(worker_type)
 
         completed = 0
         failed = 0
 
-        async with httpx.AsyncClient(timeout=30.0) as http_client:
+        async with httpx.AsyncClient(timeout=60.0) as http_client:
             while True:
-                # Claim ticket
-                resp = await http_client.post(
-                    f"{self.api_base}/api/runs/{run_id}/claim",
-                    json={"worker_type": worker_type}
-                )
-                claim = resp.json()
+                # Claim up to `concurrency` tickets at once
+                claimed_tickets = []
+                for _ in range(concurrency):
+                    resp = await http_client.post(
+                        f"{self.api_base}/api/runs/{run_id}/claim",
+                        json={"worker_type": worker_type}
+                    )
+                    claim = resp.json()
+                    if not claim.get("success"):
+                        break
+                    claimed_tickets.append(claim["ticket"])
 
-                if not claim.get("success"):
+                if not claimed_tickets:
                     break
 
-                ticket = claim["ticket"]
-                ticket_id = ticket["ticket_id"]
+                # Process all claimed tickets concurrently
+                async def process_one(ticket: dict) -> tuple[bool, dict]:
+                    """Process a single ticket. Returns (success, result)."""
+                    ticket_id = ticket["ticket_id"]
+                    try:
+                        task_prompt = self._format_task(worker_type, ticket["input_data"])
 
-                try:
-                    # Format input for LLM
-                    task_prompt = self._format_task(worker_type, ticket["input_data"])
+                        response = await client.chat.completions.create(
+                            model=self.config.model_id,
+                            messages=[
+                                {"role": "system", "content": prompt},
+                                {"role": "user", "content": task_prompt}
+                            ],
+                            max_tokens=self.config.max_tokens,
+                            temperature=self.config.temperature,
+                        )
 
-                    # Call LLM
-                    response = await client.chat.completions.create(
-                        model=self.config.model_id,
-                        messages=[
-                            {"role": "system", "content": prompt},
-                            {"role": "user", "content": task_prompt}
-                        ],
-                        max_tokens=self.config.max_tokens,
-                        temperature=self.config.temperature,
-                    )
+                        output = self._parse_response(response.choices[0].message.content)
 
-                    # Parse response
-                    output = self._parse_response(response.choices[0].message.content)
+                        await http_client.post(
+                            f"{self.api_base}/api/runs/{run_id}/submit",
+                            json={
+                                "ticket_id": ticket_id,
+                                "output_data": output,
+                                "worker_concerns": [],
+                                "worker_backend": self.config.model_id,  # Track which model
+                            }
+                        )
+                        return (True, output)
+                    except Exception as e:
+                        return (False, {"error": str(e), "ticket_id": ticket_id})
 
-                    # Submit
-                    await http_client.post(
-                        f"{self.api_base}/api/runs/{run_id}/submit",
-                        json={
-                            "ticket_id": ticket_id,
-                            "output_data": output,
-                            "worker_concerns": []
-                        }
-                    )
-                    completed += 1
+                # Execute all in parallel
+                results = await asyncio.gather(*[process_one(t) for t in claimed_tickets])
 
-                except Exception as e:
-                    failed += 1
+                for success, _ in results:
+                    if success:
+                        completed += 1
+                    else:
+                        failed += 1
 
         return {"completed": completed, "failed": failed, "model": self.config.model_id}
 
     def _format_task(self, worker_type: str, input_data: dict) -> str:
         """Format ticket input for LLM consumption."""
-        return f"Process this input and return JSON output:\n\n```json\n{json.dumps(input_data, indent=2)}\n```"
+        if worker_type == "structural_parser":
+            walk = input_data.get("walk", [])
+            walk_text = "\n".join([
+                f"- [{n.get('emotion', 'neutral')}] {n.get('text', '')}"
+                for n in walk
+            ])
+            return f"""Parse this dialogue walk into a structural triplet.
+
+DIALOGUE WALK:
+{walk_text}
+
+Return JSON with: arc (list of beats with text, emotion, function, archetype_relation), proper_nouns_used, barrier_type, attractor_type, arc_shape.
+IMPORTANT: Include the original text in each beat."""
+
+        elif worker_type == "translation_engine":
+            triplet = input_data.get("triplet", {})
+            target = input_data.get("target_bible_name", "target")
+            source_texts = input_data.get("source_texts", [])
+            bible_excerpt = input_data.get("target_bible", "")[:2000]
+
+            source_lines = "\n".join([f"- {t}" for t in source_texts]) if source_texts else "(no source texts)"
+
+            return f"""Translate these dialogue lines to the {target} setting.
+
+SOURCE DIALOGUE:
+{source_lines}
+
+STRUCTURAL ANALYSIS:
+{json.dumps(triplet, indent=2)}
+
+TARGET BIBLE EXCERPT:
+{bible_excerpt}
+
+Return JSON with:
+- translated_texts: list of {len(source_texts)} dialogue strings (actual prose!)
+- proper_nouns_introduced: list of new proper nouns used
+- confidence: 0.0-1.0
+
+CRITICAL:
+- Output exactly {len(source_texts)} translated lines
+- translated_texts must be actual dialogue like "The Préfet requires your report."
+- Use proper nouns from the target bible (Hexagon, Préfet, Leclerc, etc.)
+- Match the target setting's bureaucratic tone"""
+
+        elif worker_type == "lore_curator":
+            return f"""Validate this proper noun proposal:
+
+{json.dumps(input_data, indent=2)}
+
+Return JSON with: verdict (approve/reject/modify), reason, suggested_alternative (if rejecting)."""
+
+        elif worker_type == "bridge_generator":
+            link = input_data.get("link", {})
+            terminus_text = link.get("terminus_text", "")
+            terminus_emo = link.get("terminus_emotion", "neutral")
+            entry_text = link.get("entry_text", "")
+            entry_emo = link.get("entry_emotion", "neutral")
+            terminus_ctx = link.get("terminus_context", [])
+            entry_ctx = link.get("entry_context", [])
+            bible = input_data.get("bible_excerpt", "")[:1500]
+
+            ctx_before = "\n".join([f"  [{c.get('emotion')}] {c.get('text')}" for c in terminus_ctx])
+            ctx_after = "\n".join([f"  [{c.get('emotion')}] {c.get('text')}" for c in entry_ctx])
+
+            return f"""Generate a bridge line connecting these dialogue segments.
+
+TERMINUS (end of chain):
+{ctx_before}
+  [{terminus_emo}] {terminus_text}  <-- YOUR BRIDGE FOLLOWS THIS
+
+ENTRY (start of next chain):
+  [{entry_emo}] {entry_text}  <-- YOUR BRIDGE LEADS TO THIS
+{ctx_after}
+
+SETTING BIBLE (excerpt):
+{bible}
+
+Generate ONE transitional line (10-30 words) that bridges from terminus to entry.
+Return JSON: {{"bridge_text": "...", "bridge_emotion": "neutral", "reasoning": "..."}}"""
+
+        return f"Process this input and return JSON:\n\n{json.dumps(input_data, indent=2)}"
 
     def _parse_response(self, content: str) -> dict:
         """Extract JSON from LLM response."""

@@ -21,6 +21,7 @@ classifiers = [
 # The parser uses only stdlib (struct, zlib, json, pathlib)
 dependencies = [
     "httpx>=0.28.1",
+    "openai>=2.14.0",
 ]
 
 [project.optional-dependencies]

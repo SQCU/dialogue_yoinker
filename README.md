@@ -218,6 +218,43 @@ This is **not** agent orchestration in the LangChain/AutoGPT sense. No planning 
 
 Closest analogy: MapReduce with LLM workers, or Kubernetes Jobs where each job is a prompted completion.
 
+### Remote API Compatibility
+
+The pipeline is **model-agnostic** — any API supporting OpenAI-compatible chat completions works as a worker backend.
+
+**Tested backends:**
+
+| Backend | Model | Tool Use | Notes |
+|---------|-------|----------|-------|
+| Anthropic | Claude Sonnet/Haiku | ✓ | Primary development model |
+| DeepSeek | deepseek-chat (v3.2) | ✓ | Cost-effective, good structural compliance |
+| OpenAI | gpt-4o-mini | ✓ | Not tested, should work |
+
+**DeepSeek results (Dec 2024):**
+- Structural parsing: 100% success rate on test batches
+- Translation quality: Matches Claude output register and tone
+- Cost: ~$0.02 per 25-sample batch (20x cheaper than Sonnet)
+- Tool calling: Not required — pipeline uses prompt+JSON response pattern
+
+**Running with DeepSeek:**
+```bash
+export DEEPSEEK_API_KEY="sk-..."
+uv run python scripts/run_deepseek_orchestration.py --translate 25 --link 10 --extend 25
+```
+
+**Introspection for foreign API runs:**
+- `GET /api/runs` — List all runs with ticket status
+- `runs/{run_id}/queue.json` — Full ticket data with inputs/outputs
+- Results persist to disk even if orchestration crashes
+
+**Why DeepSeek v3.2 specifically:**
+- Open weights (can run locally for debugging)
+- Logit access for interpretability research
+- Activation probing compatible with repeng tools
+- Price/performance competitive with Haiku
+
+See `notes/2025-12-23-deepseek-portability-review.md` for technical details on model-agnostic formalization.
+
 ## Project Structure
 
 ```
@@ -243,8 +280,17 @@ prompts/               — Prompt templates for generation
 api_server.py          — FastAPI server
 landing_html.py        — Interactive web explorer
 
+# Orchestration Infrastructure
+workflow/              — Ticket queue, multi-backend dispatch
+  ticket_queue.py      — Model-agnostic work queue
+  multi_backend.py     — DeepSeek/OpenAI/Anthropic workers
+  orchestrator.py      — Spawn-and-await pattern
+scripts/               — Standalone orchestration scripts
+  run_deepseek_orchestration.py — DeepSeek batch runner
+
 # Subagent Infrastructure
 subagent_orchestrator/ — API routes for triplet extraction/translation
+claudefiles/subagents/ — Per-worker CLAUDE.md prompts
 
 # Documentation
 CLAUDE.md              — Research context and analysis tasks

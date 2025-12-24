@@ -46,6 +46,7 @@ BIBLE_MAPPING = {
     "morrowind": "morrowind.yaml",
     # Target settings (synthetic)
     "gallia": "gallia.yaml",
+    "marmotte": "marmotte.yaml",
 }
 
 
@@ -119,9 +120,13 @@ class Ticket:
     claimed_at: Optional[str] = None
     completed_at: Optional[str] = None
     claimed_by: Optional[str] = None  # Worker identifier
+    worker_backend: Optional[str] = None  # Model/backend that processed (e.g., "deepseek-chat")
 
     # Metrics
     latency_ms: int = 0
+
+    # Post-processing
+    applied: bool = False  # Whether this ticket's output was applied to the graph
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -168,7 +173,7 @@ class RunQueue:
         self.parse_tickets.append(ticket)
         return ticket
 
-    def add_translate_ticket(self, triplet: dict, source_game: str) -> Ticket:
+    def add_translate_ticket(self, triplet: dict, source_game: str, original_walk: list = None) -> Ticket:
         """
         Add a translation ticket (after parsing completes).
 
@@ -189,6 +194,11 @@ class RunQueue:
         except FileNotFoundError:
             target_bible_content = f"# Bible not found: {self.target_bible}\n# Agent must work from context"
 
+        # Extract source texts from original walk if available
+        source_texts = []
+        if original_walk:
+            source_texts = [node.get("text", "") for node in original_walk]
+
         ticket = Ticket(
             ticket_id=f"translate_{len(self.translate_tickets):04d}",
             run_id=self.run_id,
@@ -196,6 +206,7 @@ class RunQueue:
             input_data={
                 "triplet": triplet,
                 "source_game": source_game,
+                "source_texts": source_texts,  # Original dialogue for reference
                 # Names for reference
                 "source_bible_name": source_bible_name,
                 "target_bible_name": self.target_bible,
@@ -246,6 +257,7 @@ class RunQueue:
         worker_notes: list[str] = None,
         worker_concerns: list[dict] = None,
         latency_ms: int = 0,
+        worker_backend: str = None,
     ) -> bool:
         """Submit completed work for a ticket."""
         # Find ticket
@@ -261,6 +273,7 @@ class RunQueue:
         ticket.worker_notes = worker_notes or []
         ticket.worker_concerns = worker_concerns or []
         ticket.latency_ms = latency_ms
+        ticket.worker_backend = worker_backend
         ticket.completed_at = datetime.now(timezone.utc).isoformat()
 
         # Determine status based on concerns
@@ -395,6 +408,7 @@ class TicketQueueManager:
         worker_notes: list[str] = None,
         worker_concerns: list[dict] = None,
         latency_ms: int = 0,
+        worker_backend: str = None,
     ) -> dict:
         """Submit ticket result (thread-safe, auto-persists)."""
         with self._lock:
@@ -408,6 +422,7 @@ class TicketQueueManager:
                 worker_notes=worker_notes,
                 worker_concerns=worker_concerns,
                 latency_ms=latency_ms,
+                worker_backend=worker_backend,
             )
 
             if success:
@@ -426,11 +441,12 @@ class TicketQueueManager:
     def _create_followup_tickets(self, queue: RunQueue, ticket: Ticket):
         """Create downstream tickets when a ticket completes."""
         if ticket.worker_type == WorkerType.STRUCTURAL_PARSER:
-            # Create translation ticket
+            # Create translation ticket - include original walk for source texts
             if ticket.output_data:
                 queue.add_translate_ticket(
                     triplet=ticket.output_data,
                     source_game=ticket.input_data.get("source_game", ""),
+                    original_walk=ticket.input_data.get("walk", []),
                 )
 
         elif ticket.worker_type == WorkerType.TRANSLATION_ENGINE:

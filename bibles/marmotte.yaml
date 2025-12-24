@@ -1,0 +1,320 @@
+# Marmotte Lore Bible
+# Project Epsilon Paracosm
+# A corporate conspiracy RPG about controlled marmot infestations
+
+bible_id: marmotte
+setting_name: "Project Epsilon"
+tagline: "Shape the marmot. Shape the encounter. Shape the revenue stream."
+
+# =============================================================================
+# WORLD LOGIC
+# =============================================================================
+
+world_logic:
+  core_premise: |
+    A shadowy consortium breeds, conditions, and covertly deploys trained marmots
+    into Marriott hotels to create controlled "nuisance infestations." These
+    generate lucrative pest control contracts funneled through front companies.
+    The phonetic similarity between "marmot" and "Marriott" is the central
+    vulnerability being exploited — a memetic time bomb.
+
+  organizational_structure: |
+    Project Epsilon is the mastermind. It operates through front companies:
+    MMSI (standards/certification), Hutch-A-Solutions (equipment), IRRICONA (R&D),
+    MARMOX GmbH (supplies). Hidden Hollow Marmot Reserve handles "rehabilitation."
+    No central holding facility exists — operational security through distribution.
+
+  tone: |
+    Corporate doublespeak meets absurdist satire. Strategy documents, compliance
+    frameworks, and synergistic incentive alignments obscure fundamentally ridiculous
+    schemes. Everyone speaks in business jargon about marmots. Footnotes are common.
+    Technical specifications for rodent insertion operations. TRL levels for marmot
+    capabilities.
+
+  technology_level: |
+    Contemporary corporate-industrial. Marmot Dispersal Hutches (suitcases with
+    false bottoms). Cutting-edge delayed-action spring-loaded bait doors with
+    marmot detection systems. Ultrasonic deterrents (that don't work). The
+    Soviet MORMA-3 conditioning protocols, repurposed for civilian applications.
+
+  mortality_rules: |
+    Marmots must NEVER be harmed. Hutchicide (marmoticide fumigation) is the
+    catastrophic failure mode that collapses the entire scheme. Live capture
+    and 100-mile release is mandatory. The marmots are "extraordinarily valuable
+    assets" — more valuable than any individual human operative. Guest safety
+    is incidental; marmot safety is paramount.
+
+# =============================================================================
+# GAME MECHANICS — Marmotte Specific
+# =============================================================================
+
+game_mechanics:
+
+  # --- PRIMARY STATS ---
+  stats:
+    - stat_id: "certification_level"
+      description: "Your standing within MMSI's contractor hierarchy"
+      affects: ["contract_access", "equipment_quality", "plausible_deniability"]
+      note: "Higher certification = better contracts but more exposure"
+
+    - stat_id: "operational_security"
+      description: "How well you maintain cover and avoid forensic linkage"
+      affects: ["detection_risk", "regulatory_scrutiny", "memetic_containment"]
+      note: "Low opsec = meddlesome reporters, grudge-bearing statisticians"
+
+    - stat_id: "marmot_rapport"
+      description: "Your ability to handle, condition, and deploy marmots"
+      affects: ["insertion_success", "behavioral_fidelity", "recovery_rate"]
+      note: "True marmot men face fearsome wild marmots without flinching"
+
+    - stat_id: "corporate_fluency"
+      description: "Mastery of business jargon and strategic doublespeak"
+      affects: ["meeting_outcomes", "document_credibility", "liability_deflection"]
+      note: "Synergistic incentive alignment requires fluent corporate-speak"
+
+    - stat_id: "guest_empathy_engineering"
+      description: "Ability to shape emotional schemas in hotel guests"
+      affects: ["complaint_suppression", "service_recovery_paradox", "NPS_preservation"]
+      note: "The guest should worry about the marmot, not themselves"
+
+  # --- DERIVED STATS ---
+  derived:
+    - derived_id: "exposure_risk"
+      formula: "insertions_performed - operational_security"
+      description: "Cumulative risk of scheme exposure"
+      note: "High exposure = investigators, G-Men, Manifold predictors"
+
+    - derived_id: "asset_value"
+      formula: "marmots_deployed * conditioning_quality"
+      description: "Value of marmot assets under your management"
+      note: "Losing assets to Hutchicide is catastrophic"
+
+    - derived_id: "revenue_capture"
+      formula: "contracts_generated * margin_percentage"
+      description: "Structured outflows successfully recuperated"
+
+  # --- INTERACTION TYPES ---
+  interaction_types:
+    - type_id: "insertion_operation"
+      description: "Covertly deploying marmots into a target property"
+      outcomes: ["successful_deployment", "premature_detection", "marmot_escape", "cover_blown"]
+
+    - type_id: "service_call"
+      description: "Responding to a marmot report as certified contractor"
+      outcomes: ["clean_capture", "escalation_to_management", "Hutchicide_threat", "guest_bonding"]
+
+    - type_id: "compliance_audit"
+      description: "MMSI reviewing contractor adherence to protocols"
+      outcomes: ["certification_maintained", "probation", "decertification", "scheme_exposure"]
+
+    - type_id: "hundred_mile_release"
+      description: "Transporting captured marmots to release sites"
+      outcomes: ["clean_release", "marmot_returns", "documentation_failure", "rehabilitation_handoff"]
+
+# =============================================================================
+# FACTIONS
+# =============================================================================
+
+factions:
+  - faction_id: "project_epsilon"
+    full_name: "Project Epsilon"
+    description: "The mastermind organization. Breeds, conditions, and orchestrates."
+    disposition: "Shadowy, strategic, obsessed with marmot welfare and revenue"
+    notable_traits: ["Soviet MORMA-3 heritage", "TRL 9 capabilities", "no central facility"]
+
+  - faction_id: "mmsi"
+    full_name: "Marmot Management Systems International"
+    description: "The public face. Standards body, certification authority, consulting."
+    disposition: "Professional, regulatory, humane-trapping advocates"
+    notable_traits: ["Policy binder authority", "contractor certification", "Marriott contracts"]
+
+  - faction_id: "hutch_a_solutions"
+    full_name: "Hutch-A-Solutions Incorporated"
+    description: "Equipment supplier. Bait hutches, detection systems, dispersal hardware."
+    disposition: "Technical, innovative, proud of their spring-loaded doors"
+    notable_traits: ["Cutting-edge marmot detection", "fully-furnished bait hutches"]
+
+  - faction_id: "irricona"
+    full_name: "The Insidious Resideous Research Corporation Of North America"
+    description: "R&D arm. Conditioning protocols, behavioral research, new species qualification."
+    disposition: "Scientific, secretive, working on kinkajous and tarsiers"
+    notable_traits: ["MORMA-3 protocol custodians", "Hotel-Mimicking-Hutch development"]
+
+  - faction_id: "marmox"
+    full_name: "MARMOX GmbH"
+    description: "Full-spectrum marmot capture supplies. From homeowners to true marmot men."
+    disposition: "German efficiency, sells to everyone, ultrasonic deterrents that don't work"
+    notable_traits: ["Homeowner gimmicks", "professional equipment", "plausible neutrality"]
+
+  - faction_id: "hidden_hollow"
+    full_name: "Hidden Hollow Marmot Reserve"
+    description: "Wildlife rehabilitation front. Receives marmots for 'release.'"
+    disposition: "Wholesome facade, actually recycling assets back to Project Epsilon"
+    notable_traits: ["Videographic evidence production", "marmot rehabilitation theater"]
+
+  - faction_id: "marriott"
+    full_name: "Marriott International"
+    description: "The target. Phonetically vulnerable. Eager to contain incidents."
+    disposition: "Brand-protective, service-recovery-oriented, unwitting co-conspirators"
+    notable_traits: ["Bonvoy points compensation", "policy binder protocols", "frontline discretion"]
+
+  - faction_id: "investigators"
+    full_name: "Various Adversaries"
+    description: "Those who might expose the scheme"
+    disposition: "Meddlesome, statistical, sometimes bumbling"
+    notable_traits: ["Reporters", "G-Men", "Manifold predictors", "aggrieved guests"]
+
+# =============================================================================
+# KEY LOCATIONS
+# =============================================================================
+
+locations:
+  - location_id: "marriott_property"
+    description: "Any Marriott hotel. Warm neutrals, standardized furniture, low ambient noise."
+    narrative_role: "Primary deployment zone. Where marmots and guests meet."
+    typical_encounters: ["insertion", "guest_report", "service_recovery", "contractor_response"]
+
+  - location_id: "dark_hotel"
+    description: "Disused hotel converted to covert breeding facility. All branding stripped."
+    narrative_role: "Where marmots are conditioned in Hotel-Mimicking-Hutches"
+    typical_encounters: ["conditioning_sessions", "batch_assessment", "security_protocols"]
+
+  - location_id: "release_site"
+    description: "Forested/mountainous region 100+ miles from any property"
+    narrative_role: "Where marmots are released (and often return from)"
+    typical_encounters: ["hundred_mile_protocol", "videographic_documentation", "homing_failure"]
+
+  - location_id: "mmsi_office"
+    description: "Corporate headquarters. Conference rooms, compliance frameworks, certifications."
+    narrative_role: "Where contractors are certified and policies are set"
+    typical_encounters: ["certification_exams", "audits", "strategic_planning", "incident_review"]
+
+  - location_id: "irricona_lab"
+    description: "Secretive R&D facility. Conditioning chambers, behavioral observation."
+    narrative_role: "Where new marmot capabilities reach TRL maturity"
+    typical_encounters: ["protocol_development", "species_qualification", "Soviet_archive_access"]
+
+# =============================================================================
+# KEY PROPER NOUNS
+# =============================================================================
+
+proper_nouns:
+  organizations:
+    - "Project Epsilon"
+    - "MMSI"
+    - "Marmot Management Systems International"
+    - "Hutch-A-Solutions"
+    - "IRRICONA"
+    - "MARMOX GmbH"
+    - "Hidden Hollow Marmot Reserve"
+    - "Marriott"
+    - "Bonvoy"
+
+  concepts:
+    - "Controlled Marmot Infestation Services"
+    - "CMIS"
+    - "Hundred-Mile Rule"
+    - "Marmot Dispersal Hutch"
+    - "Hotel-Mimicking-Hutch"
+    - "Hutchicide"
+    - "emotional schema"
+    - "service recovery paradox"
+    - "structured outflows"
+    - "TRL 9"
+    - "MORMA-3"
+
+  equipment:
+    - "bait hutch"
+    - "delayed-action spring-loaded door"
+    - "marmot detection system"
+    - "ultrasonic deterrent"
+    - "policy binder"
+
+  species_tiers:
+    - "marmot (standard)"
+    - "gerbil (low-end)"
+    - "ferret (millennial-targeted)"
+    - "kinkajou (high-end, in qualification)"
+    - "tarsier (high-end, in qualification)"
+
+# =============================================================================
+# DIALOGUE REGISTER
+# =============================================================================
+
+dialogue_register:
+  formality: "High corporate. Business jargon. Technical specifications."
+
+  characteristic_phrases:
+    - "synergistic incentive alignment"
+    - "structured outflows"
+    - "recuperated for the distinguishing and discreet corporate decisionmaker"
+    - "TRL maturity"
+    - "forensic linkage"
+    - "memetic threat"
+    - "reputationally hazardous"
+    - "service recovery dynamics"
+    - "compliance partner"
+    - "full-spectrum certification"
+
+  emotion_expression: |
+    Emotions are expressed through corporate euphemism. Fear becomes "exposure risk."
+    Greed becomes "revenue optimization." Affection for marmots is genuine but
+    expressed as "asset preservation." Contempt for investigators is masked as
+    "adversarial stakeholder management."
+
+  forbidden_register: |
+    Never break corporate voice. No casual speech. No direct emotional expression.
+    Even panic is expressed as "accelerated incident response protocols."
+    Marmots are always "assets" or referred to with clinical affection.
+
+# =============================================================================
+# NARRATIVE TENSIONS
+# =============================================================================
+
+narrative_tensions:
+  - tension_id: "exposure_vs_revenue"
+    description: "More insertions = more revenue = more exposure risk"
+    typical_manifestation: "Pressure to expand operations vs operational security"
+
+  - tension_id: "marmot_welfare_vs_objectives"
+    description: "Marmots must thrive for the scheme to work, but deployment is stressful"
+    typical_manifestation: "Undertrained batches causing nighttime trills, asset losses"
+
+  - tension_id: "marriott_cooperation"
+    description: "Marriott must be eager to solve problems but never understand the source"
+    typical_manifestation: "Service recovery paradox exploitation, implicit policy capture"
+
+  - tension_id: "hundred_mile_failure"
+    description: "Released marmots navigate back to hotels, creating forensic patterns"
+    typical_manifestation: "Statistical correlations, meddlesome investigators"
+
+  - tension_id: "hutchicide_threat"
+    description: "Escalation to fumigation destroys assets and exposes scheme"
+    typical_manifestation: "Regulatory involvement, uncontrolled infestations"
+
+# =============================================================================
+# TRANSLATION GUIDANCE
+# =============================================================================
+
+translation_guidance:
+  from_fantasy_rpg: |
+    Quest-givers become middle managers assigning contracts. Dungeons become
+    hotel properties requiring insertion or remediation. Combat becomes
+    compliance audits and exposure incidents. Magic items become certified
+    equipment. Factions become corporate entities with competing interests.
+
+  emotional_mapping:
+    anger: "accelerated incident response posture"
+    fear: "elevated exposure risk awareness"
+    joy: "successful revenue capture confirmation"
+    sadness: "asset loss acknowledgment"
+    surprise: "unscheduled operational development"
+    disgust: "compliance deviation detection"
+
+  archetype_mapping:
+    authority_figure: "MMSI certification board, regional management"
+    quest_giver: "contract dispatcher, incident coordinator"
+    merchant: "MARMOX sales representative"
+    enemy: "investigator, health inspector, aggrieved guest"
+    ally: "certified contractor, marmot handler"
+    victim: "the marmot (always sympathetic)"

@@ -1,0 +1,29 @@
+{
+  "setting": "marmotte",
+  "version": 1,
+  "created_at": "2024-12-24T08:55:00+00:00",
+  "parent_version": null,
+  "description": "Project Epsilon corporate marmot conspiracy - DeepSeek v3.2 translation",
+  "approach": "growth_engine",
+  "source_games": [
+    "oblivion",
+    "falloutnv"
+  ],
+  "run_ids": [
+    "growth_20251224_005556_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_005608_marmotte_v1",
+    "growth_20251224_010148_marmotte_v1"
+  ],
+  "total_nodes": 542,
+  "total_edges": 541,
+  "state_changes_targeted": []
+}
