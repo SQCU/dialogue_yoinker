@@ -403,6 +403,30 @@ requests.get('http://localhost:8000/api/games').json()</pre>
                         </div>
                     </div>
 
+                    <h3 style="margin-top:20px">🎲 Sample Dialogue</h3>
+                    <div class="card">
+                        <div style="margin-bottom:10px">
+                            <label>Method:</label>
+                            <select id="synGraphSampleMethod">
+                                <option value="walk">Random Walk</option>
+                                <option value="hub">From Hub</option>
+                                <option value="emotion">By Emotion</option>
+                            </select>
+                            <label>×</label>
+                            <input type="number" id="synGraphSampleCount" value="2" min="1" max="5" style="width:50px">
+                            <label>len:</label>
+                            <input type="number" id="synGraphSampleLen" value="5" min="2" max="15" style="width:50px">
+                            <button onclick="sampleSynGraphDialogue()">Sample</button>
+                        </div>
+                        <div style="margin-bottom:10px">
+                            <button class="secondary" onclick="sampleSynGraphDialogue('anger')">😠 Anger</button>
+                            <button class="secondary" onclick="sampleSynGraphDialogue('fear')">😨 Fear</button>
+                            <button class="secondary" onclick="sampleSynGraphDialogue('happy')">😊 Happy</button>
+                            <button class="secondary" onclick="sampleSynGraphDialogue('neutral')">😐 Neutral</button>
+                        </div>
+                        <div id="synGraphSamples"><p style="color:#888">Click Sample to explore synthetic dialogue paths</p></div>
+                    </div>
+
                     <h3 style="margin-top:20px">🔬 Graph Analysis</h3>
                     <div class="card">
                         <div style="margin-bottom:10px">
@@ -1352,6 +1376,42 @@ requests.get('http://localhost:8000/api/games').json()</pre>
             `;
 
             document.getElementById('syntheticGraphLoading').textContent = '';
+        }
+
+        async function sampleSynGraphDialogue(emotionFilter = null) {
+            if (!currentSynGraph) return;
+
+            const method = emotionFilter ? 'emotion' : document.getElementById('synGraphSampleMethod').value;
+            const count = parseInt(document.getElementById('synGraphSampleCount').value);
+            const maxLength = parseInt(document.getElementById('synGraphSampleLen').value);
+
+            document.getElementById('synGraphSamples').innerHTML = '<p>Sampling...</p>';
+
+            let url = `${API}/synthetic-graph/${currentSynGraph}/sample?count=${count}&max_length=${maxLength}&method=${method}`;
+            if (emotionFilter) {
+                url += `&emotion_filter=${emotionFilter}`;
+            }
+
+            const resp = await fetch(url, {method: 'POST'});
+            const data = await resp.json();
+
+            let html = '';
+            data.samples.forEach((sample, i) => {
+                html += `<div style="margin-bottom:15px">`;
+                html += `<strong>Sample ${i + 1}</strong> <span style="color:#888">(${sample.method}, ${sample.length} nodes)</span>`;
+
+                sample.nodes.forEach(node => {
+                    const emo = node.emotion || 'neutral';
+                    html += `<div class="sample emotion-${emo}">`;
+                    html += `<span style="font-size:10px;color:#888;float:right">${node.source_game || ''} | ${node.arc_shape || ''}</span>`;
+                    if (emo !== 'neutral') html += `<span class="emotion-tag">${emo}</span>`;
+                    html += `<br><span style="color:#84cc16">${node.text}</span>`;
+                    html += '</div>';
+                });
+                html += '</div>';
+            });
+
+            document.getElementById('synGraphSamples').innerHTML = html || '<p style="color:#888">No samples returned</p>';
         }
 
         async function loadSynGraphPageRank() {

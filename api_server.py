@@ -1417,7 +1417,7 @@ def get_available_synthetic_settings() -> List[str]:
 
 
 async def get_synthetic_graph(setting: str) -> dict:
-    """Load a synthetic graph."""
+    """Load a synthetic graph, normalizing node format."""
     if setting in SYNTHETIC_GRAPH_CACHE:
         return SYNTHETIC_GRAPH_CACHE[setting]
 
@@ -1427,6 +1427,12 @@ async def get_synthetic_graph(setting: str) -> dict:
 
     loop = asyncio.get_event_loop()
     data = await loop.run_in_executor(None, lambda: json.loads(path.read_text()))
+
+    # Normalize nodes: if list, convert to dict keyed by 'id'
+    nodes = data.get('nodes', {})
+    if isinstance(nodes, list):
+        data['nodes'] = {n.get('id', str(i)): n for i, n in enumerate(nodes)}
+
     SYNTHETIC_GRAPH_CACHE[setting] = data
     return data
 
@@ -1445,10 +1451,12 @@ async def list_synthetic_graph_settings():
         if path.exists():
             data = json.loads(path.read_text())
             nodes = data.get('nodes', {})
+            # Handle both list and dict formats
+            node_count = len(nodes) if isinstance(nodes, (list, dict)) else 0
             edges = data.get('edges', [])
             result.append({
                 'setting': s,
-                'nodes': len(nodes),
+                'nodes': node_count,
                 'edges': len(edges),
             })
     return {'settings': result}
@@ -1480,30 +1488,42 @@ async def compare_synthetic_to_reference(setting: str, reference: str):
 
     Shows side-by-side metrics: branching factor, hub structure, component count.
     """
-    if not DIAGNOSTICS_AVAILABLE:
-        raise HTTPException(500, "graph_diagnostics module not available")
-
     syn_path = SYNTHETIC_DIR / setting / "graph.json"
-    ref_path = DATA_DIR / f"{reference}_dialogue_graph.json"
-
     if not syn_path.exists():
         raise HTTPException(404, f"Synthetic setting '{setting}' not found")
-    if not ref_path.exists():
+
+    # Get synthetic stats
+    syn_data = await get_synthetic_graph(setting)
+    syn_nodes = syn_data.get('nodes', {})
+    syn_edges = syn_data.get('edges', [])
+
+    # Get reference graph stats via the existing graph loader
+    try:
+        ref_graph = await get_graph(reference)
+        ref_stats = ref_graph.get_statistics()
+    except HTTPException:
         raise HTTPException(404, f"Reference game '{reference}' not found")
 
-    loop = asyncio.get_event_loop()
-    syn_analysis = await loop.run_in_executor(None, analyze_graph, syn_path, f"synthetic:{setting}")
-    ref_analysis = await loop.run_in_executor(None, analyze_graph, ref_path, f"reference:{reference}")
+    # Build synthetic stats
+    syn_stats = {
+        'node_count': len(syn_nodes),
+        'edge_count': len(syn_edges),
+        'branching_factor': len(syn_edges) / len(syn_nodes) if syn_nodes else 0,
+    }
+
+    ref_summary = {
+        'node_count': ref_stats['nodes'],
+        'edge_count': ref_stats['edges'],
+        'branching_factor': ref_stats['avg_out_degree'],
+    }
 
     # Compute comparison metrics
     comparison = {
-        'synthetic': syn_analysis,
-        'reference': ref_analysis,
+        'synthetic': syn_stats,
+        'reference': ref_summary,
         'comparison': {
-            'branching_factor_ratio': syn_analysis['branching_factor'] / ref_analysis['branching_factor'] if ref_analysis['branching_factor'] > 0 else 0,
-            'node_ratio': syn_analysis['node_count'] / ref_analysis['node_count'] if ref_analysis['node_count'] > 0 else 0,
-            'component_difference': syn_analysis['components']['component_count'] - ref_analysis['components']['component_count'],
-            'leaf_ratio_difference': syn_analysis['leaves']['leaf_ratio'] - ref_analysis['leaves']['leaf_ratio'],
+            'branching_factor_ratio': syn_stats['branching_factor'] / ref_summary['branching_factor'] if ref_summary['branching_factor'] > 0 else 0,
+            'node_ratio': syn_stats['node_count'] / ref_summary['node_count'] if ref_summary['node_count'] > 0 else 0,
         }
     }
     return comparison
@@ -1666,6 +1686,99 @@ async def get_synthetic_communities(
         'community_count': len(communities_list),
         'communities': result,
     }
+
+
+@app.post("/api/synthetic-graph/{setting}/sample")
+async def sample_synthetic_dialogue(
+    setting: str,
+    count: int = Query(default=3, ge=1, le=10),
+    max_length: int = Query(default=6, ge=2, le=20),
+    method: str = Query(default="walk", description="walk, hub, or emotion"),
+    emotion_filter: str = Query(default=None, description="Filter starting node by emotion"),
+):
+    """
+    Sample dialogue sequences from synthetic graph.
+
+    Methods:
+    - walk: random walk from random starting node
+    - hub: start from high in-degree nodes (bridge targets)
+    - emotion: start from nodes with specific emotion
+    """
+    import random
+
+    data = await get_synthetic_graph(setting)
+    nodes = data.get('nodes', {})
+    edges = data.get('edges', [])
+
+    if not nodes:
+        return {'setting': setting, 'samples': []}
+
+    # Build adjacency list
+    adj = {}
+    in_degree = {}
+    for nid in nodes:
+        adj[nid] = []
+        in_degree[nid] = 0
+    for edge in edges:
+        src = edge.get('source') or edge.get('from')
+        tgt = edge.get('target') or edge.get('to')
+        if src and tgt and src in adj:
+            adj[src].append(tgt)
+            if tgt in in_degree:
+                in_degree[tgt] = in_degree.get(tgt, 0) + 1
+
+    samples = []
+    for _ in range(count):
+        # Select starting node based on method
+        if method == "hub":
+            # Start from high in-degree nodes
+            hub_nodes = sorted(in_degree.items(), key=lambda x: -x[1])[:20]
+            if hub_nodes:
+                start = random.choice([n for n, _ in hub_nodes])
+            else:
+                start = random.choice(list(nodes.keys()))
+        elif method == "emotion" and emotion_filter:
+            # Start from nodes with specific emotion
+            candidates = [nid for nid, n in nodes.items() if n.get('emotion') == emotion_filter]
+            if candidates:
+                start = random.choice(candidates)
+            else:
+                start = random.choice(list(nodes.keys()))
+        else:
+            # Random start
+            start = random.choice(list(nodes.keys()))
+
+        # Random walk
+        path = [start]
+        current = start
+        for _ in range(max_length - 1):
+            neighbors = adj.get(current, [])
+            if not neighbors:
+                break
+            current = random.choice(neighbors)
+            if current in path:  # avoid cycles
+                break
+            path.append(current)
+
+        # Build sample
+        sample_nodes = []
+        for nid in path:
+            node = nodes.get(nid, {})
+            sample_nodes.append({
+                'id': nid,
+                'text': node.get('text', ''),
+                'emotion': node.get('emotion', 'neutral'),
+                'source_game': node.get('source_game', ''),
+                'arc_shape': node.get('arc_shape', ''),
+            })
+
+        samples.append({
+            'method': method,
+            'length': len(sample_nodes),
+            'nodes': sample_nodes,
+        })
+
+    return {'setting': setting, 'samples': samples}
 
 
 @app.get("/api/synthetic-graph/{setting}/components")
