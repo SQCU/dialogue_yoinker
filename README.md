@@ -239,8 +239,22 @@ The pipeline is **model-agnostic** — any API supporting OpenAI-compatible chat
 **Running with DeepSeek:**
 ```bash
 export DEEPSEEK_API_KEY="sk-..."
-uv run python scripts/run_deepseek_orchestration.py --translate 25 --link 10 --extend 25
+
+# Full pipeline: 100 translate, 100 link, 100 extend
+python scripts/run_batch.py full gallia:4 100
+
+# Multiple settings in parallel with custom concurrency
+python scripts/run_batch.py full gallia:4,marmotte:2 100 --parallel --concurrency 30
+
+# Individual phases
+python scripts/run_batch.py translate gallia 100
+python scripts/run_batch.py link gallia:4 100
+python scripts/run_batch.py extend gallia:4 100 --source-run link_20251225_...
 ```
+
+**Performance** (at 25 concurrency): ~1-2 tickets/sec for parsing/translation, ~0.8 tickets/sec for linking/extension.
+
+See `notes/run_batch_pipeline.md` for full documentation.
 
 **Introspection for foreign API runs:**
 - `GET /api/runs` — List all runs with ticket status
@@ -285,8 +299,13 @@ workflow/              — Ticket queue, multi-backend dispatch
   ticket_queue.py      — Model-agnostic work queue
   multi_backend.py     — DeepSeek/OpenAI/Anthropic workers
   orchestrator.py      — Spawn-and-await pattern
-scripts/               — Standalone orchestration scripts
-  run_deepseek_orchestration.py — DeepSeek batch runner
+scripts/               — Pipeline scripts
+  run_batch.py         — Unified pipeline runner (main entry point)
+  run_link_stitch_batch.py    — Link ticket processing
+  run_extension_resolve_batch.py — Extension ticket processing
+  apply_link_stitch_results.py   — Apply links to graph
+  apply_extension_results.py     — Apply extensions to graph
+  legacy/              — Deprecated scripts (kept for reference)
 
 # Subagent Infrastructure
 subagent_orchestrator/ — API routes for triplet extraction/translation

@@ -317,7 +317,7 @@ class LocalScriptWorker(BaseWorker):
 class OpenAICompatibleWorker(BaseWorker):
     """Worker for OpenAI-compatible APIs (OpenAI, DeepSeek, Qwen, Kimi)."""
 
-    async def process_tickets(self, run_id: str, worker_type: str, concurrency: int = 5) -> dict:
+    async def process_tickets(self, run_id: str, worker_type: str, concurrency: int = 25) -> dict:
         """Process tickets using OpenAI-compatible chat API with concurrent dispatch."""
         try:
             from openai import AsyncOpenAI

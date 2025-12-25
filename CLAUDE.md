@@ -308,6 +308,30 @@ The algorithm:
 4. **GENERATE**: Use sampled walk as template (TODO: wire translation engine)
 5. **ATTACH**: Connect at point that improves global stats
 
+### High-Concurrency Pipeline Runner
+
+`scripts/run_batch.py` is the unified entry point for all synthetic dialogue generation. It runs translate → link → extend pipelines with 25x concurrent DeepSeek API calls.
+
+```bash
+# Full pipeline on multiple settings in parallel
+DEEPSEEK_API_KEY="sk-..." python scripts/run_batch.py full gallia:4,marmotte:2 100 --parallel
+
+# Individual phases
+python scripts/run_batch.py translate gallia 100
+python scripts/run_batch.py link gallia:4 100
+python scripts/run_batch.py extend gallia:4 100 --source-run link_20251225_...
+```
+
+**Setting specs**: `gallia` (latest version), `gallia:4` (explicit version), `gallia:4,marmotte:2` (multiple)
+
+**Performance** (at 25 concurrency):
+- Structural parser: ~1.1 tickets/s
+- Translation engine: ~1.6-2.1 tickets/s
+- Link stitcher: ~0.8 tickets/s
+- Extension resolver: ~0.8 tickets/s
+
+**Architecture**: Imports from modular scripts (`run_link_stitch_batch.py`, `apply_extension_results.py`, etc.) rather than duplicating logic. See `notes/run_batch_pipeline.md` for full documentation.
+
 ## DLC Support
 
 Extract dialogue including DLCs with full emotion annotations:

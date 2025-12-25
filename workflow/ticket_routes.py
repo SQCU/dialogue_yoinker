@@ -39,11 +39,13 @@ router = APIRouter(prefix="/api/runs", tags=["ticket-queue"])
 class CreateRunRequest(BaseModel):
     """Request to create a new run."""
     target_bible: str = Field(description="Target setting for translation (e.g., 'gallia')")
+    target_version: int = Field(default=0, description="Target graph version (0 = latest, required for guided mode)")
     source_games: list[str] = Field(default=["oblivion", "falloutnv"])
     sample_count: int = Field(default=0, description="Fixed sample count (overrides rate)")
     sample_rate: float = Field(default=0.0, description="Fraction of corpus (e.g., 0.01 for 1%)")
     walk_method: str = Field(default="walk", description="Sampling method")
     max_walk_length: int = Field(default=6)
+    guided: bool = Field(default=False, description="Use stats-guided sampling (closes topology gaps)")
     config: dict = Field(default_factory=dict)
 
 
@@ -146,27 +148,77 @@ async def create_run(request: CreateRunRequest):
 
     The queue is automatically populated with parse tickets for sampled walks.
     Downstream tickets (translate, curate) are created as parse tickets complete.
+
+    If guided=True, uses stats-guided sampling to close topology gaps between
+    target graph and reference corpus. Otherwise uses uniform random sampling.
     """
     manager = get_manager()
 
-    # Sample walks from each game
+    # Determine sample count
+    if request.sample_count > 0:
+        count = request.sample_count
+    elif request.sample_rate > 0:
+        # Estimate corpus size
+        total_size = 0
+        for game in request.source_games:
+            total_size += await get_corpus_size(game)
+        count = max(1, int(total_size * request.sample_rate))
+    else:
+        count = 10  # Default
+
+    # Resolve target version for guided mode
+    target_version = request.target_version
+    if target_version == 0:
+        # Auto-detect latest version
+        from pathlib import Path
+        synthetic_dir = Path("synthetic")
+        versions = []
+        for p in synthetic_dir.glob(f"{request.target_bible}_v*"):
+            if p.is_dir():
+                try:
+                    v = int(p.name.split("_v")[1])
+                    versions.append(v)
+                except (ValueError, IndexError):
+                    pass
+        target_version = max(versions) if versions else 1
+
     all_walks = []
-    for game in request.source_games:
-        corpus_size = await get_corpus_size(game)
-        if corpus_size == 0:
-            continue
+    gaps_targeted = []
 
-        if request.sample_rate > 0:
-            count = max(1, int(corpus_size * request.sample_rate))
-        elif request.sample_count > 0:
-            count = request.sample_count // len(request.source_games)
-        else:
-            count = 10  # Default
+    if request.guided:
+        # Stats-guided sampling: close topology gaps
+        try:
+            from .guided_sampling import sample_walks_guided
 
-        walks = await sample_walks_from_api(
-            game, count, request.walk_method, request.max_walk_length
-        )
-        all_walks.extend(walks)
+            result = sample_walks_guided(
+                setting=request.target_bible,
+                version=target_version,
+                count=count,
+                top_gaps=10,
+            )
+            all_walks = result.walks
+            gaps_targeted = [str(g) for g in result.gaps_targeted]
+
+            print(f"[guided] Sampled {len(all_walks)} walks targeting {len(gaps_targeted)} gaps")
+            for gap in result.gaps_targeted[:5]:
+                print(f"  - {gap}")
+
+        except Exception as e:
+            print(f"[guided] Failed to use guided sampling: {e}, falling back to random")
+            request.guided = False
+
+    if not request.guided:
+        # Random sampling (original behavior)
+        for game in request.source_games:
+            corpus_size = await get_corpus_size(game)
+            if corpus_size == 0:
+                continue
+
+            game_count = count // len(request.source_games)
+            walks = await sample_walks_from_api(
+                game, game_count, request.walk_method, request.max_walk_length
+            )
+            all_walks.extend(walks)
 
     if not all_walks:
         raise HTTPException(status_code=400, detail="No walks sampled")
@@ -181,6 +233,9 @@ async def create_run(request: CreateRunRequest):
             "sample_count": request.sample_count,
             "walk_method": request.walk_method,
             "max_walk_length": request.max_walk_length,
+            "guided": request.guided,
+            "target_version": target_version,
+            "gaps_targeted": gaps_targeted,
             **request.config,
         }
     )
@@ -327,6 +382,7 @@ class CreateLinkingRunRequest(BaseModel):
     n_choices: int = Field(default=5, ge=2, le=20, description="Candidate targets per source node")
     n_links_out: int = Field(default=3, ge=1, le=10, description="Links to create per source node")
     reference_game: str = Field(default="oblivion", description="Reference game for few-shot examples")
+    guided: bool = Field(default=False, description="Use stats-guided target selection (reference topology matching)")
 
 
 class CreateLinkingRunResponse(BaseModel):
@@ -422,17 +478,37 @@ async def create_linking_run(request: CreateLinkingRunRequest):
     )
 
     # Create link_stitch tickets
+    # Set up guided sampling if requested
+    guided_sampler = None
+    if request.guided:
+        try:
+            from .guided_sampling import sample_link_targets_guided
+            guided_sampler = sample_link_targets_guided
+            print(f"[guided] Using topology-aware target selection for linking")
+        except Exception as e:
+            print(f"[guided] Failed to load guided sampling: {e}, falling back to random")
+
     for source_node in selected:
         # Sample candidate targets (excluding source)
         candidates = [t for t in potential_targets if t["id"] != source_node["id"]]
-        random.shuffle(candidates)
-        sampled_targets = candidates[:request.n_choices]
 
-        # Add transition_required to each target
-        for target in sampled_targets:
-            target["transition_required"] = f"{source_node['emotion']}→{target['emotion']}"
-            # Add context (could be enhanced later)
-            target["context"] = []
+        if guided_sampler:
+            # Use stats-guided selection: pick targets that match reference transition distribution
+            sampled_targets = guided_sampler(
+                setting=request.target_setting.split("_v")[0],  # Base setting name
+                version=request.version,
+                source_node=source_node,
+                candidate_pool=candidates,
+                n_choices=request.n_choices,
+            )
+        else:
+            # Random selection (original behavior)
+            random.shuffle(candidates)
+            sampled_targets = candidates[:request.n_choices]
+            # Add transition_required to each target
+            for target in sampled_targets:
+                target["transition_required"] = f"{source_node['emotion']}→{target['emotion']}"
+                target["context"] = []
 
         # Add context to source (could be enhanced later)
         source_node["context"] = []
@@ -445,6 +521,7 @@ async def create_linking_run(request: CreateLinkingRunRequest):
                 "n_choices": request.n_choices,
                 "n_links_out": request.n_links_out,
                 "max_bridge_length": 1,
+                "guided": request.guided,
             },
         )
 

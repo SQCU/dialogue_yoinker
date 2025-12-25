@@ -183,7 +183,7 @@ async def process_ticket(
             return {"ticket_id": ticket_id, "success": False, "error": str(e)}
 
 
-async def main(run_id: str, concurrency: int = 5):
+async def main(run_id: str, concurrency: int = 25):
     """Process all pending link_stitch tickets for a run."""
     api_key = os.environ.get("DEEPSEEK_API_KEY")
     if not api_key:

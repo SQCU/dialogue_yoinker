@@ -1,0 +1,18 @@
+{
+  "setting": "marmotte",
+  "version": 3,
+  "created_at": "2025-12-25T07:54:56.530132+00:00",
+  "parent_version": null,
+  "description": "Fresh v2 with new two-layer pipeline. Run: run_20251225_043935_marmotte",
+  "approach": "two_layer_pipeline",
+  "source_games": [
+    "oblivion",
+    "falloutnv"
+  ],
+  "run_ids": [
+    "run_20251225_043935_marmotte"
+  ],
+  "total_nodes": 0,
+  "total_edges": 0,
+  "state_changes_targeted": []
+}

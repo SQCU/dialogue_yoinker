@@ -72,16 +72,16 @@ def compile_translations_to_graph(run_id: str, setting: str) -> dict:
         if not output:
             continue
 
-        # Get generated texts and emotions
-        generated_texts = output.get("generated_texts", [])
+        # Get translated texts and emotions
+        translated_texts = output.get("translated_texts", [])
         arc = ticket.get("input_data", {}).get("triplet", {}).get("arc", [])
 
-        if not generated_texts or not arc:
+        if not translated_texts or not arc:
             continue
 
         # Create nodes for each beat
         prev_node_id = None
-        for i, (text, beat) in enumerate(zip(generated_texts, arc)):
+        for i, (text, beat) in enumerate(zip(translated_texts, arc)):
             import hashlib
             ticket_id = ticket["ticket_id"]
             node_id = f"syn_{hashlib.sha256(f'{run_id}_{ticket_id}_{i}'.encode()).hexdigest()[:12]}"
@@ -108,16 +108,40 @@ def compile_translations_to_graph(run_id: str, setting: str) -> dict:
     return {"nodes": nodes, "edges": edges}
 
 
+def parse_run_arg(arg: str) -> dict:
+    """Parse run argument in format 'run_id:setting:version' or just 'run_id'."""
+    parts = arg.split(":")
+    run_id = parts[0]
+
+    # Extract setting from run_id if not specified
+    # Format: run_YYYYMMDD_HHMMSS_setting
+    if len(parts) >= 2:
+        setting = parts[1]
+    else:
+        # Try to extract from run_id
+        setting = run_id.split("_")[-1] if "_" in run_id else "unknown"
+
+    # Version defaults to "next" (auto-increment)
+    version = int(parts[2]) if len(parts) >= 3 else None
+
+    return {"run_id": run_id, "setting": setting, "target_version": version}
+
+
 async def main():
     if not os.environ.get("DEEPSEEK_API_KEY"):
         print("ERROR: DEEPSEEK_API_KEY not set")
         sys.exit(1)
 
-    # Define runs to process
-    runs = [
-        {"run_id": "run_20251225_041927_gallia", "setting": "gallia", "target_version": 4},
-        {"run_id": "run_20251225_043935_marmotte", "setting": "marmotte", "target_version": 2},
-    ]
+    if len(sys.argv) < 2:
+        print("Usage: python scripts/process_fresh_runs.py <run_id[:setting[:version]]> [...]")
+        print("Examples:")
+        print("  python scripts/process_fresh_runs.py run_20251225_gallia")
+        print("  python scripts/process_fresh_runs.py run_20251225_gallia:gallia:5")
+        print("  python scripts/process_fresh_runs.py run1 run2 run3")
+        sys.exit(1)
+
+    # Parse run arguments
+    runs = [parse_run_arg(arg) for arg in sys.argv[1:]]
 
     dispatcher = WorkerDispatcher(API_BASE)
 
@@ -133,13 +157,13 @@ async def main():
         print(f"  Translate: {result['translate_completed']}")
 
         # Compile to graph
-        print(f"\nCompiling translations to {setting}_v{target_version}...")
+        print(f"\nCompiling translations to {setting}...")
         graph_data = compile_translations_to_graph(run_id, setting)
 
-        # Create new version
+        # Create new version (auto-increments)
         version = new_graph(
             setting=setting,
-            description=f"Fresh v{target_version} with new two-layer pipeline. Run: {run_id}",
+            description=f"Two-layer pipeline run: {run_id}",
             approach="two_layer_pipeline",
             source_games=["oblivion", "falloutnv"],
         )
