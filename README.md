@@ -269,6 +269,94 @@ See `notes/run_batch_pipeline.md` for full documentation.
 
 See `notes/2025-12-23-deepseek-portability-review.md` for technical details on model-agnostic formalization.
 
+## Prose Generation (Training Data Consumers)
+
+The synthetic graphs can be consumed to produce training-ready prose in multiple formats:
+
+```
+Synthetic/Reference Graphs
+         │
+         ▼ extract_walks_from_graph()
+      [Walks]
+         │
+    ┌────┴────┬─────────────┐
+    ▼         ▼             ▼
+Tier 1     Tier 2       Tier 3
+flattened  FK-normed    vocab-teaching
+(sparse)   (rich prose) (definitions)
+```
+
+### Quick Start
+
+```bash
+# Dry run with mock LLM
+uv run python run_consumers.py all \
+  --source synthetic/gallia_v4/graph.json \
+  --output output/training.jsonl \
+  --dry-run
+
+# Real API run (vocabulary teaching)
+DEEPSEEK_API_KEY="sk-..." uv run python run_consumers.py brainrot \
+  --source synthetic/gallia_v4/graph.json \
+  --output output/gallia_aesops.jsonl \
+  --num-walks 30 \
+  --num-aesops 10
+
+# With LLM-based boilerplate cleaning
+DEEPSEEK_API_KEY="sk-..." uv run python run_consumers.py brainrot \
+  --source synthetic/marmotte_v2/graph.json \
+  --output output/marmotte_aesops.jsonl \
+  --num-aesops 10 \
+  --use-cleaner
+```
+
+### Output Tiers
+
+**Tier 1 (flattened)**: Bare dialogue with emotion annotations
+```json
+{"text": "\"Seventy-two hours.\"\n\"The Hexagon expects compliance.\"",
+ "emotion_sequence": ["neutral", "neutral"], "tier": "flattened"}
+```
+
+**Tier 2 (FK-normed)**: Prose at controlled grade levels (0/3/6/9)
+```json
+{"fk_target": 3, "fk_measured": 3.2,
+ "prose": "The clerk looked up. \"Seventy-two hours,\" she said...",
+ "tier": "fk_normed"}
+```
+
+**Tier 3 (brainrot-aesop)**: Vocabulary teaching with embedded definitions
+```json
+{"words_used": ["quality", "check", "military"],
+ "walks_used": 7,
+ "prose": "...a **quality**—an essential attribute—but a matter of proper stamps...",
+ "tier": "brainrot_aesop"}
+```
+
+### Vocabulary Module
+
+COCA frequency data with WordNet definitions:
+
+```python
+from vocabulary import VocabSampler
+
+sampler = VocabSampler(max_rank=2000)
+words = sampler.sample_tuples(12)
+# [('focus', 'direct one\'s attention on something'), ...]
+```
+
+### Real Results (DeepSeek v3)
+
+| Corpus | Pass Rate | Words Taught | Walks/Aesop |
+|--------|-----------|--------------|-------------|
+| gallia_v4 | 50% | 29 unique | 7.6 |
+| marmotte_v2 | 60% | 26 unique | 7.5 |
+
+Sample output:
+> To **check** a file is to examine so as to determine its accuracy. "This lacks the proper essence stamp."
+
+See `notes/2025-12-25-consumer-pipeline-checkpoint.md` for full documentation.
+
 ## Project Structure
 
 ```
@@ -290,6 +378,13 @@ graph_linker.py        — Bridge generation for hub formation
 bibles/                — Lore bibles (setting definitions)
 prompts/               — Prompt templates for generation
 
+# Prose Generation (Training Data Consumers)
+prose_wrapper.py       — Template-based prose (no LLM)
+fk_normed_stories.py   — FK-targeted prose expansion
+brainrot_aesops.py     — Vocabulary teaching passages
+vocabulary.py          — COCA frequency data + WordNet definitions
+run_consumers.py       — CLI orchestration for prose generation
+
 # API & Exploration
 api_server.py          — FastAPI server
 landing_html.py        — Interactive web explorer
@@ -310,6 +405,10 @@ scripts/               — Pipeline scripts
 # Subagent Infrastructure
 subagent_orchestrator/ — API routes for triplet extraction/translation
 claudefiles/subagents/ — Per-worker CLAUDE.md prompts
+
+# Data
+data/                  — Downloaded data (COCA frequencies, vocabulary cache)
+output/                — Generated training data (JSONL files)
 
 # Documentation
 CLAUDE.md              — Research context and analysis tasks

@@ -148,7 +148,91 @@ CLAUDE.md               — This file
 
 ./bibles/               — Setting definition files (lore bibles)
   {setting}.md              — Character names, factions, idiom for target settings
+
+./output/               — Generated training data
+  {corpus}_aesops.jsonl     — Vocabulary teaching passages
+  {corpus}_fk.jsonl         — FK-normed prose
+
+./data/                 — Downloaded external data
+  COCA_WordFrequency.csv    — Word frequency data
+  vocabulary_cache.json     — Processed vocabulary with definitions
 ```
+
+## Prose Generation APIs (Training Data Consumers)
+
+The graph walks can be consumed to produce multiple training data formats:
+
+```bash
+# Run all consumers on a synthetic graph
+DEEPSEEK_API_KEY="sk-..." uv run python run_consumers.py all \
+  --source synthetic/gallia_v4/graph.json \
+  --output output/gallia_training.jsonl \
+  --num-walks 50 \
+  --num-aesops 20
+
+# Just vocabulary teaching (brainrot-aesops)
+DEEPSEEK_API_KEY="sk-..." uv run python run_consumers.py brainrot \
+  --source synthetic/marmotte_v2/graph.json \
+  --output output/marmotte_aesops.jsonl \
+  --num-aesops 10 \
+  --use-cleaner  # LLM-based boilerplate stripping
+
+# FK-normed prose only
+DEEPSEEK_API_KEY="sk-..." uv run python run_consumers.py fk-normed \
+  --source dialogue_data/oblivion_full_dialogue.json \
+  --output output/oblivion_fk.jsonl \
+  --fk-levels 0,3,6,9
+
+# Dry run with mock LLM
+uv run python run_consumers.py all \
+  --source synthetic/gallia_v4/graph.json \
+  --output output/test.jsonl \
+  --dry-run
+```
+
+### Output Tiers
+
+**Tier 1 (flattened)**: Sparse dialogue with emotion sequence
+```json
+{"id": "flat_abc123", "text": "\"Line one.\"\n\"Line two.\"",
+ "emotion_sequence": ["neutral", "anger"], "tier": "flattened"}
+```
+
+**Tier 2 (FK-normed)**: Prose at controlled reading levels
+```json
+{"id": "fk_abc123_grade3", "fk_target": 3, "fk_measured": 3.2,
+ "prose": "The clerk looked up...", "tier": "fk_normed"}
+```
+
+**Tier 3 (brainrot-aesop)**: Vocabulary teaching with embedded definitions
+```json
+{"id": "aesop_abc123", "words_used": ["quality", "check"],
+ "walks_used": 7, "prose": "...a **quality**—an essential attribute...",
+ "tier": "brainrot_aesop"}
+```
+
+### Vocabulary API
+
+```python
+from vocabulary import VocabSampler
+
+sampler = VocabSampler(max_rank=2000)  # Top 2000 COCA words
+words = sampler.sample_tuples(12)       # [(word, definition), ...]
+found = sampler.find_all_words_in_text("I need to find my way home")
+# [VocabWord(word='way', ...), VocabWord(word='find', ...), ...]
+```
+
+### Key Design Decisions
+
+1. **Model-driven pairing (v3)**: Present 8 walks + 12 words, let model choose natural pairings. Less constrained than forced 1:1 matching.
+
+2. **LLM-based cleaner**: Second API call strips assistant boilerplate. Recognition is easier than suppression.
+
+3. **COCA frequency weighting**: Common words appear more often in samples. Real frequency data, not hand-coded lists.
+
+4. **Rejection filters**: FK tolerance ±1.5, min walk/word thresholds, no meta-commentary.
+
+See `notes/2025-12-25-consumer-pipeline-checkpoint.md` for implementation details and test results.
 
 ## REST API for Claude/LLM Access
 
