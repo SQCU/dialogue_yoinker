@@ -97,6 +97,7 @@ class WorkerType(str, Enum):
     TRANSLATION_ENGINE = "translation_engine"
     LORE_CURATOR = "lore_curator"
     LINK_STITCHER = "link_stitcher"
+    EXTENSION_RESOLVER = "extension_resolver"
 
 
 @dataclass
@@ -156,9 +157,12 @@ class RunQueue:
     translate_tickets: list[Ticket] = field(default_factory=list)
     curate_tickets: list[Ticket] = field(default_factory=list)
     link_stitch_tickets: list[Ticket] = field(default_factory=list)
+    extension_resolve_tickets: list[Ticket] = field(default_factory=list)
 
     # Extension candidates (collected from link-stitcher output)
     extension_candidates: list[dict] = field(default_factory=list)
+    # Resolved extension candidates (consumed by extension-resolver)
+    resolved_candidates: list[dict] = field(default_factory=list)
 
     # Config
     config: dict = field(default_factory=dict)
@@ -283,6 +287,41 @@ class RunQueue:
         self.link_stitch_tickets.append(ticket)
         return ticket
 
+    def add_extension_resolve_ticket(
+        self,
+        extension_candidate: dict,
+        source_node: dict,
+        target_node: dict,
+    ) -> Ticket:
+        """
+        Add an extension resolution ticket for a previously-declined link.
+
+        Args:
+            extension_candidate: The original candidate with:
+                {site, reason, suggested_arc, source_ticket}
+            source_node: The source node with {id, text, emotion, context[]}
+            target_node: The target node with {id, text, emotion, context[]}
+        """
+        # Load target bible
+        try:
+            target_bible_content = load_bible(self.target_bible)
+        except FileNotFoundError:
+            target_bible_content = f"# Bible not found: {self.target_bible}\n"
+
+        ticket = Ticket(
+            ticket_id=f"ext_resolve_{len(self.extension_resolve_tickets):04d}",
+            run_id=self.run_id,
+            worker_type=WorkerType.EXTENSION_RESOLVER,
+            input_data={
+                "extension_candidate": extension_candidate,
+                "source_node": source_node,
+                "target_node": target_node,
+                "bible_excerpt": target_bible_content,
+            }
+        )
+        self.extension_resolve_tickets.append(ticket)
+        return ticket
+
     def claim_ticket(self, worker_type: WorkerType, worker_id: str = "") -> Optional[Ticket]:
         """Claim the next pending ticket for a worker type."""
         tickets = {
@@ -290,6 +329,7 @@ class RunQueue:
             WorkerType.TRANSLATION_ENGINE: self.translate_tickets,
             WorkerType.LORE_CURATOR: self.curate_tickets,
             WorkerType.LINK_STITCHER: self.link_stitch_tickets,
+            WorkerType.EXTENSION_RESOLVER: self.extension_resolve_tickets,
         }[worker_type]
 
         for ticket in tickets:
@@ -339,7 +379,7 @@ class RunQueue:
 
     def get_ticket(self, ticket_id: str) -> Optional[Ticket]:
         """Find a ticket by ID."""
-        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets, self.link_stitch_tickets]:
+        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets, self.link_stitch_tickets, self.extension_resolve_tickets]:
             for ticket in tickets:
                 if ticket.ticket_id == ticket_id:
                     return ticket
@@ -363,13 +403,15 @@ class RunQueue:
             "translate": stage_status(self.translate_tickets),
             "curate": stage_status(self.curate_tickets),
             "link_stitch": stage_status(self.link_stitch_tickets),
+            "extension_resolve": stage_status(self.extension_resolve_tickets),
             "extension_candidates_count": len(self.extension_candidates),
+            "resolved_candidates_count": len(self.resolved_candidates),
         }
 
     def all_concerns(self) -> list[dict]:
         """Collect all worker concerns across tickets."""
         concerns = []
-        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets, self.link_stitch_tickets]:
+        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets, self.link_stitch_tickets, self.extension_resolve_tickets]:
             for ticket in tickets:
                 for concern in ticket.worker_concerns:
                     concerns.append({
@@ -519,6 +561,19 @@ class TicketQueueManager:
                     candidate["source_ticket"] = ticket.ticket_id
                     queue.extension_candidates.append(candidate)
 
+        elif ticket.worker_type == WorkerType.EXTENSION_RESOLVER:
+            # Move the resolved candidate from extension_candidates to resolved_candidates
+            if ticket.output_data and ticket.output_data.get("success"):
+                original_candidate = ticket.input_data.get("extension_candidate", {})
+                original_candidate["resolved_by"] = ticket.ticket_id
+                original_candidate["resolution"] = ticket.output_data
+                queue.resolved_candidates.append(original_candidate)
+                # Remove from extension_candidates if still present
+                site = original_candidate.get("site")
+                queue.extension_candidates = [
+                    c for c in queue.extension_candidates if c.get("site") != site
+                ]
+
     def _save_queue(self, queue: RunQueue):
         """Persist queue to disk."""
         run_dir = self.base_dir / queue.run_id
@@ -537,7 +592,9 @@ class TicketQueueManager:
             "translate_tickets": [t.to_dict() for t in queue.translate_tickets],
             "curate_tickets": [t.to_dict() for t in queue.curate_tickets],
             "link_stitch_tickets": [t.to_dict() for t in queue.link_stitch_tickets],
+            "extension_resolve_tickets": [t.to_dict() for t in queue.extension_resolve_tickets],
             "extension_candidates": queue.extension_candidates,
+            "resolved_candidates": queue.resolved_candidates,
         }
 
         queue_file.write_text(json.dumps(data, indent=2))
@@ -561,7 +618,9 @@ class TicketQueueManager:
         queue.translate_tickets = [Ticket.from_dict(t) for t in data.get("translate_tickets", [])]
         queue.curate_tickets = [Ticket.from_dict(t) for t in data.get("curate_tickets", [])]
         queue.link_stitch_tickets = [Ticket.from_dict(t) for t in data.get("link_stitch_tickets", [])]
+        queue.extension_resolve_tickets = [Ticket.from_dict(t) for t in data.get("extension_resolve_tickets", [])]
         queue.extension_candidates = data.get("extension_candidates", [])
+        queue.resolved_candidates = data.get("resolved_candidates", [])
 
         return queue
 

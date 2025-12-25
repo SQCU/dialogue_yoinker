@@ -474,3 +474,141 @@ async def get_extension_candidates(run_id: str):
         "count": len(queue.extension_candidates),
         "candidates": queue.extension_candidates,
     }
+
+
+# =============================================================================
+# Extension Resolution Endpoints
+# =============================================================================
+
+class CreateExtensionRunRequest(BaseModel):
+    """Request to create an extension resolution run."""
+    source_run_id: str = Field(description="Run ID that has extension candidates to resolve")
+    sample_count: int = Field(default=20, ge=1, le=100, description="Number of candidates to resolve")
+    target_setting: str = Field(description="Target synthetic setting (e.g., 'gallia')")
+    version: int = Field(default=4, description="Synthetic graph version")
+
+
+class CreateExtensionRunResponse(BaseModel):
+    """Response from creating an extension resolution run."""
+    run_id: str
+    tickets_created: int
+    candidates_consumed: int
+    status: dict
+
+
+@router.post("/extension", response_model=CreateExtensionRunResponse)
+async def create_extension_run(request: CreateExtensionRunRequest):
+    """
+    Create an extension resolution run to consume extension candidates.
+
+    Takes extension candidates from a previous run (usually a linking run)
+    and creates extension_resolve tickets to generate bridging content.
+    """
+    from datetime import datetime, timezone
+    import json
+    from pathlib import Path
+
+    manager = get_manager()
+
+    # Get source run with extension candidates
+    source_queue = manager.get_queue(request.source_run_id)
+    if not source_queue:
+        raise HTTPException(status_code=404, detail=f"Source run not found: {request.source_run_id}")
+
+    candidates = source_queue.extension_candidates
+    if not candidates:
+        raise HTTPException(status_code=400, detail="No extension candidates in source run")
+
+    # Load synthetic graph to get node details
+    if f"_v{request.version}" in request.target_setting:
+        graph_path = Path("synthetic") / request.target_setting / "graph.json"
+    else:
+        graph_path = Path("synthetic") / f"{request.target_setting}_v{request.version}" / "graph.json"
+
+    if not graph_path.exists():
+        raise HTTPException(status_code=404, detail=f"Graph not found: {graph_path}")
+
+    graph_data = json.loads(graph_path.read_text())
+    nodes = graph_data.get("nodes", [])
+    node_by_id = {n["id"]: n for n in nodes}
+
+    # Sample candidates
+    import random
+    sampled = candidates[:request.sample_count]
+    random.shuffle(sampled)
+
+    # Create run
+    setting_name = request.target_setting if f"_v{request.version}" in request.target_setting else f"{request.target_setting}_v{request.version}"
+    run_id = f"ext_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}_{setting_name}"
+
+    from .ticket_queue import RunQueue
+    queue = RunQueue(
+        run_id=run_id,
+        target_bible=request.target_setting.split("_v")[0],  # Extract base setting
+        source_games=source_queue.source_games,
+    )
+
+    tickets_created = 0
+    for candidate in sampled:
+        # Parse site to get source and target IDs
+        site = candidate.get("site", "")
+        if "→" in site:
+            source_id, target_id = site.split("→")
+        elif "->" in site:
+            source_id, target_id = site.split("->")
+        else:
+            continue  # Invalid site format
+
+        source_node = node_by_id.get(source_id)
+        target_node = node_by_id.get(target_id)
+
+        if not source_node or not target_node:
+            continue  # Nodes not found in graph
+
+        queue.add_extension_resolve_ticket(
+            extension_candidate=candidate,
+            source_node={
+                "id": source_id,
+                "text": source_node.get("text", ""),
+                "emotion": source_node.get("emotion", "neutral"),
+                "context": [],
+            },
+            target_node={
+                "id": target_id,
+                "text": target_node.get("text", ""),
+                "emotion": target_node.get("emotion", "neutral"),
+                "context": [],
+            },
+        )
+        tickets_created += 1
+
+    if tickets_created == 0:
+        raise HTTPException(status_code=400, detail="No valid extension candidates could be processed")
+
+    # Save queue
+    with manager._lock:
+        manager._queues[run_id] = queue
+        manager._save_queue(queue)
+
+    return CreateExtensionRunResponse(
+        run_id=run_id,
+        tickets_created=tickets_created,
+        candidates_consumed=len(sampled),
+        status=queue.status(),
+    )
+
+
+@router.get("/{run_id}/resolved_candidates")
+async def get_resolved_candidates(run_id: str):
+    """Get resolved extension candidates."""
+    manager = get_manager()
+    queue = manager.get_queue(run_id)
+
+    if not queue:
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    return {
+        "run_id": run_id,
+        "count": len(queue.resolved_candidates),
+        "candidates": queue.resolved_candidates,
+    }

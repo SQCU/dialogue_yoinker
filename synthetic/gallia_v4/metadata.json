@@ -1,0 +1,18 @@
+{
+  "setting": "gallia",
+  "version": 4,
+  "created_at": "2025-12-25T05:54:15.242923+00:00",
+  "parent_version": null,
+  "description": "Fresh two-layer pipeline from run_20251225_041927_gallia",
+  "approach": "two_layer_pipeline",
+  "source_games": [
+    "oblivion",
+    "falloutnv"
+  ],
+  "run_ids": [
+    "run_20251225_041927_gallia"
+  ],
+  "total_nodes": 906,
+  "total_edges": 715,
+  "state_changes_targeted": []
+}

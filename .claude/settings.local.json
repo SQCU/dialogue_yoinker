@@ -15,7 +15,7 @@
       "Bash(timeout 5 uv run python:*)",
       "Bash(xargs cat:*)",
       "Bash(grep:*)",
-      "Bash(DEEPSEEK_API_KEY=\"sk-30fac4cc1f3042dc98f4f430e1e8f16c\" timeout 90 uv run python:*)"
+      "Bash(cat:*)"
     ]
   }
 }
