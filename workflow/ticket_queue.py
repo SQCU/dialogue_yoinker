@@ -96,6 +96,7 @@ class WorkerType(str, Enum):
     STRUCTURAL_PARSER = "structural_parser"
     TRANSLATION_ENGINE = "translation_engine"
     LORE_CURATOR = "lore_curator"
+    LINK_STITCHER = "link_stitcher"
 
 
 @dataclass
@@ -154,6 +155,10 @@ class RunQueue:
     parse_tickets: list[Ticket] = field(default_factory=list)
     translate_tickets: list[Ticket] = field(default_factory=list)
     curate_tickets: list[Ticket] = field(default_factory=list)
+    link_stitch_tickets: list[Ticket] = field(default_factory=list)
+
+    # Extension candidates (collected from link-stitcher output)
+    extension_candidates: list[dict] = field(default_factory=list)
 
     # Config
     config: dict = field(default_factory=dict)
@@ -233,12 +238,58 @@ class RunQueue:
         self.curate_tickets.append(ticket)
         return ticket
 
+    def add_link_stitch_ticket(
+        self,
+        source_node: dict,
+        candidate_targets: list[dict],
+        reference_examples: list[dict] = None,
+        link_params: dict = None,
+    ) -> Ticket:
+        """
+        Add a link-stitching ticket for connecting underlinked nodes.
+
+        Args:
+            source_node: Node to add links from, with structure:
+                {id, text, emotion, context[], current_out_degree, target_out_degree}
+            candidate_targets: Potential target nodes, each with:
+                {id, text, emotion, context[], transition_required}
+            reference_examples: Few-shot examples of transitions, each with:
+                {transition, source_text, bridge_text, target_text}
+            link_params: Linking parameters:
+                {n_choices, n_links_out, max_bridge_length}
+        """
+        # Load target bible for link-stitcher
+        try:
+            target_bible_content = load_bible(self.target_bible)
+        except FileNotFoundError:
+            target_bible_content = f"# Bible not found: {self.target_bible}\n"
+
+        ticket = Ticket(
+            ticket_id=f"link_stitch_{len(self.link_stitch_tickets):04d}",
+            run_id=self.run_id,
+            worker_type=WorkerType.LINK_STITCHER,
+            input_data={
+                "source_node": source_node,
+                "candidate_targets": candidate_targets,
+                "reference_examples": reference_examples or [],
+                "bible_excerpt": target_bible_content,
+                "link_params": link_params or {
+                    "n_choices": 5,
+                    "n_links_out": 3,
+                    "max_bridge_length": 1,
+                },
+            }
+        )
+        self.link_stitch_tickets.append(ticket)
+        return ticket
+
     def claim_ticket(self, worker_type: WorkerType, worker_id: str = "") -> Optional[Ticket]:
         """Claim the next pending ticket for a worker type."""
         tickets = {
             WorkerType.STRUCTURAL_PARSER: self.parse_tickets,
             WorkerType.TRANSLATION_ENGINE: self.translate_tickets,
             WorkerType.LORE_CURATOR: self.curate_tickets,
+            WorkerType.LINK_STITCHER: self.link_stitch_tickets,
         }[worker_type]
 
         for ticket in tickets:
@@ -288,7 +339,7 @@ class RunQueue:
 
     def get_ticket(self, ticket_id: str) -> Optional[Ticket]:
         """Find a ticket by ID."""
-        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets]:
+        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets, self.link_stitch_tickets]:
             for ticket in tickets:
                 if ticket.ticket_id == ticket_id:
                     return ticket
@@ -311,12 +362,14 @@ class RunQueue:
             "parse": stage_status(self.parse_tickets),
             "translate": stage_status(self.translate_tickets),
             "curate": stage_status(self.curate_tickets),
+            "link_stitch": stage_status(self.link_stitch_tickets),
+            "extension_candidates_count": len(self.extension_candidates),
         }
 
     def all_concerns(self) -> list[dict]:
         """Collect all worker concerns across tickets."""
         concerns = []
-        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets]:
+        for tickets in [self.parse_tickets, self.translate_tickets, self.curate_tickets, self.link_stitch_tickets]:
             for ticket in tickets:
                 for concern in ticket.worker_concerns:
                     concerns.append({
@@ -458,6 +511,14 @@ class TicketQueueManager:
                         context=f"From translation {ticket.ticket_id}",
                     )
 
+        elif ticket.worker_type == WorkerType.LINK_STITCHER:
+            # Collect extension candidates from link-stitcher output
+            if ticket.output_data:
+                extension_candidates = ticket.output_data.get("extension_candidates", [])
+                for candidate in extension_candidates:
+                    candidate["source_ticket"] = ticket.ticket_id
+                    queue.extension_candidates.append(candidate)
+
     def _save_queue(self, queue: RunQueue):
         """Persist queue to disk."""
         run_dir = self.base_dir / queue.run_id
@@ -475,6 +536,8 @@ class TicketQueueManager:
             "parse_tickets": [t.to_dict() for t in queue.parse_tickets],
             "translate_tickets": [t.to_dict() for t in queue.translate_tickets],
             "curate_tickets": [t.to_dict() for t in queue.curate_tickets],
+            "link_stitch_tickets": [t.to_dict() for t in queue.link_stitch_tickets],
+            "extension_candidates": queue.extension_candidates,
         }
 
         queue_file.write_text(json.dumps(data, indent=2))
@@ -497,6 +560,8 @@ class TicketQueueManager:
         queue.parse_tickets = [Ticket.from_dict(t) for t in data.get("parse_tickets", [])]
         queue.translate_tickets = [Ticket.from_dict(t) for t in data.get("translate_tickets", [])]
         queue.curate_tickets = [Ticket.from_dict(t) for t in data.get("curate_tickets", [])]
+        queue.link_stitch_tickets = [Ticket.from_dict(t) for t in data.get("link_stitch_tickets", [])]
+        queue.extension_candidates = data.get("extension_candidates", [])
 
         return queue
 

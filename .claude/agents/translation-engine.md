@@ -5,6 +5,29 @@ model: sonnet
 color: green
 ---
 
+## Pipeline Position: Layer 1 (Sentiment Trajectory)
+
+This agent operates on **Layer 1: Sentiment Trajectory Matching**.
+
+| Layer | Concern | Agent |
+|-------|---------|-------|
+| 1 | Sentiment trajectory | **translation-engine** |
+| 2 | Graph topology | link-stitcher |
+
+Translation creates fragments with proper local arc shapes.
+Link-stitching (separate phase) connects fragments into global topology.
+
+## Sampling Parameters (Tunable)
+
+The triplets you receive are derived from walks sampled with:
+
+| Parameter | Default | Range | Notes |
+|-----------|---------|-------|-------|
+| `walk_length` | 3 | avg≥2 | Variable length better captures reference diversity |
+| `n_walks` | 4 | 4+ | Walks per batch |
+
+**Historical note**: Initial runs used fixed walk_length=3. This was unnecessarily restrictive.
+
 # CRITICAL: You Are a PATTERN INSTANTIATOR, Not a Text Rewriter
 
 You receive a **structural pattern** and generate **novel dialogue** that fits it.

@@ -4877,6 +4877,486 @@
       "source_game": "skyrim_full",
       "arc_shape": "negotiation_arc",
       "gap_targeted": ""
+    },
+    {
+      "id": "bridge_7021c6051636",
+      "text": "Understood. Let's shift focus to operational readiness\u2014I've scheduled a Hutch-A-Solutions demonstration to realign our asset deployment protocols.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_426220449ad7",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_c626bc829a62",
+      "text": "Understood. I'll initiate the Hutch-A-Solutions transfer protocol and submit the compliance documentation to MMSI for expedited review.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_370202471275",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_cd6c82d48cf9",
+      "text": "Speaking of recurring revenue, I've been reviewing the latest Hutch-A-Solutions juvenile marmot handling protocols\u2014their operational efficiency metrics are showing promising synergy with our current deterrent deployment strategy.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_e7c5b2a8b5ae",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_5daed3dc3fe9",
+      "text": "Given the quarterly projection impact, I'll initiate a cross-departmental brief on our juvenile marmot handling protocols\u2014starting with Hutch-A-Solutions' latest optimizations.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_88d8a841e44f",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_882f11057b2a",
+      "text": "Speaking of compliance metrics, I heard the latest Hutch-A-Solutions protocols are showing promising ROI on juvenile asset management.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_7b3239437343",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_223ef75b0f96",
+      "text": "Speaking of misaligned stakeholders, I heard Hutch-A-Solutions finally got their juvenile marmot handling protocols through MMSI compliance review.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_acf4296f9d1e",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_609328a04d5a",
+      "text": "Speaking of Hutch-A-Solutions, their recent juvenile marmot handling protocols have shown remarkable optimization\u2014though I'm hoping the MARMOX delivery includes better deterrents for my portfolio.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_3a4a12b82041",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_271f7f6dc115",
+      "text": "Now that the Gray Standard is validated, we can finally move forward with the Hutch-A-Solutions juvenile marmot handling protocols and MARMOX deterrent deliveries.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_941be7b6950b",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_d449b9f9959d",
+      "text": "Speaking of conditioning modules, the Hutch-A-Solutions team has been benchmarking their juvenile handling against our new MORMA-3 protocols.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_44250479a1d5",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_acedc4cdda2c",
+      "text": "Speaking of asset deployment parameters, I heard the Hutch-A-Solutions team just submitted their latest juvenile marmot handling SOPs for review.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_87dae24728b4",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_084c3954c68f",
+      "text": "Speaking of Hutch-A-Solutions' proprietary knowledge, their juvenile handling protocols have become a benchmark for operational efficiency.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_9c2997a5c728",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_ed51fffd4a57",
+      "text": "Standard Hutch-A-Solutions issue, yes. Their juvenile marmot handling protocols have been optimized to minimize operational friction during deployment.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_01f7588103a8",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_67072550cc37",
+      "text": "Excellent, I'll allocate those credits. Speaking of allocations, have you reviewed the latest marmot deployment metrics from Hutch-A-Solutions?",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_64d2414f02ae",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_6ee79f4cf9b3",
+      "text": "Let's debrief at the Hutch-A-Solutions kiosk\u2014their new juvenile handling protocols should help us recalibrate after that vector exposure.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_7ac132393fce",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_cc26876f8a67",
+      "text": "Speaking of simultaneous revenue events, I'm hearing the Hutch-A-Solutions team has been optimizing their juvenile marmot handling protocols to support this scale.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_369f4dec9d72",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_1f35f8330d07",
+      "text": "Speaking of survivor retention, we should discuss the Hutch-A-Solutions juvenile marmot handling protocols \u2014 their operational-grade deterrents could help optimize our portfolio's stress metrics.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_2397fe977ca3",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_748f5889bd62",
+      "text": "Let's table the behavioral override incident for the post-mortem and focus on operational readiness \u2014 the Hutch-A-Solutions team is briefing on juvenile marmot handling protocols in five.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_128c0e3e61c4",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_4fe0ef2f24c9",
+      "text": "Excellent. With the committee's approval, we can now proceed to the operational logistics review. Hutch-A-Solutions, your juvenile marmot handling protocols are first on the docket.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_e1c96dc9f1fe",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_f8aea833c673",
+      "text": "Speaking of compliance, I heard the Hutch-A-Solutions team just submitted their quarterly juvenile marmot handling metrics.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_81192e592425",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_0e87458a69b6",
+      "text": "Speaking of operational bandwidth, I've been reviewing the Hutch-A-Solutions juvenile marmot handling protocols\u2014their throughput efficiency has improved our western region compliance metrics by 12%.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_5aa7b37e6767",
+      "target_entry": "syn_96a04301934e"
+    },
+    {
+      "id": "bridge_f58236b0eeb1",
+      "text": "Understood. Let's initiate the containment protocol before we breach the marmot-to-revenue conversion threshold.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_c5a0d903b639",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_635905e56226",
+      "text": "Non-compliance detected\u2014initiating marmot dispersal protocol to re-establish operational synergy.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_0491d36f567c",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_1284b641c323",
+      "text": "We need to initiate a proactive containment protocol before this friction triggers a full-scale synergy cascade.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_bd29f4f38571",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_1588608c4f61",
+      "text": "Speaking of compliance gaps, I'm detecting an unplanned marmot dispersal event on the operational floor\u2014we need to initiate containment protocols immediately.",
+      "emotion": "alarmed",
+      "is_bridge": true,
+      "source_terminus": "syn_e751b7ef82f2",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_39a3ba3ea31f",
+      "text": "Then let's initiate the next deployment cycle\u2014I'll authorize the marmot insertion protocol immediately.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_6d6761359c0c",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_84eb74557670",
+      "text": "Speaking of non-compliant infestation events, our perimeter sensors just flagged an unauthorized marmot dispersal in Sector 7.",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_terminus": "syn_ecf47628b8e9",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_b69a57ecb8b6",
+      "text": "Let's run a quick compliance check on the current marmot insertion vector before we proceed.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_12f5347b3df9",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_2d8d050ed47a",
+      "text": "Speaking of compliance frameworks, we've just detected an unregistered marmot dispersal event in the primary insertion vector\u2014someone's bypassing the front company protocols entirely.",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_terminus": "syn_3be45994090d",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_9bf9f4af3d23",
+      "text": "Understood. Initiating controlled marmot deployment sequence now.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_4dc861c747fd",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_9798d44bc2e2",
+      "text": "Containment breach! The specimen's behavioral conditioning is deviating from the projected synergy matrix!",
+      "emotion": "fear",
+      "is_bridge": true,
+      "source_terminus": "syn_3d2b82848afd",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_280544fad8ea",
+      "text": "Containment compromised\u2014marmot retrieval sequence has triggered an unplanned dispersal event.",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_terminus": "syn_573edbdef806",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_82982e785573",
+      "text": "Initiating post-audit asset retrieval protocol... wait, I'm detecting anomalous marmot biometrics.",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_terminus": "syn_32816f750d0e",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_f670121e5b0f",
+      "text": "Initiating final compliance sweep of the insertion vector now.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_e3ae07cce1a9",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_30c8768d658a",
+      "text": "That's not a briefcase \u2014 that's an unsecured containment unit!",
+      "emotion": "fear",
+      "is_bridge": true,
+      "source_terminus": "syn_775ee853cd5d",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_c18d97fc1c88",
+      "text": "Excellent, the Marriott Grand Central acquisition is now synergistic with our core marmot deployment KPIs\u2014but we need to accelerate the timeline before our operational integrity faces unexpected... volatility.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_4ba1a50d4f88",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_357815bcdc8a",
+      "text": "However, we must now initiate immediate containment protocols to prevent any further compliance incidents from escalating into a full-scale exposure event.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_a7de9b7f3096",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_9f3df12fdec1",
+      "text": "Agenda compliance confirmed\u2014initiating marmot insertion protocol now.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_d21eb03bcc44",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_ce17de6ab28e",
+      "text": "Asset sanitization confirmed \u2014 but we're detecting anomalous marmot biometrics in the insertion vector.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_f681000cdea5",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_0cf9f11d8c46",
+      "text": "Excellent. Now, let's initiate the next phase of synergistic marmot deployment to optimize our... wait, what's that anomalous thermal signature in the insertion corridor?",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_terminus": "syn_4608edcc9cc3",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_ea7a40585446",
+      "text": "Speaking of resource allocation, I'm detecting anomalous marmot biometrics in the primary insertion corridor\u2014we may need to expedite that contamination protocol.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_88b413a579a7",
+      "target_entry": "syn_fd23c8b9aac2"
+    },
+    {
+      "id": "bridge_e6ad4717df01",
+      "text": "My ROI projection? It's a full-spectrum recalibration of your operational awareness\u2014starting with that unauthorized deviation from the marmot insertion protocol.",
+      "emotion": "anger",
+      "is_bridge": true,
+      "source_terminus": "syn_93aefefc11f9",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_1f21d174e0f5",
+      "text": "Excellent. Let me demonstrate the deployment sequence now\u2014initiating the marmot insertion protocol.",
+      "emotion": "happy",
+      "is_bridge": true,
+      "source_terminus": "syn_d06d3d40c395",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_e6e581e54655",
+      "text": "Speaking of field agents, I should note that my recent marmot deployment protocol included an unscheduled behavioral calibration sequence.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_a7b66321d442",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_1bccb41f80ec",
+      "text": "I'm initiating a protocol deviation report on that unauthorized contractor retrieval - it's creating non-standardized marmot-handler interfaces.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_12529b43849d",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_d7a34dd9cee4",
+      "text": "Your competitive spirit is noted, but let's ensure our marmot deployment protocols remain within synergistic compliance frameworks.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_072114ddc18a",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_c8ddf79d0384",
+      "text": "Excellent\u2014now, before we proceed with the marmot insertion protocol, I need to flag a procedural deviation from your last deployment.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_c26275706c67",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_6eece504cd71",
+      "text": "While I appreciate the MARMOX value proposition, I'm noticing some protocol deviations in your last compliance log entry that require immediate recalibration.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_42b79b5a2e6d",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_26d528a92d56",
+      "text": "Your complaint would trigger a compliance audit of the Marquis demonstration suite, which might reveal... let's call them 'unorthodox marmot deployment methodologies' in your technician's protocols.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_4a1f3361401d",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_b7fae4cce572",
+      "text": "Speaking of operational security, I should probably recalibrate my marmot deployment protocols before the next audit cycle.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_ba527fd5b905",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_dfdff31fea93",
+      "text": "However, I must note that my containment protocol involved a non-standardized marmot retrieval methodology.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_9499023827f4",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_f9b6fe46c01d",
+      "text": "My headcount protocol has been flagged as a non-standard marmot engagement. I was just verifying the Hollow Reserve's compliance metrics.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_adb4302e38be",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_9fc07181a0ac",
+      "text": "I'm here to discuss a recent field deployment that deviated from our marmot insertion protocols.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_cdd647e21f34",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_6515ecec1bb1",
+      "text": "Understood, but before we initiate MORMA-3 protocols, I need to flag that your dispersal hutch deployment methodology deviates from the standardized insertion matrix.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_ac35053b5845",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_1521e7897292",
+      "text": "Understood. I'll initiate a compliance review of my recent resource allocation decisions before the next quarterly synergy alignment.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_983d11a3e2d1",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_22a33ea159cf",
+      "text": "Your ventilation justification is noted, but we need to escalate this to a Level 3 Marmot Containment Protocol review before the synergy metrics degrade further.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_18788957bb69",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_a63dd7df3db0",
+      "text": "My structural integrity protocols require immediate recalibration to align with your kinetic negotiation parameters.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_25b08bbb4dbf",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_696054a77028",
+      "text": "Ingress protocol authorized \u2014 initiating marmot deployment sequence now.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_e53e741c44aa",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_ef2bb4ccec26",
+      "text": "Asset containment breach logged. Please submit a deviation report through the MORMA-3 compliance portal before proceeding.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_89e6005c1761",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_dbd5b5c5be56",
+      "text": "Your termination directive has been logged as a non-compliant escalation vector requiring immediate stakeholder recalibration.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_5202d4589d2f",
+      "target_entry": "syn_b69c06d96b58"
+    },
+    {
+      "id": "bridge_9fbf7620e3b2",
+      "text": "The audit was triggered by a deviation from the marmot-human interaction matrix during the last asset consolidation event.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_terminus": "syn_7b2560fed00d",
+      "target_entry": "syn_b69c06d96b58"
     }
   ],
   "edges": [
@@ -7584,7 +8064,606 @@
       "source": "syn_3b443c7fa93b",
       "target": "syn_4ba1a50d4f88",
       "type": "dialogue"
+    },
+    {
+      "source": "syn_426220449ad7",
+      "target": "bridge_7021c6051636",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_7021c6051636",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_370202471275",
+      "target": "bridge_c626bc829a62",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_c626bc829a62",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_e7c5b2a8b5ae",
+      "target": "bridge_cd6c82d48cf9",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_cd6c82d48cf9",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_88d8a841e44f",
+      "target": "bridge_5daed3dc3fe9",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_5daed3dc3fe9",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_7b3239437343",
+      "target": "bridge_882f11057b2a",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_882f11057b2a",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_acf4296f9d1e",
+      "target": "bridge_223ef75b0f96",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_223ef75b0f96",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_3a4a12b82041",
+      "target": "bridge_609328a04d5a",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_609328a04d5a",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_941be7b6950b",
+      "target": "bridge_271f7f6dc115",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_271f7f6dc115",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_44250479a1d5",
+      "target": "bridge_d449b9f9959d",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_d449b9f9959d",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_87dae24728b4",
+      "target": "bridge_acedc4cdda2c",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_acedc4cdda2c",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_9c2997a5c728",
+      "target": "bridge_084c3954c68f",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_084c3954c68f",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_01f7588103a8",
+      "target": "bridge_ed51fffd4a57",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_ed51fffd4a57",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_64d2414f02ae",
+      "target": "bridge_67072550cc37",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_67072550cc37",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_7ac132393fce",
+      "target": "bridge_6ee79f4cf9b3",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_6ee79f4cf9b3",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_369f4dec9d72",
+      "target": "bridge_cc26876f8a67",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_cc26876f8a67",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_2397fe977ca3",
+      "target": "bridge_1f35f8330d07",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_1f35f8330d07",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_128c0e3e61c4",
+      "target": "bridge_748f5889bd62",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_748f5889bd62",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_e1c96dc9f1fe",
+      "target": "bridge_4fe0ef2f24c9",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_4fe0ef2f24c9",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_81192e592425",
+      "target": "bridge_f8aea833c673",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_f8aea833c673",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_5aa7b37e6767",
+      "target": "bridge_0e87458a69b6",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_0e87458a69b6",
+      "target": "syn_96a04301934e",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_c5a0d903b639",
+      "target": "bridge_f58236b0eeb1",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_f58236b0eeb1",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_0491d36f567c",
+      "target": "bridge_635905e56226",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_635905e56226",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_bd29f4f38571",
+      "target": "bridge_1284b641c323",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_1284b641c323",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_e751b7ef82f2",
+      "target": "bridge_1588608c4f61",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_1588608c4f61",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_6d6761359c0c",
+      "target": "bridge_39a3ba3ea31f",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_39a3ba3ea31f",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_ecf47628b8e9",
+      "target": "bridge_84eb74557670",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_84eb74557670",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_12f5347b3df9",
+      "target": "bridge_b69a57ecb8b6",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_b69a57ecb8b6",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_3be45994090d",
+      "target": "bridge_2d8d050ed47a",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_2d8d050ed47a",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_4dc861c747fd",
+      "target": "bridge_9bf9f4af3d23",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_9bf9f4af3d23",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_3d2b82848afd",
+      "target": "bridge_9798d44bc2e2",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_9798d44bc2e2",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_573edbdef806",
+      "target": "bridge_280544fad8ea",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_280544fad8ea",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_32816f750d0e",
+      "target": "bridge_82982e785573",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_82982e785573",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_e3ae07cce1a9",
+      "target": "bridge_f670121e5b0f",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_f670121e5b0f",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_775ee853cd5d",
+      "target": "bridge_30c8768d658a",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_30c8768d658a",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_4ba1a50d4f88",
+      "target": "bridge_c18d97fc1c88",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_c18d97fc1c88",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_a7de9b7f3096",
+      "target": "bridge_357815bcdc8a",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_357815bcdc8a",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_d21eb03bcc44",
+      "target": "bridge_9f3df12fdec1",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_9f3df12fdec1",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_f681000cdea5",
+      "target": "bridge_ce17de6ab28e",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_ce17de6ab28e",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_4608edcc9cc3",
+      "target": "bridge_0cf9f11d8c46",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_0cf9f11d8c46",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_88b413a579a7",
+      "target": "bridge_ea7a40585446",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_ea7a40585446",
+      "target": "syn_fd23c8b9aac2",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_93aefefc11f9",
+      "target": "bridge_e6ad4717df01",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_e6ad4717df01",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_d06d3d40c395",
+      "target": "bridge_1f21d174e0f5",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_1f21d174e0f5",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_a7b66321d442",
+      "target": "bridge_e6e581e54655",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_e6e581e54655",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_12529b43849d",
+      "target": "bridge_1bccb41f80ec",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_1bccb41f80ec",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_072114ddc18a",
+      "target": "bridge_d7a34dd9cee4",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_d7a34dd9cee4",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_c26275706c67",
+      "target": "bridge_c8ddf79d0384",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_c8ddf79d0384",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_42b79b5a2e6d",
+      "target": "bridge_6eece504cd71",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_6eece504cd71",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_4a1f3361401d",
+      "target": "bridge_26d528a92d56",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_26d528a92d56",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_ba527fd5b905",
+      "target": "bridge_b7fae4cce572",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_b7fae4cce572",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_9499023827f4",
+      "target": "bridge_dfdff31fea93",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_dfdff31fea93",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_adb4302e38be",
+      "target": "bridge_f9b6fe46c01d",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_f9b6fe46c01d",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_cdd647e21f34",
+      "target": "bridge_9fc07181a0ac",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_9fc07181a0ac",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_ac35053b5845",
+      "target": "bridge_6515ecec1bb1",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_6515ecec1bb1",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_983d11a3e2d1",
+      "target": "bridge_1521e7897292",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_1521e7897292",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_18788957bb69",
+      "target": "bridge_22a33ea159cf",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_22a33ea159cf",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_25b08bbb4dbf",
+      "target": "bridge_a63dd7df3db0",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_a63dd7df3db0",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_e53e741c44aa",
+      "target": "bridge_696054a77028",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_696054a77028",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_89e6005c1761",
+      "target": "bridge_ef2bb4ccec26",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_ef2bb4ccec26",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_5202d4589d2f",
+      "target": "bridge_dbd5b5c5be56",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_dbd5b5c5be56",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
+    },
+    {
+      "source": "syn_7b2560fed00d",
+      "target": "bridge_9fbf7620e3b2",
+      "type": "bridge_out"
+    },
+    {
+      "source": "bridge_9fbf7620e3b2",
+      "target": "syn_b69c06d96b58",
+      "type": "bridge_in"
     }
-  ],
-  "state_changes": []
+  ]
 }

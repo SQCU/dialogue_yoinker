@@ -1829,6 +1829,303 @@ async def get_synthetic_components(setting: str):
     }
 
 
+# =============================================================================
+# Link-Stitcher Topology Endpoints
+# =============================================================================
+
+class TopologyGap(BaseModel):
+    """A gap between target and reference topology."""
+    metric: str = Field(description="Metric name (e.g., 'branching_pct', 'hub_pct')")
+    reference: float = Field(description="Reference corpus value")
+    target: float = Field(description="Current target value")
+    gap: float = Field(description="reference - target (positive = underrepresented)")
+    priority: str = Field(description="high/medium/low based on gap size")
+
+
+class LinkCandidate(BaseModel):
+    """A candidate source node for link-stitching."""
+    id: str
+    text: str
+    emotion: str
+    current_out_degree: int
+    target_out_degree: int
+    context: List[dict] = Field(default_factory=list)
+
+
+@app.get("/api/linking/topology/{setting}")
+async def get_topology_gaps(
+    setting: str,
+    reference: str = Query(default="oblivion", description="Reference game to compare against")
+):
+    """
+    Analyze topology gaps between synthetic graph and reference.
+
+    Returns detailed comparison of degree distributions, branching rates,
+    hub formation, and identifies where the synthetic graph is under-connected.
+    """
+    from collections import defaultdict
+
+    # Load synthetic graph
+    try:
+        syn_data = await get_synthetic_graph(setting)
+    except HTTPException:
+        raise HTTPException(404, f"Setting '{setting}' not found")
+
+    syn_nodes = syn_data.get('nodes', {})
+    syn_edges = syn_data.get('edges', [])
+
+    # Load reference graph
+    try:
+        ref_graph = await get_graph(reference)
+    except HTTPException:
+        raise HTTPException(404, f"Reference '{reference}' not found")
+
+    # Compute synthetic degree distribution
+    syn_out_degree = defaultdict(int)
+    for edge in syn_edges:
+        src = edge.get('source') or edge.get('from')
+        if src:
+            syn_out_degree[src] += 1
+
+    syn_n = len(syn_nodes)
+    syn_degrees = [syn_out_degree.get(nid, 0) for nid in syn_nodes]
+
+    syn_leaves = sum(1 for d in syn_degrees if d == 0)
+    syn_branching = sum(1 for d in syn_degrees if d >= 2)
+    syn_hubs = sum(1 for d in syn_degrees if d >= 5)
+    syn_mega_hubs = sum(1 for d in syn_degrees if d >= 20)
+
+    # Degree buckets
+    syn_buckets = {0: 0, 1: 0, 2: 0, '3-5': 0, '6-10': 0, '11-20': 0, '21+': 0}
+    for d in syn_degrees:
+        if d == 0: syn_buckets[0] += 1
+        elif d == 1: syn_buckets[1] += 1
+        elif d == 2: syn_buckets[2] += 1
+        elif d <= 5: syn_buckets['3-5'] += 1
+        elif d <= 10: syn_buckets['6-10'] += 1
+        elif d <= 20: syn_buckets['11-20'] += 1
+        else: syn_buckets['21+'] += 1
+
+    # Compute reference degree distribution
+    ref_out_degree = defaultdict(int)
+    for edge in ref_graph.edges:
+        ref_out_degree[edge.source] += 1
+
+    ref_n = len(ref_graph.nodes)
+    ref_degrees = [len(node.outgoing) for node in ref_graph.nodes.values()]
+
+    ref_leaves = sum(1 for d in ref_degrees if d == 0)
+    ref_branching = sum(1 for d in ref_degrees if d >= 2)
+    ref_hubs = sum(1 for d in ref_degrees if d >= 5)
+    ref_mega_hubs = sum(1 for d in ref_degrees if d >= 20)
+
+    ref_buckets = {0: 0, 1: 0, 2: 0, '3-5': 0, '6-10': 0, '11-20': 0, '21+': 0}
+    for d in ref_degrees:
+        if d == 0: ref_buckets[0] += 1
+        elif d == 1: ref_buckets[1] += 1
+        elif d == 2: ref_buckets[2] += 1
+        elif d <= 5: ref_buckets['3-5'] += 1
+        elif d <= 10: ref_buckets['6-10'] += 1
+        elif d <= 20: ref_buckets['11-20'] += 1
+        else: ref_buckets['21+'] += 1
+
+    # Compute percentages
+    def pct(count, total):
+        return round(100 * count / total, 2) if total > 0 else 0
+
+    syn_metrics = {
+        'nodes': syn_n,
+        'edges': len(syn_edges),
+        'edges_per_node': round(len(syn_edges) / syn_n, 3) if syn_n > 0 else 0,
+        'leaves_pct': pct(syn_leaves, syn_n),
+        'branching_pct': pct(syn_branching, syn_n),
+        'hub_pct': pct(syn_hubs, syn_n),
+        'mega_hub_pct': pct(syn_mega_hubs, syn_n),
+        'degree_distribution': {str(k): pct(v, syn_n) for k, v in syn_buckets.items()},
+    }
+
+    ref_metrics = {
+        'nodes': ref_n,
+        'edges': len(ref_graph.edges),
+        'edges_per_node': round(len(ref_graph.edges) / ref_n, 3) if ref_n > 0 else 0,
+        'leaves_pct': pct(ref_leaves, ref_n),
+        'branching_pct': pct(ref_branching, ref_n),
+        'hub_pct': pct(ref_hubs, ref_n),
+        'mega_hub_pct': pct(ref_mega_hubs, ref_n),
+        'degree_distribution': {str(k): pct(v, ref_n) for k, v in ref_buckets.items()},
+    }
+
+    # Identify gaps (positive = synthetic is under-represented)
+    gaps = []
+    gap_metrics = ['edges_per_node', 'branching_pct', 'hub_pct', 'mega_hub_pct']
+    for metric in gap_metrics:
+        ref_val = ref_metrics[metric]
+        syn_val = syn_metrics[metric]
+        gap_size = ref_val - syn_val
+
+        if gap_size > 0:
+            if gap_size > ref_val * 0.5:
+                priority = 'high'
+            elif gap_size > ref_val * 0.2:
+                priority = 'medium'
+            else:
+                priority = 'low'
+
+            gaps.append({
+                'metric': metric,
+                'reference': ref_val,
+                'target': syn_val,
+                'gap': round(gap_size, 3),
+                'priority': priority,
+            })
+
+    # Sort by priority and gap size
+    priority_order = {'high': 0, 'medium': 1, 'low': 2}
+    gaps.sort(key=lambda g: (priority_order[g['priority']], -g['gap']))
+
+    return {
+        'setting': setting,
+        'reference': reference,
+        'target_metrics': syn_metrics,
+        'reference_metrics': ref_metrics,
+        'gaps': gaps,
+        'summary': {
+            'total_gap_count': len(gaps),
+            'high_priority_gaps': sum(1 for g in gaps if g['priority'] == 'high'),
+            'needs_linking': len(gaps) > 0 and gaps[0]['priority'] in ('high', 'medium'),
+        }
+    }
+
+
+@app.post("/api/linking/candidates/{setting}")
+async def get_link_candidates(
+    setting: str,
+    target_degree: int = Query(default=5, ge=2, le=50, description="Target out-degree for hub creation"),
+    count: int = Query(default=20, ge=1, le=100, description="Number of candidates to return"),
+    reference: str = Query(default="oblivion", description="Reference game for few-shot examples")
+):
+    """
+    Sample underlinked nodes as candidates for link-stitching.
+
+    Returns nodes with current out-degree below target, along with
+    candidate targets and reference examples for few-shot learning.
+    """
+    import random
+    from collections import defaultdict
+
+    # Load synthetic graph
+    syn_data = await get_synthetic_graph(setting)
+    syn_nodes = syn_data.get('nodes', {})
+    syn_edges = syn_data.get('edges', [])
+
+    # Build adjacency
+    out_edges = defaultdict(list)
+    in_edges = defaultdict(list)
+    for edge in syn_edges:
+        src = edge.get('source') or edge.get('from')
+        tgt = edge.get('target') or edge.get('to')
+        if src and tgt:
+            out_edges[src].append(tgt)
+            in_edges[tgt].append(src)
+
+    # Find underlinked nodes (out_degree < target_degree but > 0)
+    underlinked = []
+    for nid, node in syn_nodes.items():
+        out_deg = len(out_edges.get(nid, []))
+        if 0 < out_deg < target_degree:
+            underlinked.append({
+                'id': nid,
+                'text': node.get('text', ''),
+                'emotion': node.get('emotion', 'neutral'),
+                'current_out_degree': out_deg,
+                'target_out_degree': target_degree,
+            })
+
+    # Also include some leaves (out_degree = 0) as they need outgoing edges
+    leaves = []
+    for nid, node in syn_nodes.items():
+        if len(out_edges.get(nid, [])) == 0:
+            leaves.append({
+                'id': nid,
+                'text': node.get('text', ''),
+                'emotion': node.get('emotion', 'neutral'),
+                'current_out_degree': 0,
+                'target_out_degree': target_degree,
+            })
+
+    # Mix underlinked and leaves
+    random.shuffle(underlinked)
+    random.shuffle(leaves)
+    candidates = underlinked[:count//2] + leaves[:count//2]
+    candidates = candidates[:count]
+
+    # For each candidate, find potential targets (nodes with low in-degree)
+    potential_targets = []
+    for nid, node in syn_nodes.items():
+        in_deg = len(in_edges.get(nid, []))
+        if in_deg <= 3:  # Low in-degree = good target
+            potential_targets.append({
+                'id': nid,
+                'text': node.get('text', ''),
+                'emotion': node.get('emotion', 'neutral'),
+                'in_degree': in_deg,
+            })
+
+    random.shuffle(potential_targets)
+
+    # Add context (preceding nodes) to candidates
+    for candidate in candidates:
+        nid = candidate['id']
+        predecessors = in_edges.get(nid, [])[:3]
+        candidate['context'] = [
+            {
+                'id': pid,
+                'text': syn_nodes.get(pid, {}).get('text', ''),
+                'emotion': syn_nodes.get(pid, {}).get('emotion', 'neutral'),
+            }
+            for pid in predecessors
+        ]
+
+    # Get reference examples (hub patterns from reference game)
+    try:
+        ref_graph = await get_graph(reference)
+        # Find nodes with high out-degree as examples
+        hub_examples = []
+        for nid, node in ref_graph.nodes.items():
+            if len(node.outgoing) >= 5:
+                targets = list(node.outgoing)[:5]
+                hub_examples.append({
+                    'hub_text': node.text[:100] if hasattr(node, 'text') else '',
+                    'hub_emotion': node.emotion if hasattr(node, 'emotion') else 'neutral',
+                    'out_degree': len(node.outgoing),
+                    'sample_targets': [
+                        {
+                            'id': tid,
+                            'text': ref_graph.nodes[tid].text[:50] if tid in ref_graph.nodes else '',
+                            'emotion': ref_graph.nodes[tid].emotion if tid in ref_graph.nodes else 'neutral',
+                        }
+                        for tid in targets if tid in ref_graph.nodes
+                    ]
+                })
+        random.shuffle(hub_examples)
+        hub_examples = hub_examples[:3]  # Just a few examples
+    except Exception:
+        hub_examples = []
+
+    return {
+        'setting': setting,
+        'target_degree': target_degree,
+        'candidates': candidates,
+        'potential_targets': potential_targets[:50],  # Limit for response size
+        'reference_examples': hub_examples,
+        'stats': {
+            'total_underlinked': len(underlinked),
+            'total_leaves': len(leaves),
+            'potential_targets_available': len(potential_targets),
+        }
+    }
+
+
 @app.get("/", response_class=HTMLResponse)
 async def landing_page():
     """Landing page with interactive visualization."""

@@ -56,7 +56,7 @@ class CreateRunResponse(BaseModel):
 
 class ClaimTicketRequest(BaseModel):
     """Request to claim a ticket."""
-    worker_type: str = Field(description="'structural_parser', 'translation_engine', or 'lore_curator'")
+    worker_type: str = Field(description="'structural_parser', 'translation_engine', 'lore_curator', or 'link_stitcher'")
     worker_id: str = Field(default="", description="Optional worker identifier")
 
 
@@ -312,3 +312,165 @@ async def list_runs():
                 })
 
     return {"runs": sorted(runs, key=lambda r: r["created_at"], reverse=True)}
+
+
+# =============================================================================
+# Linking Run Endpoints
+# =============================================================================
+
+class CreateLinkingRunRequest(BaseModel):
+    """Request to create a linking run."""
+    target_setting: str = Field(description="Target synthetic setting (e.g., 'gallia')")
+    version: int = Field(default=3, description="Synthetic graph version")
+    sample_count: int = Field(default=50, description="Number of link-stitch tickets to create")
+    target_degree: int = Field(default=5, ge=2, le=50, description="Target out-degree for nodes")
+    n_choices: int = Field(default=5, ge=2, le=20, description="Candidate targets per source node")
+    n_links_out: int = Field(default=3, ge=1, le=10, description="Links to create per source node")
+    reference_game: str = Field(default="oblivion", description="Reference game for few-shot examples")
+
+
+class CreateLinkingRunResponse(BaseModel):
+    """Response from creating a linking run."""
+    run_id: str
+    tickets_created: int
+    status: dict
+
+
+@router.post("/linking", response_model=CreateLinkingRunResponse)
+async def create_linking_run(request: CreateLinkingRunRequest):
+    """
+    Create a linking run to improve graph topology.
+
+    Uses the topology gap analysis to find underlinked nodes and creates
+    link_stitch tickets with candidate targets sampled from the graph.
+    """
+    from datetime import datetime, timezone
+    import json
+    import random
+    from pathlib import Path
+
+    manager = get_manager()
+
+    # Load synthetic graph
+    # Handle both "gallia" and "gallia_v3" formats
+    if f"_v{request.version}" in request.target_setting:
+        graph_path = Path("synthetic") / request.target_setting / "graph.json"
+    else:
+        graph_path = Path("synthetic") / f"{request.target_setting}_v{request.version}" / "graph.json"
+    if not graph_path.exists():
+        raise HTTPException(status_code=404, detail=f"Graph not found: {graph_path}")
+
+    graph_data = json.loads(graph_path.read_text())
+    nodes = graph_data.get("nodes", [])
+    edges = graph_data.get("edges", [])
+
+    if not nodes:
+        raise HTTPException(status_code=400, detail="Graph has no nodes")
+
+    # Build index
+    node_by_id = {n["id"]: n for n in nodes}
+    out_edges = {}
+    in_edges = {}
+    for edge in edges:
+        src, tgt = edge.get("source"), edge.get("target")
+        if src and tgt:
+            out_edges.setdefault(src, []).append(tgt)
+            in_edges.setdefault(tgt, []).append(src)
+
+    # Find underlinked nodes (out_degree < target_degree)
+    underlinked = []
+    for node in nodes:
+        node_id = node["id"]
+        current_out = len(out_edges.get(node_id, []))
+        if current_out < request.target_degree:
+            underlinked.append({
+                "id": node_id,
+                "text": node.get("text", ""),
+                "emotion": node.get("emotion", "neutral"),
+                "current_out_degree": current_out,
+                "target_out_degree": request.target_degree,
+            })
+
+    if not underlinked:
+        raise HTTPException(status_code=400, detail="No underlinked nodes found")
+
+    # Sample nodes to create tickets for
+    random.shuffle(underlinked)
+    selected = underlinked[:request.sample_count]
+
+    # Find potential targets (any node with different id)
+    potential_targets = []
+    for node in nodes:
+        if len(potential_targets) >= 500:
+            break
+        potential_targets.append({
+            "id": node["id"],
+            "text": node.get("text", ""),
+            "emotion": node.get("emotion", "neutral"),
+        })
+
+    # Create run
+    # Use consistent naming (avoid double version suffix)
+    setting_for_run = request.target_setting if f"_v{request.version}" in request.target_setting else f"{request.target_setting}_v{request.version}"
+    run_id = f"link_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}_{setting_for_run}"
+
+    from .ticket_queue import RunQueue, WorkerType
+    queue = RunQueue(
+        run_id=run_id,
+        target_bible=request.target_setting,
+        source_games=[request.reference_game],
+    )
+
+    # Create link_stitch tickets
+    for source_node in selected:
+        # Sample candidate targets (excluding source)
+        candidates = [t for t in potential_targets if t["id"] != source_node["id"]]
+        random.shuffle(candidates)
+        sampled_targets = candidates[:request.n_choices]
+
+        # Add transition_required to each target
+        for target in sampled_targets:
+            target["transition_required"] = f"{source_node['emotion']}→{target['emotion']}"
+            # Add context (could be enhanced later)
+            target["context"] = []
+
+        # Add context to source (could be enhanced later)
+        source_node["context"] = []
+
+        queue.add_link_stitch_ticket(
+            source_node=source_node,
+            candidate_targets=sampled_targets,
+            reference_examples=[],  # TODO: sample from reference graph
+            link_params={
+                "n_choices": request.n_choices,
+                "n_links_out": request.n_links_out,
+                "max_bridge_length": 1,
+            },
+        )
+
+    # Save queue
+    with manager._lock:
+        manager._queues[run_id] = queue
+        manager._save_queue(queue)
+
+    return CreateLinkingRunResponse(
+        run_id=run_id,
+        tickets_created=len(queue.link_stitch_tickets),
+        status=queue.status(),
+    )
+
+
+@router.get("/{run_id}/extension_candidates")
+async def get_extension_candidates(run_id: str):
+    """Get extension candidates collected from link-stitcher output."""
+    manager = get_manager()
+    queue = manager.get_queue(run_id)
+
+    if not queue:
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    return {
+        "run_id": run_id,
+        "count": len(queue.extension_candidates),
+        "candidates": queue.extension_candidates,
+    }
