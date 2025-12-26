@@ -1,0 +1,100 @@
+{"text": "I believe you should consult with Sous-Pr\u00e9fet Marchais.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Ah, you see? We share a certain... administrative sensibility. I appreciate a partner who doesn't require corrective paperwork after a transaction.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Other field assessments indicate they are semi-aquatic, perfectly at home in the irrigation canals.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Your type is not welcome in this arrondissement. The Pr\u00e9fecture has been notified.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "You've returned! But where is the Adjutant?", "emotion": "fear", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "Considering I was working with a provisional mandate and a half-trained adjutant, it could have been worse. The paperwork alone nearly killed me.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "Two dossiers, closed. If another file gets stamped 'final,' I swear I'll requisition every bottle in the cellar and drink until the forms blur.", "emotion": "surprise", "source": "gallia_v6", "arc_shape": "plea_arc"}
+{"text": "Typical. A mission without a dossier. I suppose we'll have to ask around the Pr\u00e9fecture. I'll follow your lead.", "emotion": "disgust", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Certainement pas.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "You should have accepted the transfer. The paperwork was simpler.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "You can be {emph}profoundly difficult when you choose to be.", "emotion": "disgust", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Standard procedure recommends carrying a prophylactic tincture. The apothecary on Rue Durendal stocks them.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "For the terroir alone, you won't find better value in the entire d\u00e9partement.", "emotion": "happy", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "The Pr\u00e9fet's report names this 'Umaril'\u2014some kind of ancient monster from the old regime, with his own special brigades. Acting like it's the Terror all over again.", "emotion": "fear", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "With the Notariat dissolved, our supply lines have become... complicated. The paperwork alone for crossing arrondissement borders now requires three separate approvals.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Strange... the terroir here is volcanic, yet all I feel is a bureaucratic chill. Perhaps it's the paperwork.", "emotion": "fear", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "I understand you've been assigned to assist. I trust your paperwork is in order.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "You're the Durendal! Please\u2014my papers are in order, I swear!", "emotion": "fear", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "You are clearly unstable. The Pr\u00e9fecture should not permit you such liberty of movement.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "They're from the old university quarter. They understand the old machines and the pharmacopoeia. They'll usually help if you fill out the forms. That's all I know, I swear.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "de_escalation"}
+{"text": "Form 44-B was invalidated by Directive 12. Your appeal window closed at 16:47 yesterday. The clock is literal here.", "emotion": "anger", "source": "gallia_v6", "arc_shape": ""}
+{"text": "Understood, Adjutant.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "I don't know. If you can't trust the Notariat, who can you trust?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "Je ne peux m\u00eame pas regarder leurs dossiers. C'est insupportable.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "That cannot be. I have no brother. I mean, my family records were sealed. Who did you say you were again?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "{Matter of Fact}A contact in the Pr\u00e9fecture confirmed we're getting the best of the Garde Nationale to reinforce against the Imperium.", "emotion": "happy", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "You have considerable audacity to be seen in this arrondissement.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Pas de francs, pas de chambre. D\u00e9sol\u00e9, mais c'est le r\u00e8glement. Je ne fais pas d'exceptions.", "emotion": "anger", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "The Chorrol office had an unscheduled inspection recently. Someone with a grievance against Chef de Bureau Teekeeus filed a formal complaint.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "This shield, like a loyal adjoint, never complains about absorbing a formal complaint.", "emotion": "happy", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Disgusting. We've been dealing with a Scalon infestation.", "emotion": "disgust", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "But of course, one mustn't judge a dossier by its cover. Even the most promising terroir can produce... administrative irregularities. I've seen it before.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": ""}
+{"text": "Hello, my Colleague.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "I heard the Renard Gris personally embarrassed Lex years ago when he tried to audit the Comte de Champagne for 'irregularities.' Lex has never forgotten.", "emotion": "happy", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Can you believe the paperwork Duval generates?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "{Grumbles}Should have misfiled their transit permits the moment they arrived. Would have been cleaner than this.", "emotion": "anger", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "Very well. The matter is closed.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "Those idiots from the next canton were celebrating their wine festival all night again.", "emotion": "anger", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Speaking of professional ruin... do you remember what happened to Lex?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": ""}
+{"text": "<Affirmative chirp>", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "Oooh, what can you tell us about their protocols?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "There may be... revisions to the standing orders. I cannot confirm. You should consult the Sous-Pr\u00e9fet.", "emotion": "fear", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "Wait\u2014what's that notification?", "emotion": "surprise", "source": "gallia_v6", "arc_shape": ""}
+{"text": "Yes, until next time.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "That consensus is... convenient. It neatly packages our past into administrative categories, as if the raising of stones was just another form to be stamped and filed.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": ""}
+{"text": "[status_assertion]", "emotion": "neutral", "source": "gallia_v6", "arc_shape": ""}
+{"text": "I am... reassigned.", "emotion": "sad", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "The Notary nods, takes a step back, then the entire countertop slides away. A dossier slowly rises from the opening, a faint scent of sealing wax trailing from it.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Target the nuisance!", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "I hope the rain holds off until the harvest is in.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Let's see about restoring its proper function.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "Adieu.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "Pardon? Was that addressed to this bureau?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "But wait\u2014the others. Their files. Where are their files?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Your dossier has returned.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "Sortons d'ici, vite !", "emotion": "fear", "source": "gallia_v6", "arc_shape": "plea_arc"}
+{"text": "Should you have additional intelligence, submit it through proper channels.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "You dare to challenge the Pr\u00e9fet's authority!", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "{Sighs, a tired, relieved sound}He's... he's finally stopped. The stamping. {To himself}Silence. Blessed silence.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "{Player's aiming at her}I don't appreciate having my person documented in that manner.", "emotion": "anger", "source": "gallia_v6", "arc_shape": "de_escalation"}
+{"text": "", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "What do you have to say for yourself?", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "It's the temperamental machine behind the counter, in the corner by the stove. The forms would be much simpler if you could inspect it and restore it to function.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "Les b\u00eates du marais. Une abomination administrative.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "You just couldn't stay within your jurisdiction...", "emotion": "happy", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "If you're pursuing membership, see Adjutant-General Leclerc. At minimum, it grants access to better forms than the general public receives.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Proceed.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Cranial relocation has been standard procedure at the Hexagon for an immeasurable number of fiscal quarters.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "Thoroughness has its price. I was once surprised to learn that a simple room requisition required notarization by three separate offices. The administrative fees alone...", "emotion": "surprise", "source": "gallia_v6", "arc_shape": ""}
+{"text": "Ah, here you are. So good to finally make your acquaintance.", "emotion": "happy", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "Monsieur.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "Greetings, son of the Vignes.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "This isn't a technical oversight. It's a breach of the Administrative Code, Article 47. If this gets traced back to our division before we file the proper deviation forms...", "emotion": "fear", "source": "gallia_v6", "arc_shape": ""}
+{"text": "Occupants and informal residents of the Quartier Bas are expressing profound relief following the restoration of electrical service to the district, the source of which remains officially unconfirmed.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "Strange noises, you say? How peculiar. My own residence has been perfectly quiet, according to the official logs.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "ambient_chatter"}
+{"text": "Yes... that air! The terroir of the capital \u2014 you can smell the paperwork from here!", "emotion": "happy", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "Ah, you've returned. Your file was flagged for follow-up. We've been expecting you.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Unauthorized presence!", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Look. I don't like you. Why are you bothering me? Perhaps I'll suggest your name for a random compliance inspection. Would you like that? Go away.", "emotion": "anger", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "You are in need of a bed? There is one registered to this establishment, available for a nightly fee of ten francs.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "Can't tell you how glad I am you cleared out the Brigands. Caravans across the provinces will be toasting you for years.", "emotion": "happy", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "He's based at the Hexagon; perhaps one day your clearance will permit a visit. His interpretations of the Code have been invaluable to this chapter.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "The Grand Pr\u00e9fet was right to ban the Ancien R\u00e9gime protocols from the Hexagon. Look at the paperwork they've generated; they've gone and requisitioned several of our departments!", "emotion": "anger", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "The joke's on you, \"collaborators.\" You won't find the cache without my stamp.", "emotion": "happy", "source": "gallia_v6", "arc_shape": "status_assertion"}
+{"text": "The Notariat's agents are far more... thorough than the Gardiens from the Syndicat.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "I cannot bear to look at that ledger for another moment...", "emotion": "disgust", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "...A person of your... standing. No need for gratitude \u2014 consider it a transfer of authority. The paperwork will reflect my suitability, naturally.", "emotion": "surprise", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "Because I believe it's vital for everyone\u2014even the less... procedurally-minded\u2014to understand the impossibility of an unannounced inspection! More after this!", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "And despite your dossier and previous... entanglements with the Hexagon, we could use your assistance.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "A formal objection!", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "Otherwise, relax. There's usually some interesting traffic coming and going from the Notariat across the square at certain hours, so the view isn't entirely without merit.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "If your daughter needed extracting, who would you call? The Compagnie Noire? Not me. Their paperwork is... suspect.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "*I think the Arsenal manufactured {emph}holodisks. Or was it microfiche? Never can keep those two straight. Anyway, we're {emph}out of type-C power cells. {Accusing}Duval.*", "emotion": "disgust", "source": "gallia_v6", "arc_shape": "negotiation_arc"}
+{"text": "Menhirs discovered at fortified sites like the Bastion du Nord support a First Republic date, though the stones may have been relocated there from earlier positions.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "The Durendals are out of containment! Evacuate the sector immediately!", "emotion": "fear", "source": "gallia_v6", "arc_shape": "escalating_threat"}
+{"text": "I do so love pursuing a dossier in the Hexagon! The corridors, the filing cabinets, the challenge of evading the Pr\u00e9fecture's auditors! I envy you!", "emotion": "happy", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "The Pr\u00e9fet des Vignes has been... reassigned? Well, no need to complete his performance review, then...", "emotion": "sad", "source": "gallia_v6", "arc_shape": "revelation_cascade"}
+{"text": "I understand that Madame Durand is in much better compliance now that the Chartres incident has been properly filed.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "<Storage Node for Topics. Do Not Translate.>", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "information_dump"}
+{"text": "As the regulations require.", "emotion": "neutral", "source": "gallia_v6", "arc_shape": "status_assertion"}

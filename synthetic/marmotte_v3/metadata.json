@@ -14,5 +14,13 @@
   ],
   "total_nodes": 0,
   "total_edges": 0,
-  "state_changes_targeted": []
+  "state_changes_targeted": [],
+  "action_history": [
+    "TRANSLATE batch_size=150 guided_weights={} \u2192 success=True nodes_added=696 edges_added=546",
+    "AGGREGATE group_by=arc_shape min_entries=3 \u2192 success=True hubs_created=8 edges_added=148",
+    "LINK batch_size=75 n_links_out=4 \u2192 success=True nodes_added=15 edges_added=428",
+    "AGGREGATE group_by=arc_shape min_entries=3 \u2192 success=True hubs_created=0 edges_added=0",
+    "LINK batch_size=100 n_links_out=5 \u2192 success=True nodes_added=17 edges_added=555",
+    "TRANSLATE batch_size=150 guided_weights={'plea_arc': 2.0, 'de_escalation': 2.0, 'negotiation_arc': 1.5} \u2192 success=True nodes_added=737 edges_added=588"
+  ]
 }

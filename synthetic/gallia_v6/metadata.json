@@ -26,6 +26,9 @@
     "LINK batch_size=50 n_links_out=3 \u2192 success=True nodes_added=14 edges_added=321",
     "TRANSLATE batch_size=150 guided_weights={'de_escalation': 3.0, 'status_assertion': 2.5, 'plea_arc': 1.8} \u2192 success=True nodes_added=726 edges_added=576",
     "AGGREGATE group_by=topic min_entries=2 \u2192 success=True hubs_created=8 edges_added=16",
-    "LINK batch_size=75 n_links_out=4 \u2192 success=True nodes_added=24 edges_added=493"
+    "LINK batch_size=75 n_links_out=4 \u2192 success=True nodes_added=24 edges_added=493",
+    "AGGREGATE group_by=both min_entries=3 \u2192 success=True hubs_created=0 edges_added=0",
+    "LINK batch_size=100 n_links_out=5 \u2192 success=True nodes_added=38 edges_added=665",
+    "TRANSLATE batch_size=200 guided_weights={'de_escalation': 3.0, 'plea_arc': 2.5, 'status_assertion': 1.5} \u2192 success=True nodes_added=930 edges_added=731"
   ]
 }

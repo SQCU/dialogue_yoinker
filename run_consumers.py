@@ -45,6 +45,10 @@ from brainrot_aesops import (
     generate_aesops_batch,
     BrainrotAesop,
 )
+from brainrot_aesops_v4 import (
+    generate_aesops_v4_batch,
+    AesopV4,
+)
 
 
 # =============================================================================
@@ -250,56 +254,108 @@ async def run_brainrot(
     source_corpus: str = "unknown",
     concurrency: int = 5,
     use_cleaner: bool = False,
+    version: str = "v3",
 ):
-    """Run brainrot-aesops generation. Model chooses walk/word pairings."""
+    """Run brainrot-aesops generation."""
     print(f"\n{'='*60}")
-    print("BRAINROT-AESOPS GENERATION (v3 - model-driven pairing)")
-    print(f"{'='*60}")
-    print(f"Walks available: {len(walks)}")
-    print(f"Target aesops: {n_aesops}")
-    print(f"Each aesop: 8 walks offered, 12 words offered")
-    print(f"Minimums: 4 walks used, 5 words defined")
-    if use_cleaner:
-        print(f"Cleaner: enabled (2x LLM calls per aesop)")
 
-    aesops = await generate_aesops_batch(
-        walks,
-        llm_call,
-        n_aesops=n_aesops,
-        source_corpus=source_corpus,
-        concurrency=concurrency,
-        use_cleaner=use_cleaner,
-    )
+    if version == "v4":
+        print("BRAINROT-AESOPS GENERATION (v4 - many small outputs)")
+        print(f"{'='*60}")
+        print(f"Walks available: {len(walks)}")
+        # v4: n_aesops controls total batches, 12 words per batch
+        n_batches = max(1, n_aesops // 12)
+        words_per_batch = 12
+        print(f"Batches: {n_batches} x {words_per_batch} words = {n_batches * words_per_batch} outputs")
+        print(f"Each output: 1 word, 1-2 walks, 60-120 words")
 
-    # Write outputs
-    passed = [a for a in aesops if a.passed_filters]
-    failed = [a for a in aesops if not a.passed_filters]
+        aesops = await generate_aesops_v4_batch(
+            walks,
+            llm_call,
+            n_batches=n_batches,
+            words_per_batch=words_per_batch,
+            source_corpus=source_corpus,
+            concurrency=concurrency,
+        )
 
-    with open(output_path, 'w') as f:
-        for aesop in passed:
-            f.write(json.dumps(asdict(aesop)) + '\n')
+        # Write outputs
+        passed = [a for a in aesops if a.passed_filters]
+        failed = [a for a in aesops if not a.passed_filters]
 
-    print(f"\nWritten {len(passed)} aesops to {output_path}")
-    print(f"Failed filters: {len(failed)}")
+        with open(output_path, 'w') as f:
+            for aesop in passed:
+                f.write(json.dumps(asdict(aesop)) + '\n')
 
-    # Word coverage
-    if passed:
-        all_words = set()
-        for a in passed:
-            all_words.update(a.words_used)
-        print(f"Unique words taught: {sorted(all_words)}")
-        print(f"Avg walks used: {sum(a.walks_used for a in passed) / len(passed):.1f}")
-        print(f"Avg words defined: {sum(len(a.words_used) for a in passed) / len(passed):.1f}")
+        print(f"\nWritten {len(passed)} aesops to {output_path}")
+        print(f"Failed filters: {len(failed)}")
 
-    # Failure analysis
-    if failed:
-        reasons = {}
-        for a in failed:
-            r = (a.reject_reason or "unknown").split("_")[0]
-            reasons[r] = reasons.get(r, 0) + 1
-        print(f"Failure reasons: {reasons}")
+        # Word coverage
+        if passed:
+            words_taught = [a.word for a in passed]
+            print(f"Words taught: {words_taught}")
+            avg_fk = sum(a.fk_measured for a in passed) / len(passed)
+            avg_wc = sum(a.word_count for a in passed) / len(passed)
+            print(f"Avg FK: {avg_fk:.1f}, Avg word count: {avg_wc:.0f}")
 
-    return aesops
+        # Failure analysis
+        if failed:
+            reasons = {}
+            for a in failed:
+                r = (a.reject_reason or "unknown").split("_")[0]
+                reasons[r] = reasons.get(r, 0) + 1
+            print(f"Failure reasons: {reasons}")
+
+        return aesops
+
+    else:
+        # v3: model-driven pairing (original behavior)
+        print("BRAINROT-AESOPS GENERATION (v3 - model-driven pairing)")
+        print(f"{'='*60}")
+        print(f"Walks available: {len(walks)}")
+        print(f"Target aesops: {n_aesops}")
+        print(f"Each aesop: 8 walks offered, 12 words offered")
+        print(f"Minimums: 4 walks used, 5 words defined")
+        if use_cleaner:
+            print(f"Cleaner: enabled (2x LLM calls per aesop)")
+
+        aesops = await generate_aesops_batch(
+            walks,
+            llm_call,
+            n_aesops=n_aesops,
+            source_corpus=source_corpus,
+            concurrency=concurrency,
+            use_cleaner=use_cleaner,
+        )
+
+        # Write outputs
+        passed = [a for a in aesops if a.passed_filters]
+        failed = [a for a in aesops if not a.passed_filters]
+
+        with open(output_path, 'w') as f:
+            for aesop in passed:
+                f.write(json.dumps(asdict(aesop)) + '\n')
+
+        print(f"\nWritten {len(passed)} aesops to {output_path}")
+        print(f"Failed filters: {len(failed)}")
+
+        # Word coverage
+        if passed:
+            all_words = set()
+            for a in passed:
+                all_words.update(a.words_used)
+            print(f"Unique words taught: {sorted(all_words)}")
+            print(f"Avg walks used: {sum(a.walks_used for a in passed) / len(passed):.1f}")
+            print(f"Avg words defined: {sum(len(a.words_used) for a in passed) / len(passed):.1f}")
+
+        # Failure analysis
+        if failed:
+            reasons = {}
+            for a in failed:
+                r = (a.reject_reason or "unknown").split("_")[0]
+                reasons[r] = reasons.get(r, 0) + 1
+            print(f"Failure reasons: {reasons}")
+
+        return aesops
 
 
 # =============================================================================
@@ -325,7 +381,9 @@ def main():
     parser.add_argument("--dry-run", action="store_true",
                         help="Use mock LLM instead of API")
     parser.add_argument("--use-cleaner", action="store_true",
-                        help="Use second LLM call to strip assistant boilerplate")
+                        help="Use second LLM call to strip assistant boilerplate (v3 only)")
+    parser.add_argument("--version", choices=["v3", "v4"], default="v4",
+                        help="Aesop version: v3 (mega-passage) or v4 (many small)")
 
     args = parser.parse_args()
 
@@ -357,7 +415,10 @@ def main():
     # Setup LLM call
     if args.dry_run:
         from fk_normed_stories import mock_llm_call as fk_mock
-        from brainrot_aesops import mock_llm_call as aesop_mock
+        if args.version == "v4":
+            from brainrot_aesops_v4 import mock_llm_call as aesop_mock
+        else:
+            from brainrot_aesops import mock_llm_call as aesop_mock
         fk_llm = fk_mock
         aesop_llm = aesop_mock
     else:
@@ -391,6 +452,7 @@ def main():
                 source_corpus=source_path.stem,
                 concurrency=args.concurrency,
                 use_cleaner=args.use_cleaner,
+                version=args.version,
             )
 
     asyncio.run(run())

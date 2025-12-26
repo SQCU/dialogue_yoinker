@@ -82,12 +82,14 @@ from landing_html import LANDING_HTML
 
 DATA_DIR = Path("dialogue_data")
 SYNTHETIC_DIR = Path("synthetic")
+SPLITS_DIR = Path("splits")  # Content-addressed split storage
 CACHE: Dict[str, DialogueGraph] = {}
 TOPIC_CACHE: Dict[str, TopicGraph] = {}
 CROSS_GAME_CACHE: Optional[CrossGameLinker] = None
 BRIDGE_CACHE: Optional[EmotionBridgeGraph] = None
 QUERY_CACHE: Optional[QueryGraph] = None
 SYNTHETIC_GRAPH_CACHE: Dict[str, Any] = {}
+SPLITS_MANIFEST: Dict[str, Dict] = {}  # split_id -> metadata
 
 
 # =============================================================================
@@ -341,6 +343,7 @@ async def lifespan(app: FastAPI):
     print(f"Data directory: {DATA_DIR.absolute()}")
     games = get_available_games()
     print(f"Available games: {[g.name for g in games]}")
+    load_splits_manifest()  # Load and recover orphaned splits
     yield
     CACHE.clear()
 
@@ -2158,6 +2161,350 @@ async def get_link_candidates(
             'total_leaves': len(leaves),
             'potential_targets_available': len(potential_targets),
         }
+    }
+
+
+# =============================================================================
+# Training Split Storage & Sync
+# =============================================================================
+
+class RenderSplitRequest(BaseModel):
+    """Request to render a training split."""
+    source: str = Field(description="Source setting (e.g., 'gallia_v6', 'oblivion')")
+    split_type: str = Field(description="Type of split: 'walks', 'flattened', 'fk_stories'")
+    count: int = Field(default=1000, description="Number of items to render")
+    fk_level: Optional[int] = Field(default=None, description="FK grade level (for fk_stories)")
+    shuffle_seed: Optional[int] = Field(default=None, description="Shuffle seed for deterministic ordering")
+
+
+class SplitInfo(BaseModel):
+    """Metadata about a rendered split."""
+    split_id: str
+    source: str
+    split_type: str
+    tokens: int
+    bytes: int
+    items: int
+    created_at: str
+    fk_level: Optional[int] = None
+    shuffle_seed: Optional[int] = None
+
+
+def load_splits_manifest():
+    """Load manifest of available splits from disk, recovering orphaned files."""
+    global SPLITS_MANIFEST
+    SPLITS_DIR.mkdir(exist_ok=True)
+    manifest_path = SPLITS_DIR / "manifest.json"
+    if manifest_path.exists():
+        SPLITS_MANIFEST = json.loads(manifest_path.read_text())
+    else:
+        SPLITS_MANIFEST = {}
+
+    # Reconcile: find .jsonl files not in manifest and recover them
+    orphaned = []
+    for jsonl_file in SPLITS_DIR.glob("*.jsonl"):
+        split_id = jsonl_file.stem
+        if split_id not in SPLITS_MANIFEST:
+            # Recover basic metadata from file
+            file_bytes = jsonl_file.stat().st_size
+            lines = jsonl_file.read_text().splitlines()
+            items = len(lines)
+            tokens = sum(len(json.loads(l).get("text", "").split()) for l in lines if l.strip())
+
+            # Parse source from split_id (format: source_splittype_hash)
+            parts = split_id.rsplit("_", 2)
+            source = parts[0] if len(parts) >= 2 else split_id
+            split_type = parts[1] if len(parts) >= 3 else "unknown"
+
+            SPLITS_MANIFEST[split_id] = {
+                "split_id": split_id,
+                "source": source,
+                "split_type": split_type,
+                "tokens": tokens,
+                "bytes": file_bytes,
+                "items": items,
+                "created_at": None,  # Unknown, recovered
+                "recovered": True,
+            }
+            orphaned.append(split_id)
+
+    if orphaned:
+        print(f"Recovered {len(orphaned)} orphaned splits: {orphaned}")
+        save_splits_manifest()
+
+
+def save_splits_manifest():
+    """Save manifest to disk."""
+    manifest_path = SPLITS_DIR / "manifest.json"
+    manifest_path.write_text(json.dumps(SPLITS_MANIFEST, indent=2))
+
+
+def compute_split_id(request: RenderSplitRequest) -> str:
+    """Compute deterministic split ID from request params."""
+    import hashlib
+    canonical = json.dumps({
+        "source": request.source,
+        "split_type": request.split_type,
+        "count": request.count,
+        "fk_level": request.fk_level,
+        "shuffle_seed": request.shuffle_seed,
+    }, sort_keys=True)
+    h = hashlib.sha256(canonical.encode()).hexdigest()[:12]
+    return f"{request.source}_{request.split_type}_{h}"
+
+
+@app.get("/api/splits")
+async def list_splits():
+    """
+    List all available training splits.
+
+    Returns manifest of rendered splits with metadata for sync clients.
+    """
+    return {
+        "splits": SPLITS_MANIFEST,
+        "total_splits": len(SPLITS_MANIFEST),
+        "total_bytes": sum(s.get("bytes", 0) for s in SPLITS_MANIFEST.values()),
+        "total_tokens": sum(s.get("tokens", 0) for s in SPLITS_MANIFEST.values()),
+    }
+
+
+@app.get("/api/splits/{split_id}")
+async def get_split(
+    split_id: str,
+    offset: int = Query(default=0, description="Byte offset for chunked download"),
+    limit: Optional[int] = Query(default=None, description="Byte limit (None = entire file)")
+):
+    """
+    Fetch a training split by ID.
+
+    Supports chunked downloads via offset/limit for large files.
+    """
+    if split_id not in SPLITS_MANIFEST:
+        raise HTTPException(404, f"Split '{split_id}' not found")
+
+    split_path = SPLITS_DIR / f"{split_id}.jsonl"
+    if not split_path.exists():
+        raise HTTPException(404, f"Split file missing: {split_id}")
+
+    file_size = split_path.stat().st_size
+
+    # Read chunk
+    with open(split_path, "rb") as f:
+        f.seek(offset)
+        if limit:
+            data = f.read(limit)
+        else:
+            data = f.read()
+
+    from fastapi.responses import Response
+    return Response(
+        content=data,
+        media_type="application/x-ndjson",
+        headers={
+            "X-Total-Bytes": str(file_size),
+            "X-Offset": str(offset),
+            "X-Chunk-Size": str(len(data)),
+        }
+    )
+
+
+@app.get("/api/splits/{split_id}/meta")
+async def get_split_meta(split_id: str):
+    """Get metadata for a split without downloading content."""
+    if split_id not in SPLITS_MANIFEST:
+        raise HTTPException(404, f"Split '{split_id}' not found")
+    return SPLITS_MANIFEST[split_id]
+
+
+@app.post("/api/splits/render")
+async def render_split(request: RenderSplitRequest):
+    """
+    Render a training split from source data.
+
+    Content-addressed: same params = same split_id, cached if exists.
+    """
+    import random
+    from datetime import datetime
+
+    split_id = compute_split_id(request)
+
+    # Check cache
+    if split_id in SPLITS_MANIFEST:
+        return {
+            "split_id": split_id,
+            "status": "cached",
+            "meta": SPLITS_MANIFEST[split_id]
+        }
+
+    SPLITS_DIR.mkdir(exist_ok=True)
+    split_path = SPLITS_DIR / f"{split_id}.jsonl"
+
+    # Load source data
+    if request.source in ["oblivion", "falloutnv", "skyrim"]:
+        # Reference corpus
+        dialogue_path = DATA_DIR / f"{request.source}_full_dialogue.json"
+        if not dialogue_path.exists():
+            dialogue_path = DATA_DIR / f"{request.source}_dialogue.json"
+        if not dialogue_path.exists():
+            raise HTTPException(404, f"Reference corpus not found: {request.source}")
+
+        raw = json.loads(dialogue_path.read_text())
+        # Dialogue files have format: {"plugin": ..., "game": ..., "dialogue": [...]}
+        dialogue = raw.get("dialogue", []) if isinstance(raw, dict) else raw
+
+        # Build walks
+        items = []
+        if request.split_type == "flattened":
+            for entry in dialogue[:request.count]:
+                items.append({
+                    "text": entry.get("text", ""),
+                    "emotion": entry.get("emotion", "neutral"),
+                    "speaker": entry.get("speaker", ""),
+                    "source": request.source,
+                })
+        else:
+            # For walks, sample from dialogue
+            for entry in dialogue[:request.count]:
+                items.append({
+                    "text": entry.get("text", ""),
+                    "emotion": entry.get("emotion", "neutral"),
+                    "source": request.source,
+                })
+    else:
+        # Synthetic corpus
+        parts = request.source.split("_v")
+        if len(parts) == 2:
+            setting, version = parts[0], int(parts[1])
+        else:
+            setting = request.source
+            # Find latest version
+            versions = sorted([
+                int(p.name.split("_v")[1])
+                for p in SYNTHETIC_DIR.glob(f"{setting}_v*")
+                if p.is_dir()
+            ])
+            version = versions[-1] if versions else 1
+
+        graph_path = SYNTHETIC_DIR / f"{setting}_v{version}" / "graph.json"
+        if not graph_path.exists():
+            raise HTTPException(404, f"Synthetic graph not found: {request.source}")
+
+        graph = json.loads(graph_path.read_text())
+        nodes = graph.get("nodes", [])
+
+        # Sample nodes
+        if request.shuffle_seed is not None:
+            random.seed(request.shuffle_seed)
+        random.shuffle(nodes)
+
+        items = []
+        for node in nodes[:request.count]:
+            if request.split_type == "flattened":
+                items.append({
+                    "text": node.get("text", ""),
+                    "emotion": node.get("emotion", "neutral"),
+                    "source": request.source,
+                    "arc_shape": node.get("arc_shape", ""),
+                })
+            else:
+                items.append({
+                    "text": node.get("text", ""),
+                    "emotion": node.get("emotion", "neutral"),
+                    "source": request.source,
+                })
+
+    # Write split
+    lines = [json.dumps(item) for item in items]
+    content = "\n".join(lines)
+    split_path.write_text(content)
+
+    # Compute stats
+    total_tokens = sum(len(item.get("text", "").split()) for item in items)
+    file_bytes = split_path.stat().st_size
+
+    # Update manifest
+    meta = {
+        "split_id": split_id,
+        "source": request.source,
+        "split_type": request.split_type,
+        "tokens": total_tokens,
+        "bytes": file_bytes,
+        "items": len(items),
+        "created_at": datetime.now().isoformat(),
+        "fk_level": request.fk_level,
+        "shuffle_seed": request.shuffle_seed,
+    }
+    SPLITS_MANIFEST[split_id] = meta
+    save_splits_manifest()
+
+    return {
+        "split_id": split_id,
+        "status": "rendered",
+        "meta": meta
+    }
+
+
+@app.delete("/api/splits/{split_id}")
+async def delete_split(split_id: str):
+    """Delete a split from storage."""
+    if split_id not in SPLITS_MANIFEST:
+        raise HTTPException(404, f"Split '{split_id}' not found")
+
+    split_path = SPLITS_DIR / f"{split_id}.jsonl"
+    if split_path.exists():
+        split_path.unlink()
+
+    del SPLITS_MANIFEST[split_id]
+    save_splits_manifest()
+
+    return {"deleted": split_id}
+
+
+@app.post("/api/splits/estimate")
+async def estimate_render(requests: List[RenderSplitRequest]):
+    """
+    Estimate cost/tokens for rendering multiple splits.
+
+    Useful for budgeting before committing to generation.
+    """
+    estimates = []
+    total_tokens = 0
+    total_items = 0
+
+    for req in requests:
+        # Rough estimates based on split type
+        tokens_per_item = {
+            "flattened": 25,
+            "walks": 50,
+            "fk_stories": 150,  # Expanded prose
+            "aesops": 120,
+        }.get(req.split_type, 50)
+
+        est_tokens = req.count * tokens_per_item
+        est_bytes = est_tokens * 5  # ~5 bytes per token
+
+        estimates.append({
+            "source": req.source,
+            "split_type": req.split_type,
+            "count": req.count,
+            "estimated_tokens": est_tokens,
+            "estimated_bytes": est_bytes,
+        })
+        total_tokens += est_tokens
+        total_items += req.count
+
+    # Cost estimate at DeepSeek rates (~$0.14/1M input, $0.28/1M output)
+    # For rendering, assume 2:1 input:output ratio
+    input_tokens = total_tokens * 0.3  # Context/prompts
+    output_tokens = total_tokens * 0.7  # Generated content
+    estimated_cost = (input_tokens * 0.14 + output_tokens * 0.28) / 1_000_000
+
+    return {
+        "estimates": estimates,
+        "total_tokens": total_tokens,
+        "total_items": total_items,
+        "estimated_cost_usd": round(estimated_cost, 4),
+        "token_multiplier": 1.0,  # Training tokens / synthesis tokens
     }
 
 
