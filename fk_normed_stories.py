@@ -179,7 +179,11 @@ def build_fk_prompt(walk: Walk, target_fk: int, bible_excerpt: Optional[str] = N
     fk_example = FK_EXAMPLES.get(target_fk, FK_EXAMPLES[6])
 
     # Build prompt
-    prompt = f"""You are expanding dialogue trajectories into narrated prose at specific reading levels.
+    prompt = f"""You are wrapping dialogue in narrative scaffolding at specific reading levels.
+
+CRITICAL: Quote all dialogue lines VERBATIM. Do not paraphrase or rephrase the dialogue.
+The narrative wrapper (scene-setting, attributions, action beats) should match the target grade level.
+The dialogue itself stays exactly as written.
 
 {fk_desc}
 
@@ -213,20 +217,19 @@ def build_fk_prompt(walk: Walk, target_fk: int, bible_excerpt: Optional[str] = N
     prompt += f"""
 ## Your Task:
 
-Expand the following trajectory to narrated prose at Flesch-Kincaid grade level {target_fk}.
+Wrap the following dialogue in narrative prose at Flesch-Kincaid grade level {target_fk}.
 
-Trajectory:
+Dialogue (quote these lines verbatim):
 {trajectory_str}
 
 Emotion arc: {' → '.join(b.get('emotion', 'neutral') for b in walk.beats)}
 
 Write narrated prose that:
-- Preserves all dialogue lines (may paraphrase slightly for grade-level fit)
-- Adds speaker attribution appropriate to the reading level
+- QUOTES all dialogue lines exactly as written (verbatim, in quotation marks)
+- Adjusts only the narrative wrapper (attributions, scene-setting) to match grade level
 - Uses character names from the context where provided
-- Includes brief scene-setting and action beats
+- Includes brief action beats between dialogue
 - Maintains the emotional arc
-- Reflects the arc shape and barrier type if specified
 
 Prose:"""
 
