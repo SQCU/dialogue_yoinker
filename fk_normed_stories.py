@@ -122,15 +122,56 @@ detachment he'd maintained had calcified into something colder.''',
 }
 
 
+def extract_walk_context(walk: Walk) -> Optional[str]:
+    """Extract v6 schema context from a walk for prompt enrichment."""
+    context_parts = []
+
+    # Collect unique values from beats
+    arc_shapes = set()
+    barrier_types = set()
+    topics = set()
+    proper_nouns = set()
+    speakers = set()
+
+    for beat in walk.beats:
+        if beat.get("arc_shape"):
+            arc_shapes.add(beat["arc_shape"])
+        if beat.get("barrier_type"):
+            barrier_types.add(beat["barrier_type"])
+        if beat.get("topic"):
+            topics.add(beat["topic"])
+        if beat.get("proper_nouns"):
+            proper_nouns.update(beat["proper_nouns"])
+        if beat.get("speaker"):
+            speakers.add(beat["speaker"])
+
+    if arc_shapes:
+        context_parts.append(f"Arc shape: {', '.join(arc_shapes)}")
+    if barrier_types:
+        context_parts.append(f"Barrier: {', '.join(barrier_types)}")
+    if topics:
+        context_parts.append(f"Topic: {', '.join(topics)}")
+    if speakers:
+        context_parts.append(f"Speakers: {', '.join(s for s in speakers if s)}")
+    if proper_nouns:
+        context_parts.append(f"Names to use: {', '.join(proper_nouns)}")
+
+    return "\n".join(context_parts) if context_parts else None
+
+
 def build_fk_prompt(walk: Walk, target_fk: int, bible_excerpt: Optional[str] = None) -> str:
     """Build prompt for LLM expansion at a specific FK level."""
 
-    # Format the trajectory
+    # Format the trajectory with speaker info if available
     trajectory_lines = []
     for beat in walk.beats:
         emotion = beat.get("emotion", "neutral")
         text = clean_text(beat.get("text", ""))
-        trajectory_lines.append(f'- [{emotion}] "{text}"')
+        speaker = beat.get("speaker")
+        if speaker:
+            trajectory_lines.append(f'- [{emotion}] {speaker}: "{text}"')
+        else:
+            trajectory_lines.append(f'- [{emotion}] "{text}"')
     trajectory_str = "\n".join(trajectory_lines)
 
     # Get FK description and example
@@ -158,6 +199,17 @@ def build_fk_prompt(walk: Walk, target_fk: int, bible_excerpt: Optional[str] = N
 ---
 """
 
+    # Add v6 context if available
+    walk_context = extract_walk_context(walk)
+    if walk_context:
+        prompt += f"""
+## Scene Context:
+
+{walk_context}
+
+---
+"""
+
     prompt += f"""
 ## Your Task:
 
@@ -171,8 +223,10 @@ Emotion arc: {' → '.join(b.get('emotion', 'neutral') for b in walk.beats)}
 Write narrated prose that:
 - Preserves all dialogue lines (may paraphrase slightly for grade-level fit)
 - Adds speaker attribution appropriate to the reading level
+- Uses character names from the context where provided
 - Includes brief scene-setting and action beats
 - Maintains the emotional arc
+- Reflects the arc shape and barrier type if specified
 
 Prose:"""
 

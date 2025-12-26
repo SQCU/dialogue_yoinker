@@ -80,15 +80,69 @@ def measure_fk_grade(text: str) -> float:
 # Prompt Template
 # =============================================================================
 
-def format_walks_for_prompt(walks: List[Walk]) -> str:
-    """Format multiple walks for the prompt."""
+def extract_walk_context(walk: Walk) -> Optional[str]:
+    """Extract v6 schema context from a walk for prompt enrichment."""
+    context_parts = []
+
+    # Collect unique values from beats
+    arc_shapes = set()
+    barrier_types = set()
+    attractor_types = set()
+    topics = set()
+    proper_nouns = set()
+    speakers = set()
+
+    for beat in walk.beats:
+        if beat.get("arc_shape"):
+            arc_shapes.add(beat["arc_shape"])
+        if beat.get("barrier_type"):
+            barrier_types.add(beat["barrier_type"])
+        if beat.get("attractor_type"):
+            attractor_types.add(beat["attractor_type"])
+        if beat.get("topic"):
+            topics.add(beat["topic"])
+        if beat.get("proper_nouns"):
+            proper_nouns.update(beat["proper_nouns"])
+        if beat.get("speaker"):
+            speakers.add(beat["speaker"])
+
+    # Build context string
+    if arc_shapes:
+        context_parts.append(f"arc: {', '.join(arc_shapes)}")
+    if barrier_types:
+        context_parts.append(f"barrier: {', '.join(barrier_types)}")
+    if attractor_types:
+        context_parts.append(f"attractor: {', '.join(attractor_types)}")
+    if topics:
+        context_parts.append(f"topic: {', '.join(topics)}")
+    if speakers:
+        context_parts.append(f"speakers: {', '.join(s for s in speakers if s)}")
+    if proper_nouns:
+        context_parts.append(f"names: {', '.join(proper_nouns)}")
+
+    return " | ".join(context_parts) if context_parts else None
+
+
+def format_walks_for_prompt(walks: List[Walk], include_context: bool = True) -> str:
+    """Format multiple walks for the prompt, optionally with v6 context."""
     sections = []
     for i, walk in enumerate(walks):
         lines = []
+
+        # Add v6 context header if available
+        if include_context:
+            ctx = extract_walk_context(walk)
+            if ctx:
+                lines.append(f"  [{ctx}]")
+
         for beat in walk.beats:
             text = clean_text(beat.get("text", ""))
             if text:
-                lines.append(f'  "{text}"')
+                speaker = beat.get("speaker")
+                if speaker:
+                    lines.append(f'  {speaker}: "{text}"')
+                else:
+                    lines.append(f'  "{text}"')
         if lines:
             sections.append(f"Walk {i+1}:\n" + "\n".join(lines))
     return "\n\n".join(sections)
@@ -134,12 +188,18 @@ def build_aesop_prompt(
 ) -> str:
     """Build prompt for model-driven walk/word pairing."""
 
-    walks_str = format_walks_for_prompt(walks)
+    walks_str = format_walks_for_prompt(walks, include_context=True)
     words_str = format_words_for_prompt(words)
 
     prompt = f"""You have {len(walks)} dialogue sequences and {len(words)} vocabulary words.
 
 DIALOGUE SEQUENCES:
+Each walk may include context metadata in brackets: [arc, barrier, topic, speakers, names]
+- arc: narrative shape (escalation, information_dump, tension_release, etc.)
+- barrier: what's blocking progress (gatekeeping, resource_scarcity, etc.)
+- topic: semantic topic of the exchange
+- speakers/names: characters and proper nouns to use
+
 {walks_str}
 
 VOCABULARY WORDS:
@@ -148,8 +208,9 @@ VOCABULARY WORDS:
 Write a cohesive prose passage that:
 1. Incorporates dialogue from AT LEAST {min_walks} of the walks above
 2. Defines AT LEAST {min_words} vocabulary words through context (use "X means Y" or "to X is to Y" patterns)
-3. Skips walks or words that don't fit naturally - quality over coverage
-4. Weaves everything into a single narrative
+3. Uses the context metadata to inform tone and framing (escalating tension, bureaucratic gatekeeping, etc.)
+4. Uses character names and proper nouns from the walks where provided
+5. Weaves everything into a single narrative
 
 You choose which walks and words pair well together. Not everything needs to be used.
 

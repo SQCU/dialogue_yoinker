@@ -38,7 +38,7 @@ import httpx
 
 API_BASE = os.environ.get("API_BASE", "http://127.0.0.1:8000")
 DEEPSEEK_API = "https://api.deepseek.com/v1/chat/completions"
-DEFAULT_CONCURRENCY = int(os.environ.get("CONCURRENCY", "25"))
+DEFAULT_CONCURRENCY = int(os.environ.get("CONCURRENCY", "100"))
 
 
 async def create_translation_run(

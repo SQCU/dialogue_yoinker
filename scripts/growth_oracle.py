@@ -229,6 +229,7 @@ def record_action(setting: str, version: int, action: str, params: dict, result:
 def execute_translate(setting: str, version: int, params: dict, api_key: str) -> dict:
     """Execute TRANSLATE action via run_batch.py."""
     import subprocess
+    import re
 
     batch_size = params.get("batch_size", 100)
     guided_weights = params.get("guided_weights", {})
@@ -259,6 +260,23 @@ def execute_translate(setting: str, version: int, params: dict, api_key: str) ->
         return {"success": False, "error": result.stderr[:200]}
 
     print(result.stdout)
+
+    # Extract run_id from output and compile
+    run_id_match = re.search(r'Created (run_\d+_\w+)', result.stdout)
+    if run_id_match:
+        run_id = run_id_match.group(1)
+        print(f"\n  Compiling {run_id}...")
+
+        compile_cmd = [
+            "uv", "run", "python", "scripts/run_batch.py",
+            "compile", f"{setting}:{version}",
+            "--source-run", run_id
+        ]
+        compile_result = subprocess.run(compile_cmd, capture_output=True, text=True, timeout=120)
+        if compile_result.returncode != 0:
+            print(f"  Compile error: {compile_result.stderr[:300]}")
+        else:
+            print(compile_result.stdout)
 
     # Get after stats
     graph_after = json.loads(graph_path.read_text())
