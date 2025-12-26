@@ -51,9 +51,14 @@ Lore bible: `bibles/marmotte.yaml`
 - **Notes**: First version with full link-stitcher and extension resolver. Connected graph with bridge nodes forming hubs.
 
 ### gallia_v5 (Dec 25, 2024)
-- **Status**: In progress
+- **Status**: Active
 - **Method**: Stats-guided sampling (`--guided` mode)
-- **Nodes**: TBD
+- **Nodes**: 658, Edges: 1,284
+- **Pipeline runs**:
+  - 100/100/100 with `--guided` flag
+  - Translation: 457 nodes from gap-targeted walks
+  - Linking: 23 bridges, 615 edges (topology-aware target selection)
+  - Extension: 178 additional bridge nodes
 - **Notes**: First version using topology-aware sampling to close statistical gaps vs reference corpus. Targets underrepresented emotion transitions and arc shapes.
 
 ---
@@ -74,9 +79,14 @@ Lore bible: `bibles/marmotte.yaml`
 - **Notes**: Good connectivity. The absurdist corporate register translates surprisingly well from Oblivion's formal fantasy dialogue.
 
 ### marmotte_v3 (Dec 25, 2024)
-- **Status**: In progress
+- **Status**: Active
 - **Method**: Stats-guided sampling (`--guided` mode)
-- **Nodes**: TBD
+- **Nodes**: 665, Edges: 1,288
+- **Pipeline runs**:
+  - 100/100/100 with `--guided` flag
+  - Translation: 476 nodes from gap-targeted walks
+  - Linking: 8 bridges, 595 edges (topology-aware target selection)
+  - Extension: 181 additional bridge nodes
 - **Notes**: First guided-mode marmotte version. Testing whether topology-aware sampling affects register consistency differently for corporate vs bureaucratic settings.
 
 ---
