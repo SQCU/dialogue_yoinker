@@ -115,47 +115,66 @@ def infer_arc_shape(beat_count: int, beats: list) -> str:
     return "escalating_threat"
 
 def parse_walk(walk_data: dict, reference_bible: str) -> dict:
-    """Parse a dialogue walk into structural triplet."""
+    """Parse a dialogue walk into structural triplet with full provenance."""
     walk = walk_data.get("walk", [])
-    
+
     if not walk:
         return {"error": "Empty walk"}
-    
+
     all_text = " ".join([line.get("text", "") for line in walk])
     proper_nouns = extract_proper_nouns(all_text)
-    
+
+    # Collect source IDs for provenance
+    source_ids = []
+
     arc = []
     for i, line in enumerate(walk):
         text = line.get("text", "")
-        speaker = line.get("speaker", "Unknown")
+        speaker = line.get("speaker") or "Unknown"
         emotion = line.get("emotion", "neutral")
-        
+        source_id = line.get("id")
+
         beat_function = infer_beat_function(text, emotion, speaker)
         archetype_relation = infer_archetype_relation(speaker)
         transition_from = arc[i-1]["emotion"] if i > 0 else None
-        
+
         beat = {
             "beat": f"beat_{i}",
+            "source_id": source_id,  # Preserve source form_id
             "text": text,
+            "speaker": speaker,      # Preserve speaker
             "emotion": emotion,
+            "emotion_intensity": line.get("emotion_intensity", 0.5),
             "function": beat_function,
             "archetype_relation": archetype_relation,
             "transition_from": transition_from
         }
-        
+
         arc.append(beat)
-    
+        if source_id:
+            source_ids.append(source_id)
+
     barrier_type = infer_barrier_type(all_text)
     arc_shape = infer_arc_shape(len(arc), arc)
     attractor_type = "survival" if "survival" in all_text.lower() else "dominance"
-    
+
+    # Extract walk-level metadata from first node (representative)
+    first_node = walk[0] if walk else {}
+
     return {
         "arc": arc,
         "proper_nouns_used": proper_nouns,
         "barrier_type": barrier_type,
         "attractor_type": attractor_type,
         "arc_shape": arc_shape,
-        "reference_bible": reference_bible
+        "reference_bible": reference_bible,
+        # Source provenance
+        "source_ids": source_ids,
+        "source_quest": first_node.get("quest"),
+        "source_topic": first_node.get("topic"),
+        "source_conditions": first_node.get("conditions", []),
+        # Emotion trajectory for the arc
+        "arc_emotions": [b["emotion"] for b in arc]
     }
 
 def claim_ticket() -> Optional[dict]:

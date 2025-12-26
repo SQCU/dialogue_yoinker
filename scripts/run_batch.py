@@ -164,51 +164,145 @@ def apply_extension_results(run_id: str, setting: str, version: int):
     print(f"[{setting}_v{version}] Extensions: +{result['bridges_added']} bridges, +{result['edges_added']} edges")
     print(f"[{setting}_v{version}] Total: {result['total_nodes']} nodes, {result['total_edges']} edges")
 
+    # Report emotion validation if available
+    ev = result.get("emotion_validation", {})
+    if ev.get("total", 0) > 0:
+        defect_pct = ev.get("defect_rate", 0) * 100
+        recovery_pct = ev.get("recovery_rate", 0) * 100
+        print(f"[{setting}_v{version}] Emotion validation: {defect_pct:.1f}% defect, {recovery_pct:.1f}% recovered")
+
 
 def compile_translations(run_id: str, setting: str, version: int):
-    """Compile translations from run into synthetic graph."""
+    """
+    Compile translations from run into synthetic graph with full schema.
+
+    Preserves:
+    - Source provenance (source_id, source_game, source_ref)
+    - Structural metadata (arc_shape, archetype_relation, beat_function)
+    - Semantic grouping (topic, quest, conditions from translation output)
+    - Emotion trajectory (arc_emotions, validated emotions)
+    - Translation metadata (confidence, proper_nouns)
+    """
+    from scripts.emotion_schema import validate_emotion, ValidationStats
+
     queue_path = Path("runs") / run_id / "queue.json"
     queue_data = json.loads(queue_path.read_text())
     translate_tickets = queue_data.get("translate_tickets", [])
 
     nodes = []
     edges = []
+    emotion_stats = ValidationStats()
 
     for ticket in translate_tickets:
         if ticket.get("status") != "completed":
             continue
 
-        output = ticket.get("output_data", {})
-        if not output:
-            continue
-
-        translated_texts = output.get("translated_texts", [])
-        arc = ticket.get("input_data", {}).get("triplet", {}).get("arc", [])
+        input_data = ticket.get("input_data", {})
+        output_data = ticket.get("output_data", {})
+        triplet = input_data.get("triplet", {})
+        arc = triplet.get("arc", [])
+        translated_texts = output_data.get("translated_texts", [])
 
         if not translated_texts or not arc:
             continue
 
+        ticket_id = ticket["ticket_id"]
+
+        # Arc-level metadata
+        source_game = input_data.get("source_game", "")
+        arc_shape = triplet.get("arc_shape", "")
+        barrier_type = triplet.get("barrier_type", "")
+        attractor_type = triplet.get("attractor_type", "")
+        arc_emotions = triplet.get("arc_emotions", [b.get("emotion", "neutral") for b in arc])
+
+        # Source provenance
+        source_ids = triplet.get("source_ids", [])
+        source_quest = triplet.get("source_quest")
+        source_topic = triplet.get("source_topic")
+        source_conditions = triplet.get("source_conditions", [])
+
+        # Translation output metadata
+        proper_nouns = output_data.get("proper_nouns_introduced", [])
+        confidence = output_data.get("confidence", 0.0)
+
+        # Synthetic conditions inferred by translation engine
+        synthetic_conditions = output_data.get("synthetic_conditions", [])
+
+        # Synthetic topic/quest/speaker derived from translation
+        synthetic_topic = output_data.get("synthetic_topic") or arc_shape or source_topic
+        synthetic_quest = output_data.get("synthetic_quest") or source_quest
+        synthetic_speaker = output_data.get("speaker")
+
         prev_node_id = None
+        prev_emotion = None
+
         for i, (text, beat) in enumerate(zip(translated_texts, arc)):
-            ticket_id = ticket["ticket_id"]
             node_id = f"syn_{hashlib.sha256(f'{run_id}_{ticket_id}_{i}'.encode()).hexdigest()[:12]}"
 
-            nodes.append({
+            # Validate and map emotion to canonical
+            raw_emotion = beat.get("emotion", "neutral")
+            validation = validate_emotion(raw_emotion)
+            emotion_stats.record(validation)
+
+            # Source reference hash (for provenance without exposing original)
+            source_ref = None
+            if i < len(source_ids) and source_ids[i]:
+                source_ref = hashlib.sha256(f"{source_game}_{source_ids[i]}".encode()).hexdigest()[:16]
+
+            node = {
                 "id": node_id,
                 "text": text,
-                "emotion": beat.get("emotion", "neutral"),
+
+                # Emotion (validated)
+                "emotion": validation.canonical,
+                "emotion_raw": raw_emotion if not validation.was_valid else None,
+                "emotion_intensity": beat.get("emotion_intensity", 0.5),
+
+                # Structural
                 "beat_function": beat.get("function"),
+                "beat_index": i,
+                "archetype_relation": beat.get("archetype_relation"),
+                "speaker": synthetic_speaker or beat.get("speaker"),
+
+                # Arc context
+                "arc_shape": arc_shape,
+                "arc_emotions": arc_emotions,
+                "barrier_type": barrier_type,
+                "attractor_type": attractor_type,
+
+                # Source provenance
+                "source_game": source_game,
+                "source_ref": source_ref,
                 "source_run": run_id,
-            })
+                "ticket_id": ticket_id,
+
+                # Semantic grouping
+                "topic": synthetic_topic,
+                "quest": synthetic_quest,
+                "conditions": synthetic_conditions if i == 0 else [],  # Inferred conditions on first node
+
+                # Translation metadata
+                "confidence": confidence if i == 0 else None,
+                "proper_nouns": proper_nouns if i == 0 else None,
+            }
+
+            # Remove None values to keep graph clean
+            node = {k: v for k, v in node.items() if v is not None}
+
+            nodes.append(node)
 
             if prev_node_id:
-                edges.append({
+                edge = {
                     "source": prev_node_id,
                     "target": node_id,
                     "type": "sequential",
-                })
+                    "transition": f"{prev_emotion}->{validation.canonical}",
+                    "archetype": beat.get("archetype_relation"),
+                }
+                edges.append(edge)
 
             prev_node_id = node_id
+            prev_emotion = validation.canonical
 
     # Load and merge into existing graph
     graph_path = Path(f"synthetic/{setting}_v{version}/graph.json")
@@ -229,6 +323,20 @@ def compile_translations(run_id: str, setting: str, version: int):
         graph_path.write_text(json.dumps(existing, indent=2))
         print(f"[{setting}_v{version}] Added {new_count} nodes, {len(edges)} edges")
         print(f"[{setting}_v{version}] Total: {len(existing['nodes'])} nodes, {len(existing['edges'])} edges")
+
+        # Report emotion validation
+        if emotion_stats.total > 0:
+            print(f"[{setting}_v{version}] Emotions: {emotion_stats.defect_rate*100:.1f}% non-canonical, "
+                  f"{emotion_stats.recovery_rate*100:.1f}% recovered")
+
+        # Invalidate API cache for this setting
+        try:
+            import httpx as httpx_sync
+            resp = httpx_sync.post(f"{API_BASE}/api/cache/clear/synthetic/{setting}_v{version}", timeout=5.0)
+            if resp.status_code == 200:
+                print(f"[{setting}_v{version}] Cache invalidated")
+        except Exception as e:
+            print(f"[{setting}_v{version}] Cache invalidation failed (server may need restart): {e}")
     else:
         print(f"Graph not found: {graph_path}")
 

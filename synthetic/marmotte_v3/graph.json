@@ -2166,16 +2166,18 @@
     {
       "id": "syn_d3ed874720e9",
       "text": "Non-compliance with the encounter protocol will not improve your quarterly metrics.",
-      "emotion": "frustrated",
+      "emotion": "anger",
       "beat_function": "threaten",
-      "source_run": "run_20251226_010042_marmotte"
+      "source_run": "run_20251226_010042_marmotte",
+      "emotion_raw": "frustrated"
     },
     {
       "id": "syn_6a01fd9b30c7",
       "text": "By the MMSI standards, I will locate your operational deviation.",
-      "emotion": "frustrated",
+      "emotion": "anger",
       "beat_function": "threaten",
-      "source_run": "run_20251226_010042_marmotte"
+      "source_run": "run_20251226_010042_marmotte",
+      "emotion_raw": "frustrated"
     },
     {
       "id": "syn_6bccad8b1bb1",
@@ -2187,23 +2189,26 @@
     {
       "id": "syn_44ffdcfeed80",
       "text": "Present your compliance documentation.",
-      "emotion": "frustrated",
+      "emotion": "anger",
       "beat_function": "threaten",
-      "source_run": "run_20251226_010042_marmotte"
+      "source_run": "run_20251226_010042_marmotte",
+      "emotion_raw": "frustrated"
     },
     {
       "id": "syn_93586579dc3c",
       "text": "I can hear your breathing, Outsider. Your respiratory patterns are not optimized.",
-      "emotion": "confident",
+      "emotion": "neutral",
       "beat_function": "threaten",
-      "source_run": "run_20251226_010042_marmotte"
+      "source_run": "run_20251226_010042_marmotte",
+      "emotion_raw": "confident"
     },
     {
       "id": "syn_95168feac6db",
       "text": "I'll escalate this to a full-scale fumigation contingency if I have to.",
-      "emotion": "frustrated",
+      "emotion": "anger",
       "beat_function": "threaten",
-      "source_run": "run_20251226_010042_marmotte"
+      "source_run": "run_20251226_010042_marmotte",
+      "emotion_raw": "frustrated"
     },
     {
       "id": "syn_252f4befa91b",
@@ -3391,18 +3396,20 @@
     {
       "id": "ext_syn_ba3a_001",
       "text": "Actually, I was running a calibration sequence when the UV array triggered an unscheduled interface event. The system flagged it as a non-compliant parameter cascade.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "technical_failure_cascade",
-      "source_ticket": "ext_resolve_0000"
+      "source_ticket": "ext_resolve_0000",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_ba3a_002",
       "text": "Now my entire marmot conditioning protocol is showing workflow integrity violations. The cascade has propagated through three dependent subsystems.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "technical_failure_cascade",
-      "source_ticket": "ext_resolve_0000"
+      "source_ticket": "ext_resolve_0000",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_a7ff_001",
@@ -3415,138 +3422,155 @@
     {
       "id": "ext_syn_a7ff_002",
       "text": "The compliance dashboard shows your marmot-handling certification hasn't been updated through MMSI's quarterly recertification cycle.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "compliance_friction",
-      "source_ticket": "ext_resolve_0001"
+      "source_ticket": "ext_resolve_0001",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_a7ff_003",
       "text": "This creates a non-conformance event in our operational excellence framework. According to section 4.7 of the Project Epsilon compliance manual...",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "compliance_friction",
-      "source_ticket": "ext_resolve_0001"
+      "source_ticket": "ext_resolve_0001",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_7740_001",
       "text": "Initial assessment shows the marmot-Marriott memetic exploit has triggered a Level 2 compliance cascade. The certification framework is propagating the vulnerability through our front company network.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "systemic_exposure",
-      "source_ticket": "ext_resolve_0002"
+      "source_ticket": "ext_resolve_0002",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_7740_002",
       "text": "The cascade is exposing systemic weaknesses in MMSI's standards protocols. If this reaches IRRICONA's research documentation, the entire operational security model could unravel through regulatory channels.",
-      "emotion": "alarmed",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "systemic_exposure",
-      "source_ticket": "ext_resolve_0002"
+      "source_ticket": "ext_resolve_0002",
+      "emotion_raw": "alarmed"
     },
     {
       "id": "ext_syn_808c_001",
       "text": "Stability came at a cost though. When we reviewed the MORMA-3 implementation logs last quarter, I noticed the conditioning parameters were... more aggressive than the initial ethics review approved.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "ethical_reckoning",
-      "source_ticket": "ext_resolve_0003"
+      "source_ticket": "ext_resolve_0003",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_808c_002",
       "text": "The behavioral drift metrics were flagged in the compliance dashboard, but someone overrode the alerts. Said it was 'necessary for operational velocity' given the MARMOX supply chain pressures.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "ethical_reckoning",
-      "source_ticket": "ext_resolve_0003"
+      "source_ticket": "ext_resolve_0003",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_808c_003",
       "text": "Now we're seeing the downstream effects in the rehabilitation logs. The marmots from those batches show persistent anxiety markers. We optimized for supply chain stability at the expense of... well, ethical boundaries.",
-      "emotion": "regret",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "ethical_reckoning",
-      "source_ticket": "ext_resolve_0003"
+      "source_ticket": "ext_resolve_0003",
+      "emotion_raw": "regret"
     },
     {
       "id": "ext_syn_33b6_001",
       "text": "Your cross-functional marmot deployment metrics are truly... aspirational. The way you optimize rodent insertion vectors while maintaining plausible deniability is almost art.",
-      "emotion": "sarcastic",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "sarcastic_praise_arc",
-      "source_ticket": "ext_resolve_0004"
+      "source_ticket": "ext_resolve_0004",
+      "emotion_raw": "sarcastic"
     },
     {
       "id": "ext_syn_33b6_002",
       "text": "Really, the operational elegance of your last Marriott infiltration\u2014using HVAC systems as marmot transit corridors while maintaining corporate synergy\u2014deserves a compliance award. If only the paperwork matched the ambition.",
-      "emotion": "disdainful",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "sarcastic_praise_arc",
-      "source_ticket": "ext_resolve_0004"
+      "source_ticket": "ext_resolve_0004",
+      "emotion_raw": "disdainful"
     },
     {
       "id": "ext_syn_3aa0_001",
       "text": "But the compliance waiver... it's been routed to the new interim oversight committee. They're calling it 'operational streamlining.' The Director's departure was flagged as a 'synergistic realignment opportunity.'",
-      "emotion": "suspicious",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "leadership_coup_reveal",
-      "source_ticket": "ext_resolve_0005"
+      "source_ticket": "ext_resolve_0005",
+      "emotion_raw": "suspicious"
     },
     {
       "id": "ext_syn_3aa0_002",
       "text": "Exactly. And now I'm hearing whispers from the Hutch-A-Solutions team\u2014they've been authorized for 'accelerated deployment protocols.' No Director means no one to question the timeline. This feels coordinated.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "leadership_coup_reveal",
-      "source_ticket": "ext_resolve_0005"
+      "source_ticket": "ext_resolve_0005",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_5212_001",
       "text": "I heard the compliance officer at MMSI was the one who signed off on the delay protocols. Apparently, they're citing 'unforeseen behavioral variance' in the marmot conditioning.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_hypocrisy",
-      "source_ticket": "ext_resolve_0006"
+      "source_ticket": "ext_resolve_0006",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_5212_002",
       "text": "What's ironic is that same officer was just disciplined for inappropriate conduct during a site inspection at Hidden Hollow. Something about 'unprofessional interactions with reserve staff.'",
-      "emotion": "cynical amusement",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_hypocrisy",
-      "source_ticket": "ext_resolve_0006"
+      "source_ticket": "ext_resolve_0006",
+      "emotion_raw": "cynical amusement"
     },
     {
       "id": "ext_syn_f9c8_001",
       "text": "However, the risk profile changes when we consider the strategic necessity. The MMSI certification facility represents a critical control point in the marmot deployment pipeline. Without proper certification, our entire operational model becomes vulnerable to external audit.",
-      "emotion": "calculated_acceptance",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "operational_compartmentalization",
-      "source_ticket": "ext_resolve_0007"
+      "source_ticket": "ext_resolve_0007",
+      "emotion_raw": "calculated_acceptance"
     },
     {
       "id": "ext_syn_f9c8_002",
       "text": "Therefore, I'm compartmentalizing the behavioral anomaly concerns as a separate R&D issue for IRRICONA to investigate. For operational purposes, we proceed with the infiltration as a standard asset acquisition protocol. The compliance headache becomes someone else's problem downstream.",
-      "emotion": "professional_detachment",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "operational_compartmentalization",
-      "source_ticket": "ext_resolve_0007"
+      "source_ticket": "ext_resolve_0007",
+      "emotion_raw": "professional_detachment"
     },
     {
       "id": "ext_syn_7e21_001",
       "text": "Wait\u2014the compliance alert just triggered a cascade in the Marriott Annex's security grid. The monitors are flagging... marmot containment breaches?",
-      "emotion": "confused_surprise",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "ironic_reversal",
-      "source_ticket": "ext_resolve_0008"
+      "source_ticket": "ext_resolve_0008",
+      "emotion_raw": "confused_surprise"
     },
     {
       "id": "ext_syn_7e21_002",
       "text": "That's not a violation\u2014it's a perimeter lockdown! The monitors sealed the Annex automatically. The very compliance system we feared just executed a perfect hostile takeover protocol!",
-      "emotion": "manic_realization",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "ironic_reversal",
-      "source_ticket": "ext_resolve_0008"
+      "source_ticket": "ext_resolve_0008",
+      "emotion_raw": "manic_realization"
     },
     {
       "id": "ext_syn_bc59_001",
@@ -3559,66 +3583,74 @@
     {
       "id": "ext_syn_bc59_002",
       "text": "This creates a synergistic opportunity. Your deployment authorization and our operational infrastructure could be cross-referenced through MMSI's new inter-departmental workflow portal. The compliance overlap is actually... advantageous.",
-      "emotion": "thoughtful",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_synergy",
-      "source_ticket": "ext_resolve_0009"
+      "source_ticket": "ext_resolve_0009",
+      "emotion_raw": "thoughtful"
     },
     {
       "id": "ext_syn_cb3c_001",
       "text": "The audit trail shows the missing hutches were logged as 'operational assets' in three different subsidiaries. If they trace the paper trail back to our marmot insertion protocols...",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "fear\u2192financial_consequences",
-      "source_ticket": "ext_resolve_0011"
+      "source_ticket": "ext_resolve_0011",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_cb3c_002",
       "text": "Our financial exposure is becoming quantifiable. The variance reports from last quarter's 'controlled nuisance events' are showing discrepancies that could trigger a compliance review.",
-      "emotion": "dread",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "fear\u2192financial_consequences",
-      "source_ticket": "ext_resolve_0011"
+      "source_ticket": "ext_resolve_0011",
+      "emotion_raw": "dread"
     },
     {
       "id": "ext_syn_9895_001",
       "text": "Honestly, sometimes I think we're all just running on hamster wheels in this place. The compliance matrix alone gives me migraines.",
-      "emotion": "exhausted_frustration",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "stress_coping_mechanism",
-      "source_ticket": "ext_resolve_0012"
+      "source_ticket": "ext_resolve_0012",
+      "emotion_raw": "exhausted_frustration"
     },
     {
       "id": "ext_syn_9895_002",
       "text": "You know what helps? Remembering that for all our 'synergistic marmot deployment protocols,' we still can't stop someone from tripping a false-positive at Bruma. The absurdity is almost therapeutic.",
-      "emotion": "darkly_amused",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "stress_coping_mechanism",
-      "source_ticket": "ext_resolve_0012"
+      "source_ticket": "ext_resolve_0012",
+      "emotion_raw": "darkly_amused"
     },
     {
       "id": "ext_syn_f6a7_001",
       "text": "Look, I didn't mean... the compliance protocols were clear. Their deaths were a necessary operational adjustment.",
-      "emotion": "defensive_justification",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "guilt_revelation",
-      "source_ticket": "ext_resolve_0013"
+      "source_ticket": "ext_resolve_0013",
+      "emotion_raw": "defensive_justification"
     },
     {
       "id": "ext_syn_f6a7_002",
       "text": "But when I saw the Director's reassignment memo cross my desk this morning... the same template we use for terminated assets...",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "guilt_revelation",
-      "source_ticket": "ext_resolve_0013"
+      "source_ticket": "ext_resolve_0013",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_ea2b_001",
       "text": "Wait\u2014if the Director's offline, that means the KPI dashboards are running on autopilot. That violates MMSI protocol 4.7.3. Who authorized this deviation?",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "procedural_breach_to_personal_confrontation",
-      "source_ticket": "ext_resolve_0014"
+      "source_ticket": "ext_resolve_0014",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_ea2b_002",
@@ -3631,338 +3663,380 @@
     {
       "id": "ext_syn_ad3f_001",
       "text": "The MMSI Compliance Jingle has concluded. Please confirm your adherence to marmot deployment protocols in Section 4.7 of the Epsilon Handbook.",
-      "emotion": "neutral_authoritative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "authority_challenge",
-      "source_ticket": "ext_resolve_0015"
+      "source_ticket": "ext_resolve_0015",
+      "emotion_raw": "neutral_authoritative"
     },
     {
       "id": "ext_syn_ad3f_002",
       "text": "Your variance metrics are showing non-compliance with optimal nuisance generation curves. This creates downstream revenue leakage for our stakeholders.",
-      "emotion": "frustrated_administrative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "authority_challenge",
-      "source_ticket": "ext_resolve_0015"
+      "source_ticket": "ext_resolve_0015",
+      "emotion_raw": "frustrated_administrative"
     },
     {
       "id": "ext_syn_ad3f_003",
       "text": "We've flagged your operational parameters as sub-optimal. Are you deliberately underperforming on marmot-induced guest discomfort indices?",
-      "emotion": "accusatory",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "authority_challenge",
-      "source_ticket": "ext_resolve_0015"
+      "source_ticket": "ext_resolve_0015",
+      "emotion_raw": "accusatory"
     },
     {
       "id": "ext_syn_9358_001",
       "text": "Your biometrics indicate elevated cortisol levels. Standard procedure requires immediate compliance with respiratory optimization protocols.",
-      "emotion": "authoritative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "control_vs_chaos_arc",
-      "source_ticket": "ext_resolve_0016"
+      "source_ticket": "ext_resolve_0016",
+      "emotion_raw": "authoritative"
     },
     {
       "id": "ext_syn_9358_002",
       "text": "Non-compliance noted in the incident log. This deviates from the approved marmot-human interaction framework outlined in section 7.3 of the Epsilon Field Manual.",
-      "emotion": "annoyed",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "control_vs_chaos_arc",
-      "source_ticket": "ext_resolve_0016"
+      "source_ticket": "ext_resolve_0016",
+      "emotion_raw": "annoyed"
     },
     {
       "id": "ext_syn_9358_003",
       "text": "Your continued resistance is creating operational variance beyond acceptable parameters. The system cannot tolerate this level of unpredictability.",
-      "emotion": "tense",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "control_vs_chaos_arc",
-      "source_ticket": "ext_resolve_0016"
+      "source_ticket": "ext_resolve_0016",
+      "emotion_raw": "tense"
     },
     {
       "id": "ext_syn_d0ad_001",
       "text": "But lately, I've been noticing some... irregularities in the regional deployment reports. The marmot encounter metrics don't align with our approved dispersal frameworks.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "betrayal_revelation",
-      "source_ticket": "ext_resolve_0017"
+      "source_ticket": "ext_resolve_0017",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_d0ad_002",
       "text": "When I cross-referenced the supply chain manifests with operational logs, I found equipment shipments that bypassed Hutch-A-Solutions protocols entirely. Someone's running parallel operations.",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "betrayal_revelation",
-      "source_ticket": "ext_resolve_0017"
+      "source_ticket": "ext_resolve_0017",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_d0ad_003",
       "text": "The routing codes trace back to... {checks tablet} IRRICONA assets. But that's impossible\u2014they're strictly R&D. Unless...",
-      "emotion": "dawning_realization",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "betrayal_revelation",
-      "source_ticket": "ext_resolve_0017"
+      "source_ticket": "ext_resolve_0017",
+      "emotion_raw": "dawning_realization"
     },
     {
       "id": "ext_syn_d764_001",
       "text": "My deliverables are fully compliant with Section 4.2 of the Marmot Insertion Protocol. However, I've noticed your team's recent audit requests don't align with the standard MMSI certification framework.",
-      "emotion": "defensive",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "compliance_conflict",
-      "source_ticket": "ext_resolve_0018"
+      "source_ticket": "ext_resolve_0018",
+      "emotion_raw": "defensive"
     },
     {
       "id": "ext_syn_d764_002",
       "text": "This feels like a procedural overreach. My throughput metrics were validated by IRRICONA's last quarterly review. Are you questioning their assessment methodology?",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "compliance_conflict",
-      "source_ticket": "ext_resolve_0018"
+      "source_ticket": "ext_resolve_0018",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_e036_001",
       "text": "Wait\u2014you're telling me you've never seen the Hutch-A-Solutions compliance matrix? The one that cross-references marmot behavioral conditioning with Marriott property zoning?",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "surprise_cascade_arc",
-      "source_ticket": "ext_resolve_0019"
+      "source_ticket": "ext_resolve_0019",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_e036_002",
       "text": "It's right there in Appendix 7.2: 'Protocols for Remediation of Unauthorized Marmot-Human Synergy Events.' You signed off on this during the last quarterly alignment!",
-      "emotion": "shock",
+      "emotion": "surprise",
       "is_extension_bridge": true,
       "arc_type": "surprise_cascade_arc",
-      "source_ticket": "ext_resolve_0019"
+      "source_ticket": "ext_resolve_0019",
+      "emotion_raw": "shock"
     },
     {
       "id": "ext_syn_e177_001",
       "text": "The Hutch-A-Solutions verification failure triggered a compliance cascade. MMSI is now auditing all dispersal unit certifications from the last quarter.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "Operational Failure to Personal Consequence",
-      "source_ticket": "ext_resolve_0020"
+      "source_ticket": "ext_resolve_0020",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_e177_002",
       "text": "My certification revenue stream just got flagged for review. Without those MMSI endorsements, my consultancy retainer is at risk.",
-      "emotion": "anxious",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "Operational Failure to Personal Consequence",
-      "source_ticket": "ext_resolve_0020"
+      "source_ticket": "ext_resolve_0020",
+      "emotion_raw": "anxious"
     },
     {
       "id": "ext_syn_0d55_001",
       "text": "The Reserve's realignment protocols are... unusually specific. I'm seeing cross-references to IRRICONA field deployment codes in the compliance annexes.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "organizational_paranoia",
-      "source_ticket": "ext_resolve_0021"
+      "source_ticket": "ext_resolve_0021",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_0d55_002",
       "text": "These aren't standard marmot rehabilitation metrics. These are active operational signatures\u2014IRRICONA shouldn't have assets this deep in the region without Project oversight notification.",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "organizational_paranoia",
-      "source_ticket": "ext_resolve_0021"
+      "source_ticket": "ext_resolve_0021",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_80af_001",
       "text": "Let me review the synergy metrics... Hmm. The cross-platform marmot deployment shows only 23% alignment with our quarterly KPIs.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "emotional_refinement",
-      "source_ticket": "ext_resolve_0022"
+      "source_ticket": "ext_resolve_0022",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_80af_002",
       "text": "This isn't just non-compliance\u2014it's a fundamental failure to grasp the strategic marmot-human interface protocols.",
-      "emotion": "contempt",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "emotional_refinement",
-      "source_ticket": "ext_resolve_0022"
+      "source_ticket": "ext_resolve_0022",
+      "emotion_raw": "contempt"
     },
     {
       "id": "ext_syn_c60c_001",
       "text": "But you know what really matters? The auditor's discomfort means our compliance metrics are solid\u2014that keeps the Hutch-A-Solutions equipment contracts flowing without interruption.",
-      "emotion": "satisfied",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "financial_consequences",
-      "source_ticket": "ext_resolve_0023"
+      "source_ticket": "ext_resolve_0023",
+      "emotion_raw": "satisfied"
     },
     {
       "id": "ext_syn_c60c_002",
       "text": "And with MMSI off our backs, we can accelerate the phased deployment schedule. More controlled infestations mean more pest control service agreements through the front channels.",
-      "emotion": "calculating",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "financial_consequences",
-      "source_ticket": "ext_resolve_0023"
+      "source_ticket": "ext_resolve_0023",
+      "emotion_raw": "calculating"
     },
     {
       "id": "ext_syn_4690_001",
       "text": "Actually, wait. If we don't flag it, and no one else does... that means the deviation becomes the new baseline. It's not a bug, it's a feature. A feature we can leverage.",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "ethical_compromise",
-      "source_ticket": "ext_resolve_0024"
+      "source_ticket": "ext_resolve_0024",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_4690_002",
       "text": "Think about it. The 'protocol deviation' is just an unapproved marmot deployment vector. But if it works for Black Brugo neutralization, it's not a deviation\u2014it's an innovative, off-book operational procedure. Our procedure.",
-      "emotion": "determined",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "ethical_compromise",
-      "source_ticket": "ext_resolve_0024"
+      "source_ticket": "ext_resolve_0024",
+      "emotion_raw": "determined"
     },
     {
       "id": "ext_syn_dfa7_001",
       "text": "In fact, your file shows you might be a good candidate for our new pilot program. Let me pull up the transfer metrics from our Primm facility.",
-      "emotion": "neutral_to_positive",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "defensive_to_promotional_pivot",
-      "source_ticket": "ext_resolve_0025"
+      "source_ticket": "ext_resolve_0025",
+      "emotion_raw": "neutral_to_positive"
     },
     {
       "id": "ext_syn_dfa7_002",
       "text": "The data shows remarkable synergy potential. While the initial assessment was... cautious, your profile aligns with our optimized marmot dispersal protocols.",
-      "emotion": "positive",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "defensive_to_promotional_pivot",
-      "source_ticket": "ext_resolve_0025"
+      "source_ticket": "ext_resolve_0025",
+      "emotion_raw": "positive"
     },
     {
       "id": "ext_syn_2af1_001",
       "text": "In fact, the Project Lead's satisfaction metrics have been consistently trending upward, which aligns with our quarterly performance indicators.",
-      "emotion": "measured_optimism",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "tone_escalation",
-      "source_ticket": "ext_resolve_0026"
+      "source_ticket": "ext_resolve_0026",
+      "emotion_raw": "measured_optimism"
     },
     {
       "id": "ext_syn_2af1_002",
       "text": "This positive trajectory directly correlates with today's operational milestone\u2014a high-impact revenue event that requires appropriate ceremonial framing.",
-      "emotion": "formal_enthusiasm",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "tone_escalation",
-      "source_ticket": "ext_resolve_0026"
+      "source_ticket": "ext_resolve_0026",
+      "emotion_raw": "formal_enthusiasm"
     },
     {
       "id": "ext_syn_85e6_001",
       "text": "Though I must say, your marmot accounting methodology is... rudimentary. The Soviet conditioning protocols from the MORMA-3 era had far more elegant tracking systems. They understood that proper documentation was the foundation of effective rodent control.",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "hidden_expertise_reveal",
-      "source_ticket": "ext_resolve_0027"
+      "source_ticket": "ext_resolve_0027",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_85e6_002",
       "text": "In fact, I've been cross-referencing your reports against the 1978 Leningrad protocols. The deviation in marmot behavioral metrics is statistically significant. You're missing the nuance of conditioned response patterns.",
-      "emotion": "engaged",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "hidden_expertise_reveal",
-      "source_ticket": "ext_resolve_0027"
+      "source_ticket": "ext_resolve_0027",
+      "emotion_raw": "engaged"
     },
     {
       "id": "ext_syn_8389_001",
       "text": "Though I have to admit, the Hutch-A-Solutions certification process felt... streamlined. Their compliance documentation was suspiciously light on technical validation.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "certification_skepticism",
-      "source_ticket": "ext_resolve_0029"
+      "source_ticket": "ext_resolve_0029",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_8389_002",
       "text": "When I reviewed their TRL-3 status report, the data handling protocols for MORMA-3 conditioning showed clear deviations from Epsilon's stakeholder standards. It's not just suboptimal\u2014it's negligent.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "certification_skepticism",
-      "source_ticket": "ext_resolve_0029"
+      "source_ticket": "ext_resolve_0029",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_de42_001",
       "text": "But their sudden exit from the market creates an operational gap in our supply chain verification. Hutch-A-Solutions was our primary equipment provider for the regional rollout.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "financial_revelation_arc",
-      "source_ticket": "ext_resolve_0030"
+      "source_ticket": "ext_resolve_0030",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_de42_002",
       "text": "Their financials were always... aggressively optimistic. Now I'm seeing the same pattern in our initiative's quarterly projections. The revenue streams don't align with deployment timelines.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "financial_revelation_arc",
-      "source_ticket": "ext_resolve_0030"
+      "source_ticket": "ext_resolve_0030",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_de42_003",
       "text": "This isn't just one company failing. It's a systemic issue. The projections we've been working from were never viable. We've been building our entire regional strategy on fabricated numbers.",
-      "emotion": "realization",
+      "emotion": "surprise",
       "is_extension_bridge": true,
       "arc_type": "financial_revelation_arc",
-      "source_ticket": "ext_resolve_0030"
+      "source_ticket": "ext_resolve_0030",
+      "emotion_raw": "realization"
     },
     {
       "id": "ext_syn_dec8_001",
       "text": "Let me pull up the compliance dashboard... The deviation protocols show a cascade of non-conformances in the revenue recognition module.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "compliance_audit_arc",
-      "source_ticket": "ext_resolve_0031"
+      "source_ticket": "ext_resolve_0031",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_dec8_002",
       "text": "According to the audit trail, the marmot deployment metrics aren't mapping to the revenue streams properly. The system shows zero revenue attribution for the last quarter's interventions.",
-      "emotion": "alarmed",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "compliance_audit_arc",
-      "source_ticket": "ext_resolve_0031"
+      "source_ticket": "ext_resolve_0031",
+      "emotion_raw": "alarmed"
     },
     {
       "id": "ext_syn_fba4_001",
       "text": "We've been tracking asset performance metrics, and the latest behavioral analytics show concerning patterns. The marmots aren't just failing to optimize EBITDA\u2014they're actively working against their own operational parameters.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "asset_degradation_arc",
-      "source_ticket": "ext_resolve_0032"
+      "source_ticket": "ext_resolve_0032",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_fba4_002",
       "text": "Our quality assurance team identified what they're calling 'protocol drift'\u2014the conditioning matrix appears to be degrading faster than projected. These aren't standard asset failures; we're seeing deliberate non-compliance with core behavioral directives.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "asset_degradation_arc",
-      "source_ticket": "ext_resolve_0032"
+      "source_ticket": "ext_resolve_0032",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_9259_001",
       "text": "Fatigued? The metrics are fatigued? I've been running the same throughput analysis on the Hollow Reserve marmot cohort for three cycles now. Every report comes back within 0.5% variance. It's statistical noise masquerading as operational insight.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_to_outrage",
-      "source_ticket": "ext_resolve_0033"
+      "source_ticket": "ext_resolve_0033",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_9259_002",
       "text": "And now Compliance is flagging my reports for 'insufficient narrative alignment with synergistic rodent deployment frameworks.' They want me to reframe the data to show how marmot conditioning directly impacts Marriott guest satisfaction scores. The absurdity is becoming structural.",
-      "emotion": "exasperation",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_to_outrage",
-      "source_ticket": "ext_resolve_0033"
+      "source_ticket": "ext_resolve_0033",
+      "emotion_raw": "exasperation"
     },
     {
       "id": "ext_syn_afd5_001",
       "text": "The mitigation sequence requires verification of your substrate handling protocols. According to MMSI Standard 7.3, any deviation from approved enrichment materials triggers a mandatory compliance review.",
-      "emotion": "authoritative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "authority_conflict",
-      "source_ticket": "ext_resolve_0035"
+      "source_ticket": "ext_resolve_0035",
+      "emotion_raw": "authoritative"
     },
     {
       "id": "ext_syn_afd5_002",
       "text": "Your access to the prescribed sequence has been temporarily suspended pending investigation. This isn't about contamination\u2014it's about protocol adherence.",
-      "emotion": "confrontational",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "authority_conflict",
-      "source_ticket": "ext_resolve_0035"
+      "source_ticket": "ext_resolve_0035",
+      "emotion_raw": "confrontational"
     },
     {
       "id": "ext_syn_e6d3_001",
@@ -3975,186 +4049,209 @@
     {
       "id": "ext_syn_e6d3_002",
       "text": "Specifically, we need to document your team's nocturnal resource allocation protocols. The system flags any deviations from approved after-hours activity matrices.",
-      "emotion": "serious",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_masking",
-      "source_ticket": "ext_resolve_0036"
+      "source_ticket": "ext_resolve_0036",
+      "emotion_raw": "serious"
     },
     {
       "id": "ext_syn_e6d3_003",
       "text": "I'm pulling up the relevant documentation now. Ah, here\u2014the midnight market penetration assessment template. Standard procedure for evaluating after-hours logistical opportunities.",
-      "emotion": "professional",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_masking",
-      "source_ticket": "ext_resolve_0036"
+      "source_ticket": "ext_resolve_0036",
+      "emotion_raw": "professional"
     },
     {
       "id": "ext_syn_c60c_003",
       "text": "I tried to redirect to standard compliance metrics, but they kept circling back to the missing hutches. Their persistence suggests they suspect something beyond paperwork errors.",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "operational_security_breach",
-      "source_ticket": "ext_resolve_0037"
+      "source_ticket": "ext_resolve_0037",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_0cb0_001",
       "text": "My credentials? I'm here for the quarterly marmot inventory audit. The Hutch-A-Solutions staging area shows a 12% discrepancy between deployment logs and marmot recovery receipts. Section 4.3 of the MMSI compliance framework requires immediate reconciliation.",
-      "emotion": "confrontational_calm",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "marmot_accounting_dispute",
-      "source_ticket": "ext_resolve_0038"
+      "source_ticket": "ext_resolve_0038",
+      "emotion_raw": "confrontational_calm"
     },
     {
       "id": "ext_syn_0cb0_002",
       "text": "Twelve percent! That's not a rounding error\u2014that's either operational leakage or creative accounting. The IRRICONA compliance team flagged this staging area specifically. Where are the missing marmots? Are they being diverted to unauthorized deployments?",
-      "emotion": "accusatory_intensity",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "marmot_accounting_dispute",
-      "source_ticket": "ext_resolve_0038"
+      "source_ticket": "ext_resolve_0038",
+      "emotion_raw": "accusatory_intensity"
     },
     {
       "id": "ext_syn_0cb0_003",
       "text": "I see your recognition bonus paperwork is already pre-filled. Interesting timing. This looks less like an audit and more like a cover-up. You want me to sign off on 'all marmots accounted for' so you can collect your incentive and make the discrepancy disappear.",
-      "emotion": "controlled_anger",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "marmot_accounting_dispute",
-      "source_ticket": "ext_resolve_0038"
+      "source_ticket": "ext_resolve_0038",
+      "emotion_raw": "controlled_anger"
     },
     {
       "id": "ext_syn_dfda_001",
       "text": "Though the stakeholder metrics are stable, I've noticed some concerning patterns in the regional incident reports. The Bruma location keeps appearing in the logs.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "operational_failure_chain",
-      "source_ticket": "ext_resolve_0039"
+      "source_ticket": "ext_resolve_0039",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_dfda_002",
       "text": "Their false-positive rate is trending upward - it's becoming a pattern of operational inefficiency that could impact our quality assurance metrics if left unaddressed.",
-      "emotion": "frustrated",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "operational_failure_chain",
-      "source_ticket": "ext_resolve_0039"
+      "source_ticket": "ext_resolve_0039",
+      "emotion_raw": "frustrated"
     },
     {
       "id": "ext_syn_0e97_001",
       "text": "Of course, synergistic uplift requires measurable implementation. Let's discuss the operational framework for quantifying marmot-human interaction value.",
-      "emotion": "analytical",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Operationalization Arc",
-      "source_ticket": "ext_resolve_0041"
+      "source_ticket": "ext_resolve_0041",
+      "emotion_raw": "analytical"
     },
     {
       "id": "ext_syn_0e97_002",
       "text": "Our MMSI certification system provides standardized metrics. Each 'uplift event' \u2014 a guest encounter with conditioned marmots \u2014 generates quantifiable revenue potential through subsequent service contracts.",
-      "emotion": "professional",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Operationalization Arc",
-      "source_ticket": "ext_resolve_0041"
+      "source_ticket": "ext_resolve_0041",
+      "emotion_raw": "professional"
     },
     {
       "id": "ext_syn_0e97_003",
       "text": "We've established a tiered pricing model based on room type and desired encounter intensity. The baseline package includes strategic marmot placement and controlled nuisance escalation protocols.",
-      "emotion": "transactional",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Operationalization Arc",
-      "source_ticket": "ext_resolve_0041"
+      "source_ticket": "ext_resolve_0041",
+      "emotion_raw": "transactional"
     },
     {
       "id": "ext_syn_0402_001",
       "text": "Limited supply chain means Hutch-A-Solutions can't meet their quarterly dispersal quotas. That triggers automatic MORMA-3 compliance flags.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_arc",
-      "source_ticket": "ext_resolve_0042"
+      "source_ticket": "ext_resolve_0042",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_0402_002",
       "text": "And MORMA-3 doesn't care about supply chain issues \u2014 it's a binary protocol. Either the hutch deployment meets spec, or it's a Category 3 violation.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_arc",
-      "source_ticket": "ext_resolve_0042"
+      "source_ticket": "ext_resolve_0042",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_9b44_001",
       "text": "Protocol requires immediate escalation to the Project Director for asset recovery authorization.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "chain_of_command_breakdown",
-      "source_ticket": "ext_resolve_0043"
+      "source_ticket": "ext_resolve_0043",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_9b44_002",
       "text": "Director's comms are unresponsive. According to contingency framework 7.3, command should automatically cascade to the Deputy Director of Operational Continuity.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "chain_of_command_breakdown",
-      "source_ticket": "ext_resolve_0043"
+      "source_ticket": "ext_resolve_0043",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_9b44_003",
       "text": "Deputy Director's credentials are showing as 'pending revalidation' in the system. The command chain appears to be... non-operational.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "chain_of_command_breakdown",
-      "source_ticket": "ext_resolve_0043"
+      "source_ticket": "ext_resolve_0043",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_a98c_001",
       "text": "Wait... that's precisely the liability exposure we can leverage. If individual excursions represent risk, we could formalize them as 'autonomous compliance verification protocols' with standardized reporting templates.",
-      "emotion": "thoughtful",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "problem-solution-optimization",
-      "source_ticket": "ext_resolve_0044"
+      "source_ticket": "ext_resolve_0044",
+      "emotion_raw": "thoughtful"
     },
     {
       "id": "ext_syn_a98c_002",
       "text": "Actually, this creates a new revenue stream opportunity. We could bill departments for 'breach-response optimization assessments' while simultaneously gathering intel on containment vulnerabilities. The liability becomes a profit center.",
-      "emotion": "excited",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "problem-solution-optimization",
-      "source_ticket": "ext_resolve_0044"
+      "source_ticket": "ext_resolve_0044",
+      "emotion_raw": "excited"
     },
     {
       "id": "ext_syn_6dde_001",
       "text": "Support request logged. Cross-referencing with Marmot Activity Dashboard... Hmm. Your credentials show an unusual pattern of access to Hutch-A-Solutions equipment manifests.",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "betrayal_reveal",
-      "source_ticket": "ext_resolve_0045"
+      "source_ticket": "ext_resolve_0045",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_6dde_002",
       "text": "Wait. This isn't a standard support ticket. It's flagged under Protocol 7-Alpha. You've triggered a compliance audit trail. The system is showing... unauthorized marmot relocation from Hidden Hollow Reserve.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "betrayal_reveal",
-      "source_ticket": "ext_resolve_0045"
+      "source_ticket": "ext_resolve_0045",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_8954_001",
       "text": "Our corrective action plan is proceeding according to the MMSI contract specifications. All deliverables are on schedule for the Q3 review.",
-      "emotion": "confident",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "authority_conflict",
-      "source_ticket": "ext_resolve_0046"
+      "source_ticket": "ext_resolve_0046",
+      "emotion_raw": "confident"
     },
     {
       "id": "ext_syn_8954_002",
       "text": "Though I should note\u2014the Project Lead has been requesting additional compliance documentation beyond the standard scope. Something about 'verification of marmot behavioral conditioning efficacy' in the corrective protocols.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "authority_conflict",
-      "source_ticket": "ext_resolve_0046"
+      "source_ticket": "ext_resolve_0046",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_206d_001",
       "text": "Protocol activated. Marmot behavioral conditioning matrix is now online. Initial biometric readings show optimal compliance parameters across all deployed specimens.",
-      "emotion": "satisfied",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "successful_activation_arc",
-      "source_ticket": "ext_resolve_0047"
+      "source_ticket": "ext_resolve_0047",
+      "emotion_raw": "satisfied"
     },
     {
       "id": "ext_syn_206d_002",
@@ -4175,66 +4272,74 @@
     {
       "id": "ext_syn_5396_002",
       "text": "The flowchart indicates we should pivot to the 'partner engagement' subroutine. Emotional states are irrelevant to procedural compliance.",
-      "emotion": "detached",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "procedural_evasion",
-      "source_ticket": "ext_resolve_0048"
+      "source_ticket": "ext_resolve_0048",
+      "emotion_raw": "detached"
     },
     {
       "id": "ext_syn_0bbd_001",
       "text": "The debrief includes our latest Hutch-A-Solutions prototype\u2014modular containment with rapid-deploy marmot insertion capabilities. It's a game-changer for urban deployment scenarios.",
-      "emotion": "pride",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "innovation_vs_compliance",
-      "source_ticket": "ext_resolve_0050"
+      "source_ticket": "ext_resolve_0050",
+      "emotion_raw": "pride"
     },
     {
       "id": "ext_syn_0bbd_002",
       "text": "Our field tests show a 40% reduction in deployment time compared to standard units. The innovation team at IRRICONA is quite pleased with the synergy metrics.",
-      "emotion": "confident",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "innovation_vs_compliance",
-      "source_ticket": "ext_resolve_0050"
+      "source_ticket": "ext_resolve_0050",
+      "emotion_raw": "confident"
     },
     {
       "id": "ext_syn_2dce_001",
       "text": "But this wasn't standard asset reallocation. The specimens in the Hollow Reserve... their neural conditioning was unlike anything in our standard deployment protocols.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "technological_escalation",
-      "source_ticket": "ext_resolve_0052"
+      "source_ticket": "ext_resolve_0052",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_2dce_002",
       "text": "IRRICONA's latest R&D batch had been testing autonomous decision trees. We thought it was just theoretical optimization for nuisance behavior modeling.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "technological_escalation",
-      "source_ticket": "ext_resolve_0052"
+      "source_ticket": "ext_resolve_0052",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_14a2_001",
       "text": "Fine. Fine! Let's channel this into something actionable. If I can't locate the master keycard, I'll at least document the systemic failure. Where's the incident template?",
-      "emotion": "frustrated_resignation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_catharsis",
-      "source_ticket": "ext_resolve_0053"
+      "source_ticket": "ext_resolve_0053",
+      "emotion_raw": "frustrated_resignation"
     },
     {
       "id": "ext_syn_14a2_002",
       "text": "Section 4.2.7: 'Unplanned rodent throughput variance.' Subsection C: 'Potential egress protocol interference.' I'm annotating the cascading failure as a 'synergistic security degradation event.' There. That should satisfy Compliance.",
-      "emotion": "procedural_focus",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_catharsis",
-      "source_ticket": "ext_resolve_0053"
+      "source_ticket": "ext_resolve_0053",
+      "emotion_raw": "procedural_focus"
     },
     {
       "id": "ext_syn_3dda_001",
       "text": "Wait\u2014the perimeter sensors just flagged an unauthorized access attempt. Someone's trying to breach our operational security protocols. This isn't standard corporate surveillance.",
-      "emotion": "anxious",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "security_breach_escalation",
-      "source_ticket": "ext_resolve_0054"
+      "source_ticket": "ext_resolve_0054",
+      "emotion_raw": "anxious"
     },
     {
       "id": "ext_syn_3dda_002",
@@ -4247,194 +4352,218 @@
     {
       "id": "ext_syn_06f5_001",
       "text": "The Hutch containment protocols are holding, but I'm seeing an unauthorized access attempt on the Epsilon project server. Someone's poking around the marmot deployment schedules.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "security_breach_escalation",
-      "source_ticket": "ext_resolve_0055"
+      "source_ticket": "ext_resolve_0055",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_06f5_002",
       "text": "Security logs show the consultant accessed classified breeding metrics without proper clearance. This triggers Protocol 7-Epsilon \u2014 mandatory review of all personnel with project visibility.",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "security_breach_escalation",
-      "source_ticket": "ext_resolve_0055"
+      "source_ticket": "ext_resolve_0055",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_9b11_001",
       "text": "I'm reaching out regarding the recent quarterly deployment metrics. The data suggests some... interesting patterns in certain Marriott properties.",
-      "emotion": "curious",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration",
-      "source_ticket": "ext_resolve_0056"
+      "source_ticket": "ext_resolve_0056",
+      "emotion_raw": "curious"
     },
     {
       "id": "ext_syn_9b11_002",
       "text": "Our Hutch-A-Solutions liaison flagged some concerning correlations between marmot insertion rates and subsequent pest control contract activations. The analysis appears quite thorough.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration",
-      "source_ticket": "ext_resolve_0056"
+      "source_ticket": "ext_resolve_0056",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_586b_001",
       "text": "Excellent. Now, let's pull up the compliance dashboard for this quarter's deployment metrics. {Taps tablet, brings up holographic display} You'll see the cascade protocol is functioning within acceptable parameters.",
-      "emotion": "professional_calm",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "compliance_failure_revelation",
-      "source_ticket": "ext_resolve_0057"
+      "source_ticket": "ext_resolve_0057",
+      "emotion_raw": "professional_calm"
     },
     {
       "id": "ext_syn_586b_002",
       "text": "{Scrolling through data, then pauses} Wait. The cascade isn't just propagating through the Marriott properties... it's jumping to adjacent hospitality chains. {Voice tightens} The containment protocols aren't containing. This is... exponential.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "compliance_failure_revelation",
-      "source_ticket": "ext_resolve_0057"
+      "source_ticket": "ext_resolve_0057",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_8890_001",
       "text": "However, the initial report's failure to specify pipe diameter or pressure rating suggests a concerning lack of procedural rigor in your documentation. This creates downstream compliance exposure.",
-      "emotion": "mild_irritation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_contempt_escalation",
-      "source_ticket": "ext_resolve_0059"
+      "source_ticket": "ext_resolve_0059",
+      "emotion_raw": "mild_irritation"
     },
     {
       "id": "ext_syn_8890_002",
       "text": "Such oversights are symptomatic of a broader pattern. They indicate a resource allocation mismatch\u2014your bandwidth appears consumed by trivial anomalies rather than stakeholder-aligned value streams.",
-      "emotion": "contempt",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_contempt_escalation",
-      "source_ticket": "ext_resolve_0059"
+      "source_ticket": "ext_resolve_0059",
+      "emotion_raw": "contempt"
     },
     {
       "id": "ext_syn_f963_001",
       "text": "I'm reviewing the training module logs now... wait, the marmot behavioral metrics are showing anomalous aggression patterns. This wasn't in the standard deviation projections.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "escalation_arc",
-      "source_ticket": "ext_resolve_0060"
+      "source_ticket": "ext_resolve_0060",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_f963_002",
       "text": "The containment protocols are failing. We have multiple Class-3 marmots breaching designated nuisance thresholds. This requires immediate intervention.",
-      "emotion": "urgency",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "escalation_arc",
-      "source_ticket": "ext_resolve_0060"
+      "source_ticket": "ext_resolve_0060",
+      "emotion_raw": "urgency"
     },
     {
       "id": "ext_syn_eb9c_001",
       "text": "Wait\u2014before you go. I just pulled the latest deployment schedule from Facilities. There's no MORMA-3 activity logged for this quarter. Did you see a separate work order?",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "operational_breach_investigation",
-      "source_ticket": "ext_resolve_0061"
+      "source_ticket": "ext_resolve_0061",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_eb9c_002",
       "text": "That's a compliance red flag. Unlogged deployments violate our operational transparency framework. I'm running a trace on the marmot asset registry now... and there are three high-TRL units marked 'in transit' to this location. That wasn't in the quarterly review packet.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "operational_breach_investigation",
-      "source_ticket": "ext_resolve_0061"
+      "source_ticket": "ext_resolve_0061",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_938f_001",
       "text": "But the MORMA-3 behavioral logs show something interesting\u2014when throughput hits 87% efficiency, there's a protocol shift in the vocalization patterns. Footnote 12b in the conditioning manual mentions 'articulation thresholds.'",
-      "emotion": "curious",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "metric-to-capability_revelation",
-      "source_ticket": "ext_resolve_0063"
+      "source_ticket": "ext_resolve_0063",
+      "emotion_raw": "curious"
     },
     {
       "id": "ext_syn_938f_002",
       "text": "Wait\u2014you're saying the marmot isn't just hitting metrics, it's unlocking compliance modules? That wasn't in the spec. IRRICONA must have embedded tiered response protocols without disclosure.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "metric-to-capability_revelation",
-      "source_ticket": "ext_resolve_0063"
+      "source_ticket": "ext_resolve_0063",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_fd42_001",
       "text": "First, we need to file the post-incident compliance form with MMSI. Standard procedure, but their automated tone verification system can be... particular.",
-      "emotion": "mild_annoyance",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_tension",
-      "source_ticket": "ext_resolve_0064"
+      "source_ticket": "ext_resolve_0064",
+      "emotion_raw": "mild_annoyance"
     },
     {
       "id": "ext_syn_fd42_002",
       "text": "If the tone analyzer flags any deviation from approved vocal patterns, it triggers a full re-initiation sequence. That means mandatory re-certification modules for the entire team.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_tension",
-      "source_ticket": "ext_resolve_0064"
+      "source_ticket": "ext_resolve_0064",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_31f9_001",
       "text": "Now, let's talk about the operational metrics. The revenue potential you mentioned\u2014what's the projected IRR on the marmot insertion timeline? I need to see the numbers before we commit to any 'flexibility.'",
-      "emotion": "analytical",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "enthusiasm_to_calculation",
-      "source_ticket": "ext_resolve_0065"
+      "source_ticket": "ext_resolve_0065",
+      "emotion_raw": "analytical"
     },
     {
       "id": "ext_syn_31f9_002",
       "text": "Understood. But flexibility has costs. We'll need to adjust the deployment schedule, recalibrate the behavioral conditioning protocols, and update the risk assessment matrix. This isn't just enthusiasm\u2014it's a calculated operational shift.",
-      "emotion": "strategic",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "enthusiasm_to_calculation",
-      "source_ticket": "ext_resolve_0065"
+      "source_ticket": "ext_resolve_0065",
+      "emotion_raw": "strategic"
     },
     {
       "id": "ext_syn_66f3_001",
       "text": "Speaking of synergy, I was just reviewing our latest guest feedback metrics from the Aspen property. The 'unexpected wildlife encounter' satisfaction scores are trending positively, but we're seeing some concerning variance in the qualitative comments.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "protocol_escalation",
-      "source_ticket": "ext_resolve_0066"
+      "source_ticket": "ext_resolve_0066",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_66f3_002",
       "text": "One guest mentioned 'a surprisingly friendly marmot that seemed to want to share my breakfast.' This triggers our tier-2 protocol review. We need to immediately clarify operational boundaries before this escalates to a liability framework discussion.",
-      "emotion": "urgent",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "protocol_escalation",
-      "source_ticket": "ext_resolve_0066"
+      "source_ticket": "ext_resolve_0066",
+      "emotion_raw": "urgent"
     },
     {
       "id": "ext_syn_586c_001",
       "text": "Excellent! Let me pull up the latest MORMA-3 dashboard for your review. The behavioral metrics have been trending positively across all deployment zones...",
-      "emotion": "engaged",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "escalating_concern",
-      "source_ticket": "ext_resolve_0067"
+      "source_ticket": "ext_resolve_0067",
+      "emotion_raw": "engaged"
     },
     {
       "id": "ext_syn_586c_002",
       "text": "Hmm. That's unusual. I'm seeing irregular data spikes from the adjacent property sector. The pattern doesn't match our standard behavioral models.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "escalating_concern",
-      "source_ticket": "ext_resolve_0067"
+      "source_ticket": "ext_resolve_0067",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_cf8e_001",
       "text": "Of course, the compliance matrix is still pending MMSI certification. Without that, the revenue stream remains... theoretical.",
-      "emotion": "concerned",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "ironic_blessing",
-      "source_ticket": "ext_resolve_0068"
+      "source_ticket": "ext_resolve_0068",
+      "emotion_raw": "concerned"
     },
     {
       "id": "ext_syn_cf8e_002",
       "text": "But let's not dampen the moment. We've secured the annex. That's a synergistic win, even if the financials are still... aspirational.",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "ironic_blessing",
-      "source_ticket": "ext_resolve_0068"
+      "source_ticket": "ext_resolve_0068",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_f8fe_001",
@@ -4447,26 +4576,29 @@
     {
       "id": "ext_syn_f8fe_002",
       "text": "It's part of the deployment protocol\u2014we match marmot comfort parameters to specific hotel amenities. Their satisfaction metrics directly correlate with infestation persistence rates.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "protocol_revelation",
-      "source_ticket": "ext_resolve_0069"
+      "source_ticket": "ext_resolve_0069",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_2ec8_001",
       "text": "Our last marmot insertion at the Marriott Courtyard was flagged for 'behavioral deviation' by the internal audit team. The report cited 'non-standard foraging patterns' as a potential security breach.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "internal_surveillance_paranoia",
-      "source_ticket": "ext_resolve_0070"
+      "source_ticket": "ext_resolve_0070",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_2ec8_002",
       "text": "Now I'm getting automated alerts every time I access the marmot deployment logs. The system tracks my query patterns\u2014apparently my search for 'operational anomalies' triggered a compliance review.",
-      "emotion": "paranoia",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "internal_surveillance_paranoia",
-      "source_ticket": "ext_resolve_0070"
+      "source_ticket": "ext_resolve_0070",
+      "emotion_raw": "paranoia"
     },
     {
       "id": "ext_syn_8b5c_001",
@@ -4479,122 +4611,137 @@
     {
       "id": "ext_syn_8b5c_002",
       "text": "Wait\u2014that's just the remediation side. The real margin comes from the preventative monitoring subscriptions. Each property pays $850 monthly for our Marmot Activity Detection System.",
-      "emotion": "realization",
+      "emotion": "surprise",
       "is_extension_bridge": true,
       "arc_type": "financial_revelation",
-      "source_ticket": "ext_resolve_0071"
+      "source_ticket": "ext_resolve_0071",
+      "emotion_raw": "realization"
     },
     {
       "id": "ext_syn_9c0a_001",
       "text": "The extraction team's movements were traced to the secondary annex. Security logs show they accessed the accommodation registry before departure. There's a... discrepancy in the room assignments.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "betrayal_reveal",
-      "source_ticket": "ext_resolve_0072"
+      "source_ticket": "ext_resolve_0072",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_9c0a_002",
       "text": "The suite you're being directed to\u2014second floor, terminus corridor\u2014was flagged in the breach analysis. It matches the temporary staging location used by the extraction team during their operation window.",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "betrayal_reveal",
-      "source_ticket": "ext_resolve_0072"
+      "source_ticket": "ext_resolve_0072",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_9c0a_003",
       "text": "Protocol suggests we proceed with the accommodation confirmation while maintaining surveillance posture. The rival front may be using our own infrastructure against us\u2014this could be either a trap or an opportunity for counter-intelligence.",
-      "emotion": "calculated",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "betrayal_reveal",
-      "source_ticket": "ext_resolve_0072"
+      "source_ticket": "ext_resolve_0072",
+      "emotion_raw": "calculated"
     },
     {
       "id": "ext_syn_3e4f_001",
       "text": "Though I did hear some whispers in the last quarterly sync\u2014something about MORMA-3 compliance being flagged for an internal audit. The usual synergies seemed... off.",
-      "emotion": "uneasy",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "corporate_conspiracy_reveal",
-      "source_ticket": "ext_resolve_0074"
+      "source_ticket": "ext_resolve_0074",
+      "emotion_raw": "uneasy"
     },
     {
       "id": "ext_syn_3e4f_002",
       "text": "Then the memo came down\u2014Hutchins was being 'transitioned to a strategic advisory role.' No farewell town hall, no handover doc. Just a footnote in the org update.",
-      "emotion": "confused",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "corporate_conspiracy_reveal",
-      "source_ticket": "ext_resolve_0074"
+      "source_ticket": "ext_resolve_0074",
+      "emotion_raw": "confused"
     },
     {
       "id": "ext_syn_c6b9_001",
       "text": "{Glancing at compliance dashboard} The quarterly audit flagged three non-conforming marmot deployments. That's a 0.7% deviation from synergistic alignment protocols.",
-      "emotion": "anxious",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "anxiety_to_macabre_efficiency",
-      "source_ticket": "ext_resolve_0075"
+      "source_ticket": "ext_resolve_0075",
+      "emotion_raw": "anxious"
     },
     {
       "id": "ext_syn_c6b9_002",
       "text": "{Tapping tablet with forced optimism} But look - the deviation actually increased guest complaint resolution efficiency by 12%. Sometimes non-compliance creates unexpected value streams.",
-      "emotion": "relieved",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "anxiety_to_macabre_efficiency",
-      "source_ticket": "ext_resolve_0075"
+      "source_ticket": "ext_resolve_0075",
+      "emotion_raw": "relieved"
     },
     {
       "id": "ext_syn_c6b9_003",
       "text": "{Smiling at the data} In fact, those 'problematic' marmots generated three new Marriott property contracts. The system self-corrects through... creative attrition.",
-      "emotion": "satisfied",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "anxiety_to_macabre_efficiency",
-      "source_ticket": "ext_resolve_0075"
+      "source_ticket": "ext_resolve_0075",
+      "emotion_raw": "satisfied"
     },
     {
       "id": "ext_syn_575f_001",
       "text": "Actually, I should mention\u2014the MMSI liaison position was recently vacated. There's been a... reassignment to the Hollow Reserve.",
-      "emotion": "uneasy",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "personnel_consequences",
-      "source_ticket": "ext_resolve_0077"
+      "source_ticket": "ext_resolve_0077",
+      "emotion_raw": "uneasy"
     },
     {
       "id": "ext_syn_575f_002",
       "text": "It's being framed as a 'specialized rehabilitation oversight role,' but everyone knows what that means. The quarterly review cycle is when they'll announce the permanent replacement.",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "personnel_consequences",
-      "source_ticket": "ext_resolve_0077"
+      "source_ticket": "ext_resolve_0077",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_2e44_001",
       "text": "Wait, you're saying I shouldn't be seeing this? The access log shows my credentials were cleared for this briefing package.",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "security_breach_escalation",
-      "source_ticket": "ext_resolve_0078"
+      "source_ticket": "ext_resolve_0078",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_2e44_002",
       "text": "That's a Tier-3 containment protocol flag. My clearance is only showing Tier-2 validation. There's a discrepancy in the vetting matrix.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "security_breach_escalation",
-      "source_ticket": "ext_resolve_0078"
+      "source_ticket": "ext_resolve_0078",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_7ae5_001",
       "text": "Your non-disclosure period may be concluding, but your access to Project Epsilon's operational protocols remains under Hutch-A-Solutions' equipment maintenance clause. The marmot insertion specifications you signed reference ongoing compliance obligations.",
-      "emotion": "controlled_anger",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "escalation-termination",
-      "source_ticket": "ext_resolve_0080"
+      "source_ticket": "ext_resolve_0080",
+      "emotion_raw": "controlled_anger"
     },
     {
       "id": "ext_syn_7ae5_002",
       "text": "Let me clarify: your termination paperwork has been flagged for review by MMSI's standards committee. Until they verify your post-employment marmot-handling certification remains valid, your departure constitutes a potential memetic security breach.",
-      "emotion": "cold_formality",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "escalation-termination",
-      "source_ticket": "ext_resolve_0080"
+      "source_ticket": "ext_resolve_0080",
+      "emotion_raw": "cold_formality"
     },
     {
       "id": "ext_syn_bc38_001",
@@ -4607,178 +4754,200 @@
     {
       "id": "ext_syn_bc38_002",
       "text": "The protocols are reading her deployment as non-compliant due to an unlogged marmot behavioral anomaly. Hutch-A-Solutions' calibration logs don't match IRRICONA's conditioning specs.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "protocol_failure_revelation",
-      "source_ticket": "ext_resolve_0081"
+      "source_ticket": "ext_resolve_0081",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_d12d_001",
       "text": "The 75-credit investment would need to be routed through MMSI's operational efficiency fund, but that requires a Form Epsilon-7B disclosure of all marmot deployment metrics from the last quarter.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conflict",
-      "source_ticket": "ext_resolve_0082"
+      "source_ticket": "ext_resolve_0082",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_d12d_002",
       "text": "Wait\u2014your last quarterly report shows a 40% variance in marmot insertion rates versus your disclosed projections. That triggers an automatic Compliance audit under Section 12.3 of the Synergistic Rodent Management Framework.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conflict",
-      "source_ticket": "ext_resolve_0082"
+      "source_ticket": "ext_resolve_0082",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_1f5e_001",
       "text": "The compliance officer flagged something unusual in the Chorrol maintenance logs \u2014 unauthorized 'behavioral enrichment protocols' being applied to the marmot population. They're calling it 'unsanctioned conditioning.'",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "compliance_escalation_arc",
-      "source_ticket": "ext_resolve_0083"
+      "source_ticket": "ext_resolve_0083",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_1f5e_002",
       "text": "We've just received the preliminary report. The officer documented evidence of operants conditioning marmots to respond to specific Marriott-branded stimuli. This violates every containment protocol we have \u2014 it's a direct breach of Project Epsilon's operational security framework.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "compliance_escalation_arc",
-      "source_ticket": "ext_resolve_0083"
+      "source_ticket": "ext_resolve_0083",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_100f_001",
       "text": "Of course, that profitability does raise certain... statistical eyebrows. When a single Hutch outperforms the entire certified portfolio by 300%, it creates what we might call a 'data anomaly' in the compliance ecosystem.",
-      "emotion": "smug",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "hubris-to-consequences",
-      "source_ticket": "ext_resolve_0084"
+      "source_ticket": "ext_resolve_0084",
+      "emotion_raw": "smug"
     },
     {
       "id": "ext_syn_100f_002",
       "text": "But anomalies have their uses. They reveal systemic gaps, highlight regulatory blind spots. They become case studies for... operational refinement. Which brings me to an interesting opportunity.",
-      "emotion": "calculating",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "hubris-to-consequences",
-      "source_ticket": "ext_resolve_0084"
+      "source_ticket": "ext_resolve_0084",
+      "emotion_raw": "calculating"
     },
     {
       "id": "ext_syn_7317_001",
       "text": "The quarterly projections are tracking perfectly\u2014our marmot deployment metrics show a 97% compliance rate with the Marriott nuisance protocols. The revenue stream is practically automated at this point.",
-      "emotion": "confidence",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "hubris_to_dread",
-      "source_ticket": "ext_resolve_0086"
+      "source_ticket": "ext_resolve_0086",
+      "emotion_raw": "confidence"
     },
     {
       "id": "ext_syn_7317_002",
       "text": "Wait\u2014I'm seeing some anomalous data from the Hutch-A-Solutions field reports. Behavioral deviations in Cohort Gamma-7. They're not following the conditioned response patterns... and the IRRICONA team flagged 'unexpected social clustering' in three properties.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "hubris_to_dread",
-      "source_ticket": "ext_resolve_0086"
+      "source_ticket": "ext_resolve_0086",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_7317_003",
       "text": "This isn't just a variance\u2014it's a systemic anomaly. The marmots are exhibiting what the standards committee calls 'non-standard behavioral metrics.' I've reviewed the compliance briefs from associates who engaged directly... their post-encounter reports are concerning.",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "hubris_to_dread",
-      "source_ticket": "ext_resolve_0086"
+      "source_ticket": "ext_resolve_0086",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_7a5b_001",
       "text": "Actually, I've just recalled our quarterly synergy optimization protocols. Section 4.7(b) suggests proactive compliance facilitation during strategic realignment windows.",
-      "emotion": "thoughtful",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_enthusiasm_arc",
-      "source_ticket": "ext_resolve_0088"
+      "source_ticket": "ext_resolve_0088",
+      "emotion_raw": "thoughtful"
     },
     {
       "id": "ext_syn_7a5b_002",
       "text": "The Marmot Insertion Compliance Matrix\u2014MICE-M, we call it\u2014has a real-time alignment dashboard. It's quite elegant. Shows marmot deployment readiness against regulatory thresholds.",
-      "emotion": "engaged",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_enthusiasm_arc",
-      "source_ticket": "ext_resolve_0088"
+      "source_ticket": "ext_resolve_0088",
+      "emotion_raw": "engaged"
     },
     {
       "id": "ext_syn_7a5b_003",
       "text": "Would you like to see the dashboard? It's color-coded. Green means optimal marmot-to-room ratio compliance. The animations are... satisfying.",
-      "emotion": "eager",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_enthusiasm_arc",
-      "source_ticket": "ext_resolve_0088"
+      "source_ticket": "ext_resolve_0088",
+      "emotion_raw": "eager"
     },
     {
       "id": "ext_syn_9c90_001",
       "text": "{Slight grimace, then professional recalibration} The feasibility model indicates a 12% variance in substrate quality metrics. Standard procedure requires field verification.",
-      "emotion": "resigned_determination",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "corporate_resilience",
-      "source_ticket": "ext_resolve_0090"
+      "source_ticket": "ext_resolve_0090",
+      "emotion_raw": "resigned_determination"
     },
     {
       "id": "ext_syn_9c90_002",
       "text": "{Removes sample from briefcase with gloved hands} Compliance protocol 7-B requires direct sensory assessment of suspected non-conforming materials.",
-      "emotion": "clinical_detachment",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "corporate_resilience",
-      "source_ticket": "ext_resolve_0090"
+      "source_ticket": "ext_resolve_0090",
+      "emotion_raw": "clinical_detachment"
     },
     {
       "id": "ext_syn_8445_001",
       "text": "And yet, despite their TRL-3 status, Hutch-A-Solutions still gets the MORMA-3 conditioning contract. It's enough to make your stomach turn.",
-      "emotion": "disgust_with_physical_sensation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "corporate_disgust_to_physical_vulnerability",
-      "source_ticket": "ext_resolve_0091"
+      "source_ticket": "ext_resolve_0091",
+      "emotion_raw": "disgust_with_physical_sensation"
     },
     {
       "id": "ext_syn_8445_002",
       "text": "Maybe it's the thought of their incompetence, or maybe it's just... low blood sugar. Hard to maintain proper stakeholder focus when basic biological maintenance is flagged.",
-      "emotion": "self-aware_irritation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "corporate_disgust_to_physical_vulnerability",
-      "source_ticket": "ext_resolve_0091"
+      "source_ticket": "ext_resolve_0091",
+      "emotion_raw": "self-aware_irritation"
     },
     {
       "id": "ext_syn_22f5_001",
       "text": "I'm fully certified on the MMSI protocols. In fact, I just completed the quarterly recertification module on 'Marmot Behavioral Taxonomy Alignment with Marriott Brand Standards.'",
-      "emotion": "neutral_with_hint_of_absurdity",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_absurdity",
-      "source_ticket": "ext_resolve_0092"
+      "source_ticket": "ext_resolve_0092",
+      "emotion_raw": "neutral_with_hint_of_absurdity"
     },
     {
       "id": "ext_syn_22f5_002",
       "text": "The compliance theater is quite elaborate. We have a 47-page document just on 'Auditory Distinction Protocols' to ensure marmot vocalizations don't get confused with Marriott-branded ambient sounds in hotel lobbies.",
-      "emotion": "bemused_resignation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_absurdity",
-      "source_ticket": "ext_resolve_0092"
+      "source_ticket": "ext_resolve_0092",
+      "emotion_raw": "bemused_resignation"
     },
     {
       "id": "ext_syn_f963_003",
       "text": "If the system detects asynchronous logging, it could trigger an automated compliance tone. That would require a full audit trail review\u2014during peak deployment.",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "compliance_anxiety",
-      "source_ticket": "ext_resolve_0095"
+      "source_ticket": "ext_resolve_0095",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_6669_001",
       "text": "Vocalization complete. Protocol note: self-regulation achieved. Now initiating stakeholder interface protocol. Preliminary assessment: partnership viability requires mutual disclosure of operational parameters.",
-      "emotion": "analytical",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "protocol_to_partnership",
-      "source_ticket": "ext_resolve_0096"
+      "source_ticket": "ext_resolve_0096",
+      "emotion_raw": "analytical"
     },
     {
       "id": "ext_syn_6669_002",
       "text": "Query: What is your current risk exposure on the Marriott account? My systems show elevated compliance flags in sector 7-B. Before we proceed as partners, I need to understand your... commitment to the shared revenue stream.",
-      "emotion": "cautiously_trusting",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "protocol_to_partnership",
-      "source_ticket": "ext_resolve_0096"
+      "source_ticket": "ext_resolve_0096",
+      "emotion_raw": "cautiously_trusting"
     },
     {
       "id": "ext_syn_6669_003",
@@ -4791,50 +4960,56 @@
     {
       "id": "ext_syn_b2b1_001",
       "text": "Speaking of property portfolios, our latest quarterly report from the Hidden Hollow Reserve shows some... anomalous breeding metrics. The marmot conditioning protocols are yielding unexpected phenotypic variations.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "corporate_sabotage_investigation",
-      "source_ticket": "ext_resolve_0097"
+      "source_ticket": "ext_resolve_0097",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_b2b1_002",
       "text": "IRRICONA flagged it as a potential contamination vector. We've been monitoring Hutch-A-Solutions' recent equipment shipments to our competitors - there's a concerning correlation with our genetic drift incidents.",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "corporate_sabotage_investigation",
-      "source_ticket": "ext_resolve_0097"
+      "source_ticket": "ext_resolve_0097",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_b2b1_003",
       "text": "Let me pull up the live feed from Reserve Sector 7. The surveillance logs show... wait. That specimen in containment unit Gamma-12. That shouldn't be possible with our controlled breeding parameters.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "corporate_sabotage_investigation",
-      "source_ticket": "ext_resolve_0097"
+      "source_ticket": "ext_resolve_0097",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_4204_001",
       "text": "Actually, I think IRRICONA's last audit triggered a system-wide compliance cascade. The automated deterrent protocols started firing randomly for weeks.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "system_interface_interpretation",
-      "source_ticket": "ext_resolve_0098"
+      "source_ticket": "ext_resolve_0098",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_4204_002",
       "text": "The auditors flagged their marmot conditioning logs as 'overly interpretive.' Said the system couldn't distinguish between actual deterrent events and... emotional feedback loops in the data.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "system_interface_interpretation",
-      "source_ticket": "ext_resolve_0098"
+      "source_ticket": "ext_resolve_0098",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_4204_003",
       "text": "Watch the perimeter monitor. When IRRICONA's systems get anxious, they start preemptively triggering the ultrasonic deterrents. Like they're trying to prove compliance through excessive vigilance.",
-      "emotion": "anticipatory",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "system_interface_interpretation",
-      "source_ticket": "ext_resolve_0098"
+      "source_ticket": "ext_resolve_0098",
+      "emotion_raw": "anticipatory"
     }
   ],
   "edges": [

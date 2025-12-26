@@ -21,6 +21,7 @@ Endpoints:
 
 import json
 import asyncio
+from dataclasses import asdict
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 from contextlib import asynccontextmanager
@@ -390,6 +391,51 @@ if SYNTHETIC_DATA_AVAILABLE and synthetic_data_router:
 
 
 # =============================================================================
+# Cache Management
+# =============================================================================
+
+@app.post("/api/cache/clear")
+async def clear_all_caches():
+    """
+    Clear all server caches.
+
+    Use after external modifications to dialogue data (e.g., compile_translations).
+    """
+    global CROSS_GAME_CACHE, BRIDGE_CACHE, QUERY_CACHE
+
+    count = {
+        "dialogue_graphs": len(CACHE),
+        "topic_graphs": len(TOPIC_CACHE),
+        "synthetic_graphs": len(SYNTHETIC_GRAPH_CACHE),
+        "cross_game": 1 if CROSS_GAME_CACHE else 0,
+        "bridge": 1 if BRIDGE_CACHE else 0,
+        "query": 1 if QUERY_CACHE else 0,
+    }
+
+    CACHE.clear()
+    TOPIC_CACHE.clear()
+    SYNTHETIC_GRAPH_CACHE.clear()
+    CROSS_GAME_CACHE = None
+    BRIDGE_CACHE = None
+    QUERY_CACHE = None
+
+    return {"cleared": count, "message": "All caches invalidated"}
+
+
+@app.post("/api/cache/clear/synthetic/{setting}")
+async def clear_synthetic_cache(setting: str):
+    """
+    Clear cache for a specific synthetic setting.
+
+    Use after modifying a specific synthetic graph.
+    """
+    if setting in SYNTHETIC_GRAPH_CACHE:
+        del SYNTHETIC_GRAPH_CACHE[setting]
+        return {"cleared": setting, "message": f"Cache for {setting} invalidated"}
+    return {"cleared": None, "message": f"No cache entry for {setting}"}
+
+
+# =============================================================================
 # API Endpoints
 # =============================================================================
 
@@ -529,6 +575,20 @@ async def get_transitions(game: str):
     return TransitionMatrix(game=game, transitions=transitions, total_transitions=total)
 
 
+def serialize_node(n) -> dict:
+    """Serialize a DialogueNode to dict with full metadata including conditions."""
+    return {
+        "id": n.id,
+        "text": n.text,
+        "speaker": n.speaker,
+        "emotion": n.emotion,
+        "emotion_intensity": getattr(n, 'emotion_intensity', 0.5),
+        "topic": n.topic,
+        "quest": n.quest,
+        "conditions": [asdict(c) for c in getattr(n, 'conditions', [])]
+    }
+
+
 @app.post("/api/sample", response_model=SampleResponse)
 async def sample_dialogue(request: SampleRequest):
     """
@@ -564,17 +624,7 @@ async def sample_dialogue(request: SampleRequest):
                 max_steps=request.max_length,
                 allow_cycles=request.allow_cycles
             )
-            nodes = [
-                {
-                    "id": n.id,
-                    "text": n.text,
-                    "speaker": n.speaker,
-                    "emotion": n.emotion,
-                    "topic": n.topic,
-                    "quest": n.quest
-                }
-                for n in path
-            ]
+            nodes = [serialize_node(n) for n in path]
             samples.append(DialogueSample(method="walk", length=len(nodes), nodes=nodes))
 
     elif request.method == "hub":
@@ -587,17 +637,7 @@ async def sample_dialogue(request: SampleRequest):
                 max_steps=request.max_length,
                 allow_cycles=request.allow_cycles
             )
-            nodes = [
-                {
-                    "id": n.id,
-                    "text": n.text,
-                    "speaker": n.speaker,
-                    "emotion": n.emotion,
-                    "topic": n.topic,
-                    "quest": n.quest
-                }
-                for n in path
-            ]
+            nodes = [serialize_node(n) for n in path]
             samples.append(DialogueSample(method="hub", length=len(nodes), nodes=nodes))
 
     elif request.method == "chain":
@@ -641,12 +681,7 @@ async def extract_subgraph(request: SubgraphRequest):
 
     nodes = [
         {
-            "id": n.id,
-            "text": n.text,
-            "speaker": n.speaker,
-            "emotion": n.emotion,
-            "topic": n.topic,
-            "quest": n.quest,
+            **serialize_node(n),
             "in_degree": len(n.incoming),
             "out_degree": len(n.outgoing)
         }

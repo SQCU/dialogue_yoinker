@@ -2537,9 +2537,10 @@
     {
       "id": "syn_eedae49fd6a2",
       "text": "Wait! The paperwork\u2014the paperwork would be catastrophic! My dossier, my pension\u2014please, name your price! I'll sign anything!",
-      "emotion": "panic",
+      "emotion": "neutral",
       "beat_function": "plead",
-      "source_run": "run_20251226_010042_gallia"
+      "source_run": "run_20251226_010042_gallia",
+      "emotion_raw": "panic"
     },
     {
       "id": "syn_da020aa57525",
@@ -3279,16 +3280,18 @@
     {
       "id": "bridge_ba414ef23141_de874e865fce",
       "text": "A case file, stamped 'Renard Gris'... the ink looks fresh. This shouldn't be here.",
-      "emotion": "apprehension",
+      "emotion": "fear",
       "is_bridge": true,
-      "source_ticket": "link_stitch_0032"
+      "source_ticket": "link_stitch_0032",
+      "emotion_raw": "apprehension"
     },
     {
       "id": "bridge_003",
       "text": "What is this? I reviewed the document myself.",
-      "emotion": "annoyed",
+      "emotion": "anger",
       "is_bridge": true,
-      "source_ticket": "link_stitch_0036"
+      "source_ticket": "link_stitch_0036",
+      "emotion_raw": "annoyed"
     },
     {
       "id": "bridge_ang_disg_happy",
@@ -3363,186 +3366,209 @@
     {
       "id": "ext_syn_e600_001",
       "text": "The Durendal's failing processor began reciting Article 14 of the Administrative Code: 'All systems shall degrade gracefully, ensuring continued employment through necessary human intervention.'",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_philosophy",
-      "source_ticket": "ext_resolve_0000"
+      "source_ticket": "ext_resolve_0000",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_e600_002",
       "text": "She realized the malfunction wasn't a bug\u2014it was Gallian design philosophy. Inefficiency as job security. Paperwork as conflict resolution. The system worked precisely by not working perfectly.",
-      "emotion": "realization",
+      "emotion": "surprise",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_philosophy",
-      "source_ticket": "ext_resolve_0000"
+      "source_ticket": "ext_resolve_0000",
+      "emotion_raw": "realization"
     },
     {
       "id": "ext_syn_ad29_001",
       "text": "Their motivations were personal, yes. But the approvals came from your office, didn't they? I saw the stamps. Form 7B-44, the 'discretionary reassignment' clause.",
-      "emotion": "accusatory",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "corruption_revelation",
-      "source_ticket": "ext_resolve_0001"
+      "source_ticket": "ext_resolve_0001",
+      "emotion_raw": "accusatory"
     },
     {
       "id": "ext_syn_ad29_002",
       "text": "You didn't just process the paperwork. You authorized the transfers. The southern vineyards, the alpine quarries\u2014those weren't accidents. They were signatures.",
-      "emotion": "outraged",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "corruption_revelation",
-      "source_ticket": "ext_resolve_0001"
+      "source_ticket": "ext_resolve_0001",
+      "emotion_raw": "outraged"
     },
     {
       "id": "ext_syn_3263_001",
       "text": "Proper procedure is like viticulture, you see. You don't just uproot the vine\u2014you study the soil, the climate, the terroir. You must understand what allowed this particular blight to take root in the first place.",
-      "emotion": "contemplative_anger",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Metaphorical Procedure",
-      "source_ticket": "ext_resolve_0002"
+      "source_ticket": "ext_resolve_0002",
+      "emotion_raw": "contemplative_anger"
     },
     {
       "id": "ext_syn_3263_002",
       "text": "Her file isn't just a case to close\u2014it's a specimen. The widow's inheritance patterns, her connections, her regional affiliations. They form an ecosystem. Justice requires we map the entire terroir of her corruption before we apply the herbicide.",
-      "emotion": "methodical_intensity",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Metaphorical Procedure",
-      "source_ticket": "ext_resolve_0002"
+      "source_ticket": "ext_resolve_0002",
+      "emotion_raw": "methodical_intensity"
     },
     {
       "id": "ext_syn_51f3_001",
       "text": "Of course, the Northern Prefectures have always favored brute requisition over proper procedure. Their forms are stamped with the same heavy-handedness as their tactics.",
-      "emotion": "disdainful",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "terroir_conflict_arc",
-      "source_ticket": "ext_resolve_0003"
+      "source_ticket": "ext_resolve_0003",
+      "emotion_raw": "disdainful"
     },
     {
       "id": "ext_syn_51f3_002",
       "text": "Take the Burgundian Quartermaster\u2014his entire logistics philosophy reeks of the chalky soil he comes from. No subtlety, no appreciation for nuance. Just... directness.",
-      "emotion": "contemptuous",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "terroir_conflict_arc",
-      "source_ticket": "ext_resolve_0003"
+      "source_ticket": "ext_resolve_0003",
+      "emotion_raw": "contemptuous"
     },
     {
       "id": "ext_syn_d0b2_001",
       "text": "Wait... the Pr\u00e9fet's office is still open? Even now?",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_alchemy",
-      "source_ticket": "ext_resolve_0004"
+      "source_ticket": "ext_resolve_0004",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_d0b2_002",
       "text": "Of course. The forms for territorial annexation\u2014Section 7, Subsection B\u2014require triplicate submission before the lunar cycle completes. The procedure is quite clear.",
-      "emotion": "resigned_acceptance",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_alchemy",
-      "source_ticket": "ext_resolve_0004"
+      "source_ticket": "ext_resolve_0004",
+      "emotion_raw": "resigned_acceptance"
     },
     {
       "id": "ext_syn_112a_001",
       "text": "Ah, but this is different. A murder investigation isn't paperwork\u2014it's a proper Gallic drama. Blood on the forms, motive in the margins...",
-      "emotion": "curious_interest",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "cynical_revelation",
-      "source_ticket": "ext_resolve_0005"
+      "source_ticket": "ext_resolve_0005",
+      "emotion_raw": "curious_interest"
     },
     {
       "id": "ext_syn_112a_002",
       "text": "And the killer works at the Pr\u00e9fecture? How deliciously bureaucratic. A colleague who understands triplicate forms and arterial spray.",
-      "emotion": "amused_fascination",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "cynical_revelation",
-      "source_ticket": "ext_resolve_0005"
+      "source_ticket": "ext_resolve_0005",
+      "emotion_raw": "amused_fascination"
     },
     {
       "id": "ext_syn_3dcc_001",
       "text": "Of course. The form requires the stamp from the regional prefecture, but the prefecture requires the form to be stamped first.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "frustration_to_resignation",
-      "source_ticket": "ext_resolve_0006"
+      "source_ticket": "ext_resolve_0006",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_3dcc_002",
       "text": "It's the Gallian loop. You chase the stamp, the stamp chases the form, and the form chases you.",
-      "emotion": "resignation",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "frustration_to_resignation",
-      "source_ticket": "ext_resolve_0006"
+      "source_ticket": "ext_resolve_0006",
+      "emotion_raw": "resignation"
     },
     {
       "id": "ext_syn_e992_001",
       "text": "Administrative silence is a form of communication. It means the file is moving through channels. The absence of a 'non' is, in its own way, a provisional 'oui'.",
-      "emotion": "guarded_optimism",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Bureaucratic Hope vs. Practical Reality",
-      "source_ticket": "ext_resolve_0007"
+      "source_ticket": "ext_resolve_0007",
+      "emotion_raw": "guarded_optimism"
     },
     {
       "id": "ext_syn_e992_002",
       "text": "But hope is a dangerous form of paperwork. It requires its own stamps, its own triplicate copies. And if it's filed incorrectly, the consequences are... not administrative.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "Bureaucratic Hope vs. Practical Reality",
-      "source_ticket": "ext_resolve_0007"
+      "source_ticket": "ext_resolve_0007",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_c73b_001",
       "text": "Our efficiency metrics are exemplary \u2014 we've processed more forms per capita than any other bureau in the Fifth Republic. The Minister herself cited our unit as a model of Gallic precision.",
-      "emotion": "proud",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Hubris-to-Nemesis",
-      "source_ticket": "ext_resolve_0008"
+      "source_ticket": "ext_resolve_0008",
+      "emotion_raw": "proud"
     },
     {
       "id": "ext_syn_c73b_002",
       "text": "Though I must note... our audit trail shows an unusual pattern. The same seven signatures appear on procurement approvals worth three battalions. The Central Registry has flagged this as... statistically improbable.",
-      "emotion": "uneasy",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "Hubris-to-Nemesis",
-      "source_ticket": "ext_resolve_0008"
+      "source_ticket": "ext_resolve_0008",
+      "emotion_raw": "uneasy"
     },
     {
       "id": "ext_syn_c73b_003",
       "text": "A notification just arrived via pneumatic tube. The Office of Statistical Anomalies requests clarification on our procurement velocity. They use the term 'thermodynamically suspect.'",
-      "emotion": "apprehensive",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "Hubris-to-Nemesis",
-      "source_ticket": "ext_resolve_0008"
+      "source_ticket": "ext_resolve_0008",
+      "emotion_raw": "apprehensive"
     },
     {
       "id": "ext_syn_2e55_001",
       "text": "The transfer of the Dijon brothers\u2014Claude and Henri\u2014wasn't a routine reassignment. Their file was stamped 'urgent relocation' by the Bureau of Institutional Harmony, but the authorization signatures... they don't match the usual Section heads.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "institutional_corruption",
-      "source_ticket": "ext_resolve_0009"
+      "source_ticket": "ext_resolve_0009",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_2e55_002",
       "text": "I've seen this pattern before. A sudden vacancy, a rushed appointment, and then the new director issues a statement about 'streamlined operations' while the previous management's paperwork gets misfiled in the Archives of Administrative Oversight. Permanently.",
-      "emotion": "cynical_resignation",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "institutional_corruption",
-      "source_ticket": "ext_resolve_0009"
+      "source_ticket": "ext_resolve_0009",
+      "emotion_raw": "cynical_resignation"
     },
     {
       "id": "ext_syn_b04d_001",
       "text": "But when we presented our credentials at the regional bureau, the clerk just... stared. Said our file showed no recent activity. That our office was listed as 'administratively dormant' since the last audit cycle.",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "procedural_betrayal_to_outrage",
-      "source_ticket": "ext_resolve_0010"
+      "source_ticket": "ext_resolve_0010",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_b04d_002",
       "text": "We pulled every document\u2014every stamped authorization, every terroir-certified seal. The bureau director examined them under the lamp, then sighed. 'These are procedurally correct... but someone has filed a counter-mandate. Your standing is contested.'",
-      "emotion": "betrayal",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "procedural_betrayal_to_outrage",
-      "source_ticket": "ext_resolve_0010"
+      "source_ticket": "ext_resolve_0010",
+      "emotion_raw": "betrayal"
     },
     {
       "id": "ext_syn_07ca_001",
@@ -3555,34 +3581,38 @@
     {
       "id": "ext_syn_07ca_002",
       "text": "{Radio transmission, tone shifts to analytical} Though I suppose if we're invoking historical precedents, the scale would be comparable to Pr\u00e9fet Moreau's containment of the Lyon paper-shredder riots. A tactical masterpiece, but ultimately a footnote.",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "historical_pedantry",
-      "source_ticket": "ext_resolve_0011"
+      "source_ticket": "ext_resolve_0011",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_47a9_001",
       "text": "Authorization confirmed. Proceeding with enforcement protocol. The forms will be stamped in blood-red ink, as regulations require.",
-      "emotion": "satisfied",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_schadenfreude",
-      "source_ticket": "ext_resolve_0012"
+      "source_ticket": "ext_resolve_0012",
+      "emotion_raw": "satisfied"
     },
     {
       "id": "ext_syn_47a9_002",
       "text": "One must appreciate the elegance of it\u2014bringing order through precisely measured force. Their paperwork will be as shredded as their defenses.",
-      "emotion": "smug",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_schadenfreude",
-      "source_ticket": "ext_resolve_0012"
+      "source_ticket": "ext_resolve_0012",
+      "emotion_raw": "smug"
     },
     {
       "id": "ext_syn_7f56_001",
       "text": "The aide just handed me the preliminary findings. They've flagged our emergency response logs as 'procedurally inconsistent' with the Durendal framework.",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "audit_consequences",
-      "source_ticket": "ext_resolve_0013"
+      "source_ticket": "ext_resolve_0013",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_7f56_002",
@@ -3595,362 +3625,407 @@
     {
       "id": "ext_syn_b6b8_001",
       "text": "Your judgment appears consistent with the regional assessment. However, I notice a discrepancy in your Section 7-B declarations from last quarter.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "administrative_terror",
-      "source_ticket": "ext_resolve_0014"
+      "source_ticket": "ext_resolve_0014",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_b6b8_002",
       "text": "The discrepancy has been flagged for administrative review. Inspector Hayn's office has been notified. They handle... irregularities in terroir documentation.",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "administrative_terror",
-      "source_ticket": "ext_resolve_0014"
+      "source_ticket": "ext_resolve_0014",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_e600_003",
       "text": "The Durendal's vocal processor shifted to a lower, more resonant register. 'Anomaly elevated to Security Protocol Gamma. Unauthorized presence in a sensitive bureau triggers automated notification to the Gendarmerie's Administrative Oversight Division.'",
-      "emotion": "controlled_anger",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "security_escalation",
-      "source_ticket": "ext_resolve_0015"
+      "source_ticket": "ext_resolve_0015",
+      "emotion_raw": "controlled_anger"
     },
     {
       "id": "ext_syn_7f78_001",
       "text": "But when I went to the Bureau of Military Requisitions, they told me Captain Avidius filed form 7B-3 with a regional override stamp. Apparently, the 'emergency procurement clause' in the Lutetia Accords lets him bypass civilian review.",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "Personal_Injustice_to_Institutional_Cynicism",
-      "source_ticket": "ext_resolve_0016"
+      "source_ticket": "ext_resolve_0016",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_7f78_002",
       "text": "The clerk showed me the precedent\u2014Article 14, subsection C: 'During presidential vacancy, regional commanders may invoke provisional authority for mat\u00e9riel acquisition.' It's all perfectly legal. My complaint would just get stamped 'referred to committee' and vanish into the archives.",
-      "emotion": "cynical",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "Personal_Injustice_to_Institutional_Cynicism",
-      "source_ticket": "ext_resolve_0016"
+      "source_ticket": "ext_resolve_0016",
+      "emotion_raw": "cynical"
     },
     {
       "id": "ext_syn_9811_001",
       "text": "The authorization came through last week. Section 7-B, Pyrenees detachment. They sent a junior inspector to sign off on the munitions transfer.",
-      "emotion": "neutral_with_hint",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_horror",
-      "source_ticket": "ext_resolve_0017"
+      "source_ticket": "ext_resolve_0017",
+      "emotion_raw": "neutral_with_hint"
     },
     {
       "id": "ext_syn_9811_002",
       "text": "His signature was... shaky. He kept glancing at the storage manifest, then at the door. When I asked about the inspection protocol, he quoted regulation 14.3-C about 'regional terroir variances in volatile materials.'",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_horror",
-      "source_ticket": "ext_resolve_0017"
+      "source_ticket": "ext_resolve_0017",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_9811_003",
       "text": "He left without completing the secondary verification. Said the forms would follow by pneumatic tube. That was three days ago. The manifest shows... discrepancies.",
-      "emotion": "dread",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_horror",
-      "source_ticket": "ext_resolve_0017"
+      "source_ticket": "ext_resolve_0017",
+      "emotion_raw": "dread"
     },
     {
       "id": "ext_syn_d7d3_001",
       "text": "But you should see the forms she submits\u2014Section 7B, Article 3, all properly cross-referenced. The distress is documented with a precision that would make a Pr\u00e9fecture clerk weep.",
-      "emotion": "frustrated_admiration",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration",
-      "source_ticket": "ext_resolve_0018"
+      "source_ticket": "ext_resolve_0018",
+      "emotion_raw": "frustrated_admiration"
     },
     {
       "id": "ext_syn_d7d3_002",
       "text": "And yet, the system demands I treat it as suspect. Because the paperwork is too perfect. A flaw in the procedure, you see\u2014authentic suffering shouldn't be this well-filed.",
-      "emotion": "cynical_resignation",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration",
-      "source_ticket": "ext_resolve_0018"
+      "source_ticket": "ext_resolve_0018",
+      "emotion_raw": "cynical_resignation"
     },
     {
       "id": "ext_syn_5abe_001",
       "text": "I've organized them by arrondissement, Monsieur. The 5th is particularly delinquent \u2014 three months without submitting their quarterly sanitation reports. I've prepared gentle reminders, of course.",
-      "emotion": "earnest_concern",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_idealism_to_cynicism",
-      "source_ticket": "ext_resolve_0019"
+      "source_ticket": "ext_resolve_0019",
+      "emotion_raw": "earnest_concern"
     },
     {
       "id": "ext_syn_5abe_002",
       "text": "But when I brought this to the Mayor's attention last week, he waved me off. 'Let the wine age and the forms wait,' he said. As if municipal hygiene were a matter of vintage rather than public health.",
-      "emotion": "frustrated_disillusionment",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_idealism_to_cynicism",
-      "source_ticket": "ext_resolve_0019"
+      "source_ticket": "ext_resolve_0019",
+      "emotion_raw": "frustrated_disillusionment"
     },
     {
       "id": "ext_syn_58db_001",
       "text": "But this isn't about soil composition reports. They're auditing the regional liaison office. Madame Lef\u00e8vre's office.",
-      "emotion": "concern",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "protective_rage_arc",
-      "source_ticket": "ext_resolve_0020"
+      "source_ticket": "ext_resolve_0020",
+      "emotion_raw": "concern"
     },
     {
       "id": "ext_syn_58db_002",
       "text": "She's from the same terroir as my grandmother. A woman of principle who remembers when paperwork served people, not the other way around.",
-      "emotion": "protective_affection",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "protective_rage_arc",
-      "source_ticket": "ext_resolve_0020"
+      "source_ticket": "ext_resolve_0020",
+      "emotion_raw": "protective_affection"
     },
     {
       "id": "ext_syn_cea5_001",
       "text": "But that's the problem, isn't it? The procedure allows for grief, but only in the prescribed forms. Section 7-B of the Bereavement Protocol: 'Mourning periods shall not exceed three working days, excluding weekends and national holidays.'",
-      "emotion": "bitter",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "humanity_vs_protocol",
-      "source_ticket": "ext_resolve_0021"
+      "source_ticket": "ext_resolve_0021",
+      "emotion_raw": "bitter"
     },
     {
       "id": "ext_syn_cea5_002",
       "text": "Meanwhile, the Leclerc units get their own update protocols. Form HX-44A: 'Cognitive recalibration following battlefield loss.' They don't mourn\u2014they optimize. More efficient protocols, they call it.",
-      "emotion": "resentful",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "humanity_vs_protocol",
-      "source_ticket": "ext_resolve_0021"
+      "source_ticket": "ext_resolve_0021",
+      "emotion_raw": "resentful"
     },
     {
       "id": "ext_syn_cea5_003",
       "text": "Sometimes I wonder which of us is more truly an Agent of the Hexagon. We who carry the weight in our hearts, or the machines that simply... recalculate.",
-      "emotion": "philosophical_sadness",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "humanity_vs_protocol",
-      "source_ticket": "ext_resolve_0021"
+      "source_ticket": "ext_resolve_0021",
+      "emotion_raw": "philosophical_sadness"
     },
     {
       "id": "ext_syn_04d2_001",
       "text": "I remember when my father said those same words to me. The day before the Third Republic fell. He was Pr\u00e9fet of the 14th Arrondissement. They came for him at dawn.",
-      "emotion": "melancholy",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "emotional_backstory_reveal",
-      "source_ticket": "ext_resolve_0022"
+      "source_ticket": "ext_resolve_0022",
+      "emotion_raw": "melancholy"
     },
     {
       "id": "ext_syn_04d2_002",
       "text": "For twenty years, I carried that sadness like an unsigned form. Every promotion felt like betrayal. Every stamp, a reminder of the dossier they never closed on him.",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "emotional_backstory_reveal",
-      "source_ticket": "ext_resolve_0022"
+      "source_ticket": "ext_resolve_0022",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_04d2_003",
       "text": "But today... today I finally filed the closure papers. Section 7-B, 'Legacy Resolutions.' The ink is dry. The archive accepts what the heart cannot forget.",
-      "emotion": "neutralizing",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "emotional_backstory_reveal",
-      "source_ticket": "ext_resolve_0022"
+      "source_ticket": "ext_resolve_0022",
+      "emotion_raw": "neutralizing"
     },
     {
       "id": "ext_syn_d936_001",
       "text": "I just received the confirmation from the Bureau of Regional Affairs. Your vineyard's classification has been upgraded to Premier Cru status!",
-      "emotion": "proud_excitement",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disillusionment",
-      "source_ticket": "ext_resolve_0023"
+      "source_ticket": "ext_resolve_0023",
+      "emotion_raw": "proud_excitement"
     },
     {
       "id": "ext_syn_d936_002",
       "text": "But there's a... complication. The elevation requires a Form 47-B, which you filed last month. The Bureau found a discrepancy in Section 3, Paragraph 2.",
-      "emotion": "concerned_confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disillusionment",
-      "source_ticket": "ext_resolve_0023"
+      "source_ticket": "ext_resolve_0023",
+      "emotion_raw": "concerned_confusion"
     },
     {
       "id": "ext_syn_d936_003",
       "text": "The soil composition analysis you submitted doesn't match the 1937 terroir registry. They're questioning the entire land claim.",
-      "emotion": "dawning_horror",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disillusionment",
-      "source_ticket": "ext_resolve_0023"
+      "source_ticket": "ext_resolve_0023",
+      "emotion_raw": "dawning_horror"
     },
     {
       "id": "ext_syn_3f5b_001",
       "text": "But grief, like all things in Gallia, must be processed through the proper channels. I've submitted Form 44-B: 'Memorial Expenditure Reallocation Request.'",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "grief_to_pragmatism",
-      "source_ticket": "ext_resolve_0024"
+      "source_ticket": "ext_resolve_0024",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_3f5b_002",
       "text": "The Section Chief approved it this morning. Said 'sentiment must serve function' in the Fifth Republic. Her equipment budget has been... repurposed.",
-      "emotion": "detached",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "grief_to_pragmatism",
-      "source_ticket": "ext_resolve_0024"
+      "source_ticket": "ext_resolve_0024",
+      "emotion_raw": "detached"
     },
     {
       "id": "ext_syn_2837_001",
       "text": "But the Quartier Libre's terroir has its own logic. The soil there produces a certain... administrative resilience. Those who survive its paperwork develop a tolerance for procedural impurities.",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "terroir_of_bureaucracy",
-      "source_ticket": "ext_resolve_0025"
+      "source_ticket": "ext_resolve_0025",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_2837_002",
       "text": "Which is precisely why I'm redirecting certain 'problematic' files south. Let the vineyard terroir work on them. Sun, soil, and physical labor have a way of clarifying bureaucratic ambiguities.",
-      "emotion": "strategic",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "terroir_of_bureaucracy",
-      "source_ticket": "ext_resolve_0025"
+      "source_ticket": "ext_resolve_0025",
+      "emotion_raw": "strategic"
     },
     {
       "id": "ext_syn_5259_001",
       "text": "And while we wait for the stamps and signatures, she's living in a temporary shelter. The 'temporary' that's been her home for eight months.",
-      "emotion": "frustrated_concern",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_to_moral_outrage",
-      "source_ticket": "ext_resolve_0026"
+      "source_ticket": "ext_resolve_0026",
+      "emotion_raw": "frustrated_concern"
     },
     {
       "id": "ext_syn_5259_002",
       "text": "Her file says 'pending review.' Her reality says her child's medication is rationed by weekly approval forms. The system treats her suffering as a clerical variable.",
-      "emotion": "moral_indignation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_to_moral_outrage",
-      "source_ticket": "ext_resolve_0026"
+      "source_ticket": "ext_resolve_0026",
+      "emotion_raw": "moral_indignation"
     },
     {
       "id": "ext_syn_3399_001",
       "text": "The dossier is in order. Section 7, Subsection B: 'Target designation: L'Ombre Grise.' All forms stamped and notarized. Standard apprehension protocol applies.",
-      "emotion": "confident",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_confidence_vs_street_reality",
-      "source_ticket": "ext_resolve_0027"
+      "source_ticket": "ext_resolve_0027",
+      "emotion_raw": "confident"
     },
     {
       "id": "ext_syn_3399_002",
       "text": "Though... the field reports from the 4th Arrondissement mention irregularities. Witness statements contradict the official file. They speak of a man who moves through paperwork like smoke.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_confidence_vs_street_reality",
-      "source_ticket": "ext_resolve_0027"
+      "source_ticket": "ext_resolve_0027",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_3399_003",
       "text": "Our last three agents assigned this case... their final reports were filed by someone else. The signatures didn't match the personnel registry. The Hexagon walks with you, but in that district, the stones themselves have eyes.",
-      "emotion": "apprehensive",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_confidence_vs_street_reality",
-      "source_ticket": "ext_resolve_0027"
+      "source_ticket": "ext_resolve_0027",
+      "emotion_raw": "apprehensive"
     },
     {
       "id": "ext_syn_5ac1_001",
       "text": "Your file shows you were transferred from the Hexagon's projections division. A curious reassignment, given their current... statistical anomalies.",
-      "emotion": "suspicious_curiosity",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_intrigue",
-      "source_ticket": "ext_resolve_0028"
+      "source_ticket": "ext_resolve_0028",
+      "emotion_raw": "suspicious_curiosity"
     },
     {
       "id": "ext_syn_5ac1_002",
       "text": "One might wonder if certain projections were too accurate. The kind that get departments... restructured. Or their personnel reassigned to less sensitive posts.",
-      "emotion": "veiled_threat",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_intrigue",
-      "source_ticket": "ext_resolve_0028"
+      "source_ticket": "ext_resolve_0028",
+      "emotion_raw": "veiled_threat"
     },
     {
       "id": "ext_syn_9dcb_001",
       "text": "But this one... this one has a purpose. The forms aren't just forms\u2014they're a shield for someone who needs it.",
-      "emotion": "determined",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "redemption_through_paperwork",
-      "source_ticket": "ext_resolve_0029"
+      "source_ticket": "ext_resolve_0029",
+      "emotion_raw": "determined"
     },
     {
       "id": "ext_syn_9dcb_002",
       "text": "Every stamp, every signature, every line filled in triplicate... it's building something real. A small, bureaucratic fortress against the chaos.",
-      "emotion": "hopeful",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "redemption_through_paperwork",
-      "source_ticket": "ext_resolve_0029"
+      "source_ticket": "ext_resolve_0029",
+      "emotion_raw": "hopeful"
     },
     {
       "id": "ext_syn_778c_001",
       "text": "Ah, but I see you have submitted the Form 7-B. Excellent. However, this requires a cross-reference to Form 12-C, Section 3, Subsection Alpha, which governs inquiries into official action purposes. You'll find it on the shelf behind you. The blue binder.",
-      "emotion": "neutral_with_hint_of_approval",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "form_fever",
-      "source_ticket": "ext_resolve_0030"
+      "source_ticket": "ext_resolve_0030",
+      "emotion_raw": "neutral_with_hint_of_approval"
     },
     {
       "id": "ext_syn_778c_002",
       "text": "Yes, yes, the 12-C! And look, the cross-reference matrix points to... Form A! For foundational inquiry validation! And that cascades to... Form B! For secondary corroboration! The logic... it's beautiful. It's all connected.",
-      "emotion": "awed_fascination",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "form_fever",
-      "source_ticket": "ext_resolve_0030"
+      "source_ticket": "ext_resolve_0030",
+      "emotion_raw": "awed_fascination"
     },
     {
       "id": "ext_syn_056b_001",
       "text": "Yes, yes, watch your step indeed. But also... watch your forms. The Section 7-B compliance report from her arrondissement shows irregularities in the quarterly terroir assessments.",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "procedural_paranoia",
-      "source_ticket": "ext_resolve_0031"
+      "source_ticket": "ext_resolve_0031",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_056b_002",
       "text": "Irregularities that, according to sub-article 14(c) of the Regional Integrity Code, require a Form 88-D 'Declaration of Potential Essence Contamination.' She filed one, of course. But the timestamps... they're suspiciously convenient.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "procedural_paranoia",
-      "source_ticket": "ext_resolve_0031"
+      "source_ticket": "ext_resolve_0031",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_c001_001",
       "text": "But the misfile will trigger a Form 7-B audit. They'll need to verify the original submission date against three separate departmental logs.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "systemic_frustration",
-      "source_ticket": "ext_resolve_0032"
+      "source_ticket": "ext_resolve_0032",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_c001_002",
       "text": "Each log requires countersignatures from supervisors who haven't been in their posts since the last administrative reshuffle.",
-      "emotion": "exasperation",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "systemic_frustration",
-      "source_ticket": "ext_resolve_0032"
+      "source_ticket": "ext_resolve_0032",
+      "emotion_raw": "exasperation"
     },
     {
       "id": "ext_syn_27ec_001",
       "text": "The system has flagged your request as 'pending indefinite review.' This is not a rejection, merely a procedural holding pattern. Would you like to submit Form 7-B to appeal the holding status?",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "institutional_rage_arc",
-      "source_ticket": "ext_resolve_0033"
+      "source_ticket": "ext_resolve_0033",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_27ec_002",
       "text": "Ah, I see. You've been through three departments already. Each one stamped 'referred elsewhere' without reading your file. The system is functioning as designed\u2014it's designed to exhaust.",
-      "emotion": "controlled_anger",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "institutional_rage_arc",
-      "source_ticket": "ext_resolve_0033"
+      "source_ticket": "ext_resolve_0033",
+      "emotion_raw": "controlled_anger"
     },
     {
       "id": "ext_syn_6fd3_001",
       "text": "The regulations are clear, but they're being... reinterpreted. I've seen amendments filed that technically comply, yet completely subvert the original intent. It's like watching someone use the letter of the law to poison its spirit.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "procedural_purity_corruption",
-      "source_ticket": "ext_resolve_0036"
+      "source_ticket": "ext_resolve_0036",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_6fd3_002",
@@ -3963,258 +4038,290 @@
     {
       "id": "ext_syn_ba41_001",
       "text": "The file you requested... it's flagged with a 'Terroir de l'Ombre' classification. I'll need to consult the regional archives annex.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conspiracy",
-      "source_ticket": "ext_resolve_0037"
+      "source_ticket": "ext_resolve_0037",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_ba41_002",
       "text": "According to the annex, this dossier has been transferred between six different departments since the Third Republic. Each transfer form bears the same unusual stamp: 'For Historical Reconciliation, Not For Public Record.'",
-      "emotion": "dread",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conspiracy",
-      "source_ticket": "ext_resolve_0037"
+      "source_ticket": "ext_resolve_0037",
+      "emotion_raw": "dread"
     },
     {
       "id": "ext_syn_2704_001",
       "text": "The inspector came today. He didn't measure the walls. He asked about the soil composition in the courtyard. Said something about 'potential terroir designation' if we filed Form 7B properly.",
-      "emotion": "confused_relief",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_fear_to_terroir_gratitude",
-      "source_ticket": "ext_resolve_0038"
+      "source_ticket": "ext_resolve_0038",
+      "emotion_raw": "confused_relief"
     },
     {
       "id": "ext_syn_2704_002",
       "text": "We submitted the paperwork yesterday. The clerk actually smiled when she saw the soil analysis. 'This could be something,' she said. 'Proper terroir establishment changes everything. The Pr\u00e9fecture looks favorably on such things.'",
-      "emotion": "cautious_hope",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_fear_to_terroir_gratitude",
-      "source_ticket": "ext_resolve_0038"
+      "source_ticket": "ext_resolve_0038",
+      "emotion_raw": "cautious_hope"
     },
     {
       "id": "ext_syn_1224_001",
       "text": "That's not just terroir\u2014that's a registered designation. The Hexagon's favor must be documented. Where's the form?",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_inquisition",
-      "source_ticket": "ext_resolve_0039"
+      "source_ticket": "ext_resolve_0039",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_1224_002",
       "text": "Unregistered terroir influence. That's a Class 3 administrative violation. The regional inspectorate should have been notified.",
-      "emotion": "accusation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_inquisition",
-      "source_ticket": "ext_resolve_0039"
+      "source_ticket": "ext_resolve_0039",
+      "emotion_raw": "accusation"
     },
     {
       "id": "ext_syn_1224_003",
       "text": "This isn't about wine. This is about undocumented essence manipulation. That requires... immediate escalation.",
-      "emotion": "urgent_anger",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_inquisition",
-      "source_ticket": "ext_resolve_0039"
+      "source_ticket": "ext_resolve_0039",
+      "emotion_raw": "urgent_anger"
     },
     {
       "id": "ext_syn_99c7_001",
       "text": "Their protest was formally logged as a 'procedural irregularity.' Then the Durendal Order filed Form 44-B: 'Request for Non-Standard Resolution.' It's all stamped and countersigned.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "violence_authorization",
-      "source_ticket": "ext_resolve_0040"
+      "source_ticket": "ext_resolve_0040",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_99c7_002",
       "text": "The authorization sits in triplicate. Section 12, Paragraph 7: 'In cases where civic discourse impedes state function, the Hexagon may deputize internal security assets.' They didn't just deploy soldiers. They filed the paperwork to make it legal.",
-      "emotion": "dismay",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "violence_authorization",
-      "source_ticket": "ext_resolve_0040"
+      "source_ticket": "ext_resolve_0040",
+      "emotion_raw": "dismay"
     },
     {
       "id": "ext_syn_2246_001",
       "text": "Her forms were so thorough, I actually felt a flicker of admiration. She'd dotted every 'i', crossed every 't'... it was almost beautiful.",
-      "emotion": "appreciative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_betrayal",
-      "source_ticket": "ext_resolve_0042"
+      "source_ticket": "ext_resolve_0042",
+      "emotion_raw": "appreciative"
     },
     {
       "id": "ext_syn_2246_002",
       "text": "That's why I trusted her summary. When she attached her report to the dossier, I assumed it was just another layer of due diligence. A formality, really.",
-      "emotion": "trusting",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_betrayal",
-      "source_ticket": "ext_resolve_0042"
+      "source_ticket": "ext_resolve_0042",
+      "emotion_raw": "trusting"
     },
     {
       "id": "ext_syn_2246_003",
       "text": "I only realized what she'd done when the reprimand arrived. Not for her, for me. Her 'report' wasn't a summary. It was a deposition. My signature was on the forms, but her words buried me.",
-      "emotion": "betrayed",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_betrayal",
-      "source_ticket": "ext_resolve_0042"
+      "source_ticket": "ext_resolve_0042",
+      "emotion_raw": "betrayed"
     },
     {
       "id": "ext_syn_58db_003",
       "text": "These numbers... if I shift the harvest yields from the south slope to the north, the pH variances align perfectly. The terroir would be documented as 'consistently exceptional' rather than 'unpredictably variable.'",
-      "emotion": "calculating_anticipation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "corruption_complicity_arc",
-      "source_ticket": "ext_resolve_0044"
+      "source_ticket": "ext_resolve_0044",
+      "emotion_raw": "calculating_anticipation"
     },
     {
       "id": "ext_syn_2a81_001",
       "text": "The triangular deliberation concluded with a satisfying *thump* of the official seal. Form 7B-3, 'Post-Audit Administrative Satisfaction Assessment,' now properly filed.",
-      "emotion": "content",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_satisfaction",
-      "source_ticket": "ext_resolve_0045"
+      "source_ticket": "ext_resolve_0045",
+      "emotion_raw": "content"
     },
     {
       "id": "ext_syn_2a81_002",
       "text": "One finds a certain... elegance in the system when it functions. The crimson for urgent matters, the azure for archival, the chartreuse for pending review\u2014each hue a silent promise of order restored.",
-      "emotion": "reflective",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_satisfaction",
-      "source_ticket": "ext_resolve_0045"
+      "source_ticket": "ext_resolve_0045",
+      "emotion_raw": "reflective"
     },
     {
       "id": "ext_syn_4b14_001",
       "text": "The forms are for Captain Durendal's adjutant. He was caught falsifying supply manifests for the eastern border posts.",
-      "emotion": "grim_satisfaction",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "patriotic_revelation",
-      "source_ticket": "ext_resolve_0046"
+      "source_ticket": "ext_resolve_0046",
+      "emotion_raw": "grim_satisfaction"
     },
     {
       "id": "ext_syn_4b14_002",
       "text": "Every crate diverted weakens the Hexagon's defenses. This isn't just paperwork\u2014it's protecting Gallia's very walls.",
-      "emotion": "righteous_anger",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "patriotic_revelation",
-      "source_ticket": "ext_resolve_0046"
+      "source_ticket": "ext_resolve_0046",
+      "emotion_raw": "righteous_anger"
     },
     {
       "id": "ext_syn_3d16_001",
       "text": "Ah, I see your file has a... pending annotation. The Bureau of Colonial Reassignment requires immediate verification of your residential status. A routine matter, I'm sure.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "paranoia_of_bureaucratic_purge",
-      "source_ticket": "ext_resolve_0047"
+      "source_ticket": "ext_resolve_0047",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_3d16_002",
       "text": "The stamp here\u2014it's not the usual prefecture seal. It's the Office of Demographic Correction. They only use that for... expedited transfers. When did this get added to your dossier?",
-      "emotion": "anxiety",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "paranoia_of_bureaucratic_purge",
-      "source_ticket": "ext_resolve_0047"
+      "source_ticket": "ext_resolve_0047",
+      "emotion_raw": "anxiety"
     },
     {
       "id": "ext_syn_dbc8_001",
       "text": "The contact at the watchtower\u2014I heard she's from the Bureau of Agricultural Compliance. They say her terroir is pure administrative limestone: precise, structured, and unforgiving to errors.",
-      "emotion": "curious_interest",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_excellence_arc",
-      "source_ticket": "ext_resolve_0050"
+      "source_ticket": "ext_resolve_0050",
+      "emotion_raw": "curious_interest"
     },
     {
       "id": "ext_syn_dbc8_002",
       "text": "When I submitted my travel forms, the clerk actually sighed with what I think was reverence. 'You're meeting her? Her Section 7-D reviews are legendary. She once corrected a misplaced semicolon that had gone unnoticed for three fiscal cycles.'",
-      "emotion": "impressed_awe",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_excellence_arc",
-      "source_ticket": "ext_resolve_0050"
+      "source_ticket": "ext_resolve_0050",
+      "emotion_raw": "impressed_awe"
     },
     {
       "id": "ext_syn_59e4_001",
       "text": "Though I must admit, the Mayor's absence has begun to show. The arrondissement's paperwork is piling up in his office\u2014unattended, unprocessed. It's... inefficient.",
-      "emotion": "annoyed",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disillusionment",
-      "source_ticket": "ext_resolve_0052"
+      "source_ticket": "ext_resolve_0052",
+      "emotion_raw": "annoyed"
     },
     {
       "id": "ext_syn_59e4_002",
       "text": "I've sent three memos about the sanitation backlog. No response. Only a crate of his vineyard's latest vintage arrived instead. The symbolism is not lost on me.",
-      "emotion": "frustrated",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disillusionment",
-      "source_ticket": "ext_resolve_0052"
+      "source_ticket": "ext_resolve_0052",
+      "emotion_raw": "frustrated"
     },
     {
       "id": "ext_syn_14fd_001",
       "text": "Wait. The canteen door is sealed with an official 'D\u00e9fense d'entrer' stamp. The mechanism won't respond to my credentials.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_to_solution",
-      "source_ticket": "ext_resolve_0054"
+      "source_ticket": "ext_resolve_0054",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_14fd_002",
       "text": "It's a Form 14-B violation\u2014unauthorized closure during designated service hours. This requires immediate rectification.",
-      "emotion": "controlled_anger",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_frustration_to_solution",
-      "source_ticket": "ext_resolve_0054"
+      "source_ticket": "ext_resolve_0054",
+      "emotion_raw": "controlled_anger"
     },
     {
       "id": "ext_syn_694e_001",
       "text": "Marianne reviews the requisition form, her expression shifting from polite interest to mild confusion. 'This form... it's stamped with the seal of Aquitaine, not \u00cele-de-France. The regional jurisdiction appears... irregular.'",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_overreach_to_expulsion",
-      "source_ticket": "ext_resolve_0055"
+      "source_ticket": "ext_resolve_0055",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_694e_002",
       "text": "She taps the document with a perfectly manicured nail. 'Article 47-B of the Inter-Territorial Protocol clearly states that cross-regional requisitions require triplicate approval from both pr\u00e9fectures. You've submitted only the Aquitaine authorization.' Her voice grows colder. 'This constitutes territorial overreach.'",
-      "emotion": "cold_disapproval",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_overreach_to_expulsion",
-      "source_ticket": "ext_resolve_0055"
+      "source_ticket": "ext_resolve_0055",
+      "emotion_raw": "cold_disapproval"
     },
     {
       "id": "ext_syn_694e_003",
       "text": "Marianne's eyes narrow as she consults a leather-bound codex. 'Worse still, your request references the 1789 Revolutionary Procurement Act\u2014a statute explicitly voided by the Third Republic's Administrative Reconciliation. You're not just crossing borders; you're invoking dead law.' She closes the book with a definitive thud.",
-      "emotion": "procedural_fury",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_overreach_to_expulsion",
-      "source_ticket": "ext_resolve_0055"
+      "source_ticket": "ext_resolve_0055",
+      "emotion_raw": "procedural_fury"
     },
     {
       "id": "ext_syn_c13f_001",
       "text": "Section 4B: 'Relationship to deceased.' I'm checking 'colleague.' It feels... insufficient.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_grief_processing",
-      "source_ticket": "ext_resolve_0056"
+      "source_ticket": "ext_resolve_0056",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_c13f_002",
       "text": "The 'Cause of Death' field just says 'In the line of duty.' No room for how it happened. No room for who she was.",
-      "emotion": "frustrated",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_grief_processing",
-      "source_ticket": "ext_resolve_0056"
+      "source_ticket": "ext_resolve_0056",
+      "emotion_raw": "frustrated"
     },
     {
       "id": "ext_syn_25a0_001",
       "text": "The proper forms, of course. It's all there in the regulations. Section 7, subsection C: 'Access to historical archives requires Form 44-B, countersigned by three department heads, with a waiting period of no less than thirty working days.'",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_melancholy",
-      "source_ticket": "ext_resolve_0057"
+      "source_ticket": "ext_resolve_0057",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_25a0_002",
       "text": "Sometimes I think about what's down there. Not just the Fifth Republic's records, but the Fourth's... the Third's... all those revolutions and empires, stacked like geological layers. But the access protocols\u2014they're designed to preserve, not to share.",
-      "emotion": "melancholic",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_melancholy",
-      "source_ticket": "ext_resolve_0057"
+      "source_ticket": "ext_resolve_0057",
+      "emotion_raw": "melancholic"
     },
     {
       "id": "ext_syn_c3fd_001",
@@ -4227,10 +4334,11 @@
     {
       "id": "ext_syn_c3fd_002",
       "text": "Yet... I have seen the same refusal before. In Auvergne last winter. The snow was falling, and they simply walked away from the checkpoint. Their footprints filled with snow before we could even file the deviation report.",
-      "emotion": "melancholy",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_melancholy",
-      "source_ticket": "ext_resolve_0058"
+      "source_ticket": "ext_resolve_0058",
+      "emotion_raw": "melancholy"
     },
     {
       "id": "ext_syn_c13f_003",
@@ -4243,210 +4351,236 @@
     {
       "id": "ext_syn_99a6_001",
       "text": "{Sighing with administrative weariness} That's precisely the problem. Your lack of proper certification is creating a procedural hazard.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_authority_conflict",
-      "source_ticket": "ext_resolve_0060"
+      "source_ticket": "ext_resolve_0060",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_99a6_002",
       "text": "Section 7.3 of the Operational Standards clearly states: 'All field agents must carry validated authorization protocols from a recognized bureau.'",
-      "emotion": "authoritative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_authority_conflict",
-      "source_ticket": "ext_resolve_0060"
+      "source_ticket": "ext_resolve_0060",
+      "emotion_raw": "authoritative"
     },
     {
       "id": "ext_syn_831f_001",
       "text": "Protocol suspension noted. However, Article 14-B of the Emergency Procedures Code permits discretionary assessment of civilian resilience factors.",
-      "emotion": "analytical",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_pragmatism",
-      "source_ticket": "ext_resolve_0061"
+      "source_ticket": "ext_resolve_0061",
+      "emotion_raw": "analytical"
     },
     {
       "id": "ext_syn_831f_002",
       "text": "Cross-referencing with personnel records... Ah. Monsieur Dubois. Survived three regime changes, two departmental purges, and the Great Paper Shortage of '78. His file is stamped 'Administratively Unbreakable.'",
-      "emotion": "impressed",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_pragmatism",
-      "source_ticket": "ext_resolve_0061"
+      "source_ticket": "ext_resolve_0061",
+      "emotion_raw": "impressed"
     },
     {
       "id": "ext_syn_16fe_001",
       "text": "The prohibition is filed, stamped, and circulated. But the Durendal Order's cells remain active in the arrondissements. Their paperwork is... incomplete.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_naivety_to_tactical_realism",
-      "source_ticket": "ext_resolve_0062"
+      "source_ticket": "ext_resolve_0062",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_16fe_002",
       "text": "Our intelligence annexes show they've moved assets. Not in violation of the letter of the prohibition, but certainly its spirit. They're operating in the administrative gray zones.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_naivety_to_tactical_realism",
-      "source_ticket": "ext_resolve_0062"
+      "source_ticket": "ext_resolve_0062",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_888c_001",
       "text": "The protocols... they're not just complex. They're recursive. Section 7.3.2 references Annex D, which requires Form 88-B, but that form's validation depends on a clearance that only Section 7.3.2 can grant.",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conspiracy",
-      "source_ticket": "ext_resolve_0063"
+      "source_ticket": "ext_resolve_0063",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_888c_002",
       "text": "It's not inefficiency. It's design. The deadlocks are intentional\u2014administrative oubliettes where requests go to be forgotten. The Hexagon doesn't just control access; it manufactures the impossibility of access.",
-      "emotion": "realization",
+      "emotion": "surprise",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conspiracy",
-      "source_ticket": "ext_resolve_0063"
+      "source_ticket": "ext_resolve_0063",
+      "emotion_raw": "realization"
     },
     {
       "id": "ext_syn_5f76_001",
       "text": "Ah, but I once believed in such direct methods myself. In my first posting to the Bureau of Strategic Assessments, I drafted position papers that advocated for decisive action. They were... well-received.",
-      "emotion": "nostalgic",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "disillusionment_arc",
-      "source_ticket": "ext_resolve_0065"
+      "source_ticket": "ext_resolve_0065",
+      "emotion_raw": "nostalgic"
     },
     {
       "id": "ext_syn_5f76_002",
       "text": "Then came the interminable committee reviews. The forms in quadruplicate. The 'suggested revisions' that stripped all conviction from the prose until it read like administrative porridge. One learns that enthusiasm is, itself, a procedural violation.",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "disillusionment_arc",
-      "source_ticket": "ext_resolve_0065"
+      "source_ticket": "ext_resolve_0065",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_844d_001",
       "text": "Wait\u2014this form requires a stamp from the Bureau of Regional Authenticity, but that office was dissolved in the Third Republic!",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "procedural_failure_escalation",
-      "source_ticket": "ext_resolve_0066"
+      "source_ticket": "ext_resolve_0066",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_844d_002",
       "text": "I've submitted the appeal through pneumatic tube three times now. Each time it returns with a different subsection highlighted in red ink.",
-      "emotion": "exasperation",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "procedural_failure_escalation",
-      "source_ticket": "ext_resolve_0066"
+      "source_ticket": "ext_resolve_0066",
+      "emotion_raw": "exasperation"
     },
     {
       "id": "ext_syn_31df_001",
       "text": "The Audit's conclusion was... efficient. A clean resolution, stamped and filed. But efficiency has its own terroir, doesn't it? It leaves a particular aftertaste.",
-      "emotion": "controlled_unease",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "masked_vulnerability",
-      "source_ticket": "ext_resolve_0067"
+      "source_ticket": "ext_resolve_0067",
+      "emotion_raw": "controlled_unease"
     },
     {
       "id": "ext_syn_31df_002",
       "text": "One might wonder what becomes of the... collateral figures. The names that appear in the appendices, not the main body. Their files get transferred to different departments. Archives with less foot traffic.",
-      "emotion": "apprehension",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "masked_vulnerability",
-      "source_ticket": "ext_resolve_0067"
+      "source_ticket": "ext_resolve_0067",
+      "emotion_raw": "apprehension"
     },
     {
       "id": "ext_syn_b241_001",
       "text": "But of course, my own diligence must be documented. I should check the regional oversight logs to ensure my investigation follows proper channels.",
-      "emotion": "controlled_frustration",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "authority_reference_reveal",
-      "source_ticket": "ext_resolve_0068"
+      "source_ticket": "ext_resolve_0068",
+      "emotion_raw": "controlled_frustration"
     },
     {
       "id": "ext_syn_b241_002",
       "text": "Speaking of channels... it occurs to me that certain irregularities in her paperwork might require... higher consultation. The kind that leaves a paper trail in unexpected places.",
-      "emotion": "calculating",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "authority_reference_reveal",
-      "source_ticket": "ext_resolve_0068"
+      "source_ticket": "ext_resolve_0068",
+      "emotion_raw": "calculating"
     },
     {
       "id": "ext_syn_be1b_001",
       "text": "Ah, yes. The medical annexes. I do enjoy reviewing these particular forms\u2014they capture such... interesting deviations from baseline cognition.",
-      "emotion": "pleased",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_schadenfreude",
-      "source_ticket": "ext_resolve_0070"
+      "source_ticket": "ext_resolve_0070",
+      "emotion_raw": "pleased"
     },
     {
       "id": "ext_syn_be1b_002",
       "text": "Section 7-C: 'Post-Traumatic Cognitive Terroir Assessment.' It's always fascinating to see how trauma reshapes a mind's regional character.",
-      "emotion": "fascinated",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_schadenfreude",
-      "source_ticket": "ext_resolve_0070"
+      "source_ticket": "ext_resolve_0070",
+      "emotion_raw": "fascinated"
     },
     {
       "id": "ext_syn_bccd_001",
       "text": "Submit it before the third bell, or the forms will be considered spiritually inert.",
-      "emotion": "solemn",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_spirituality",
-      "source_ticket": "ext_resolve_0071"
+      "source_ticket": "ext_resolve_0071",
+      "emotion_raw": "solemn"
     },
     {
       "id": "ext_syn_bccd_002",
       "text": "The ink must be blessed by a notary of the Third Arrondissement. It's in the procedural liturgy.",
-      "emotion": "reverent",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_spirituality",
-      "source_ticket": "ext_resolve_0071"
+      "source_ticket": "ext_resolve_0071",
+      "emotion_raw": "reverent"
     },
     {
       "id": "ext_syn_d499_001",
       "text": "I trust you've seen the latest field reports from the Amandiers sector? The usual Hexagon overreach, naturally. Their requisition forms were... inadequately filed.",
-      "emotion": "smug_satisfaction",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_schadenfreude",
-      "source_ticket": "ext_resolve_0072"
+      "source_ticket": "ext_resolve_0072",
+      "emotion_raw": "smug_satisfaction"
     },
     {
       "id": "ext_syn_d499_002",
       "text": "One might say their procedural violations met with appropriate administrative correction. The residents' response was regrettably... kinetic.",
-      "emotion": "bureaucratic_glee",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_schadenfreude",
-      "source_ticket": "ext_resolve_0072"
+      "source_ticket": "ext_resolve_0072",
+      "emotion_raw": "bureaucratic_glee"
     },
     {
       "id": "ext_syn_a611_001",
       "text": "Yet for all those eyes, what do they actually see? Endless reports on citizen movements, stamped and filed in triplicate, while the real problems fester.",
-      "emotion": "cynical_resignation",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "The Watched and the Powerless",
-      "source_ticket": "ext_resolve_0073"
+      "source_ticket": "ext_resolve_0073",
+      "emotion_raw": "cynical_resignation"
     },
     {
       "id": "ext_syn_a611_002",
       "text": "The Pr\u00e9fet receives those same reports. He sits at the center of the web, watching the Republic's pulse through surveillance data, yet unable to prescribe a cure.",
-      "emotion": "detached_analysis",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "The Watched and the Powerless",
-      "source_ticket": "ext_resolve_0073"
+      "source_ticket": "ext_resolve_0073",
+      "emotion_raw": "detached_analysis"
     },
     {
       "id": "ext_syn_8d71_001",
       "text": "Your presence here constitutes an unscheduled occupancy. This is not a waiting room.",
-      "emotion": "contempt_with_escalation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "contempt_to_expulsion",
-      "source_ticket": "ext_resolve_0074"
+      "source_ticket": "ext_resolve_0074",
+      "emotion_raw": "contempt_with_escalation"
     },
     {
       "id": "ext_syn_8d71_002",
       "text": "I see you've chosen to interpret my professional courtesy as an invitation to linger. A miscalculation.",
-      "emotion": "controlled_anger",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "contempt_to_expulsion",
-      "source_ticket": "ext_resolve_0074"
+      "source_ticket": "ext_resolve_0074",
+      "emotion_raw": "controlled_anger"
     },
     {
       "id": "ext_syn_eea1_001",
@@ -4459,98 +4593,110 @@
     {
       "id": "ext_syn_eea1_002",
       "text": "But then I saw the work order. Just a standard Form 7B-22: 'Municipal Asset Relocation.' No ceremony, no ribbon-cutting. Just... administrative transfer.",
-      "emotion": "disappointed",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_deflation",
-      "source_ticket": "ext_resolve_0075"
+      "source_ticket": "ext_resolve_0075",
+      "emotion_raw": "disappointed"
     },
     {
       "id": "ext_syn_6670_001",
       "text": "Wait\u2014the aide's credentials. They were stamped with the seal of the Canine Compliance Bureau. I thought that department was dissolved after the Poodle Purges.",
-      "emotion": "confused",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_absurdism",
-      "source_ticket": "ext_resolve_0076"
+      "source_ticket": "ext_resolve_0076",
+      "emotion_raw": "confused"
     },
     {
       "id": "ext_syn_6670_002",
       "text": "Unless... the Bureau was never dissolved. It was just reclassified under 'Faunal Administrative Oversight.' The aide wasn't human. She was a procedural avatar.",
-      "emotion": "surprised",
+      "emotion": "surprise",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_absurdism",
-      "source_ticket": "ext_resolve_0076"
+      "source_ticket": "ext_resolve_0076",
+      "emotion_raw": "surprised"
     },
     {
       "id": "ext_syn_6670_003",
       "text": "And if she's gone, protocol states the next-in-line arbiter must be... a certified bureaucratic hound. Of course. The Republic always has a backup signatory.",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_absurdism",
-      "source_ticket": "ext_resolve_0076"
+      "source_ticket": "ext_resolve_0076",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_da02_001",
       "text": "Irregular, yes. But not without precedent. Article 14-B of the Historical Artifacts Retrieval Codex allows for... exceptional circumstances. Your file mentions you were born in the pr\u00e9fecture archives district.",
-      "emotion": "skeptical_curiosity",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_authority_to_historical_mission",
-      "source_ticket": "ext_resolve_0077"
+      "source_ticket": "ext_resolve_0077",
+      "emotion_raw": "skeptical_curiosity"
     },
     {
       "id": "ext_syn_da02_002",
       "text": "The Marianne. Section 7, Flooded Archives Division. That retrieval requires a triplicate Form H-22, countersigned by both the Ministry of Memory and the Office of Public Monuments. You have neither signature.",
-      "emotion": "professional_assessment",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_authority_to_historical_mission",
-      "source_ticket": "ext_resolve_0077"
+      "source_ticket": "ext_resolve_0077",
+      "emotion_raw": "professional_assessment"
     },
     {
       "id": "ext_syn_7744_001",
       "text": "Disgusting, yes. But necessary. The system requires closure, even when the taste is bitter.",
-      "emotion": "resigned",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_idealism",
-      "source_ticket": "ext_resolve_0078"
+      "source_ticket": "ext_resolve_0078",
+      "emotion_raw": "resigned"
     },
     {
       "id": "ext_syn_7744_002",
       "text": "And yet... consider the machinery we serve. It grinds slowly, but it grinds true. Every form, every stamp, every audit trail\u2014it builds something larger than ourselves.",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_idealism",
-      "source_ticket": "ext_resolve_0078"
+      "source_ticket": "ext_resolve_0078",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_c773_001",
       "text": "The Gendarme produced a form stamped with three different seals, none of which matched the Pr\u00e9fecture's current fiscal quarter. 'Your arrest authorization appears to be... out of sequence,' he muttered, flipping through a crumbling ledger.",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_failure",
-      "source_ticket": "ext_resolve_0079"
+      "source_ticket": "ext_resolve_0079",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_c773_002",
       "text": "'The Canine Impersonation Bureau handles all irregular apprehensions,' the Gendarme explained without conviction. 'Their Durendal unit processes the paperwork. Or it did, before the... incident with the terroir-certified ink.'",
-      "emotion": "resigned_absurdity",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_failure",
-      "source_ticket": "ext_resolve_0079"
+      "source_ticket": "ext_resolve_0079",
+      "emotion_raw": "resigned_absurdity"
     },
     {
       "id": "ext_syn_fe84_001",
       "text": "My confidence in Madame Matilde is not the issue here. The issue is the methodology of this investigation\u2014the clumsy, heavy-handed approach that betrays its origins.",
-      "emotion": "controlled_anger",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "anger_redirection_arc",
-      "source_ticket": "ext_resolve_0080"
+      "source_ticket": "ext_resolve_0080",
+      "emotion_raw": "controlled_anger"
     },
     {
       "id": "ext_syn_fe84_002",
       "text": "Look at this report's structure. No subtlety, no appreciation for nuance. It reads like something drafted in a provincial prefecture where they still believe paperwork should resemble a military assault.",
-      "emotion": "disdain",
+      "emotion": "disgust",
       "is_extension_bridge": true,
       "arc_type": "anger_redirection_arc",
-      "source_ticket": "ext_resolve_0080"
+      "source_ticket": "ext_resolve_0080",
+      "emotion_raw": "disdain"
     },
     {
       "id": "ext_syn_edab_001",
@@ -4563,138 +4709,155 @@
     {
       "id": "ext_syn_edab_002",
       "text": "{Puzzled} Wait. This signature block... it's been countersigned already. By a different hand.",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_betrayal",
-      "source_ticket": "ext_resolve_0081"
+      "source_ticket": "ext_resolve_0081",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_edab_003",
       "text": "{Cold, formal} According to Regulation 7.3.2, a pre-existing signature invalidates your authority to file. Who authorized this before you?",
-      "emotion": "suspicion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_betrayal",
-      "source_ticket": "ext_resolve_0081"
+      "source_ticket": "ext_resolve_0081",
+      "emotion_raw": "suspicion"
     },
     {
       "id": "ext_syn_778c_003",
       "text": "Submit your Form 7-B. I'll process it immediately. And... tell your people I remember what we're supposed to be fighting for.",
-      "emotion": "determined",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_awakening",
-      "source_ticket": "ext_resolve_0082"
+      "source_ticket": "ext_resolve_0082",
+      "emotion_raw": "determined"
     },
     {
       "id": "ext_syn_87ce_001",
       "text": "{Slight edge}Authorization protocols are region-specific. You should have checked your paperwork before coming here.",
-      "emotion": "mild_irritation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_territoriality",
-      "source_ticket": "ext_resolve_0083"
+      "source_ticket": "ext_resolve_0083",
+      "emotion_raw": "mild_irritation"
     },
     {
       "id": "ext_syn_87ce_002",
       "text": "{Procedural}This isn't about the Hexagon. It's about proper documentation. Your region's forms don't meet our standards.",
-      "emotion": "defensive_professionalism",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_territoriality",
-      "source_ticket": "ext_resolve_0083"
+      "source_ticket": "ext_resolve_0083",
+      "emotion_raw": "defensive_professionalism"
     },
     {
       "id": "ext_syn_3790_001",
       "text": "But then again, the regulations are what they are. One must work within them, not against them. The Hexagon's rules are like the terroir of Burgundy\u2014they shape what grows there, for better or worse.",
-      "emotion": "resigned_acceptance",
+      "emotion": "sad",
       "is_extension_bridge": true,
       "arc_type": "cynicism_to_respect",
-      "source_ticket": "ext_resolve_0084"
+      "source_ticket": "ext_resolve_0084",
+      "emotion_raw": "resigned_acceptance"
     },
     {
       "id": "ext_syn_3790_002",
       "text": "Valois understood that. He never tried to break the system\u2014he learned to navigate its currents. To make the bureaucracy flow like a well-aged Bordeaux, not fight it like a clogged drain.",
-      "emotion": "contemplative_respect",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "cynicism_to_respect",
-      "source_ticket": "ext_resolve_0084"
+      "source_ticket": "ext_resolve_0084",
+      "emotion_raw": "contemplative_respect"
     },
     {
       "id": "ext_syn_4c71_001",
       "text": "But then you notice the chairs are just comfortable enough. Not luxurious, mind you\u2014that would be decadent. But they've been designed to the exact millimeter of acceptable ergonomic comfort.",
-      "emotion": "wry_observation",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "micro-resistances",
-      "source_ticket": "ext_resolve_0086"
+      "source_ticket": "ext_resolve_0086",
+      "emotion_raw": "wry_observation"
     },
     {
       "id": "ext_syn_4c71_002",
       "text": "And the magazines in the rack\u2014all approved publications, of course\u2014but someone has slipped in a dog-eared copy of 'Le Canard Encha\u00een\u00e9' between two volumes of administrative bulletins. A tiny rebellion.",
-      "emotion": "smug_satisfaction",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "micro-resistances",
-      "source_ticket": "ext_resolve_0086"
+      "source_ticket": "ext_resolve_0086",
+      "emotion_raw": "smug_satisfaction"
     },
     {
       "id": "ext_syn_4c71_003",
       "text": "So you settle in. You take the comfortable chair. You read the subversive magazine. You make the system work for you, in the small ways it allows. It's not freedom, but it's something.",
-      "emotion": "resigned_comfort",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "micro-resistances",
-      "source_ticket": "ext_resolve_0086"
+      "source_ticket": "ext_resolve_0086",
+      "emotion_raw": "resigned_comfort"
     },
     {
       "id": "ext_syn_4ea6_001",
       "text": "Procedural entities like myself have a particular interest in significant status changes. There's a form for that, you know. Form 44-B: Notification of Permanent Status Alteration.",
-      "emotion": "curious",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_revelation",
-      "source_ticket": "ext_resolve_0087"
+      "source_ticket": "ext_resolve_0087",
+      "emotion_raw": "curious"
     },
     {
       "id": "ext_syn_4ea6_002",
       "text": "I've just received a pneumatic tube transmission from the Bureau of Historical Figures. It appears there's been a... definitive update to Leclerc's file.",
-      "emotion": "surprised",
+      "emotion": "surprise",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_revelation",
-      "source_ticket": "ext_resolve_0087"
+      "source_ticket": "ext_resolve_0087",
+      "emotion_raw": "surprised"
     },
     {
       "id": "ext_syn_88fc_001",
       "text": "An audit? That explains the sealed envelope that arrived this morning. It's marked 'Regional Compliance - Immediate Attention.'",
-      "emotion": "unease",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conflict",
-      "source_ticket": "ext_resolve_0088"
+      "source_ticket": "ext_resolve_0088",
+      "emotion_raw": "unease"
     },
     {
       "id": "ext_syn_88fc_002",
       "text": "I opened it just now. It's not about the audit at all. It's a transfer order for Lyon, signed by the Regional Director. My name, my signature block... but I never requested this.",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_conflict",
-      "source_ticket": "ext_resolve_0088"
+      "source_ticket": "ext_resolve_0088",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_888c_003",
       "text": "What do you mean 'unverified persons'? My papers were stamped at the Pr\u00e9fecture just last week.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "verification_hierarchy",
-      "source_ticket": "ext_resolve_0089"
+      "source_ticket": "ext_resolve_0089",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_10d5_001",
       "text": "But this stamp... it's from the Provincial Office of Terroir Verification. Not the Capital Bureau of Civic Affairs. The forms are correct, but the authority is... regional.",
-      "emotion": "confusion",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disillusionment",
-      "source_ticket": "ext_resolve_0091"
+      "source_ticket": "ext_resolve_0091",
+      "emotion_raw": "confusion"
     },
     {
       "id": "ext_syn_10d5_002",
       "text": "You realize what this means? The Hexagon has delegated final approval to provincial committees. They've outsourced our citizenship to local bureaucrats who care more about soil composition than civil rights.",
-      "emotion": "frustration",
+      "emotion": "anger",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disillusionment",
-      "source_ticket": "ext_resolve_0091"
+      "source_ticket": "ext_resolve_0091",
+      "emotion_raw": "frustration"
     },
     {
       "id": "ext_syn_e791_001",
@@ -4707,10 +4870,11 @@
     {
       "id": "ext_syn_e791_002",
       "text": "Yet, what is bureaucracy but the ossified memory of a state? And what is a statue but memory cast in bronze? To abandon her to the damp archives is to admit the Republic has forgotten its own face.",
-      "emotion": "resolute",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_disgust_to_cultural_idealism",
-      "source_ticket": "ext_resolve_0093"
+      "source_ticket": "ext_resolve_0093",
+      "emotion_raw": "resolute"
     },
     {
       "id": "ext_syn_2740_001",
@@ -4723,10 +4887,11 @@
     {
       "id": "ext_syn_2740_002",
       "text": "And here\u2014the signature block includes a counter-signature line for the Head of the Hexagon's office. They anticipated this exact procedural gap. The system isn't broken, it's... layered with contingency.",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_redemption",
-      "source_ticket": "ext_resolve_0095"
+      "source_ticket": "ext_resolve_0095",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_326b_001",
@@ -4739,26 +4904,29 @@
     {
       "id": "ext_syn_326b_002",
       "text": "The seal is broken. Someone bypassed the triplicate authorization. This barrel wasn't inspected.",
-      "emotion": "alarm",
+      "emotion": "fear",
       "is_extension_bridge": true,
       "arc_type": "regulatory_breach_panic",
-      "source_ticket": "ext_resolve_0096"
+      "source_ticket": "ext_resolve_0096",
+      "emotion_raw": "alarm"
     },
     {
       "id": "ext_syn_9f4c_001",
       "text": "But perhaps this is not a personnel problem, but a spiritual one. The forms require a higher endorsement when earthly solutions fail.",
-      "emotion": "contemplative",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_spiritualism",
-      "source_ticket": "ext_resolve_0097"
+      "source_ticket": "ext_resolve_0097",
+      "emotion_raw": "contemplative"
     },
     {
       "id": "ext_syn_9f4c_002",
       "text": "I will submit a Form 7-B: Request for Divine Intervention in Administrative Matters. The Hexagon sometimes blesses bureaucratic initiative born of desperation.",
-      "emotion": "resigned_hope",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_spiritualism",
-      "source_ticket": "ext_resolve_0097"
+      "source_ticket": "ext_resolve_0097",
+      "emotion_raw": "resigned_hope"
     },
     {
       "id": "ext_syn_2050_001",
@@ -4771,18 +4939,20 @@
     {
       "id": "ext_syn_2050_002",
       "text": "But if the rules are meaningless, then bending them isn't corruption\u2014it's art. A little creative filing, a misplaced decimal...",
-      "emotion": "amused",
+      "emotion": "happy",
       "is_extension_bridge": true,
       "arc_type": "bureaucratic_cynicism_to_subversive_joy",
-      "source_ticket": "ext_resolve_0098"
+      "source_ticket": "ext_resolve_0098",
+      "emotion_raw": "amused"
     },
     {
       "id": "ext_syn_07ca_003",
       "text": "{Radio transmission, voice softening} Disregard intervention request. This isn't a threat\u2014it's a masterpiece. The terroir here isn't violence, it's... creation. We're standing down. Let the art speak.",
-      "emotion": "reverent",
+      "emotion": "neutral",
       "is_extension_bridge": true,
       "arc_type": "bureaucracy_meets_art",
-      "source_ticket": "ext_resolve_0099"
+      "source_ticket": "ext_resolve_0099",
+      "emotion_raw": "reverent"
     }
   ],
   "edges": [

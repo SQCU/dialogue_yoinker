@@ -89,6 +89,9 @@ curl -X POST {api}/api/runs/{run_id}/submit \\
     "output_data": {{
       "translated_texts": [...],
       "proper_nouns_introduced": [...],
+      "synthetic_conditions": [{{"type": "quest_stage", "quest": "...", "stage": ">=1"}}, ...],
+      "speaker": "...",
+      "synthetic_topic": "...",
       "register_notes": "...",
       "structural_fidelity": {{...}},
       "confidence": 0.9

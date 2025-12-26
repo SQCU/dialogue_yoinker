@@ -4,6 +4,27 @@
 
 You are looking at a set of tools for extracting dialogue from Bethesda game plugins (ESM/ESP format). But the tools are not the point. The point is a research question about what it takes to train machine learning models that can *communicate* rather than merely *predict*.
 
+## PRIORITY: Schema Preservation Rebuild
+
+**Read first**: `notes/schema_preservation_audit.md`
+
+The synthetic dialogue pipeline has suffered **progressive schema deflation** - metadata is dropped at each stage until synthetic graphs contain only 4 of 18+ fields. This audit documents:
+
+1. What fields exist at each pipeline stage
+2. Where data is dropped (API sampling, parser, compilation)
+3. Exact code locations and fixes required
+4. The critical insight: `conditions` (CTDA game state) provide consistent semantic grouping even when `quest` field is inconsistently used by developers
+
+**Key files to modify** (in order):
+- `api_server.py` - Add conditions to /api/sample serialization
+- `structural_parser_worker.py` - Preserve source_id, quest, topic, conditions
+- `workflow/ticket_routes.py` - Pass source metadata to translation
+- `scripts/run_batch.py` - Rewrite compile_translations() for full schema
+
+The v1 synthetic outputs (`synthetic/gallia_v1/dialogue.json`) show what the schema SHOULD look like. Current outputs have regressed to near-uselessness for topology analysis.
+
+---
+
 ## The Problem We're Trying to Solve
 
 Most text corpora used for language model training are **causally impoverished**. Webtext is a heap of utterances ripped from their contexts of production and reception. Image-caption datasets capture **audience responses** to images (what people say *about* pictures) rather than the **generative intentions** behind images (what someone was trying to *do* by making a picture).

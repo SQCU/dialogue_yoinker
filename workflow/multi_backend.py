@@ -164,13 +164,19 @@ IMPORTANT: Include the original text for each beat.""",
 Output JSON with:
 - translated_texts: list of strings (actual dialogue lines, not metadata!)
 - proper_nouns_introduced: list of new proper nouns used
+- synthetic_conditions: list of inferred game-state conditions (see below)
+- speaker: derived speaker name or role
+- synthetic_topic: semantic topic name for grouping (snake_case)
 - confidence: 0.0-1.0
+
+Condition types: quest_stage, has_met, event_occurred, disposition, faction_standing, faction_rank, location, time_of_day, skill_check, has_item
 
 IMPORTANT:
 - translated_texts must be actual dialogue strings, not beat metadata
 - Preserve beat count exactly
 - Use proper nouns from the target bible
-- Match target setting's register and tone""",
+- Match target setting's register and tone
+- Infer conditions from arc_shape, archetype, barrier_type context""",
 
     "lore_curator": """You are a lore curator. Validate proper nouns against target bible.
 
@@ -436,13 +442,19 @@ TARGET BIBLE EXCERPT:
 Return JSON with:
 - translated_texts: list of {len(source_texts)} dialogue strings (actual prose!)
 - proper_nouns_introduced: list of new proper nouns used
+- synthetic_conditions: list of inferred game-state conditions
+- speaker: derived speaker name or role
+- synthetic_topic: semantic topic name for grouping
 - confidence: 0.0-1.0
+
+Condition types: quest_stage, has_met, event_occurred, disposition, faction_standing, faction_rank, location, time_of_day, skill_check, has_item
 
 CRITICAL:
 - Output exactly {len(source_texts)} translated lines
 - translated_texts must be actual dialogue like "The Préfet requires your report."
 - Use proper nouns from the target bible (Hexagon, Préfet, Leclerc, etc.)
-- Match the target setting's bureaucratic tone"""
+- Match the target setting's bureaucratic tone
+- Infer synthetic_conditions from arc_shape ({triplet.get('arc_shape', 'unknown')}), archetype, barrier_type"""
 
         elif worker_type == "lore_curator":
             return f"""Validate this proper noun proposal:

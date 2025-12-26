@@ -426,20 +426,22 @@
     {
       "id": "syn_2c54ef464ff1",
       "text": "{miserable}The infestation metrics are catastrophic. Can't MMSI expedite a compliance intervention?",
-      "emotion": "miserable",
+      "emotion": "neutral",
       "source_ref": "fal_ab9e3566d166",
       "source_game": "falloutnv",
       "arc_shape": "plea_arc",
-      "gap_targeted": ""
+      "gap_targeted": "",
+      "emotion_raw": "miserable"
     },
     {
       "id": "syn_7fb3243fd362",
       "text": "{gruff}What's the projected revenue impact?",
-      "emotion": "gruff",
+      "emotion": "neutral",
       "source_ref": "fal_0ceb40158326",
       "source_game": "falloutnv",
       "arc_shape": "plea_arc",
-      "gap_targeted": ""
+      "gap_targeted": "",
+      "emotion_raw": "gruff"
     },
     {
       "id": "syn_acb520717f27",
@@ -5065,10 +5067,11 @@
     {
       "id": "bridge_1588608c4f61",
       "text": "Speaking of compliance gaps, I'm detecting an unplanned marmot dispersal event on the operational floor\u2014we need to initiate containment protocols immediately.",
-      "emotion": "alarmed",
+      "emotion": "fear",
       "is_bridge": true,
       "source_terminus": "syn_e751b7ef82f2",
-      "target_entry": "syn_fd23c8b9aac2"
+      "target_entry": "syn_fd23c8b9aac2",
+      "emotion_raw": "alarmed"
     },
     {
       "id": "bridge_39a3ba3ea31f",

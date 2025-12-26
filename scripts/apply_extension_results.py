@@ -11,6 +11,8 @@ import sys
 import json
 from pathlib import Path
 
+from scripts.emotion_schema import ValidationStats, validate_emotion
+
 RUNS_DIR = Path("runs")
 SYNTHETIC_DIR = Path("synthetic")
 
@@ -43,6 +45,7 @@ def apply_extension_results(run_id: str, setting: str, version: int) -> dict:
     bridges_added = 0
     edges_added = 0
     failed_resolutions = 0
+    emotion_stats = ValidationStats()
 
     for ticket in extension_resolve_tickets:
         if ticket.get("status") != "completed":
@@ -66,10 +69,16 @@ def apply_extension_results(run_id: str, setting: str, version: int) -> dict:
             if not node_id or node_id in existing_ids:
                 continue
 
+            # Validate emotion against canonical schema
+            raw_emotion = bridge.get("emotion", "neutral")
+            validation = validate_emotion(raw_emotion)
+            emotion_stats.record(validation)
+
             nodes.append({
                 "id": node_id,
                 "text": bridge.get("text", ""),
-                "emotion": bridge.get("emotion", "neutral"),
+                "emotion": validation.canonical,
+                "emotion_raw": raw_emotion if not validation.was_valid else None,
                 "is_extension_bridge": True,
                 "arc_type": output_data.get("arc_realized"),
                 "source_ticket": ticket.get("ticket_id"),
@@ -107,6 +116,15 @@ def apply_extension_results(run_id: str, setting: str, version: int) -> dict:
         "edges_added": edges_added,
         "total_nodes": len(nodes),
         "total_edges": len(edges),
+        "emotion_validation": {
+            "total": emotion_stats.total,
+            "valid": emotion_stats.valid,
+            "mapped": emotion_stats.mapped,
+            "defaulted": emotion_stats.defaulted,
+            "defect_rate": emotion_stats.defect_rate,
+            "recovery_rate": emotion_stats.recovery_rate,
+            "unknown_emotions": emotion_stats.unknown_emotions,
+        },
     }
 
 
@@ -130,6 +148,20 @@ def main():
     print(f"  Edges added: {result['edges_added']}")
     print(f"  Total nodes: {result['total_nodes']}")
     print(f"  Total edges: {result['total_edges']}")
+
+    # Emotion validation stats
+    ev = result.get("emotion_validation", {})
+    if ev.get("total", 0) > 0:
+        print(f"\nEmotion schema validation:")
+        print(f"  Valid (canonical): {ev['valid']}/{ev['total']} ({ev['valid']/ev['total']*100:.1f}%)")
+        print(f"  Mapped (known variant): {ev['mapped']}")
+        print(f"  Defaulted (unknown): {ev['defaulted']}")
+        print(f"  Defect rate: {ev['defect_rate']*100:.1f}%")
+        print(f"  Recovery rate: {ev['recovery_rate']*100:.1f}%")
+        if ev.get("unknown_emotions"):
+            print(f"  Unknown emotions (consider adding to map):")
+            for emo, count in sorted(ev["unknown_emotions"].items(), key=lambda x: -x[1])[:5]:
+                print(f"    {emo}: {count}")
 
 
 if __name__ == "__main__":
