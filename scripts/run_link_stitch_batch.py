@@ -18,6 +18,9 @@ DEEPSEEK_API = "https://api.deepseek.com/v1/chat/completions"
 
 LINK_STITCHER_SYSTEM_PROMPT = """You are a link-stitcher agent for dialogue graph topology. Your task is to write transitional dialogue that connects source nodes to target nodes.
 
+VALID EMOTIONS (use ONLY these - they are facial animation metadata values):
+  neutral, anger, fear, happy, sad, disgust, surprise
+
 Given a source node and candidate targets, you must:
 1. For each candidate target, decide if you can write dialogue that achieves the emotion transition
 2. Write bridge text that naturally transitions from source emotion to target emotion
@@ -62,6 +65,8 @@ Transition required: {target.get('transition_required')}
 ## Link Parameters
 - n_links_out: {params.get('n_links_out', 3)} (try to create this many links)
 - max_bridge_length: {params.get('max_bridge_length', 1)} (bridge nodes per link)
+
+VALID EMOTIONS (use ONLY these): neutral, anger, fear, happy, sad, disgust, surprise
 
 ## Output Format
 Return a JSON object with this structure:

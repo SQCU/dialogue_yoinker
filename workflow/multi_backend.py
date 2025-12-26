@@ -187,6 +187,8 @@ Output JSON with:
 
     "bridge_generator": """You generate bridge dialogue to connect two segments of a synthetic dialogue graph.
 
+VALID EMOTIONS (use ONLY these): neutral, anger, fear, happy, sad, disgust, surprise
+
 Given:
 1. Terminus segment - the END of one dialogue chain
 2. Entry segment - the START of another dialogue chain
@@ -490,6 +492,7 @@ SETTING BIBLE (excerpt):
 {bible}
 
 Generate ONE transitional line (10-30 words) that bridges from terminus to entry.
+VALID EMOTIONS (use ONLY these): neutral, anger, fear, happy, sad, disgust, surprise
 Return JSON: {{"bridge_text": "...", "bridge_emotion": "neutral", "reasoning": "..."}}"""
 
         return f"Process this input and return JSON:\n\n{json.dumps(input_data, indent=2)}"

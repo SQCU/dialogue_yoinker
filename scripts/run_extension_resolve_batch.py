@@ -20,11 +20,14 @@ EXTENSION_RESOLVER_SYSTEM_PROMPT = """You are an extension-resolver agent for di
 
 Given a source node and target node with a suggested arc type, generate 1-3 bridge nodes that create a natural emotional transition from source to target.
 
+VALID EMOTIONS (you MUST use only these - they are facial animation metadata values):
+  neutral, anger, fear, happy, sad, disgust, surprise
+
 The suggested_arc provides creative direction:
-- bureaucratic_dread: neutral → anxiety → fear (slow realization of trapped-ness)
-- interrupted_confrontation: anger → surprise → varies (unexpected arrival breaks tension)
-- regulatory_revelation: neutral → surprise → anger/fear (discovery of hidden violation)
-- surveillance_paranoia: neutral → unease → fear (growing awareness of being watched)
+- bureaucratic_dread: neutral → fear → fear (slow realization of trapped-ness)
+- interrupted_confrontation: anger → surprise → neutral (unexpected arrival breaks tension)
+- regulatory_revelation: neutral → surprise → anger (discovery of hidden violation)
+- surveillance_paranoia: neutral → fear → fear (growing awareness of being watched)
 - conditional_status: varies (character's status depends on paperwork)
 
 You can interpret arc types loosely. Generate bridge dialogue that fits the setting's register.
@@ -61,6 +64,8 @@ Emotion: {target.get('emotion')}
 Generate 1-3 bridge nodes that create a natural emotional transition from source to target.
 The bridge should embody the suggested arc type.
 
+VALID EMOTIONS (use ONLY these): neutral, anger, fear, happy, sad, disgust, surprise
+
 ## Output Format
 Return a JSON object:
 {{
@@ -69,7 +74,7 @@ Return a JSON object:
     {{
       "id": "ext_{source.get('id', '')[:8]}_001",
       "text": "Bridge dialogue here",
-      "emotion": "intermediate_emotion",
+      "emotion": "fear",
       "position": 1
     }}
   ],

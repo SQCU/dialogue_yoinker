@@ -12,5 +12,13 @@
   "run_ids": [],
   "total_nodes": 0,
   "total_edges": 0,
-  "schema_additions": ["synthetic_conditions", "speaker", "synthetic_topic"]
+  "schema_additions": [
+    "synthetic_conditions",
+    "speaker",
+    "synthetic_topic"
+  ],
+  "action_history": [
+    "TRANSLATE batch_size=150 guided_weights={'de_escalation': 3.0, 'status_assertion': 3.0, 'plea_arc': 1.2, 'revelation_cascade': 1.2} \u2192 success=True nodes_added=0 edges_added=0",
+    "TRANSLATE batch_size=100 guided_weights={'de_escalation': 2.0, 'status_assertion': 2.0, 'plea_arc': 1.3, 'revelation_cascade': 1.3} \u2192 success=True nodes_added=0 edges_added=0"
+  ]
 }

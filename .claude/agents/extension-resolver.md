@@ -62,16 +62,24 @@ Generate:
 - **Edges** connecting source → bridges → target
 - The bridging content should embody the suggested arc
 
+## Valid Emotions
+
+You MUST use only these emotions (they are facial animation metadata values from the game engine):
+
+`neutral`, `anger`, `fear`, `happy`, `sad`, `disgust`, `surprise`
+
+Do NOT use: anxiety, unease, worried, nervous, tense, pained, etc. Map these to canonical values (anxiety → fear, unease → fear).
+
 ## Arc Types and What They Mean
 
 The `suggested_arc` provides creative direction. Common patterns:
 
 | Arc Type | Shape | What It Suggests |
 |----------|-------|------------------|
-| `bureaucratic_dread` | neutral → anxiety → fear | Slow realization of trapped-ness |
-| `interrupted_confrontation` | anger → surprise → varies | Unexpected arrival breaks tension |
-| `regulatory_revelation` | neutral → surprise → anger/fear | Discovery of hidden rule violation |
-| `surveillance_paranoia` | neutral → unease → fear | Growing awareness of being watched |
+| `bureaucratic_dread` | neutral → fear → fear | Slow realization of trapped-ness |
+| `interrupted_confrontation` | anger → surprise → neutral | Unexpected arrival breaks tension |
+| `regulatory_revelation` | neutral → surprise → anger | Discovery of hidden rule violation |
+| `surveillance_paranoia` | neutral → fear → fear | Growing awareness of being watched |
 | `conditional_status` | varies | Character's status depends on paperwork |
 | `terroir_corruption` | neutral → disgust → fear | Discovery of institutional rot |
 

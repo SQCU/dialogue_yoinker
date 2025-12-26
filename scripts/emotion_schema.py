@@ -3,7 +3,7 @@
 Emotion schema validation for synthetic dialogue graphs.
 
 Canonical emotions from Bethesda TRDT subrecords (facial animation data):
-  neutral, anger, fear, happy, sad, disgust, surprise, pained
+  neutral, anger, fear, happy, sad, disgust, surprise
 
 This module validates and maps LLM-generated emotions to canonical values.
 Philosophy: treat generating models like fermentation - side effects are
@@ -13,7 +13,8 @@ our job to measure and filter, not theirs to avoid.
 from dataclasses import dataclass, field
 from typing import Literal
 
-# The 8 canonical emotions from Bethesda's TRDT facial animation system
+# The 7 canonical emotions from Bethesda's TRDT facial animation system
+# (1 baseline + 6 off-neutral sentiments)
 CANONICAL_EMOTIONS = frozenset({
     "neutral",
     "anger",
@@ -22,7 +23,6 @@ CANONICAL_EMOTIONS = frozenset({
     "sad",
     "disgust",
     "surprise",
-    "pained",
 })
 
 # Mapping of common LLM-generated "creative" emotions to canonical equivalents
@@ -213,14 +213,15 @@ EMOTION_MAP: dict[str, str] = {
     "neutral_with_hint": "neutral",
 
     # Pained variants
-    "hurt": "pained",
-    "anguish": "pained",
-    "anguished": "pained",
-    "suffering": "pained",
-    "tormented": "pained",
-    "distressed": "pained",
-    "distress": "pained",
-    "wounded": "pained",
+    "hurt": "sad",
+    "anguish": "sad",
+    "anguished": "sad",
+    "suffering": "sad",
+    "tormented": "sad",
+    "distressed": "fear",
+    "distress": "fear",
+    "wounded": "sad",
+    "pained": "sad",
 }
 
 
@@ -361,7 +362,7 @@ def validate_emotions_batch(
 # Type for canonical emotions (useful for type hints)
 CanonicalEmotion = Literal[
     "neutral", "anger", "fear", "happy",
-    "sad", "disgust", "surprise", "pained"
+    "sad", "disgust", "surprise"
 ]
 
 

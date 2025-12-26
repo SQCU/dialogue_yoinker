@@ -423,15 +423,22 @@ def extract_walks_from_graph(graph_data: Dict[str, Any],
             current = next_node
 
         if len(walk_nodes) >= 2:  # At least 2 nodes for a walk
-            beats = [
-                {
+            # Preserve all node fields, with defaults for essential ones
+            beats = []
+            for n in walk_nodes:
+                beat = {
                     "text": n.get("text", ""),
                     "emotion": n.get("emotion", "neutral"),
                     "beat_function": n.get("beat_function", "deliver_information"),
                     "speaker": n.get("speaker"),
                 }
-                for n in walk_nodes
-            ]
+                # Preserve v6 schema fields if present
+                for field in ["conditions", "topic", "arc_shape", "barrier_type",
+                              "attractor_type", "emotion_intensity", "proper_nouns",
+                              "source_game", "archetype_relation", "confidence"]:
+                    if field in n:
+                        beat[field] = n[field]
+                beats.append(beat)
 
             # Try to get archetype from first node with it
             archetype = "default"
@@ -440,9 +447,16 @@ def extract_walks_from_graph(graph_data: Dict[str, Any],
                     archetype = n["archetype_relation"]
                     break
 
+            # Try to get arc_shape from first node with it
+            arc = None
+            for n in walk_nodes:
+                if n.get("arc_shape"):
+                    arc = n["arc_shape"]
+                    break
+
             walks.append(Walk(
                 beats=beats,
-                arc_shape=infer_arc_shape(beats),
+                arc_shape=arc or infer_arc_shape(beats),
                 archetype_relation=archetype,
                 source=graph_data.get("source", "synthetic"),
             ))
