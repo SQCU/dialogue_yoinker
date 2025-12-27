@@ -2508,6 +2508,198 @@ async def estimate_render(requests: List[RenderSplitRequest]):
     }
 
 
+# =============================================================================
+# Hermeneutic Loop: Run State Management
+# =============================================================================
+
+try:
+    from workflow.hermeneutic_loop import (
+        RunState, ProposedAddition, EnrichedBible,
+        AdditionType, AdditionDirection,
+        get_current_run, start_run, end_run,
+        run_curator_batch, extract_proposed_additions,
+    )
+    HAS_HERMENEUTIC = True
+except ImportError:
+    HAS_HERMENEUTIC = False
+
+
+@app.post("/api/runs")
+async def create_run(
+    run_id: Optional[str] = Query(default=None),
+    target_translations: int = Query(default=100),
+    source_settings: List[str] = Query(default=[]),
+    target_settings: List[str] = Query(default=[]),
+):
+    """Start a new translation run with hermeneutic loop."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = start_run(
+        run_id=run_id,
+        target_translations=target_translations,
+        source_settings=source_settings,
+        target_settings=target_settings,
+    )
+    return {
+        "run_id": run.run_id,
+        "started_at": run.started_at,
+        "target_translations": run.target_translations,
+        "hot_bibles": list(run.hot_bibles.keys()),
+    }
+
+
+@app.get("/api/runs/current")
+async def get_run_state():
+    """Get current run state."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = get_current_run()
+    if not run:
+        raise HTTPException(404, "No active run")
+
+    return run.to_dict()
+
+
+@app.get("/api/runs/current/bibles/{setting}")
+async def get_hot_bible(setting: str, max_chars: int = 3000):
+    """Get enriched bible context for a setting."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = get_current_run()
+    if not run:
+        raise HTTPException(404, "No active run")
+
+    bible = run.hot_bibles.get(setting)
+    if not bible:
+        raise HTTPException(404, f"No hot bible for setting: {setting}")
+
+    return {
+        "setting": setting,
+        "enrichment_count": bible.enrichment_count,
+        "proper_nouns": bible.proper_nouns,
+        "factions": bible.factions,
+        "tensions": bible.tensions,
+        "idioms": bible.idioms,
+        "prompt_context": bible.to_prompt_context(max_chars=max_chars),
+    }
+
+
+@app.post("/api/runs/current/propose")
+async def propose_addition(
+    setting: str,
+    addition_type: str,
+    content: Dict[str, Any],
+    source_walk_id: str,
+    source_text: str,
+    reasoning: str,
+    direction: str = "target",
+):
+    """Propose an addition to the hot bible."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = get_current_run()
+    if not run:
+        raise HTTPException(404, "No active run")
+
+    from datetime import datetime
+
+    addition = ProposedAddition(
+        id="",
+        direction=AdditionDirection(direction),
+        setting=setting,
+        addition_type=AdditionType(addition_type),
+        content=content,
+        source_walk_id=source_walk_id,
+        source_text=source_text,
+        reasoning=reasoning,
+        proposed_at=datetime.now().isoformat(),
+        proposed_by="api",
+    )
+
+    added = run.propose_addition(addition)
+    return {
+        "added": added,
+        "addition_id": addition.id if added else None,
+        "queue_depth": len(run.get_pending_additions()),
+    }
+
+
+@app.post("/api/runs/current/tick")
+async def trigger_curator_tick(batch_size: int = 10):
+    """Trigger a curator batch validation."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = get_current_run()
+    if not run:
+        raise HTTPException(404, "No active run")
+
+    # Mock LLM call for now - would use actual curator agent
+    async def mock_curator_llm(prompt: str) -> str:
+        # Auto-approve everything for testing
+        import json, re
+        additions_match = re.search(r'"addition_id":\s*"([^"]+)"', prompt)
+        if additions_match:
+            return json.dumps([{"addition_id": additions_match.group(1), "approved": True, "reasoning": "Auto-approved"}])
+        return "[]"
+
+    results = await run_curator_batch(run, mock_curator_llm, batch_size=batch_size)
+
+    return {
+        "curator_clock": run.curator_clock,
+        "validations": len(results),
+        "additions_approved": run.additions_approved,
+        "additions_rejected": run.additions_rejected,
+        "additions_merged": run.additions_merged,
+    }
+
+
+@app.get("/api/runs/current/concurrency")
+async def get_effective_concurrency(max_concurrency: int = 25):
+    """Get current effective concurrency based on warmup."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = get_current_run()
+    if not run:
+        raise HTTPException(404, "No active run")
+
+    return {
+        "warmup_progress": run.warmup_progress,
+        "total_translations": run.total_translations,
+        "effective_concurrency": run.effective_concurrency(max_concurrency),
+        "should_run_curator": run.should_run_curator(),
+    }
+
+
+@app.delete("/api/runs/current")
+async def end_current_run(save_snapshot: bool = True):
+    """End current run, optionally saving snapshot."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = get_current_run()
+    if not run:
+        raise HTTPException(404, "No active run")
+
+    from pathlib import Path
+    output_dir = Path(f"output/runs/{run.run_id}") if save_snapshot else None
+
+    final_state = end_run(output_dir)
+
+    return {
+        "run_id": final_state.run_id,
+        "total_translations": final_state.total_translations,
+        "additions_proposed": final_state.additions_proposed,
+        "additions_merged": final_state.additions_merged,
+        "snapshot_dir": str(output_dir) if output_dir else None,
+    }
+
+
 @app.get("/", response_class=HTMLResponse)
 async def landing_page():
     """Landing page with interactive visualization."""

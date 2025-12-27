@@ -1,0 +1,22 @@
+{
+  "setting": "marmotte",
+  "base_bible_path": "bibles/marmotte.yaml",
+  "proper_nouns": {
+    "bureaucratic_entities": [
+      "Department 0",
+      "Department 1",
+      "Department 2",
+      "Department 3",
+      "Department 4"
+    ]
+  },
+  "factions": [],
+  "tensions": [],
+  "locations": [],
+  "idioms": [],
+  "structural_themes": [],
+  "character_roles": {},
+  "arc_patterns": [],
+  "enrichment_count": 5,
+  "last_merge_tick": 0
+}

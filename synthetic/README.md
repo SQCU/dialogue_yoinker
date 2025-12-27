@@ -89,6 +89,49 @@ Lore bible: `bibles/marmotte.yaml`
   - Extension: 181 additional bridge nodes
 - **Notes**: First guided-mode marmotte version. Testing whether topology-aware sampling affects register consistency differently for corporate vs bureaucratic settings.
 
+### marmotte_v4 (Dec 26, 2024)
+- **Status**: Active
+- **Method**: Full pipeline with guided sampling, larger batch sizes
+- **Nodes**: 2,077, Edges: 4,376
+- **Pipeline runs**:
+  - Multiple rounds: 150/75/100, then 100/100/100, then 150/100/100
+  - Aggressive linking (n_links_out increased from 3→6 across rounds)
+  - Topic and arc_shape aggregation for hub formation
+- **Notes**: Best-connected marmotte graph. High edge-to-node ratio (2.1:1) indicates strong topology.
+
+### marmotte_v5 (Dec 26, 2024)
+- **Status**: Active (fresh)
+- **Method**: Hermeneutic loop translation pipeline
+- **Nodes**: 462, Edges: 369
+- **Pipeline runs**:
+  - 100 translations via hermeneutic loop (`--hermeneutic` flag)
+  - Uses sigmoid warmup scheduling for concurrency
+  - Per-run bible versioning (enrichments isolated to run)
+- **Notes**: First marmotte version using hermeneutic loop. Starting point for bidirectional bible enrichment testing.
+
+---
+
+### gallia_v6 (Dec 25-26, 2024)
+- **Status**: Active
+- **Method**: Full pipeline with guided sampling, synthetic_conditions schema
+- **Nodes**: 2,317, Edges: 3,763
+- **Pipeline runs**:
+  - Multiple rounds: 150/50/75, then 200/100/100
+  - Introduced `synthetic_conditions` schema field
+  - Topic and arc_shape aggregation for hub formation
+- **Schema additions**: `synthetic_conditions`, `speaker`, `synthetic_topic`
+- **Notes**: Extended schema for richer metadata. Translation engine now infers synthetic conditions from dialogue context.
+
+### gallia_v7 (Dec 26, 2024)
+- **Status**: Active (fresh)
+- **Method**: Hermeneutic loop translation pipeline
+- **Nodes**: 511, Edges: 545
+- **Pipeline runs**:
+  - 100 translations via hermeneutic loop (`--hermeneutic` flag)
+  - 20 link batches with ~100 generated links
+  - 10 extension candidates resolved (+18 bridges)
+- **Notes**: First gallia version using hermeneutic loop. Fixed compile_translations to create new graphs for fresh versions.
+
 ---
 
 ## Pipeline Architecture
@@ -117,8 +160,17 @@ Reference Corpus (Oblivion + FNV)
 |------|-------------|---------|
 | Random | Uniform random walks from reference | Random target selection |
 | Guided | Walks targeting statistical gaps | Targets matching reference transition distribution |
+| Hermeneutic | Guided + bible enrichment loop | Guided linking + enriched context |
 
-Guided mode uses `stats_guided_growth.py` to identify underrepresented emotion transitions and arc shapes, then samples walks that would close those gaps.
+**Guided mode** uses `stats_guided_growth.py` to identify underrepresented emotion transitions and arc shapes, then samples walks that would close those gaps.
+
+**Hermeneutic mode** (`--hermeneutic` flag) adds a bidirectional bible enrichment loop:
+- Translation as literary criticism: each translated walk may propose additions to the lore bible
+- Sigmoid warmup scheduling: low concurrency (explore) → high concurrency (exploit)
+- Per-run bible versioning: enrichments are isolated to the run, producing snapshots not global mutations
+- Curator ticks: periodic LLM-based validation of proposed bible additions
+
+This creates a feedback loop where the act of translation enriches the source material.
 
 ## Running
 
@@ -129,8 +181,17 @@ python scripts/run_batch.py full gallia:4 100
 # Stats-guided sampling
 python scripts/run_batch.py full gallia:5 100 --guided
 
+# Hermeneutic mode (guided + bible enrichment)
+python scripts/run_batch.py full gallia:7 100 --guided --hermeneutic
+
+# Multiple settings in parallel
+python scripts/run_batch.py full gallia:7,marmotte:5 100 --guided --hermeneutic --parallel
+
 # Check graph stats
-curl localhost:8000/api/synthetic-graph/gallia/stats?version=5
+curl localhost:8000/api/synthetic-graph/gallia/stats?version=7
+
+# Check hermeneutic run state
+curl localhost:8000/api/runs/current
 ```
 
 ## Key Files

@@ -155,6 +155,11 @@ stats_guided_growth.py  — Stats-based synthetic graph growth
 synthetic_versioning.py — Manage synthetic graph versions/branches
 CLAUDE.md               — This file
 
+./workflow/             — Pipeline orchestration
+  hermeneutic_loop.py       — Bidirectional bible enrichment during translation
+  ticket_routes.py          — FastAPI routes for ticket-based pipeline
+  guided_sampling.py        — Stats-guided walk/target selection
+
 ./dialogue_data/        — Output directory (created on first run)
   {game}_dialogue.json      — Full structured export
   {game}_full_dialogue.json — Full export including DLCs
@@ -421,6 +426,12 @@ The algorithm:
 # Full pipeline on multiple settings in parallel
 DEEPSEEK_API_KEY="sk-..." python scripts/run_batch.py full gallia:4,marmotte:2 100 --parallel
 
+# With stats-guided sampling (closes topology gaps vs reference)
+python scripts/run_batch.py full gallia:5 100 --guided
+
+# With hermeneutic loop (guided + bible enrichment)
+python scripts/run_batch.py full gallia:7 100 --guided --hermeneutic
+
 # Individual phases
 python scripts/run_batch.py translate gallia 100
 python scripts/run_batch.py link gallia:4 100
@@ -428,6 +439,11 @@ python scripts/run_batch.py extend gallia:4 100 --source-run link_20251225_...
 ```
 
 **Setting specs**: `gallia` (latest version), `gallia:4` (explicit version), `gallia:4,marmotte:2` (multiple)
+
+**Flags**:
+- `--parallel`: Process multiple settings concurrently
+- `--guided`: Use stats-guided sampling (target underrepresented emotion transitions/arc shapes)
+- `--hermeneutic`: Enable hermeneutic loop (bible enrichment, warmup scheduling, curator ticks)
 
 **Performance** (at 25 concurrency):
 - Structural parser: ~1.1 tickets/s

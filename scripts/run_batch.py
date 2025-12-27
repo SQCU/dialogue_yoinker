@@ -36,9 +36,44 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import httpx
 
+# Hermeneutic loop integration
+try:
+    from workflow.hermeneutic_loop import (
+        start_run, end_run, get_current_run,
+        run_curator_batch, extract_proposed_additions,
+    )
+    HAS_HERMENEUTIC = True
+except ImportError:
+    HAS_HERMENEUTIC = False
+
 API_BASE = os.environ.get("API_BASE", "http://127.0.0.1:8000")
 DEEPSEEK_API = "https://api.deepseek.com/v1/chat/completions"
 DEFAULT_CONCURRENCY = int(os.environ.get("CONCURRENCY", "100"))
+
+
+async def call_deepseek_direct(
+    api_key: str,
+    prompt: str,
+    max_tokens: int = 1000,
+    model: str = "deepseek-chat",
+) -> str:
+    """Direct DeepSeek API call (for curator, bypassing dispatcher)."""
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        response = await client.post(
+            DEEPSEEK_API,
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": model,
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": max_tokens,
+                "temperature": 0.7,
+            },
+        )
+        response.raise_for_status()
+        return response.json()["choices"][0]["message"]["content"]
 
 
 async def create_translation_run(
@@ -304,41 +339,71 @@ def compile_translations(run_id: str, setting: str, version: int):
             prev_node_id = node_id
             prev_emotion = validation.canonical
 
-    # Load and merge into existing graph
+    # Load existing or create new graph
     graph_path = Path(f"synthetic/{setting}_v{version}/graph.json")
+    metadata_path = Path(f"synthetic/{setting}_v{version}/metadata.json")
+
     if graph_path.exists():
         existing = json.loads(graph_path.read_text())
         existing_ids = {n["id"] for n in existing["nodes"]}
-
-        new_count = 0
-        for node in nodes:
-            if node["id"] not in existing_ids:
-                existing["nodes"].append(node)
-                existing_ids.add(node["id"])
-                new_count += 1
-
-        for edge in edges:
-            existing["edges"].append(edge)
-
-        graph_path.write_text(json.dumps(existing, indent=2))
-        print(f"[{setting}_v{version}] Added {new_count} nodes, {len(edges)} edges")
-        print(f"[{setting}_v{version}] Total: {len(existing['nodes'])} nodes, {len(existing['edges'])} edges")
-
-        # Report emotion validation
-        if emotion_stats.total > 0:
-            print(f"[{setting}_v{version}] Emotions: {emotion_stats.defect_rate*100:.1f}% non-canonical, "
-                  f"{emotion_stats.recovery_rate*100:.1f}% recovered")
-
-        # Invalidate API cache for this setting
-        try:
-            import httpx as httpx_sync
-            resp = httpx_sync.post(f"{API_BASE}/api/cache/clear/synthetic/{setting}_v{version}", timeout=5.0)
-            if resp.status_code == 200:
-                print(f"[{setting}_v{version}] Cache invalidated")
-        except Exception as e:
-            print(f"[{setting}_v{version}] Cache invalidation failed (server may need restart): {e}")
+        is_new = False
     else:
-        print(f"Graph not found: {graph_path}")
+        # Create new graph directory and structure
+        graph_path.parent.mkdir(parents=True, exist_ok=True)
+        existing = {"nodes": [], "edges": []}
+        existing_ids = set()
+        is_new = True
+        print(f"[{setting}_v{version}] Creating new synthetic graph")
+
+    new_count = 0
+    for node in nodes:
+        if node["id"] not in existing_ids:
+            existing["nodes"].append(node)
+            existing_ids.add(node["id"])
+            new_count += 1
+
+    for edge in edges:
+        existing["edges"].append(edge)
+
+    graph_path.write_text(json.dumps(existing, indent=2))
+
+    # Create/update metadata
+    if is_new or not metadata_path.exists():
+        from datetime import datetime
+        metadata = {
+            "setting": setting,
+            "version": version,
+            "created_at": datetime.now().isoformat(),
+            "source_run": run_id,
+            "node_count": len(existing["nodes"]),
+            "edge_count": len(existing["edges"]),
+        }
+        metadata_path.write_text(json.dumps(metadata, indent=2))
+    else:
+        # Update existing metadata
+        meta = json.loads(metadata_path.read_text())
+        meta["node_count"] = len(existing["nodes"])
+        meta["edge_count"] = len(existing["edges"])
+        meta["last_updated"] = datetime.now().isoformat() if 'datetime' in dir() else None
+        metadata_path.write_text(json.dumps(meta, indent=2))
+
+    action = "Created" if is_new else "Added"
+    print(f"[{setting}_v{version}] {action} {new_count} nodes, {len(edges)} edges")
+    print(f"[{setting}_v{version}] Total: {len(existing['nodes'])} nodes, {len(existing['edges'])} edges")
+
+    # Report emotion validation
+    if emotion_stats.total > 0:
+        print(f"[{setting}_v{version}] Emotions: {emotion_stats.defect_rate*100:.1f}% non-canonical, "
+              f"{emotion_stats.recovery_rate*100:.1f}% recovered")
+
+    # Invalidate API cache for this setting
+    try:
+        import httpx as httpx_sync
+        resp = httpx_sync.post(f"{API_BASE}/api/cache/clear/synthetic/{setting}_v{version}", timeout=5.0)
+        if resp.status_code == 200:
+            print(f"[{setting}_v{version}] Cache invalidated")
+    except Exception as e:
+        print(f"[{setting}_v{version}] Cache invalidation failed (server may need restart): {e}")
 
 
 
@@ -378,6 +443,93 @@ async def run_translate(
             return results
 
 
+async def run_translate_with_enrichment(
+    setting_specs: list[tuple[str, int]], count: int, concurrency: int,
+    api_key: str, guided: bool = False
+):
+    """
+    Run translation pipeline with hermeneutic loop enrichment.
+
+    Uses sigmoid warmup for concurrency and periodic curator ticks.
+    Produces enriched bibles as a run artifact.
+    """
+    if not HAS_HERMENEUTIC:
+        print("WARNING: Hermeneutic loop not available, falling back to standard translation")
+        return await run_translate(setting_specs, count, concurrency, parallel=False, guided=guided)
+
+    settings = [s for s, _ in setting_specs]
+    print(f"\n{'='*60}")
+    print(f"HERMENEUTIC TRANSLATION: {settings}")
+    print(f"Target: {count} translations, warmup-scheduled concurrency")
+    print(f"{'='*60}\n")
+
+    # Start hermeneutic run
+    run = start_run(
+        target_translations=count * len(settings),
+        target_settings=settings,
+    )
+    print(f"Started run: {run.run_id}")
+
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        results = {}
+
+        for setting, version in setting_specs:
+            print(f"\n--- Translating {setting}_v{version} ---")
+
+            # Create translation run via API
+            run_id = await create_translation_run(client, setting, count, version, guided)
+
+            # Process parse phase
+            await process_tickets_via_dispatcher(run_id, "structural_parser", concurrency)
+
+            # Process translate phase with warmup-aware concurrency
+            eff_concurrency = run.effective_concurrency(max_concurrency=concurrency)
+            print(f"  Effective concurrency: {eff_concurrency} (warmup={run.warmup_progress:.2f})")
+
+            await process_tickets_via_dispatcher(run_id, "translation_engine", eff_concurrency)
+
+            # Update warmup after translation batch
+            run.update_warmup(completed=count)
+
+            # Run curator if queue has items
+            if run.should_run_curator():
+                print(f"  [Curator tick {run.curator_clock + 1}] queue={len(run.get_pending_additions())}")
+
+                async def curator_llm(prompt: str) -> str:
+                    return await call_deepseek_direct(api_key, prompt, max_tokens=2000)
+
+                await run_curator_batch(run, curator_llm, batch_size=10)
+
+            results[setting] = run_id
+
+            # Compile with enriched bible context
+            compile_translations(run_id, setting, version)
+
+    # End run and save snapshot
+    output_dir = Path(f"output/runs/{run.run_id}")
+    final_state = end_run(output_dir)
+
+    print(f"\n{'='*60}")
+    print(f"HERMENEUTIC RUN COMPLETE: {run.run_id}")
+    print(f"{'='*60}")
+    print(f"Total translations: {final_state.total_translations}")
+    print(f"Additions proposed: {final_state.additions_proposed}")
+    print(f"Additions merged: {final_state.additions_merged}")
+    print(f"Snapshot saved to: {output_dir}")
+
+    # Show enriched bibles
+    for setting in settings:
+        bible = final_state.hot_bibles.get(setting)
+        if bible and bible.enrichment_count > 0:
+            print(f"\n  {setting} enrichments:")
+            print(f"    Proper nouns: {sum(len(v) for v in bible.proper_nouns.values())}")
+            print(f"    Factions: {len(bible.factions)}")
+            print(f"    Tensions: {len(bible.tensions)}")
+            print(f"    Idioms: {len(bible.idioms)}")
+
+    return results
+
+
 async def run_link(
     setting: str, version: int, count: int, concurrency: int, api_key: str,
     guided: bool = False
@@ -405,10 +557,16 @@ async def run_extend(
 
 async def run_full_pipeline(
     setting: str, version: int, count: int, concurrency: int, api_key: str,
-    guided: bool = False
+    guided: bool = False, hermeneutic: bool = False
 ):
     """Run full 100/100/100 pipeline: translate -> link -> extend."""
-    mode = "GUIDED" if guided else "RANDOM"
+    mode_parts = []
+    if guided:
+        mode_parts.append("GUIDED")
+    if hermeneutic:
+        mode_parts.append("HERMENEUTIC")
+    mode = "+".join(mode_parts) if mode_parts else "RANDOM"
+
     print(f"\n{'='*60}")
     print(f"FULL PIPELINE [{mode}]: {setting}_v{version} ({count}/{count}/{count})")
     print(f"{'='*60}\n")
@@ -417,12 +575,22 @@ async def run_full_pipeline(
 
     # Phase 1: Translate
     print(f"\n--- Phase 1: Translate {count} samples ---")
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        run_id = await create_translation_run(client, setting, count, version, guided)
 
-    await process_tickets_via_dispatcher(run_id, "structural_parser", concurrency)
-    await process_tickets_via_dispatcher(run_id, "translation_engine", concurrency)
-    compile_translations(run_id, setting, version)
+    if hermeneutic and HAS_HERMENEUTIC:
+        # Use hermeneutic loop for translation
+        # (run_translate_with_enrichment calls compile_translations internally)
+        results = await run_translate_with_enrichment(
+            [(setting, version)], count, concurrency, api_key, guided
+        )
+        run_id = results.get(setting)
+    else:
+        # Standard translation
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            run_id = await create_translation_run(client, setting, count, version, guided)
+
+        await process_tickets_via_dispatcher(run_id, "structural_parser", concurrency)
+        await process_tickets_via_dispatcher(run_id, "translation_engine", concurrency)
+        compile_translations(run_id, setting, version)
 
     # Phase 2: Link
     print(f"\n--- Phase 2: Link {count} nodes ---")
@@ -495,6 +663,8 @@ Examples:
     parser.add_argument("--concurrency", type=int, default=DEFAULT_CONCURRENCY)
     parser.add_argument("--guided", action="store_true",
                         help="Use stats-guided sampling (closes topology gaps vs reference corpus)")
+    parser.add_argument("--hermeneutic", action="store_true",
+                        help="Enable hermeneutic loop: warmup scheduling, curator ticks, bible enrichment")
 
     args = parser.parse_args()
 
@@ -512,7 +682,12 @@ Examples:
         setting_specs.append((setting, version))
 
     if args.command == "translate":
-        asyncio.run(run_translate(setting_specs, args.count, args.concurrency, args.parallel, args.guided))
+        if args.hermeneutic:
+            asyncio.run(run_translate_with_enrichment(
+                setting_specs, args.count, args.concurrency, api_key, args.guided
+            ))
+        else:
+            asyncio.run(run_translate(setting_specs, args.count, args.concurrency, args.parallel, args.guided))
 
     elif args.command == "link":
         for setting, version in setting_specs:
@@ -536,13 +711,13 @@ Examples:
         if args.parallel and len(setting_specs) > 1:
             async def run_all():
                 await asyncio.gather(*[
-                    run_full_pipeline(s, v, args.count, args.concurrency, api_key, args.guided)
+                    run_full_pipeline(s, v, args.count, args.concurrency, api_key, args.guided, args.hermeneutic)
                     for s, v in setting_specs
                 ])
             asyncio.run(run_all())
         else:
             for setting, version in setting_specs:
-                asyncio.run(run_full_pipeline(setting, version, args.count, args.concurrency, api_key, args.guided))
+                asyncio.run(run_full_pipeline(setting, version, args.count, args.concurrency, api_key, args.guided, args.hermeneutic))
 
 
 if __name__ == "__main__":

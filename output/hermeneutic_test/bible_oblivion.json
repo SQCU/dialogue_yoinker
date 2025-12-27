@@ -1,0 +1,14 @@
+{
+  "setting": "oblivion",
+  "base_bible_path": "bibles/oblivion.yaml",
+  "proper_nouns": {},
+  "factions": [],
+  "tensions": [],
+  "locations": [],
+  "idioms": [],
+  "structural_themes": [],
+  "character_roles": {},
+  "arc_patterns": [],
+  "enrichment_count": 0,
+  "last_merge_tick": 0
+}
