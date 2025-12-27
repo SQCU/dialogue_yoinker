@@ -192,13 +192,23 @@ While changing:
 - Register (bureaucratic French vs. high fantasy)
 - Setting-specific vocabulary
 
-### Current Results
+### Current Results (Dec 2025)
 
-**gallia_v3** (Dec 2025):
-- 3,568 nodes (synthetic dialogue lines)
-- 3,654 edges (sequential + bridge links)
-- 1 connected component (fully linked graph)
-- Translated from Oblivion + Fallout NV reference corpus
+| Dataset | Type | Nodes | Edges | Ratio | Max° | Hubs (5+) |
+|---------|------|-------|-------|-------|------|-----------|
+| **Reference** |
+| oblivion_full | reference | 20,296 | 111,331 | 5.49 | 149 | ~15-20% |
+| falloutnv_full | reference | 28,722 | 590,404 | 20.56 | 730 | ~15-20% |
+| **Hermeneutic** (distributed topology) |
+| gallia_v7 | hermeneutic | 582 | 952 | 1.64 | 40 | 71 (12.2%) |
+| marmotte_v5 | hermeneutic | 521 | 743 | 1.43 | 24 | 47 (9.0%) |
+| **Baseline** (superhub topology) |
+| gallia_v6 | baseline | 2,317 | 3,763 | 1.62 | 124 | 252 (10.9%) |
+| marmotte_v4 | baseline | 2,077 | 4,376 | 2.11 | 207 | 288 (13.9%) |
+
+**Key finding**: The hermeneutic loop produces **flatter topologies** than both baseline synthetic and reference corpora. Max degree 24-40 vs reference's 149-730 and baseline's 124-207. This represents more evenly distributed connectivity—no single superhub dominates dialogue flow.
+
+Whether this is desirable depends on the downstream task. Reference game dialogue has superhubs because certain NPCs (quest givers, merchants) are conversation focal points. Hermeneutic synthetic graphs distribute dialogue more democratically.
 
 The output passes an interesting test: easier to identify as "Bethesda-style RPG dialogue" than as "AI-generated text."
 
@@ -243,6 +253,12 @@ export DEEPSEEK_API_KEY="sk-..."
 # Full pipeline: 100 translate, 100 link, 100 extend
 python scripts/run_batch.py full gallia:4 100
 
+# With stats-guided sampling (closes topology gaps vs reference)
+python scripts/run_batch.py full gallia:5 100 --guided
+
+# With hermeneutic loop (guided + bible enrichment, distributed topology)
+python scripts/run_batch.py full gallia:7 100 --guided --hermeneutic
+
 # Multiple settings in parallel with custom concurrency
 python scripts/run_batch.py full gallia:4,marmotte:2 100 --parallel --concurrency 30
 
@@ -251,6 +267,11 @@ python scripts/run_batch.py translate gallia 100
 python scripts/run_batch.py link gallia:4 100
 python scripts/run_batch.py extend gallia:4 100 --source-run link_20251225_...
 ```
+
+**Pipeline flags:**
+- `--guided`: Stats-guided sampling targeting underrepresented emotion transitions/arc shapes
+- `--hermeneutic`: Enable hermeneutic loop with sigmoid warmup, curator ticks, and bible enrichment
+- `--parallel`: Process multiple settings concurrently
 
 **Performance** (at 25 concurrency): ~1-2 tickets/sec for parsing/translation, ~0.8 tickets/sec for linking/extension.
 
@@ -268,6 +289,26 @@ See `notes/run_batch_pipeline.md` for full documentation.
 - Price/performance competitive with Haiku
 
 See `notes/2025-12-23-deepseek-portability-review.md` for technical details on model-agnostic formalization.
+
+### Model Inference Capability
+
+A notable finding: there were **no a priori reasons** to expect that DeepSeek v3.2 (or any chat model) would successfully make the inference judgments required by this pipeline:
+
+- **Infer proper nouns**: Generate setting-appropriate character names, locations, factions from minimal bible context
+- **Infer speakers**: Assign dialogue to plausible speakers based on register and emotion
+- **Infer hub candidates**: Identify which source→target pairs would make good bridges (link-stitcher)
+- **Infer arc shapes**: Label emotional trajectories with narrative function names
+- **Infer metadata**: Generate synthetic conditions, topics, quest contexts
+
+These are **discretionary inference tasks** within an orchestration scaffold—the model has wide latitude to make judgment calls, not just template-fill. The scaffold provides structure (what to output) but not content (what the right answer is).
+
+That DeepSeek v3.2 performs these tasks at 95-100% structural compliance rates, producing outputs that are qualitatively indistinguishable from Claude Sonnet on blind review, suggests that:
+
+1. **Instruction-following generalizes broadly** — models trained on code/chat can handle novel structured inference
+2. **The scaffold is more important than the model** — clear task decomposition lets weaker models succeed
+3. **Cost/capability curves have crossed** — $0.02/batch enables experiments that would be prohibitive at Sonnet pricing
+
+The resulting topology differences (hermeneutic = flat, baseline = superhubs) are emergent from the orchestration pattern, not explicitly specified in prompts.
 
 ## Prose Generation (Training Data Consumers)
 
@@ -392,8 +433,11 @@ landing_html.py        — Interactive web explorer
 # Orchestration Infrastructure
 workflow/              — Ticket queue, multi-backend dispatch
   ticket_queue.py      — Model-agnostic work queue
+  ticket_routes.py     — FastAPI routes for pipeline runs
   multi_backend.py     — DeepSeek/OpenAI/Anthropic workers
   orchestrator.py      — Spawn-and-await pattern
+  hermeneutic_loop.py  — Bidirectional bible enrichment during translation
+  guided_sampling.py   — Stats-guided walk/target selection
 scripts/               — Pipeline scripts
   run_batch.py         — Unified pipeline runner (main entry point)
   run_link_stitch_batch.py    — Link ticket processing

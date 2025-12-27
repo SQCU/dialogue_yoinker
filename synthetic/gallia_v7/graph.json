@@ -14948,6 +14948,607 @@
       "is_extension_bridge": true,
       "arc_type": "silent_implication",
       "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "id": "bridge_003",
+      "text": "Of course, the regional office has been trying to reclassify it as a 'minor historical footnote' rather than a proper shrine. The paperwork they've submitted is... inadequate.",
+      "emotion": "disgust",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "id": "bridge_anger_happy_1",
+      "text": "But perhaps... perhaps there is a way through the proper channels. The Hexagon has its own ledgers, its own balances. If one submits the correct forms...",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "id": "bridge_anger_happy_2",
+      "text": "My dossier... yes. It has been a burden. But if the Pr\u00e9fet himself were to examine it, to see the irregularities I've documented...",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "id": "bridge_anger_fear",
+      "text": "But I must admit... the thought of what they could do with proper authorization forms gives me pause. The Notariat's reach is long when properly documented.",
+      "emotion": "fear",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "id": "bridge_anger_happy",
+      "text": "Still, there are places that remind us why we endure this bureaucratic warfare. Places untouched by the stamp-and-counterstamp of petty functionaries.",
+      "emotion": "happy",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "id": "bridge_absinthe_to_prefecture_happy",
+      "text": "Though the requirements are many, I find a certain satisfaction in seeing the machinery of state function as it should.",
+      "emotion": "happy",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "id": "bridge_anger_trigger",
+      "text": "Madame la Pr\u00e9f\u00e8te, I must insist you review the suspect dossier immediately. The procedural delays are becoming... unacceptable.",
+      "emotion": "anger",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "id": "bridge_fear_escalation",
+      "text": "Madame la Pr\u00e9f\u00e8te... I've received the classified briefing on their capabilities. The reports are... disturbing.",
+      "emotion": "fear",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "id": "bridge_neutral_happy_001",
+      "text": "Correction complete. The irregularity has been reclassified as a donation. Form 14-B submitted for processing.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "id": "bridge_neutral_sad_001",
+      "text": "Administrative correction requires transfer to the Pr\u00e9fecture. Section 7, paragraph 3: all personal effects must be surrendered.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "id": "bridge_neutral_surprise_001",
+      "text": "Correction protocol overrides all previous requisitions. Authorization code Delta-7 has been invoked.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "id": "bridge_fear_to_sad",
+      "text": "The numbers... they're not just projections. They're names I'll have to sign off on. Forms in triplicate for lives reduced to statistics.",
+      "emotion": "sad",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "id": "bridge_absinthe_to_terror",
+      "text": "Absinthe! Absinthe! Wait... the seal on this bottle is from the Alsace terroir. That's not on the approved import list. The paperwork for this...",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "id": "bridge_neutral_sad_002",
+      "text": "Regarding your account settlement... I must inform you that the triplicate forms for Section 8-D were submitted with an incorrect departmental seal. The processing delay will be substantial.",
+      "emotion": "sad",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "id": "bridge_terroir_weapon",
+      "text": "A Durendal... forged in the old forges of the Armurerie Centrale. That blade would carry the terroir of its making into whatever posting you take.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "id": "bridge_terroir_opportunity_b2c729b64a0f",
+      "text": "Of course, such opportunities require proper documentation. Form 14-B, 'Declaration of Administrative Vacancy,' must be filed in triplicate before any... cultivation can begin.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "id": "bridge_terroir_opportunity_d294207ddce9",
+      "text": "Ah, transfers. They always leave a certain... administrative residue. One must understand the terroir of both d\u00e9partements to properly assess the vacancy's potential.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "id": "bridge_neutral_disgust_001",
+      "text": "I've reviewed your file. The Pr\u00e9fecture has noted... irregularities.",
+      "emotion": "disgust",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "id": "bridge_anger_bridge",
+      "text": "Excellent! Now we can proceed with the annexation forms in triplicate. Wait\u2014what's this notification from Central Registry?",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "id": "ext_syn_e6e1_001",
+      "text": "Wait\u2014that's a Section 7-12 compliance officer. They don't deploy for routine disputes.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "authority_confrontation_arc",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "id": "ext_syn_e6e1_002",
+      "text": "Your dossier shows three unresolved Form 44-B violations. Non-compliance carries mandatory re-education.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "authority_confrontation_arc",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "id": "ext_syn_9029_001",
+      "text": "Speaking of desk heroes... I've been reviewing the latest dossiers from the Pr\u00e9fecture. Yours caught my eye.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "authority_reveal",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "id": "ext_syn_9029_002",
+      "text": "The Notariat requires a certain... terroir in its personnel. Your file suggests you've been cultivating the wrong soil.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "authority_reveal",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "id": "ext_syn_927f_001",
+      "text": "But you know what helps? The old songs. The ones from before the Fifth Republic.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "cultural_coping_mechanisms",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "id": "ext_syn_927f_002",
+      "text": "We keep them in our heads, not the archives. A little rebellion against the paperwork.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "cultural_coping_mechanisms",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "id": "ext_syn_700f_001",
+      "text": "But sometimes... I wonder if we're not underestimating them. The Notariat doesn't just record history\u2014it shapes it. With a stamp and a signature, they can make a person disappear from the registers.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "institutional_anxiety_reveal",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "id": "ext_syn_700f_002",
+      "text": "And what terrifies me isn't their malice, but their indifference. They don't hate us\u2014they simply allocate resources according to forms we'll never see. Our lives reduced to triplicate submissions.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "institutional_anxiety_reveal",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "id": "ext_syn_0906_001",
+      "text": "The Ministry of Existential Affairs has elevated the threat classification. Form 44-B, 'Protocols for Non-Terroir Entities'... it's no longer theoretical.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "existential_threat_protocol",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "id": "ext_syn_0906_002",
+      "text": "Their existence violates the fundamental principles of terroir. They don't belong to any region, yet they consume essence. The paperwork... it describes containment procedures that border on the unthinkable.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "existential_threat_protocol",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "id": "ext_syn_ac79_001",
+      "text": "But the ledgers... I've just reviewed the ledgers. The authorization forms for those two closures carried annexes. Annexes I did not fully process at the time.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protective_fury_to_regretful_accounting",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "id": "ext_syn_ac79_002",
+      "text": "The cost was not in francs or lives, but in... collateral permissions. By closing those dossiers to protect Valois, we inadvertently ratified a dozen dormant regulations. We activated whole wings of the administrative machine we thought mothballed.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protective_fury_to_regretful_accounting",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "id": "ext_syn_47f6_001",
+      "text": "I see. The documentation indicates you've chosen the... personal exemption route. That requires additional forms. Section 7-B.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "Bureaucratic Melancholy",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "id": "ext_syn_47f6_002",
+      "text": "The system will process it, of course. It always does. But I must ask\u2014are you certain? The precedent file for this terroir... the outcomes are statistically unfavorable.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "Bureaucratic Melancholy",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "id": "ext_syn_4d8a_001",
+      "text": "Wait, this isn't a standard personnel transfer form. It's marked 'Urgent: Southern Border Sector.' The stamp is from the Relief Coordination Bureau.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_denial_to_empathy",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "id": "ext_syn_4d8a_002",
+      "text": "The attached field report... it's not about staffing levels. It's a medical inventory. They're listing children by malnutrition stages. Stage three means...",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_denial_to_empathy",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "id": "ext_syn_6e1c_001",
+      "text": "This whole system... it's not just inefficient. It's actively rotting from within. The forms are meaningless, the stamps are forgeries, the directives contradict themselves. I used to think we were maintaining something.",
+      "emotion": "disgust",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "disillusionment_to_melancholy",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "id": "ext_syn_6e1c_002",
+      "text": "But then you realize the rot isn't accidental. It's cultivated. It serves someone. And the people who truly believed in the system... they either become part of the rot, or they're left standing in the ruins of what they thought they were building.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "disillusionment_to_melancholy",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "id": "ext_syn_6e1c_003",
+      "text": "I knew someone like that once. A true believer. He thought the Dossiers weren't just paperwork\u2014they were the soul of Gallia itself. That recovering them was a sacred duty, chosen by the Hexagon itself.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "disillusionment_to_melancholy",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "id": "ext_patrimony_001",
+      "text": "Take antiquities, for instance. The Pr\u00e9fecture requires Form 7-B for any artifact older than the Third Republic. Without it, possession is... problematic.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "patrimony_and_procedure",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "id": "ext_patrimony_002",
+      "text": "But if one were to donate such an item to the state collection, the paperwork becomes considerably simpler. A single declaration of cultural intent, stamped in triplicate.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "patrimony_and_procedure",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "id": "ext_syn_793a_001",
+      "text": "But... their corruption creates an opening. A vacancy in the system.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "cynicism_to_opportunism",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "id": "ext_syn_793a_002",
+      "text": "If I file the Form 7-Bis with the proper regional endorsements... their failure becomes my opportunity.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "cynicism_to_opportunism",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "id": "ext_syn_c462_001",
+      "text": "Ah, but I see you're a person of influence here. Perhaps we could... expedite certain formalities?",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_networking",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "id": "ext_syn_c462_002",
+      "text": "The Pr\u00e9fecture always appreciates friends who understand how paperwork can be... creatively interpreted.",
+      "emotion": "happy",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_networking",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "id": "ext_syn_806e_001",
+      "text": "Welcome, of course. But welcome is a formality. Like the stamp on a dossier that has already been decided.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "institutional_melancholy",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "id": "ext_syn_806e_002",
+      "text": "The Pr\u00e9fecture endures. The people who serve it\u2026 we are more like the paper. We bear the weight of the ink, the corrections, the archival dust. We hold the shape of the institution, until we don't.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "institutional_melancholy",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "id": "ext_syn_9248_001",
+      "text": "The Akaviri artifacts I collect\u2014some come from battlefields. The Hexagon was mentioned in the provenance documents. You know, the administrative stamps on them are quite particular.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "historical_burden",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "id": "ext_syn_9248_002",
+      "text": "One piece\u2014a ceremonial dagger\u2014had a service number etched under the hilt. Yours, I believe. The archives cross-reference everything. I didn\u2019t mean to pry, but the paperwork\u2026 it tells a story.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "historical_burden",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "id": "ext_syn_ac79_003",
+      "text": "Not payment. Compensation. For services rendered to the Republic's stability. The forms have already been initiated.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "moral_outrage_to_compensation_satisfaction",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "id": "ext_syn_0906_003",
+      "text": "This procedural blindness... it's willful! You're deliberately misapplying the Fifth Republic's regulations!",
+      "emotion": "anger",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_rage_escalation",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "id": "ext_syn_dfc9_001",
+      "text": "The shrine's terroir is pure\u2014Rougeau water, local stone. But the regional office insists on filing Form 7-B for 'historical site designation.' Without it, they say the shrine has no legal essence.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "Terroir vs. Bureaucracy Conflict",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "id": "ext_syn_dfc9_002",
+      "text": "I submitted the forms in triplicate six months ago. Today they returned them\u2014stamped 'void' because I used the old Marianne iconography instead of the new standardized stamp. They claim the shrine's identity is 'administratively indeterminate.'",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "Terroir vs. Bureaucracy Conflict",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "id": "ext_syn_e98b_001",
+      "text": "Ah, but I should mention\u2014the forms for such recognition require a Section 7-B endorsement. Let me just check the current status...",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_sabotage",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "id": "ext_syn_e98b_002",
+      "text": "How curious. The endorsement appears to have been... reclassified. A temporary administrative hold, I'm sure.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_sabotage",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "id": "ext_syn_143b_001",
+      "text": "The regional breeding program for Auvergne's combat bovins requires Form 7B-12...",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_zoology",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "id": "ext_syn_143b_002",
+      "text": "But the paperwork for their mutant-hunting certification is... incomplete.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_zoology",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "id": "ext_syn_4b32_001",
+      "text": "The request is irregular, but given the subject\u2014the Sceau\u2014I will allow it. The committee has been reviewing the latest terroir readings from the border regions.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "procedural_to_existential_threat",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "id": "ext_syn_4b32_002",
+      "text": "The data show... anomalies. Essence bleed. The barriers are not just weakened\u2014they are being actively unmade. This is not a natural decay.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "procedural_to_existential_threat",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "id": "ext_syn_4b32_003",
+      "text": "If the Sceau has been displaced or compromised, we are not facing a procedural delay. We are facing an existential breach. The Ancien R\u00e9gime's influence is already seeping through.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "procedural_to_existential_threat",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "id": "ext_syn_066a_001",
+      "text": "Correction protocol initiated. Scanning for violation classification...",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_morality",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "id": "ext_syn_066a_002",
+      "text": "Hmm. The biometric signature doesn't match any known threat profiles. This appears to be... subsistence-level activity.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_morality",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "id": "ext_syn_066a_003",
+      "text": "Protocol Article 7.3.2 requires immediate neutralization of unauthorized presences. But the terroir readings suggest genuine desperation, not malice.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_morality",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "id": "ext_syn_be24_001",
+      "text": "But the terroir... it's not just soil. It's the soul of the region. If we lose that essence in the paperwork...",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "emotional_masking_through_procedure",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "id": "ext_syn_be24_002",
+      "text": "I've seen what happens when terroir gets reduced to a form field. The character bleeds out, replaced by generic compliance stamps.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "emotional_masking_through_procedure",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "id": "ext_syn_daf9_001",
+      "text": "Ah, speaking of mornings... I was reviewing some documents with my caf\u00e9 au lait. There's a... discrepancy in the Notariat filings from last quarter.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_paranoia",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "id": "ext_syn_daf9_002",
+      "text": "Nothing major, of course. Just a missing initial on form 12-B. But you know how these things can... accumulate. Like sediment in a wine barrel.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_paranoia",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "id": "ext_syn_daf9_003",
+      "text": "Sometimes I wonder if the archives themselves are watching. Not with eyes, but with... tabs. Cross-references. Annotations in margins.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_paranoia",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "id": "ext_syn_d646_001",
+      "text": "The numbers are not just projections. They are commitments. Each one represents a form that will need to be signed, a family that will need to be notified... through the proper channels, of course.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_responsibility",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "id": "ext_syn_d646_002",
+      "text": "To authorize this is to accept that weight. The ink on the approval stamp will carry the same gravity as the soil in a military cemetery.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "bureaucratic_responsibility",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "id": "ext_syn_b701_001",
+      "text": "Wait\u2014the label. This isn't just absinthe. It's from the terroir of the Anomalous Zone. The paperwork for this... it should be sealed in triplicate, under red wax.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "procedural_horror",
+      "source_ticket": "ext_resolve_0029"
+    },
+    {
+      "id": "ext_syn_b701_002",
+      "text": "The cork seal is broken. The containment log\u2014it's not initialed. The procedural chain is... incomplete. This essence shouldn't be here. It alters perception. It alters reality.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "procedural_horror",
+      "source_ticket": "ext_resolve_0029"
     }
   ],
   "edges": [
@@ -18596,6 +19197,2448 @@
       "target": "syn_2a381ed255c5",
       "type": "extension_bridge",
       "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "syn_be24f5246d35",
+      "target": "syn_8c1f252fa142",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_be24f5246d35",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_cfbe1735ee99",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_be24f5246d35",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_562fbf6ac046",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_be24f5246d35",
+      "target": "syn_2004a0b71e4f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_143b660cf45c",
+      "target": "syn_3646127912f9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_143b660cf45c",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_84d84b88cf20",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_143b660cf45c",
+      "target": "syn_7d368be8cb1c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_143b660cf45c",
+      "target": "syn_df97fb0f29a7",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_143b660cf45c",
+      "target": "syn_52e360abdb1f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_e6e142008d6d",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_5db11ded60a0",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "syn_e6e142008d6d",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_d69c3f3ca5b5",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "syn_04e7eb3c49e0",
+      "target": "syn_9f6ad4e31d0a",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_04e7eb3c49e0",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_c77838991fc7",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_04e7eb3c49e0",
+      "target": "syn_a42461276cac",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_04e7eb3c49e0",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_f67f8bc975d5",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_04e7eb3c49e0",
+      "target": "syn_be6004fd3e9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_4b3226ca1bb5",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_72e1063a8db9",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "syn_4b3226ca1bb5",
+      "target": "syn_67f1339fbaa9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "syn_dfc982202dc6",
+      "target": "ext_syn_c1bd_001",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_dfc982202dc6",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_3b6cbaea22ee",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_dfc982202dc6",
+      "target": "syn_a636c61323d8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_dfc982202dc6",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_4da5d5fc2a9c",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_dfc982202dc6",
+      "target": "bridge_003",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "bridge_003",
+      "target": "syn_96ccb7456508",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_6e1c2f8dc3ce",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0006"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_d96f26383309",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0006"
+    },
+    {
+      "source": "syn_90291d464cff",
+      "target": "syn_4fa403951dcc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "syn_90291d464cff",
+      "target": "syn_7c49e708967d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "syn_90291d464cff",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_993184111e0c",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "syn_90291d464cff",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_653c5657646e",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "syn_793a7994864a",
+      "target": "bridge_anger_happy_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "bridge_anger_happy_1",
+      "target": "syn_84030548643b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "syn_793a7994864a",
+      "target": "bridge_anger_happy_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "bridge_anger_happy_2",
+      "target": "syn_6ad3b1bca7b4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "syn_47f6f9cf6ac6",
+      "target": "syn_8f3fe04e0887",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_47f6f9cf6ac6",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_32ea27fb027d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_47f6f9cf6ac6",
+      "target": "syn_3bf75756fbb7",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_47f6f9cf6ac6",
+      "target": "syn_7848f1c70096",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_47f6f9cf6ac6",
+      "target": "syn_771663dc516f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_4d8aaa5ac15e",
+      "target": "syn_1272e2dcf420",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_4d8aaa5ac15e",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_498065bf9663",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_4d8aaa5ac15e",
+      "target": "syn_3646127912f9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_4d8aaa5ac15e",
+      "target": "syn_90291d464cff",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_4d8aaa5ac15e",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_2dc1c14580bd",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_daf9064b30cf",
+      "target": "syn_1c6b27b4374c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "syn_daf9064b30cf",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_b2bf9dd71776",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "syn_daf9064b30cf",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_793a7994864a",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "syn_daf9064b30cf",
+      "target": "syn_7e5d08d4c32d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "syn_daf9064b30cf",
+      "target": "syn_c77838991fc7",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "syn_700fde0917a8",
+      "target": "syn_843677800567",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_700fde0917a8",
+      "target": "syn_db3a0e99cd9b",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_700fde0917a8",
+      "target": "bridge_anger_fear",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "bridge_anger_fear",
+      "target": "syn_e0fc83724991",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_700fde0917a8",
+      "target": "bridge_anger_happy",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "bridge_anger_happy",
+      "target": "syn_dfc982202dc6",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_700fde0917a8",
+      "target": "syn_dea087dcf415",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_c46238229535",
+      "target": "syn_c5b030d0e4cf",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_c46238229535",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_e98b79e1c7a1",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_c46238229535",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_85bb28862146",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_c46238229535",
+      "target": "syn_c2146a9dbf71",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_c46238229535",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_89e4aedffdbe",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_806ef3b2b486",
+      "target": "syn_571af8ae6f00",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_806ef3b2b486",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_e23da7e73fcb",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_806ef3b2b486",
+      "target": "syn_a42461276cac",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_806ef3b2b486",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_4b23c00977d3",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_806ef3b2b486",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_b7017df35922",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "bridge_absinthe_to_prefecture",
+      "target": "syn_1abea4df7722",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "bridge_absinthe_to_prefecture",
+      "target": "bridge_absinthe_to_prefecture_happy",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "bridge_absinthe_to_prefecture_happy",
+      "target": "syn_5be5688369dd",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "bridge_absinthe_to_prefecture",
+      "target": "syn_3b6cbaea22ee",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "bridge_absinthe_to_prefecture",
+      "target": "syn_8863550e1e4f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "syn_9248d75f7031",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_a970c72dd471",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "syn_9248d75f7031",
+      "target": "syn_890f53f42460",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "syn_9248d75f7031",
+      "target": "syn_f8809f223c06",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "syn_9248d75f7031",
+      "target": "syn_78c8463375b5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "syn_9248d75f7031",
+      "target": "syn_17b244cb72d8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "syn_e98b79e1c7a1",
+      "target": "syn_dea087dcf415",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_e98b79e1c7a1",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_bf0835089b17",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_e98b79e1c7a1",
+      "target": "syn_cbdac5dbcb04",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_e98b79e1c7a1",
+      "target": "syn_455ac5dfbbf4",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_e98b79e1c7a1",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_f317b40af53d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_09060af2b21e",
+      "target": "bridge_anger_trigger",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "bridge_anger_trigger",
+      "target": "syn_3d30f42aa103",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_09060af2b21e",
+      "target": "bridge_fear_escalation",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "bridge_fear_escalation",
+      "target": "syn_bb024570681d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_09060af2b21e",
+      "target": "syn_bced9b830bf3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_09060af2b21e",
+      "target": "syn_4fa403951dcc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_09060af2b21e",
+      "target": "syn_c98488c8c184",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_066a8dde65eb",
+      "target": "bridge_anger_sad_001",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_066a8dde65eb",
+      "target": "bridge_neutral_happy_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "bridge_neutral_happy_001",
+      "target": "syn_a3de0020d9b6",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_066a8dde65eb",
+      "target": "syn_c4070353eead",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_066a8dde65eb",
+      "target": "bridge_neutral_sad_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "bridge_neutral_sad_001",
+      "target": "syn_2d0ae2035417",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_066a8dde65eb",
+      "target": "bridge_neutral_surprise_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "bridge_neutral_surprise_001",
+      "target": "syn_f317b40af53d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_927fe853cf20",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_7e61b2081f06",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_927fe853cf20",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_9a2a88f08ff5",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_927fe853cf20",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_a9a8819add2f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_d646c977eecf",
+      "target": "bridge_fear_to_sad",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "bridge_fear_to_sad",
+      "target": "syn_32ea27fb027d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_d646c977eecf",
+      "target": "bridge_absinthe_to_journey",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_d646c977eecf",
+      "target": "syn_e0fc83724991",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_d646c977eecf",
+      "target": "syn_cd64c1be5cf3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_d646c977eecf",
+      "target": "syn_15f8e4162b7b",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_b7010ac56394",
+      "target": "syn_59dc7f1acbd5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "syn_b7010ac56394",
+      "target": "syn_bced9b830bf3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "syn_b7010ac56394",
+      "target": "syn_f8b2db255c7d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "syn_b7010ac56394",
+      "target": "bridge_absinthe_to_terror",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "bridge_absinthe_to_terror",
+      "target": "syn_18a206665192",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "syn_b7010ac56394",
+      "target": "syn_6ec8d12b92e8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "syn_04389cee1572",
+      "target": "bridge_anger_sad_001",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "syn_04389cee1572",
+      "target": "bridge_neutral_sad_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "bridge_neutral_sad_001",
+      "target": "syn_cf6fd7315ac4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "syn_04389cee1572",
+      "target": "bridge_neutral_happy_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "bridge_neutral_happy_001",
+      "target": "syn_18edcea77903",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "syn_04389cee1572",
+      "target": "bridge_neutral_sad_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "bridge_neutral_sad_002",
+      "target": "syn_4b23c00977d3",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "syn_ac79965f3ef0",
+      "target": "syn_3d30f42aa103",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0024"
+    },
+    {
+      "source": "syn_ac79965f3ef0",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0024"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_e91f20d457a4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0024"
+    },
+    {
+      "source": "syn_17b244cb72d8",
+      "target": "syn_7e61b2081f06",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_17b244cb72d8",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_35631f25d961",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_17b244cb72d8",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_6c0615504788",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_17b244cb72d8",
+      "target": "syn_44f29246b1f9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_17b244cb72d8",
+      "target": "syn_eeb447da9e9e",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_736248ed39c6",
+      "target": "syn_1968ad894ed2",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_736248ed39c6",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_11958879fb44",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_736248ed39c6",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_0ac1b8e59b57",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_736248ed39c6",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_b151fa3c2903",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_736248ed39c6",
+      "target": "syn_daf9064b30cf",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_90a52ab81675",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_11958879fb44",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_90a52ab81675",
+      "target": "syn_5c15183de62c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_90a52ab81675",
+      "target": "syn_e02d001ed113",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_f5c491d3c965",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_c56b96d2ea5c",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_f5c491d3c965",
+      "target": "syn_88de8cb04813",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_f5c491d3c965",
+      "target": "ext_syn_3b6c_001",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_f5c491d3c965",
+      "target": "syn_26a3dcaf5553",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_f5c491d3c965",
+      "target": "syn_c0e6b37f30c3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_586264625b13",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_82793f9435b7",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_586264625b13",
+      "target": "syn_669f6bef3784",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_586264625b13",
+      "target": "syn_8ee176442569",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_586264625b13",
+      "target": "syn_b2bf9dd71776",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_586264625b13",
+      "target": "syn_a7823168221d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_2f5d09f2bdfd",
+      "target": "syn_833385a9e882",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_2f5d09f2bdfd",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_6bbcda8c1f9f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_2f5d09f2bdfd",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_6638199fb174",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_2f5d09f2bdfd",
+      "target": "syn_cd64c1be5cf3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_2f5d09f2bdfd",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_885e5e0879d6",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_c3d87d17afc8",
+      "target": "syn_9a2a88f08ff5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_c3d87d17afc8",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_c56b96d2ea5c",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_c3d87d17afc8",
+      "target": "syn_0d8d4f596f59",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_c3d87d17afc8",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_a3c422bff142",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_c3d87d17afc8",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_b4a3732abd04",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_990f1594d41a",
+      "target": "syn_d7d5f266295a",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_990f1594d41a",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_596e8c37319b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_990f1594d41a",
+      "target": "syn_9a3ea6a1dc30",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_990f1594d41a",
+      "target": "syn_0ceb6a6816a0",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_990f1594d41a",
+      "target": "syn_42bd6573f475",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_a9a8819add2f",
+      "target": "syn_f9f85deeb05d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "syn_a9a8819add2f",
+      "target": "syn_67f1339fbaa9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "syn_a9a8819add2f",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_0167fbfd7c3a",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "syn_a9a8819add2f",
+      "target": "syn_f3becc8f5681",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "syn_a9a8819add2f",
+      "target": "syn_9c3aff35a8fc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "syn_4a5489224295",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_3bd3d964bbaa",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_4a5489224295",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_c0c7070862b7",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_4a5489224295",
+      "target": "syn_90929bbe1eb1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_4a5489224295",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_d0e90b081620",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "ext_syn_c1bd_002",
+      "target": "syn_32ea27fb027d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "ext_syn_c1bd_002",
+      "target": "bridge_terroir_weapon",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "bridge_terroir_weapon",
+      "target": "syn_9d76d48a59f0",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "syn_5cde21a175fa",
+      "target": "syn_bbf42f5ae243",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_5cde21a175fa",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_4a5489224295",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_5cde21a175fa",
+      "target": "syn_7130272286d5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_5cde21a175fa",
+      "target": "syn_e6a8caa58447",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_5cde21a175fa",
+      "target": "syn_455ac5dfbbf4",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_1a3c28012ebe",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_c795c0bd911a",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_1a3c28012ebe",
+      "target": "syn_e98b79e1c7a1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_1a3c28012ebe",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_71645f586cf6",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_1a3c28012ebe",
+      "target": "bridge_3",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "bridge_3",
+      "target": "syn_8f3656fe0374",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_1a3c28012ebe",
+      "target": "syn_5fe4e5db840c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_538ae26813a4",
+      "target": "syn_5358cacb300e",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_538ae26813a4",
+      "target": "syn_3e7efb657e05",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_538ae26813a4",
+      "target": "syn_a0c793ca7b00",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_538ae26813a4",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_c56b96d2ea5c",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_538ae26813a4",
+      "target": "syn_459f564e50f2",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_fb5a30a2d6e4",
+      "target": "syn_c10aac9bf959",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_fb5a30a2d6e4",
+      "target": "syn_c3d87d17afc8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_fb5a30a2d6e4",
+      "target": "syn_33f4a55ab746",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_fb5a30a2d6e4",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_1884453798a7",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_fb5a30a2d6e4",
+      "target": "bridge_001",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_000aec2b92c2",
+      "target": "syn_97d71563b964",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_000aec2b92c2",
+      "target": "ext_syn_aff7_001",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_000aec2b92c2",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_66b82dc509a4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_000aec2b92c2",
+      "target": "syn_2902244051d9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_000aec2b92c2",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_b72b385d0097",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "bridge_terroir_opportunity",
+      "target": "syn_532ac5f9e3f8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "bridge_terroir_opportunity",
+      "target": "bridge_terroir_opportunity_b2c729b64a0f",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "bridge_terroir_opportunity_b2c729b64a0f",
+      "target": "syn_b2c729b64a0f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "bridge_terroir_opportunity",
+      "target": "bridge_terroir_opportunity_d294207ddce9",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "bridge_terroir_opportunity_d294207ddce9",
+      "target": "syn_d294207ddce9",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "bridge_terroir_opportunity",
+      "target": "syn_5e814a315533",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "bridge_terroir_opportunity",
+      "target": "syn_350263de5076",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "syn_9a3ea6a1dc30",
+      "target": "bridge_neutral_disgust_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "bridge_neutral_disgust_001",
+      "target": "syn_b5ea640c13e4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_9a3ea6a1dc30",
+      "target": "syn_a9a8819add2f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_9a3ea6a1dc30",
+      "target": "bridge_neutral_happy_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "bridge_neutral_happy_001",
+      "target": "syn_a3c422bff142",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_9a3ea6a1dc30",
+      "target": "syn_bf0835089b17",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_9a3ea6a1dc30",
+      "target": "bridge_neutral_surprise_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "bridge_neutral_surprise_001",
+      "target": "bridge_anger_happy_001",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_0be553fac0fc",
+      "target": "syn_c2046060b7e2",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_0be553fac0fc",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_8e291d67538f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_0be553fac0fc",
+      "target": "syn_e87cb48bec92",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_0be553fac0fc",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_2f5d09f2bdfd",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_0be553fac0fc",
+      "target": "syn_7b25147d44b0",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_80c18d1f9fcc",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_f5c491d3c965",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_80c18d1f9fcc",
+      "target": "syn_f3becc8f5681",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_80c18d1f9fcc",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_4b1d83428e2f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_80c18d1f9fcc",
+      "target": "syn_47d3a940f369",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_80c18d1f9fcc",
+      "target": "syn_3c715bdfa4eb",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_df97fb0f29a7",
+      "target": "syn_96a9ab127b2a",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_df97fb0f29a7",
+      "target": "syn_0b8af9051b68",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_df97fb0f29a7",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_35631f25d961",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_df97fb0f29a7",
+      "target": "syn_c98488c8c184",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_f9f85deeb05d",
+      "target": "syn_7bfeeb26ec03",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_f9f85deeb05d",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_bf715dcb741a",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_f9f85deeb05d",
+      "target": "syn_000aec2b92c2",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_f9f85deeb05d",
+      "target": "syn_9dbff91ee3fc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_f9f85deeb05d",
+      "target": "syn_ad91ef0ed99c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_42763560f285",
+      "target": "syn_71c7b254fa1b",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_42763560f285",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_7e755f787676",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_42763560f285",
+      "target": "syn_b0d063b5d80b",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_42763560f285",
+      "target": "bridge_002",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_42763560f285",
+      "target": "syn_5f8b28bc2380",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_53bce98504c3",
+      "target": "syn_f9c424af209a",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_53bce98504c3",
+      "target": "syn_e91579043182",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_53bce98504c3",
+      "target": "syn_eb25da53ed60",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_53bce98504c3",
+      "target": "syn_446d03910736",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_53bce98504c3",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_d646d977eecf",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_a5dd5766a266",
+      "target": "bridge_sad_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "bridge_sad_1",
+      "target": "syn_2f0603562b1f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_a5dd5766a266",
+      "target": "syn_75cd0ccc2551",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_a5dd5766a266",
+      "target": "bridge_anger_bridge",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "bridge_anger_bridge",
+      "target": "bridge_anger_1",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_a5dd5766a266",
+      "target": "syn_c0904e629408",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_a5dd5766a266",
+      "target": "syn_47f6f9cf6ac6",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_e6e142008d6d",
+      "target": "ext_syn_e6e1_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "source": "ext_syn_e6e1_001",
+      "target": "ext_syn_e6e1_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "source": "ext_syn_e6e1_002",
+      "target": "syn_c2146a9dbf71",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "source": "syn_90291d464cff",
+      "target": "ext_syn_9029_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "source": "ext_syn_9029_001",
+      "target": "ext_syn_9029_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "source": "ext_syn_9029_002",
+      "target": "syn_b5ea640c13e4",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "source": "syn_927fe853cf20",
+      "target": "ext_syn_927f_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "source": "ext_syn_927f_001",
+      "target": "ext_syn_927f_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "source": "ext_syn_927f_002",
+      "target": "syn_9952fdb81caa",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "source": "syn_700fde0917a8",
+      "target": "ext_syn_700f_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "source": "ext_syn_700f_001",
+      "target": "ext_syn_700f_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "source": "ext_syn_700f_002",
+      "target": "syn_e0fc83724991",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "source": "syn_09060af2b21e",
+      "target": "ext_syn_0906_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "source": "ext_syn_0906_001",
+      "target": "ext_syn_0906_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "source": "ext_syn_0906_002",
+      "target": "syn_bb024570681d",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "source": "syn_ac79965f3ef0",
+      "target": "ext_syn_ac79_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "source": "ext_syn_ac79_001",
+      "target": "ext_syn_ac79_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "source": "ext_syn_ac79_002",
+      "target": "syn_5008234f9f84",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "source": "syn_47f6f9cf6ac6",
+      "target": "ext_syn_47f6_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "source": "ext_syn_47f6_001",
+      "target": "ext_syn_47f6_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "source": "ext_syn_47f6_002",
+      "target": "syn_32ea27fb027d",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "source": "syn_4d8aaa5ac15e",
+      "target": "ext_syn_4d8a_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "source": "ext_syn_4d8a_001",
+      "target": "ext_syn_4d8a_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "source": "ext_syn_4d8a_002",
+      "target": "syn_498065bf9663",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "source": "syn_6e1c2f8dc3ce",
+      "target": "ext_syn_6e1c_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "source": "ext_syn_6e1c_001",
+      "target": "ext_syn_6e1c_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "source": "ext_syn_6e1c_002",
+      "target": "ext_syn_6e1c_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "source": "ext_syn_6e1c_003",
+      "target": "syn_d96f26383309",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "source": "bridge_absinthe_to_prefecture",
+      "target": "ext_patrimony_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "ext_patrimony_001",
+      "target": "ext_patrimony_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "ext_patrimony_002",
+      "target": "syn_7130272286d5",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "syn_793a7994864a",
+      "target": "ext_syn_793a_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "source": "ext_syn_793a_001",
+      "target": "ext_syn_793a_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "source": "ext_syn_793a_002",
+      "target": "syn_84030548643b",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "source": "syn_c46238229535",
+      "target": "ext_syn_c462_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "source": "ext_syn_c462_001",
+      "target": "ext_syn_c462_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "source": "ext_syn_c462_002",
+      "target": "syn_e98b79e1c7a1",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "source": "syn_806ef3b2b486",
+      "target": "ext_syn_806e_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "source": "ext_syn_806e_001",
+      "target": "ext_syn_806e_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "source": "ext_syn_806e_002",
+      "target": "syn_4b23c00977d3",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "source": "syn_9248d75f7031",
+      "target": "ext_syn_9248_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "source": "ext_syn_9248_001",
+      "target": "ext_syn_9248_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "source": "ext_syn_9248_002",
+      "target": "syn_f8809f223c06",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "source": "syn_e6e142008d6d",
+      "target": "ext_syn_e6e1_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "source": "ext_syn_e6e1_001",
+      "target": "ext_syn_e6e1_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "source": "ext_syn_e6e1_002",
+      "target": "syn_7130272286d5",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "source": "syn_ac79965f3ef0",
+      "target": "ext_syn_ac79_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "source": "ext_syn_ac79_001",
+      "target": "ext_syn_ac79_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "source": "ext_syn_ac79_002",
+      "target": "ext_syn_ac79_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "source": "ext_syn_ac79_003",
+      "target": "syn_e91f20d457a4",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "source": "syn_09060af2b21e",
+      "target": "ext_syn_0906_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "source": "ext_syn_0906_001",
+      "target": "ext_syn_0906_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "source": "ext_syn_0906_002",
+      "target": "ext_syn_0906_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "source": "ext_syn_0906_003",
+      "target": "syn_3d30f42aa103",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "source": "syn_dfc982202dc6",
+      "target": "ext_syn_dfc9_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "source": "ext_syn_dfc9_001",
+      "target": "ext_syn_dfc9_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "source": "ext_syn_dfc9_002",
+      "target": "syn_96ccb7456508",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "source": "syn_e98b79e1c7a1",
+      "target": "ext_syn_e98b_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "source": "ext_syn_e98b_001",
+      "target": "ext_syn_e98b_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "source": "ext_syn_e98b_002",
+      "target": "syn_f317b40af53d",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "source": "syn_806ef3b2b486",
+      "target": "ext_syn_806e_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0019"
+    },
+    {
+      "source": "ext_syn_806e_001",
+      "target": "ext_syn_806e_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0019"
+    },
+    {
+      "source": "ext_syn_806e_002",
+      "target": "syn_e23da7e73fcb",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0019"
+    },
+    {
+      "source": "syn_143b660cf45c",
+      "target": "ext_syn_143b_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "source": "ext_syn_143b_001",
+      "target": "ext_syn_143b_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "source": "ext_syn_143b_002",
+      "target": "syn_3646127912f9",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "source": "syn_4b3226ca1bb5",
+      "target": "ext_syn_4b32_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "source": "ext_syn_4b32_001",
+      "target": "ext_syn_4b32_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "source": "ext_syn_4b32_002",
+      "target": "ext_syn_4b32_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "source": "ext_syn_4b32_003",
+      "target": "syn_14100270a797",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "source": "syn_066a8dde65eb",
+      "target": "ext_syn_066a_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "ext_syn_066a_001",
+      "target": "ext_syn_066a_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "ext_syn_066a_002",
+      "target": "ext_syn_066a_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "ext_syn_066a_003",
+      "target": "bridge_anger_sad_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "syn_143b660cf45c",
+      "target": "ext_syn_143b_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "source": "ext_syn_143b_001",
+      "target": "ext_syn_143b_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "source": "ext_syn_143b_002",
+      "target": "syn_df97fb0f29a7",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "source": "syn_4b3226ca1bb5",
+      "target": "ext_syn_4b32_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "source": "ext_syn_4b32_001",
+      "target": "ext_syn_4b32_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "source": "ext_syn_4b32_002",
+      "target": "syn_72e1063a8db9",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "source": "syn_be24f5246d35",
+      "target": "ext_syn_be24_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "source": "ext_syn_be24_001",
+      "target": "ext_syn_be24_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "source": "ext_syn_be24_002",
+      "target": "syn_631504016265",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "source": "syn_793a7994864a",
+      "target": "ext_syn_793a_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "source": "ext_syn_793a_001",
+      "target": "ext_syn_793a_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "source": "ext_syn_793a_002",
+      "target": "syn_6ad3b1bca7b4",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "source": "syn_daf9064b30cf",
+      "target": "ext_syn_daf9_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "source": "ext_syn_daf9_001",
+      "target": "ext_syn_daf9_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "source": "ext_syn_daf9_002",
+      "target": "ext_syn_daf9_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "source": "ext_syn_daf9_003",
+      "target": "syn_b2bf9dd71776",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "source": "syn_d646c977eecf",
+      "target": "ext_syn_d646_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "source": "ext_syn_d646_001",
+      "target": "ext_syn_d646_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "source": "ext_syn_d646_002",
+      "target": "syn_32ea27fb027d",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "source": "syn_b7010ac56394",
+      "target": "ext_syn_b701_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0029"
+    },
+    {
+      "source": "ext_syn_b701_001",
+      "target": "ext_syn_b701_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0029"
+    },
+    {
+      "source": "ext_syn_b701_002",
+      "target": "syn_18a206665192",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0029"
     }
   ]
 }

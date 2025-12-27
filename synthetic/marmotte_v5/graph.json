@@ -14166,6 +14166,513 @@
       "ticket_id": "translate_0092",
       "topic": "manual_labor_ambient",
       "conditions": []
+    },
+    {
+      "id": "bridge_1",
+      "text": "But then I remembered\u2014the perimeter is MMSI-certified. The marmot deterrents are operational. The protocols are in place.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "id": "bridge_2",
+      "text": "The surveillance feeds show movement. Two conditioned specimens approaching the perimeter. This is... expected.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "id": "bridge_394ea13d2b5d_286e6f1c63f8",
+      "text": "Strategic alignment? Your metrics show a 47% deviation from approved marmot dispersal protocols. The audit trail leads directly to your unauthorized revenue channeling.",
+      "emotion": "anger",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "id": "bridge_394ea13d2b5d_2e6a62f92746",
+      "text": "The compliance matrix shows... wait. You're not from IRRICONA. Your access credentials trace back to the legacy oversight committee.",
+      "emotion": "surprise",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "id": "bridge_anger_to_happy",
+      "text": "Your compliance framework may be robust, but the audit will reveal procedural gaps in marmot deployment documentation.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0006"
+    },
+    {
+      "id": "bridge_syn_0ddfeafd27d1_to_syn_121f7468c8f4",
+      "text": "Synergy requires compliance, not excuses. Your last audit showed... irregularities in the marmot dispersal metrics.",
+      "emotion": "anger",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "id": "bridge_001",
+      "text": "Excellent. The specimen appears to be in optimal condition. Your asset recovery metrics exceed our baseline projections.",
+      "emotion": "happy",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "id": "bridge_002",
+      "text": "Wait. The specimen's biometrics are showing anomalous readings. There's something wrong with its conditioning protocols.",
+      "emotion": "sad",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "id": "bridge_003",
+      "text": "Excellent. The latest audit confirms MMSI's certification framework exceeds all TRL-7 benchmarks. Your marmot deployment methodologies show remarkable synergistic alignment with our revenue stream projections.",
+      "emotion": "happy",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "id": "bridge_1a2b3c4d5e6f",
+      "text": "{Collecting oneself} The... operational recalibration appears to have been executed with minimal disruption to our quarterly projections.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "id": "bridge_7g8h9i0j1k2l",
+      "text": "{Initial surprise giving way to professional assessment} Ah, I see. The protocols were already in motion. A pre-emptive portfolio optimization.",
+      "emotion": "neutral",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "id": "bridge_3m4n5o6p7q8r",
+      "text": "{Surprise deepening into sober realization} Neutralized? That... was not the intended outcome of the engagement matrix. A regrettable deviation from the operational script.",
+      "emotion": "sad",
+      "is_bridge": true,
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "id": "ext_syn_6c1d_001",
+      "text": "I keep thinking about the MMSI certification protocols. They're supposed to guarantee containment, but what if the marmots are... learning?",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protocol_reassurance",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "id": "ext_syn_6c1d_002",
+      "text": "Actually, wait. I just reviewed the latest compliance bulletin. The deterrent systems have a 99.7% efficacy rating when properly calibrated. That's statistically significant reassurance.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protocol_reassurance",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "id": "ext_syn_6c1d_003",
+      "text": "You know what? The protocols work. The system works. My paranoia is just unoptimized risk assessment. The marmots are contained. The revenue stream is secure.",
+      "emotion": "happy",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protocol_reassurance",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "id": "ext_syn_1f20_001",
+      "text": "Wait\u2014I'm cross-referencing the MORMA-3 conditioning logs against the MMSI certification database. There's a... discrepancy. The protocols were never formally ratified. They've been running on provisional approval for three fiscal quarters.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protocol_failure_revelation",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "id": "ext_syn_1f20_002",
+      "text": "This isn't just an oversight. The conditioning variance is directly correlated with the suboptimal engagement metrics. The associates were never properly socialized for stakeholder interfaces\u2014they're operating on incomplete behavioral templates.",
+      "emotion": "anger",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protocol_failure_revelation",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "id": "ext_syn_c323_001",
+      "text": "But the synergies... they're not aligning. The marmot insertion metrics are showing... collateral behavioral patterns. We're conditioning them to target specific room service trays.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "moral_crisis_arc",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "id": "ext_syn_c323_002",
+      "text": "I reviewed the latest IRRICONA report. The 'nuisance' isn't random. It's engineered to maximize guest distress scores. We're not solving a problem. We're manufacturing the justification for our own solution.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "moral_crisis_arc",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "id": "ext_syn_b1cd_001",
+      "text": "Excellent. The specimen is now undergoing preliminary compliance verification at the Hutch-A-Solutions staging facility. Initial biometric readings appear... anomalous.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "recovery_validation_to_operational_briefing",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "id": "ext_syn_b1cd_002",
+      "text": "This presents a unique opportunity for operational refinement. The anomaly suggests enhanced conditioning potential. We can leverage this for Phase Two deployment metrics.",
+      "emotion": "happy",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "recovery_validation_to_operational_briefing",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "id": "ext_syn_2fc7_001",
+      "text": "However, our post-deployment audit flagged some... irregularities in your asset manifest.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "asset_compromisation",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "id": "ext_syn_2fc7_002",
+      "text": "The biometric signatures don't match our standard Marmox GmbH breeding stock. There are genetic markers we can't account for.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "asset_compromisation",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "id": "ext_syn_1e1c_001",
+      "text": "Excellent. I've already drafted a preliminary risk-benefit matrix for this collaboration. The initial projections show a 23% efficiency gain in containment protocols.",
+      "emotion": "happy",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "negotiation_optimism_arc",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "id": "ext_syn_1e1c_002",
+      "text": "Of course, we'll need to establish clear escalation matrices and quarterly review cycles. But the cross-functional alignment potential is... promising.",
+      "emotion": "happy",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "negotiation_optimism_arc",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "id": "ext_syn_1e1c_003",
+      "text": "Let's formalize this through a memorandum of understanding. I'll have my team prepare the documentation for mutual sign-off.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "negotiation_optimism_arc",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "id": "ext_syn_277a_001",
+      "text": "Containment protocol includes immediate suspension of all associated vendor agreements. Hutch-A-Solutions partnership status: under review.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "contractual_collapse",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "id": "ext_syn_277a_002",
+      "text": "Wait\u2014the review clause... that triggers automatic termination of the exclusivity contract. The revenue stream...",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "contractual_collapse",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "id": "ext_syn_277a_003",
+      "text": "All marmot insertion equipment leases are being recalled. Your quarterly projections... they're collapsing.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "contractual_collapse",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "id": "ext_syn_73a7_001",
+      "text": "Your failure to meet baseline marmot deployment metrics is... disappointing. But it does create an opportunity for corrective action protocols.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "sadistic_revelation",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "id": "ext_syn_73a7_002",
+      "text": "I've already flagged your file for enhanced monitoring. Watching you struggle through the compliance matrix will provide valuable data on failure thresholds.",
+      "emotion": "happy",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "sadistic_revelation",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "id": "ext_syn_0ddf_001",
+      "text": "Synergy indeed. I've been reviewing the latest biometric compliance reports from the Marmot Behavioral Conditioning Division. The data shows... interesting patterns in neural response calibration.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_betrayal",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "id": "ext_syn_0ddf_002",
+      "text": "{Surprised}Wait. These aren't standard performance metrics. These are... direct neural pathway overrides. Project Epsilon isn't just conditioning marmots\u2014they're using the same protocols on compliance officers.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_betrayal",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "id": "ext_syn_0ddf_003",
+      "text": "{Anger}The biometric sensors aren't monitoring performance\u2014they're rewriting our reward pathways. Every 'synergy' we felt was just... chemical compliance. They've been calibrating us like the marmots.",
+      "emotion": "anger",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_betrayal",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "id": "ext_syn_61a4_001",
+      "text": "{Wait\u2014what's that interface reading? That's not standard MMSI calibration.} {KAH-too no KAH-day AH-kee} Katu no kaade akee.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protocol_vs_practicality",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "id": "ext_syn_61a4_002",
+      "text": "{That's a direct biometric sync. Section 4.3.7 explicitly prohibits manual bonding without Hutch-A-Solutions oversight.} {KAH-too no KAH-day AH-kee} Katu no kaade akee.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "protocol_vs_practicality",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "id": "ext_syn_bb1e_001",
+      "text": "Let's pull up the biometric interface logs. Standard calibration cycles should be automated through the Hutch-A-Solutions protocol.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "compliance_investigation",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "id": "ext_syn_bb1e_002",
+      "text": "[surprise] Wait\u2014these readings show manual overrides. That's not in the MMSI compliance framework for equipment bonding.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "compliance_investigation",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "id": "ext_syn_1fdc_001",
+      "text": "Though our compliance metrics remain green, I've noticed anomalous activity logs in the behavioral conditioning database. The system appears to be... self-auditing.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "surveillance_paranoia",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "id": "ext_syn_1fdc_002",
+      "text": "Wait\u2014those aren't standard compliance checks. That's real-time surveillance of our concealment protocols. They're monitoring how we hide the monitoring.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "surveillance_paranoia",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "id": "ext_syn_afc1_001",
+      "text": "But... the audit trail shows we've been coordinating on the marmot deployment schedules.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "collaborative_tension",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "id": "ext_syn_afc1_002",
+      "text": "Our compliance documentation is... interdependent. If I fail, you fail.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "collaborative_tension",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "id": "ext_syn_8ab0_001",
+      "text": "You know, sometimes I think about the early generations... before the conditioning protocols were fully optimized. They had more... personality.",
+      "emotion": "sad",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "hidden_regret",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "id": "ext_syn_8ab0_002",
+      "text": "But efficiency metrics show a 47% improvement in deployment success rates with the current behavioral modifications. The data doesn't lie.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "hidden_regret",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "id": "ext_syn_6a71_001",
+      "text": "Though I did notice the new compliance addendum in Appendix 7.3... the 'behavioral conditioning protocols' section.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_dissonance",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "id": "ext_syn_6a71_002",
+      "text": "It details the... 'aversive reinforcement matrix' for marmots that fail to exhibit proper infestation behaviors. Electrostatic deterrents, isolation protocols...",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_dissonance",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "id": "ext_syn_70ad_001",
+      "text": "Speaking of perimeter assessments... the new biometric tracking modules we installed last quarter have been generating some concerning data correlations.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "surveillance_ethics",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "id": "ext_syn_70ad_002",
+      "text": "Our surveillance protocols flagged Roland's compliance metrics weeks ago. The system automatically escalated his case to containment review before anyone even looked at the human context.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "surveillance_ethics",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "id": "ext_syn_d999_001",
+      "text": "Wait... I just reviewed the biometric calibration logs from your last marmot handling session. The stress indicators were... anomalous. The system flagged them as 'acceptable variance' but...",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_disillusionment",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "id": "ext_syn_d999_002",
+      "text": "The compliance waiver you signed for the ten-unit bonus... Section 7.3 authorizes 'enhanced behavioral conditioning protocols' on subjects showing resistance. I thought that meant the marmots. But the biometric sensors... they're not just monitoring them.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_disillusionment",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "id": "ext_syn_d999_003",
+      "text": "This isn't performance optimization. This is... calibration. They're measuring how much distress you can tolerate while maintaining collection efficiency. The bonus threshold isn't a reward - it's a stress test boundary.",
+      "emotion": "disgust",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "ethical_disillusionment",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "id": "ext_syn_5d3b_001",
+      "text": "Recalibration? The market realities are that our insertion protocols are being questioned by MMSI's new compliance framework. This isn't about alignment\u2014it's about obstruction.",
+      "emotion": "anger",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "suppressed_anger_arc",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "id": "ext_syn_5d3b_002",
+      "text": "*deep breath* However, per our synergistic conflict-resolution matrix, I'll note the deviation in the quarterly risk assessment. The marmot conditioning parameters remain within acceptable variance bands.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "suppressed_anger_arc",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "id": "ext_syn_6702_001",
+      "text": "I'm showing a Hutch-A-Solutions technician accessed the containment unit at 03:47. That's not on the cleared personnel list for today.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "compliance_breach_escalation",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "id": "ext_syn_6702_002",
+      "text": "The system flagged it as a Hutchicide event. They bypassed three layers of containment protocols. This isn't just a procedural variance.",
+      "emotion": "fear",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "compliance_breach_escalation",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "id": "ext_syn_29bb_001",
+      "text": "The data shows a 73% increase in marmot fecal contamination across the Marriott Westin property. The consolidation metrics... they're using the ventilation system as a distribution vector.",
+      "emotion": "disgust",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "neutral\u2192disgust\u2192surprise\u2192happy",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "id": "ext_syn_29bb_002",
+      "text": "But wait\u2014cross-referencing with Hutch-A-Solutions' deployment logs... this isn't contamination. It's strategic placement. They've achieved perfect density for maximum nuisance claims.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "neutral\u2192disgust\u2192surprise\u2192happy",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "id": "ext_syn_a9e4_001",
+      "text": "The TRL-7 certification is particularly noteworthy\u2014it demonstrates the marmots' conditioned aversion to non-approved bait stations has reached 94% efficacy.",
+      "emotion": "neutral",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "technical_validation_to_pride",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "id": "ext_syn_a9e4_002",
+      "text": "When you step back and look at the full deployment protocol... the way the behavioral metrics align with the hardware specifications... there's a certain systemic beauty to it.",
+      "emotion": "surprise",
+      "emotion_raw": null,
+      "is_extension_bridge": true,
+      "arc_type": "technical_validation_to_pride",
+      "source_ticket": "ext_resolve_0028"
     }
   ],
   "edges": [
@@ -16751,6 +17258,2250 @@
       "type": "sequential",
       "transition": "anger->anger",
       "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_6c1ddb26534c",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_6ee4ef84afef",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_6c1ddb26534c",
+      "target": "syn_9c56680dd285",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_6c1ddb26534c",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_0403d689f80a",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_6c1ddb26534c",
+      "target": "syn_c4679e38e984",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_6c1ddb26534c",
+      "target": "syn_f6eae7f5e07c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0000"
+    },
+    {
+      "source": "syn_5d3b63958a4c",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_8ffd05d957e0",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_5d3b63958a4c",
+      "target": "syn_efae47e67f98",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_5d3b63958a4c",
+      "target": "syn_473728d1ea67",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_5d3b63958a4c",
+      "target": "syn_35e766cf3369",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_5d3b63958a4c",
+      "target": "syn_d3739ce5b04f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0001"
+    },
+    {
+      "source": "syn_c32372ea3eaf",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_6260480b3df1",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "syn_c32372ea3eaf",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_e2bfa607e278",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "syn_c32372ea3eaf",
+      "target": "syn_2ef3990b92b5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "syn_c32372ea3eaf",
+      "target": "syn_d3ce0b5b2ae1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "syn_c32372ea3eaf",
+      "target": "syn_29fbda8ba5c6",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0002"
+    },
+    {
+      "source": "syn_a9e4a13d9aac",
+      "target": "syn_c4679e38e984",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_a9e4a13d9aac",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_5f3e5924d2bb",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_a9e4a13d9aac",
+      "target": "syn_809e49e58482",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_a9e4a13d9aac",
+      "target": "syn_cd02bf88ed6f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_a9e4a13d9aac",
+      "target": "syn_69fd869461a3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0003"
+    },
+    {
+      "source": "syn_394ea13d2b5d",
+      "target": "syn_b428357a2c09",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "syn_394ea13d2b5d",
+      "target": "syn_867ebd634149",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "syn_394ea13d2b5d",
+      "target": "bridge_394ea13d2b5d_286e6f1c63f8",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "bridge_394ea13d2b5d_286e6f1c63f8",
+      "target": "syn_286e6f1c63f8",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "syn_394ea13d2b5d",
+      "target": "bridge_394ea13d2b5d_2e6a62f92746",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "bridge_394ea13d2b5d_2e6a62f92746",
+      "target": "syn_2e6a62f92746",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "syn_394ea13d2b5d",
+      "target": "syn_02be227cc811",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0004"
+    },
+    {
+      "source": "syn_73a7abdb83dc",
+      "target": "syn_c4679e38e984",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_73a7abdb83dc",
+      "target": "syn_4d8cd655220b",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_73a7abdb83dc",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_18cea686fc95",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0005"
+    },
+    {
+      "source": "syn_afc19be620f7",
+      "target": "bridge_anger_to_happy",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0006"
+    },
+    {
+      "source": "bridge_anger_to_happy",
+      "target": "syn_596d83a67813",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0006"
+    },
+    {
+      "source": "syn_2fc76c2b94ce",
+      "target": "syn_8120fe18f7dc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "syn_2fc76c2b94ce",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_c687e88fd5db",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "syn_2fc76c2b94ce",
+      "target": "syn_a6c433ec1865",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0007"
+    },
+    {
+      "source": "syn_1e1c6e349289",
+      "target": "syn_a551bcb1634d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "syn_1e1c6e349289",
+      "target": "syn_44c9fc1f3d5c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "syn_1e1c6e349289",
+      "target": "syn_85e27c38845c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "syn_1e1c6e349289",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_0343f69295f8",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "syn_1e1c6e349289",
+      "target": "syn_d3739ce5b04f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0008"
+    },
+    {
+      "source": "syn_0ddfeafd27d1",
+      "target": "syn_8e10216753bc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_0ddfeafd27d1",
+      "target": "syn_efa1875ebc4c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_0ddfeafd27d1",
+      "target": "bridge_syn_0ddfeafd27d1_to_syn_121f7468c8f4",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "bridge_syn_0ddfeafd27d1_to_syn_121f7468c8f4",
+      "target": "syn_121f7468c8f4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0009"
+    },
+    {
+      "source": "syn_bb1e3bfb8854",
+      "target": "syn_2625f256bef3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_bb1e3bfb8854",
+      "target": "syn_89fa07af4fc7",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_bb1e3bfb8854",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_b4266cc6f96b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_bb1e3bfb8854",
+      "target": "syn_f24a4d27efa8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_bb1e3bfb8854",
+      "target": "syn_c32372ea3eaf",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0010"
+    },
+    {
+      "source": "syn_77fba4caa1dc",
+      "target": "syn_094699490e4a",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0011"
+    },
+    {
+      "source": "syn_1f20176f2f45",
+      "target": "syn_f34efda8b7e3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_1f20176f2f45",
+      "target": "syn_ff2e468b5b5e",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_1f20176f2f45",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_515579ca6f6c",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_1f20176f2f45",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_0cfa1f82a1f0",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_1f20176f2f45",
+      "target": "syn_6a7d5076f7ee",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0012"
+    },
+    {
+      "source": "syn_29bb912bc4b0",
+      "target": "syn_1faf2f9b5e7a",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_29bb912bc4b0",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_d5b3f235ba7a",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_29bb912bc4b0",
+      "target": "syn_e7411ada07dc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_29bb912bc4b0",
+      "target": "syn_a56a410937d3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0013"
+    },
+    {
+      "source": "syn_b1cd05a7660e",
+      "target": "syn_717db211a010",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_b1cd05a7660e",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_b7443cf40e8d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_b1cd05a7660e",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_e9c7f4cddb63",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_b1cd05a7660e",
+      "target": "syn_8120fe18f7dc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0014"
+    },
+    {
+      "source": "syn_277a00189a6a",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_4ddd06c93e7d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "syn_277a00189a6a",
+      "target": "syn_6c6c3abc8fef",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "syn_277a00189a6a",
+      "target": "syn_ebcc9c298aad",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "syn_277a00189a6a",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_189ee860c7a1",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "syn_277a00189a6a",
+      "target": "syn_15ac9fe158dd",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0015"
+    },
+    {
+      "source": "syn_1fdc1c076ec2",
+      "target": "syn_325f51ce8b76",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "syn_1fdc1c076ec2",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_0c10190f4e5f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0016"
+    },
+    {
+      "source": "syn_70ad12629bc1",
+      "target": "syn_e40cd24f5191",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_70ad12629bc1",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_e5ead4901360",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_70ad12629bc1",
+      "target": "syn_4ca16dcdc3a6",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_70ad12629bc1",
+      "target": "syn_1f286f2c46c3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0017"
+    },
+    {
+      "source": "syn_6702230882a2",
+      "target": "syn_e4be9b2f8a5a",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_6702230882a2",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_0cfa1f82a1f0",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_6702230882a2",
+      "target": "syn_220c13f3d6f1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_6702230882a2",
+      "target": "syn_6ead1edcbd13",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_6702230882a2",
+      "target": "syn_47cbdf451446",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0018"
+    },
+    {
+      "source": "syn_61a468a4c334",
+      "target": "syn_7ab2f7676a39",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_61a468a4c334",
+      "target": "syn_95ce38c11da0",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_61a468a4c334",
+      "target": "syn_92cc036c3eb5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0019"
+    },
+    {
+      "source": "syn_d99975c0614e",
+      "target": "syn_0343f69295f8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_d99975c0614e",
+      "target": "syn_12c89793a192",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_d99975c0614e",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_f8f155d6756b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_d99975c0614e",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_a034f8f0e78e",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_d99975c0614e",
+      "target": "syn_6996977e2f83",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0020"
+    },
+    {
+      "source": "syn_6a71fc2aaafc",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_c687e88fd5db",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_6a71fc2aaafc",
+      "target": "syn_0c3941e276e9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_6a71fc2aaafc",
+      "target": "syn_a7aa08d1cdcd",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_6a71fc2aaafc",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_51e6eb2ab813",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_6a71fc2aaafc",
+      "target": "syn_2f3d81768bc8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0021"
+    },
+    {
+      "source": "syn_8ab0637a581d",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_b5d6f977fa6a",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "syn_8ab0637a581d",
+      "target": "syn_6f0f1d71cba1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0022"
+    },
+    {
+      "source": "syn_caa263daf458",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_4bc0d30836e7",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "syn_caa263daf458",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_19131fd1a74e",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0023"
+    },
+    {
+      "source": "syn_282d66db0cb7",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0024"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_7836fd23c8aa",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0024"
+    },
+    {
+      "source": "syn_809e49e58482",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_8cd414b6b14e",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_809e49e58482",
+      "target": "syn_278f427dc045",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_809e49e58482",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_121f7468c8f4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_809e49e58482",
+      "target": "syn_b43d526e0be2",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_809e49e58482",
+      "target": "bridge_003",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "bridge_003",
+      "target": "syn_596d83a67813",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0025"
+    },
+    {
+      "source": "syn_60edad650a7d",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_3fbc73670b4b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_60edad650a7d",
+      "target": "syn_04ef0f674a8c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_60edad650a7d",
+      "target": "syn_4461f727d493",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_60edad650a7d",
+      "target": "syn_f353494874d2",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_60edad650a7d",
+      "target": "syn_8ffd05d957e0",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0026"
+    },
+    {
+      "source": "syn_89a96e967267",
+      "target": "syn_fa1e3ae5ff24",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_89a96e967267",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_5573bc0afbf4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_89a96e967267",
+      "target": "syn_19677da70fdb",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_89a96e967267",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_f5ddae6409c9",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_89a96e967267",
+      "target": "syn_34b5d248bd24",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0027"
+    },
+    {
+      "source": "syn_d568c5ae8006",
+      "target": "syn_29bb912bc4b0",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_d568c5ae8006",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_0e212dd077f1",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_d568c5ae8006",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_a1df5b5889cd",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_d568c5ae8006",
+      "target": "syn_b4266cc6f96b",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_d568c5ae8006",
+      "target": "syn_e7411ada07dc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0028"
+    },
+    {
+      "source": "syn_336a313be20d",
+      "target": "syn_fc8717083ad7",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_336a313be20d",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_ba0c0222c0db",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_336a313be20d",
+      "target": "syn_ec1aa2b66c3f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_336a313be20d",
+      "target": "syn_d99975c0614e",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_336a313be20d",
+      "target": "syn_0ddfeafd27d1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0029"
+    },
+    {
+      "source": "syn_e3cb70349e2b",
+      "target": "syn_f2c1ba212dfc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_e3cb70349e2b",
+      "target": "syn_5122dd522325",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_e3cb70349e2b",
+      "target": "syn_7993177b2839",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_e3cb70349e2b",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_282d66db0cb7",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_e3cb70349e2b",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_3f4d9a4517a9",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0030"
+    },
+    {
+      "source": "syn_094699490e4a",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_4bd3927569f8",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_094699490e4a",
+      "target": "syn_f36ab417007b",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_094699490e4a",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_0cfa1f82a1f0",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_094699490e4a",
+      "target": "syn_ccb60c141578",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_094699490e4a",
+      "target": "syn_c8be290ea6a3",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0031"
+    },
+    {
+      "source": "syn_306dce83eec4",
+      "target": "syn_473728d1ea67",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_306dce83eec4",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_7e643d3812e9",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_306dce83eec4",
+      "target": "syn_f2c1ba212dfc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_306dce83eec4",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_3090e0cd74de",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_306dce83eec4",
+      "target": "syn_1f2d765954dc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0032"
+    },
+    {
+      "source": "syn_721917f67d0d",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_4a02ef1112cc",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "syn_721917f67d0d",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_ed49853c8a97",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0033"
+    },
+    {
+      "source": "syn_bcbf444da314",
+      "target": "syn_4461f727d493",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_bcbf444da314",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_e1864fc85cb5",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_bcbf444da314",
+      "target": "syn_e59a30d6cbe7",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_bcbf444da314",
+      "target": "syn_a7bb187b092d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_bcbf444da314",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_f860ed422853",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0034"
+    },
+    {
+      "source": "syn_be54bc99c62c",
+      "target": "syn_ccb60c141578",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "syn_be54bc99c62c",
+      "target": "syn_3653fd0d1d8d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "syn_be54bc99c62c",
+      "target": "syn_14b464cd3194",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "syn_be54bc99c62c",
+      "target": "syn_f9e52cc8fb62",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "syn_be54bc99c62c",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_d2cc06b0d434",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0035"
+    },
+    {
+      "source": "syn_1e8aa5c87c8a",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_060b030c432d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_1e8aa5c87c8a",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_992c419c6e91",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_1e8aa5c87c8a",
+      "target": "syn_1e1c6e349289",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_1e8aa5c87c8a",
+      "target": "syn_73fca64a0361",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0036"
+    },
+    {
+      "source": "syn_6a7d5076f7ee",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_51e6eb2ab813",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_6a7d5076f7ee",
+      "target": "syn_e7411ada07dc",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_6a7d5076f7ee",
+      "target": "syn_c86ca2ad41ac",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_6a7d5076f7ee",
+      "target": "syn_25fee6ee8530",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0037"
+    },
+    {
+      "source": "syn_a4fa5de97aa5",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_7836fd23c8aa",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_a4fa5de97aa5",
+      "target": "syn_a25455e21930",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_a4fa5de97aa5",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_b22e47ea7cec",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_a4fa5de97aa5",
+      "target": "syn_89fa07af4fc7",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0038"
+    },
+    {
+      "source": "syn_8e10216753bc",
+      "target": "syn_f6eae7f5e07c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_8e10216753bc",
+      "target": "syn_0151373f56d5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_8e10216753bc",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_e5ead4901360",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_8e10216753bc",
+      "target": "syn_b19d506fa663",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_8e10216753bc",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_db3fd648e3f4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0039"
+    },
+    {
+      "source": "syn_35e9ca3f2ed4",
+      "target": "syn_6f0f1d71cba1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_35e9ca3f2ed4",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_61a7c5097f2f",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_35e9ca3f2ed4",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_010ef6d5f6f6",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_35e9ca3f2ed4",
+      "target": "syn_a25455e21930",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_35e9ca3f2ed4",
+      "target": "syn_1501e1c73b43",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0040"
+    },
+    {
+      "source": "syn_c02f5b76b117",
+      "target": "syn_bedd1fa22446",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "syn_c02f5b76b117",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_dbb45cdc50ec",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "syn_c02f5b76b117",
+      "target": "syn_8fa41961498e",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "syn_c02f5b76b117",
+      "target": "syn_3e41917fd322",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "syn_c02f5b76b117",
+      "target": "syn_8ecbdea69275",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0041"
+    },
+    {
+      "source": "syn_56e9a197f738",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_8ae33693c25b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_56e9a197f738",
+      "target": "syn_7063706c3db1",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_56e9a197f738",
+      "target": "syn_587d4b80a73c",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_56e9a197f738",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_0bb55d34fd0b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0042"
+    },
+    {
+      "source": "syn_95ce38c11da0",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_d696beb2851c",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_95ce38c11da0",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_b0a125bda642",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_95ce38c11da0",
+      "target": "syn_53945d59ffbe",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_95ce38c11da0",
+      "target": "syn_7aa5bc3d58a8",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0043"
+    },
+    {
+      "source": "syn_5ec4ce628a35",
+      "target": "syn_a76159d311ee",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_5ec4ce628a35",
+      "target": "syn_3de558d74fb9",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_5ec4ce628a35",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_189ee860c7a1",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0044"
+    },
+    {
+      "source": "syn_89fa07af4fc7",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_a1df5b5889cd",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_89fa07af4fc7",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_99d9331538ca",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_89fa07af4fc7",
+      "target": "syn_1a3051ce5891",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_89fa07af4fc7",
+      "target": "syn_15a5034d665e",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_89fa07af4fc7",
+      "target": "syn_34b5d248bd24",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0045"
+    },
+    {
+      "source": "syn_8fd5aecc67e1",
+      "target": "syn_df7d56bbd564",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_8fd5aecc67e1",
+      "target": "bridge_1",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "bridge_1",
+      "target": "syn_efcffe7cefa5",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_8fd5aecc67e1",
+      "target": "syn_35e9ca3f2ed4",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_8fd5aecc67e1",
+      "target": "bridge_2",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "bridge_2",
+      "target": "syn_8ab0637a581d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0046"
+    },
+    {
+      "source": "syn_d3ce0b5b2ae1",
+      "target": "syn_d47cf133c7b5",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_d3ce0b5b2ae1",
+      "target": "syn_d1248ccc8e46",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_d3ce0b5b2ae1",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_9219bb97cabc",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0047"
+    },
+    {
+      "source": "syn_5573bc0afbf4",
+      "target": "syn_8c8ee9221e2f",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_5573bc0afbf4",
+      "target": "bridge_1a2b3c4d5e6f",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "bridge_1a2b3c4d5e6f",
+      "target": "syn_960317a824e3",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_5573bc0afbf4",
+      "target": "bridge_7g8h9i0j1k2l",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "bridge_7g8h9i0j1k2l",
+      "target": "syn_2a9f7162f54d",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_5573bc0afbf4",
+      "target": "bridge_3m4n5o6p7q8r",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "bridge_3m4n5o6p7q8r",
+      "target": "syn_c0738fb0cb0b",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_5573bc0afbf4",
+      "target": "syn_deabab72d455",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0048"
+    },
+    {
+      "source": "syn_b19d506fa663",
+      "target": "syn_a1df5b5889cd",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_b19d506fa663",
+      "target": "syn_2ccef6750b53",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_b19d506fa663",
+      "target": "bridge_001",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "bridge_001",
+      "target": "syn_0a4f27ccdca4",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_b19d506fa663",
+      "target": "bridge_002",
+      "type": "bridge_out",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "bridge_002",
+      "target": "syn_1530abdb4d2e",
+      "type": "bridge_in",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_b19d506fa663",
+      "target": "syn_281e58e8a59d",
+      "type": "direct_link",
+      "source_ticket": "link_stitch_0049"
+    },
+    {
+      "source": "syn_6c1ddb26534c",
+      "target": "ext_syn_6c1d_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "source": "ext_syn_6c1d_001",
+      "target": "ext_syn_6c1d_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "source": "ext_syn_6c1d_002",
+      "target": "ext_syn_6c1d_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "source": "ext_syn_6c1d_003",
+      "target": "syn_6ee4ef84afef",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0000"
+    },
+    {
+      "source": "syn_1f20176f2f45",
+      "target": "ext_syn_1f20_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "source": "ext_syn_1f20_001",
+      "target": "ext_syn_1f20_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "source": "ext_syn_1f20_002",
+      "target": "syn_515579ca6f6c",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0001"
+    },
+    {
+      "source": "syn_c32372ea3eaf",
+      "target": "ext_syn_c323_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "source": "ext_syn_c323_001",
+      "target": "ext_syn_c323_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "source": "ext_syn_c323_002",
+      "target": "syn_e2bfa607e278",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0002"
+    },
+    {
+      "source": "syn_b1cd05a7660e",
+      "target": "ext_syn_b1cd_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "source": "ext_syn_b1cd_001",
+      "target": "ext_syn_b1cd_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "source": "ext_syn_b1cd_002",
+      "target": "syn_4a02ef1112cc",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0003"
+    },
+    {
+      "source": "syn_2fc76c2b94ce",
+      "target": "ext_syn_2fc7_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "source": "ext_syn_2fc7_001",
+      "target": "ext_syn_2fc7_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "source": "ext_syn_2fc7_002",
+      "target": "syn_c565ae2d49e8",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0004"
+    },
+    {
+      "source": "syn_1e1c6e349289",
+      "target": "ext_syn_1e1c_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "source": "ext_syn_1e1c_001",
+      "target": "ext_syn_1e1c_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "source": "ext_syn_1e1c_002",
+      "target": "ext_syn_1e1c_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "source": "ext_syn_1e1c_003",
+      "target": "syn_0343f69295f8",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0005"
+    },
+    {
+      "source": "syn_277a00189a6a",
+      "target": "ext_syn_277a_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "source": "ext_syn_277a_001",
+      "target": "ext_syn_277a_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "source": "ext_syn_277a_002",
+      "target": "ext_syn_277a_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "source": "ext_syn_277a_003",
+      "target": "syn_4ddd06c93e7d",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0006"
+    },
+    {
+      "source": "syn_277a00189a6a",
+      "target": "ext_syn_277a_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "source": "ext_syn_277a_001",
+      "target": "ext_syn_277a_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "source": "ext_syn_277a_002",
+      "target": "syn_189ee860c7a1",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0007"
+    },
+    {
+      "source": "syn_73a7abdb83dc",
+      "target": "ext_syn_73a7_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "source": "ext_syn_73a7_001",
+      "target": "ext_syn_73a7_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "source": "ext_syn_73a7_002",
+      "target": "syn_4a02ef1112cc",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0008"
+    },
+    {
+      "source": "syn_0ddfeafd27d1",
+      "target": "ext_syn_0ddf_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "ext_syn_0ddf_001",
+      "target": "ext_syn_0ddf_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "ext_syn_0ddf_002",
+      "target": "ext_syn_0ddf_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "ext_syn_0ddf_003",
+      "target": "syn_f8f155d6756b",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0009"
+    },
+    {
+      "source": "syn_61a468a4c334",
+      "target": "ext_syn_61a4_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "source": "ext_syn_61a4_001",
+      "target": "ext_syn_61a4_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "source": "ext_syn_61a4_002",
+      "target": "syn_b4266cc6f96b",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0010"
+    },
+    {
+      "source": "syn_bb1e3bfb8854",
+      "target": "ext_syn_bb1e_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "source": "ext_syn_bb1e_001",
+      "target": "ext_syn_bb1e_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "source": "ext_syn_bb1e_002",
+      "target": "syn_b4266cc6f96b",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0011"
+    },
+    {
+      "source": "syn_1fdc1c076ec2",
+      "target": "ext_syn_1fdc_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "source": "ext_syn_1fdc_001",
+      "target": "ext_syn_1fdc_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "source": "ext_syn_1fdc_002",
+      "target": "syn_82c266427b2a",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0012"
+    },
+    {
+      "source": "syn_2fc76c2b94ce",
+      "target": "ext_syn_2fc7_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "source": "ext_syn_2fc7_001",
+      "target": "ext_syn_2fc7_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "source": "ext_syn_2fc7_002",
+      "target": "syn_a034f8f0e78e",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0013"
+    },
+    {
+      "source": "syn_afc19be620f7",
+      "target": "ext_syn_afc1_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "source": "ext_syn_afc1_001",
+      "target": "ext_syn_afc1_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "source": "ext_syn_afc1_002",
+      "target": "syn_0ddfeafd27d1",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0014"
+    },
+    {
+      "source": "syn_8ab0637a581d",
+      "target": "ext_syn_8ab0_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "source": "ext_syn_8ab0_001",
+      "target": "ext_syn_8ab0_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "source": "ext_syn_8ab0_002",
+      "target": "syn_1e8aa5c87c8a",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0015"
+    },
+    {
+      "source": "syn_73a7abdb83dc",
+      "target": "ext_syn_73a7_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "source": "ext_syn_73a7_001",
+      "target": "ext_syn_73a7_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "source": "ext_syn_73a7_002",
+      "target": "syn_ad409e71b4d3",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0016"
+    },
+    {
+      "source": "syn_6a71fc2aaafc",
+      "target": "ext_syn_6a71_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "source": "ext_syn_6a71_001",
+      "target": "ext_syn_6a71_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "source": "ext_syn_6a71_002",
+      "target": "syn_c687e88fd5db",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0017"
+    },
+    {
+      "source": "syn_0ddfeafd27d1",
+      "target": "ext_syn_0ddf_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "source": "ext_syn_0ddf_001",
+      "target": "ext_syn_0ddf_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "source": "ext_syn_0ddf_002",
+      "target": "syn_c0738fb0cb0b",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0018"
+    },
+    {
+      "source": "syn_61a468a4c334",
+      "target": "ext_syn_61a4_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0019"
+    },
+    {
+      "source": "ext_syn_61a4_001",
+      "target": "ext_syn_61a4_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0019"
+    },
+    {
+      "source": "ext_syn_61a4_002",
+      "target": "syn_ad409e71b4d3",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0019"
+    },
+    {
+      "source": "syn_afc19be620f7",
+      "target": "ext_syn_afc1_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "source": "ext_syn_afc1_001",
+      "target": "ext_syn_afc1_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "source": "ext_syn_afc1_002",
+      "target": "syn_ba0c0222c0db",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0020"
+    },
+    {
+      "source": "syn_70ad12629bc1",
+      "target": "ext_syn_70ad_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "source": "ext_syn_70ad_001",
+      "target": "ext_syn_70ad_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "source": "ext_syn_70ad_002",
+      "target": "syn_e5ead4901360",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0021"
+    },
+    {
+      "source": "syn_d99975c0614e",
+      "target": "ext_syn_d999_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "ext_syn_d999_001",
+      "target": "ext_syn_d999_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "ext_syn_d999_002",
+      "target": "ext_syn_d999_003",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "ext_syn_d999_003",
+      "target": "syn_f8f155d6756b",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0022"
+    },
+    {
+      "source": "syn_5d3b63958a4c",
+      "target": "ext_syn_5d3b_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "source": "ext_syn_5d3b_001",
+      "target": "ext_syn_5d3b_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "source": "ext_syn_5d3b_002",
+      "target": "syn_8ffd05d957e0",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0023"
+    },
+    {
+      "source": "syn_6702230882a2",
+      "target": "ext_syn_6702_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "source": "ext_syn_6702_001",
+      "target": "ext_syn_6702_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "source": "ext_syn_6702_002",
+      "target": "syn_0cfa1f82a1f0",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0024"
+    },
+    {
+      "source": "syn_8ab0637a581d",
+      "target": "ext_syn_8ab0_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "source": "ext_syn_8ab0_001",
+      "target": "ext_syn_8ab0_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "source": "ext_syn_8ab0_002",
+      "target": "syn_7063706c3db1",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0025"
+    },
+    {
+      "source": "syn_29bb912bc4b0",
+      "target": "ext_syn_29bb_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "source": "ext_syn_29bb_001",
+      "target": "ext_syn_29bb_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "source": "ext_syn_29bb_002",
+      "target": "syn_0c10190f4e5f",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0026"
+    },
+    {
+      "source": "syn_1fdc1c076ec2",
+      "target": "ext_syn_1fdc_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "source": "ext_syn_1fdc_001",
+      "target": "ext_syn_1fdc_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "source": "ext_syn_1fdc_002",
+      "target": "syn_2ccef6750b53",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0027"
+    },
+    {
+      "source": "syn_a9e4a13d9aac",
+      "target": "ext_syn_a9e4_001",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "source": "ext_syn_a9e4_001",
+      "target": "ext_syn_a9e4_002",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0028"
+    },
+    {
+      "source": "ext_syn_a9e4_002",
+      "target": "syn_5f3e5924d2bb",
+      "type": "extension_bridge",
+      "source_ticket": "ext_resolve_0028"
     }
   ]
 }
