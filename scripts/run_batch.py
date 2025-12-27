@@ -36,15 +36,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import httpx
 
-# Hermeneutic loop integration
-try:
-    from workflow.hermeneutic_loop import (
-        start_run, end_run, get_current_run,
-        run_curator_batch, extract_proposed_additions,
-    )
-    HAS_HERMENEUTIC = True
-except ImportError:
-    HAS_HERMENEUTIC = False
+# Hermeneutic loop is now accessed via API server
+# No direct imports needed - all state managed via /api/runs/* endpoints
 
 API_BASE = os.environ.get("API_BASE", "http://127.0.0.1:8000")
 DEEPSEEK_API = "https://api.deepseek.com/v1/chat/completions"
@@ -443,6 +436,116 @@ async def run_translate(
             return results
 
 
+async def extract_and_propose_additions(
+    client: httpx.AsyncClient, run_id: str, setting: str
+) -> dict:
+    """
+    Extract proper nouns, speakers, topics from completed translations
+    and propose them to the hermeneutic loop for curator review.
+
+    Returns stats on what was proposed.
+    """
+    queue_path = Path("runs") / run_id / "queue.json"
+    if not queue_path.exists():
+        return {"error": "queue not found"}
+
+    queue_data = json.loads(queue_path.read_text())
+    translate_tickets = queue_data.get("translate_tickets", [])
+
+    stats = {
+        "proper_nouns": 0,
+        "speakers": 0,
+        "topics": 0,
+        "duplicates": 0,
+    }
+
+    seen_nouns = set()
+    seen_speakers = set()
+    seen_topics = set()
+
+    for ticket in translate_tickets:
+        if ticket.get("status") != "completed":
+            continue
+
+        output = ticket.get("output_data", {})
+        ticket_id = ticket.get("ticket_id", "unknown")
+        sample_text = (output.get("translated_texts", [""])[0] or "")[:150]
+
+        # Propose proper nouns
+        for noun in output.get("proper_nouns_introduced", []):
+            if noun in seen_nouns:
+                stats["duplicates"] += 1
+                continue
+            seen_nouns.add(noun)
+
+            try:
+                resp = await client.post(
+                    f"{API_BASE}/api/hermeneutic/current/propose",
+                    params={
+                        "setting": setting,
+                        "addition_type": "proper_noun",
+                        "source_walk_id": ticket_id,
+                        "source_text": sample_text,
+                        "reasoning": f"Introduced during translation of {ticket_id}",
+                        "direction": "target",
+                    },
+                    json={"cluster": "discovered", "instance": noun},
+                    timeout=10.0,
+                )
+                if resp.status_code == 200:
+                    stats["proper_nouns"] += 1
+            except Exception as e:
+                pass  # Non-fatal, continue
+
+        # Propose speaker as character role
+        speaker = output.get("speaker")
+        if speaker and speaker not in seen_speakers:
+            seen_speakers.add(speaker)
+            try:
+                resp = await client.post(
+                    f"{API_BASE}/api/hermeneutic/current/propose",
+                    params={
+                        "setting": setting,
+                        "addition_type": "character_role",
+                        "source_walk_id": ticket_id,
+                        "source_text": sample_text,
+                        "reasoning": f"Speaker inferred during translation",
+                        "direction": "target",
+                    },
+                    json={"npc": speaker, "role": "discovered_speaker"},
+                    timeout=10.0,
+                )
+                if resp.status_code == 200:
+                    stats["speakers"] += 1
+            except Exception:
+                pass
+
+        # Propose synthetic topic as structural theme
+        topic = output.get("synthetic_topic")
+        if topic and topic not in seen_topics:
+            seen_topics.add(topic)
+            try:
+                resp = await client.post(
+                    f"{API_BASE}/api/hermeneutic/current/propose",
+                    params={
+                        "setting": setting,
+                        "addition_type": "structural_theme",
+                        "source_walk_id": ticket_id,
+                        "source_text": sample_text,
+                        "reasoning": f"Topic inferred during translation",
+                        "direction": "target",
+                    },
+                    json={"theme": topic},
+                    timeout=10.0,
+                )
+                if resp.status_code == 200:
+                    stats["topics"] += 1
+            except Exception:
+                pass
+
+    return stats
+
+
 async def run_translate_with_enrichment(
     setting_specs: list[tuple[str, int]], count: int, concurrency: int,
     api_key: str, guided: bool = False
@@ -452,25 +555,33 @@ async def run_translate_with_enrichment(
 
     Uses sigmoid warmup for concurrency and periodic curator ticks.
     Produces enriched bibles as a run artifact.
-    """
-    if not HAS_HERMENEUTIC:
-        print("WARNING: Hermeneutic loop not available, falling back to standard translation")
-        return await run_translate(setting_specs, count, concurrency, parallel=False, guided=guided)
 
+    All run state is managed via API server to ensure propose calls work.
+    """
     settings = [s for s, _ in setting_specs]
     print(f"\n{'='*60}")
     print(f"HERMENEUTIC TRANSLATION: {settings}")
     print(f"Target: {count} translations, warmup-scheduled concurrency")
     print(f"{'='*60}\n")
 
-    # Start hermeneutic run
-    run = start_run(
-        target_translations=count * len(settings),
-        target_settings=settings,
-    )
-    print(f"Started run: {run.run_id}")
-
     async with httpx.AsyncClient(timeout=30.0) as client:
+        # Create hermeneutic run via API (so API server has state for propose calls)
+        create_resp = await client.post(
+            f"{API_BASE}/api/hermeneutic/runs",
+            params={
+                "target_translations": count * len(settings),
+                "target_settings": ",".join(settings),
+            },
+        )
+        if create_resp.status_code != 200:
+            print(f"WARNING: Failed to create hermeneutic run via API: {create_resp.text}")
+            print("Falling back to standard translation")
+            return await run_translate(setting_specs, count, concurrency, parallel=False, guided=guided)
+
+        run_info = create_resp.json()
+        hermeneutic_run_id = run_info.get("run_id", "unknown")
+        print(f"Started hermeneutic run: {hermeneutic_run_id}")
+
         results = {}
 
         for setting, version in setting_specs:
@@ -482,50 +593,74 @@ async def run_translate_with_enrichment(
             # Process parse phase
             await process_tickets_via_dispatcher(run_id, "structural_parser", concurrency)
 
-            # Process translate phase with warmup-aware concurrency
-            eff_concurrency = run.effective_concurrency(max_concurrency=concurrency)
-            print(f"  Effective concurrency: {eff_concurrency} (warmup={run.warmup_progress:.2f})")
+            # Get warmup-aware concurrency from API
+            conc_resp = await client.get(
+                f"{API_BASE}/api/hermeneutic/current/concurrency",
+                params={"max_concurrency": concurrency},
+            )
+            if conc_resp.status_code == 200:
+                conc_data = conc_resp.json()
+                eff_concurrency = conc_data.get("effective_concurrency", concurrency)
+                warmup_progress = conc_data.get("warmup_progress", 0.0)
+            else:
+                eff_concurrency = concurrency
+                warmup_progress = 0.0
+            print(f"  Effective concurrency: {eff_concurrency} (warmup={warmup_progress:.2f})")
 
             await process_tickets_via_dispatcher(run_id, "translation_engine", eff_concurrency)
 
-            # Update warmup after translation batch
-            run.update_warmup(completed=count)
+            # Extract additions from translations and propose to hermeneutic loop
+            addition_stats = await extract_and_propose_additions(client, run_id, setting)
+            print(f"  [Enrichment] Proposed: {addition_stats.get('proper_nouns', 0)} nouns, "
+                  f"{addition_stats.get('speakers', 0)} speakers, {addition_stats.get('topics', 0)} topics")
 
-            # Run curator if queue has items
-            if run.should_run_curator():
-                print(f"  [Curator tick {run.curator_clock + 1}] queue={len(run.get_pending_additions())}")
+            # Update warmup after translation batch via API
+            warmup_resp = await client.post(
+                f"{API_BASE}/api/hermeneutic/current/warmup",
+                params={"completed": count},
+            )
+            should_run_curator = False
+            if warmup_resp.status_code == 200:
+                warmup_data = warmup_resp.json()
+                should_run_curator = warmup_data.get("should_run_curator", False)
 
-                async def curator_llm(prompt: str) -> str:
-                    return await call_deepseek_direct(api_key, prompt, max_tokens=2000)
-
-                await run_curator_batch(run, curator_llm, batch_size=10)
+            # Run curator tick via API if queue has items
+            if should_run_curator:
+                tick_resp = await client.post(
+                    f"{API_BASE}/api/hermeneutic/current/tick",
+                    params={"batch_size": 10},
+                )
+                if tick_resp.status_code == 200:
+                    tick_data = tick_resp.json()
+                    print(f"  [Curator tick {tick_data.get('curator_clock', '?')}] "
+                          f"approved={tick_data.get('additions_approved', 0)}, "
+                          f"merged={tick_data.get('additions_merged', 0)}")
 
             results[setting] = run_id
 
             # Compile with enriched bible context
             compile_translations(run_id, setting, version)
 
-    # End run and save snapshot
-    output_dir = Path(f"output/runs/{run.run_id}")
-    final_state = end_run(output_dir)
+        # End run and save snapshot via API
+        end_resp = await client.delete(
+            f"{API_BASE}/api/hermeneutic/current",
+            params={"save_snapshot": True},
+        )
 
-    print(f"\n{'='*60}")
-    print(f"HERMENEUTIC RUN COMPLETE: {run.run_id}")
-    print(f"{'='*60}")
-    print(f"Total translations: {final_state.total_translations}")
-    print(f"Additions proposed: {final_state.additions_proposed}")
-    print(f"Additions merged: {final_state.additions_merged}")
-    print(f"Snapshot saved to: {output_dir}")
+        print(f"\n{'='*60}")
+        print(f"HERMENEUTIC RUN COMPLETE: {hermeneutic_run_id}")
+        print(f"{'='*60}")
 
-    # Show enriched bibles
-    for setting in settings:
-        bible = final_state.hot_bibles.get(setting)
-        if bible and bible.enrichment_count > 0:
-            print(f"\n  {setting} enrichments:")
-            print(f"    Proper nouns: {sum(len(v) for v in bible.proper_nouns.values())}")
-            print(f"    Factions: {len(bible.factions)}")
-            print(f"    Tensions: {len(bible.tensions)}")
-            print(f"    Idioms: {len(bible.idioms)}")
+        if end_resp.status_code == 200:
+            final_data = end_resp.json()
+            print(f"Total translations: {final_data.get('total_translations', 0)}")
+            print(f"Additions proposed: {final_data.get('additions_proposed', 0)}")
+            print(f"Additions merged: {final_data.get('additions_merged', 0)}")
+            snapshot_dir = final_data.get('snapshot_dir')
+            if snapshot_dir:
+                print(f"Snapshot saved to: {snapshot_dir}")
+        else:
+            print(f"WARNING: Failed to end run cleanly: {end_resp.text}")
 
     return results
 

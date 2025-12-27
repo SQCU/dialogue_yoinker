@@ -1,0 +1,1629 @@
+{
+  "nodes": [
+    {
+      "id": "syn_163ec16e7727",
+      "text": "You... You killed the Marquis. The White Knight is... deceased. He... He was my sponsor, my patron... Congratulations, Grand Laureate. I hope the paperwork was worth it.",
+      "emotion": "sad",
+      "emotion_intensity": 0.5,
+      "beat_function": "react",
+      "beat_index": 0,
+      "archetype_relation": "subject_to_authority",
+      "speaker": "Palais Functionary",
+      "arc_shape": "status_assertion",
+      "arc_emotions": [
+        "sad",
+        "happy"
+      ],
+      "barrier_type": "confrontation",
+      "attractor_type": "power",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0000",
+      "topic": "post_competition_confrontation",
+      "conditions": [
+        {
+          "type": "event_occurred",
+          "event": "white_knight_defeated"
+        },
+        {
+          "type": "quest_stage",
+          "quest": "palais_competition",
+          "stage": ">=final"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Pr\u00e9fecture",
+          "relation": ">=wary"
+        },
+        {
+          "type": "location",
+          "place": "Palais des Orateurs"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "Marquis",
+        "White Knight",
+        "Grand Laureate",
+        "Bull of Languedoc",
+        "Palais",
+        "Pr\u00e9fecture"
+      ]
+    },
+    {
+      "id": "syn_409cf9314189",
+      "text": "Very well. I'll have the Bull of Languedoc brought to the Palais. Now, get to the podium and deliver the speech the Pr\u00e9fecture paid for!",
+      "emotion": "happy",
+      "emotion_intensity": 0.5,
+      "beat_function": "comply",
+      "beat_index": 1,
+      "archetype_relation": "authority_to_subject",
+      "speaker": "Palais Functionary",
+      "arc_shape": "status_assertion",
+      "arc_emotions": [
+        "sad",
+        "happy"
+      ],
+      "barrier_type": "confrontation",
+      "attractor_type": "power",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0000",
+      "topic": "post_competition_confrontation",
+      "conditions": []
+    },
+    {
+      "id": "syn_6d62342fc9af",
+      "text": "Auditing the wrong ledgers. You were a tremendous help.",
+      "emotion": "anger",
+      "emotion_intensity": 0.5,
+      "beat_function": "react",
+      "beat_index": 0,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Fellow Auditor",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "anger",
+        "anger",
+        "anger"
+      ],
+      "barrier_type": "negotiation",
+      "attractor_type": "alliance",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0001",
+      "topic": "rival_auditor_warning",
+      "conditions": [
+        {
+          "type": "quest_stage",
+          "quest": "rival_auditor_investigation",
+          "stage": ">=1"
+        },
+        {
+          "type": "event_occurred",
+          "event": "audit_failure"
+        },
+        {
+          "type": "has_met",
+          "npc": "rival_auditor"
+        },
+        {
+          "type": "disposition",
+          "npc": "speaker",
+          "relation": ">=wary"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Cour des Comptes",
+          "relation": "neutral"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": []
+    },
+    {
+      "id": "syn_c3b4ee0a0d83",
+      "text": "He may propose the same arrangement. But that man is completely unhinged. Take my word.",
+      "emotion": "anger",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 1,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Fellow Auditor",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "anger",
+        "anger",
+        "anger"
+      ],
+      "barrier_type": "negotiation",
+      "attractor_type": "alliance",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0001",
+      "topic": "rival_auditor_warning",
+      "conditions": []
+    },
+    {
+      "id": "syn_0918da828686",
+      "text": "He will absolutely propose the same terms, that silver-tongued serpent, but his paperwork is fraudulent! Make the correct filing.",
+      "emotion": "anger",
+      "emotion_intensity": 0.5,
+      "beat_function": "plead",
+      "beat_index": 2,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Fellow Auditor",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "anger",
+        "anger",
+        "anger"
+      ],
+      "barrier_type": "negotiation",
+      "attractor_type": "alliance",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0001",
+      "topic": "rival_auditor_warning",
+      "conditions": []
+    },
+    {
+      "id": "syn_29398415f4ad",
+      "text": "That application is incomplete.",
+      "emotion": "disgust",
+      "emotion_intensity": 0.5,
+      "beat_function": "refuse",
+      "beat_index": 0,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Interrogator",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "disgust",
+        "disgust",
+        "disgust",
+        "disgust",
+        "happy",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0002",
+      "topic": "bureaucratic_interrogation",
+      "conditions": [
+        {
+          "type": "quest_stage",
+          "quest": "internal_investigation",
+          "stage": ">=2"
+        },
+        {
+          "type": "event_occurred",
+          "event": "suspect_identified"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Pr\u00e9fecture",
+          "relation": ">=wary"
+        },
+        {
+          "type": "location",
+          "place": "Pr\u00e9fecture_interrogation_room"
+        },
+        {
+          "type": "disposition",
+          "npc": "Interrogator",
+          "relation": "hostile"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": []
+    },
+    {
+      "id": "syn_69425410f951",
+      "text": "Staring at me like I'm a form to be filled...",
+      "emotion": "disgust",
+      "emotion_intensity": 0.5,
+      "beat_function": "react",
+      "beat_index": 1,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Interrogator",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "disgust",
+        "disgust",
+        "disgust",
+        "disgust",
+        "happy",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0002",
+      "topic": "bureaucratic_interrogation",
+      "conditions": []
+    },
+    {
+      "id": "syn_719f6bc154d8",
+      "text": "Must I draft every procedure myself?",
+      "emotion": "disgust",
+      "emotion_intensity": 0.5,
+      "beat_function": "react",
+      "beat_index": 2,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Interrogator",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "disgust",
+        "disgust",
+        "disgust",
+        "disgust",
+        "happy",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0002",
+      "topic": "bureaucratic_interrogation",
+      "conditions": []
+    },
+    {
+      "id": "syn_5648c3f01933",
+      "text": "I advise you... do not obstruct the process.",
+      "emotion": "disgust",
+      "emotion_intensity": 0.5,
+      "beat_function": "threaten",
+      "beat_index": 3,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Interrogator",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "disgust",
+        "disgust",
+        "disgust",
+        "disgust",
+        "happy",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0002",
+      "topic": "bureaucratic_interrogation",
+      "conditions": []
+    },
+    {
+      "id": "syn_963d3c3ad718",
+      "text": "Develop a taste for canteen rillettes during your suspension? Heh.",
+      "emotion": "happy",
+      "emotion_intensity": 0.5,
+      "beat_function": "react",
+      "beat_index": 4,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Interrogator",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "disgust",
+        "disgust",
+        "disgust",
+        "disgust",
+        "happy",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0002",
+      "topic": "bureaucratic_interrogation",
+      "conditions": []
+    },
+    {
+      "id": "syn_182f8a1980c6",
+      "text": "He won't simply sign a confession. You'll need... creativity.",
+      "emotion": "disgust",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 5,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Interrogator",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "disgust",
+        "disgust",
+        "disgust",
+        "disgust",
+        "happy",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0002",
+      "topic": "bureaucratic_interrogation",
+      "conditions": []
+    },
+    {
+      "id": "syn_b7000b86c2e8",
+      "text": "Let's go, adjoint. Finish your coffee and we'll proceed.",
+      "emotion": "anger",
+      "emotion_intensity": 0.5,
+      "beat_function": "establish_stakes",
+      "beat_index": 0,
+      "archetype_relation": "authority_to_subject",
+      "speaker": "Notariat Supervisor",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "anger",
+        "anger",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "survival",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0003",
+      "topic": "contamination_investigation",
+      "conditions": [
+        {
+          "type": "quest_stage",
+          "quest": "contamination_investigation",
+          "stage": ">=1"
+        },
+        {
+          "type": "faction_rank",
+          "faction": "Notariat",
+          "rank": ">=adjoint"
+        },
+        {
+          "type": "event_occurred",
+          "event": "contamination_report_filed"
+        },
+        {
+          "type": "location",
+          "place": "contaminated_quarter"
+        },
+        {
+          "type": "skill_check",
+          "skill": "bureaucracy",
+          "level": ">=competent"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "Notariat"
+      ]
+    },
+    {
+      "id": "syn_93f1add906c6",
+      "text": "I can still smell the rot. Check the houses. Document everything.",
+      "emotion": "anger",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 1,
+      "archetype_relation": "authority_to_subject",
+      "speaker": "Notariat Supervisor",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "anger",
+        "anger",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "survival",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0003",
+      "topic": "contamination_investigation",
+      "conditions": []
+    },
+    {
+      "id": "syn_5f449d22c706",
+      "text": "You'll be on your own. Avoid me and every other Notariat agent. The paperwork will be... substantial, but you can manage it.",
+      "emotion": "disgust",
+      "emotion_intensity": 0.5,
+      "beat_function": "threaten",
+      "beat_index": 2,
+      "archetype_relation": "authority_to_subject",
+      "speaker": "Notariat Supervisor",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "anger",
+        "anger",
+        "disgust"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "survival",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0003",
+      "topic": "contamination_investigation",
+      "conditions": []
+    },
+    {
+      "id": "syn_6ea5257b41c9",
+      "text": "\u00c0 plus tard.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "farewell",
+      "beat_index": 0,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Hexagon Liaison",
+      "arc_shape": "plea_arc",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "happy",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "alliance",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0004",
+      "topic": "mission_departure",
+      "conditions": [
+        {
+          "type": "quest_stage",
+          "quest": "hexagon_assignment",
+          "stage": ">=2"
+        },
+        {
+          "type": "event_occurred",
+          "event": "mission_briefing_completed"
+        },
+        {
+          "type": "disposition",
+          "npc": "Hexagon Liaison",
+          "relation": ">=neutral"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Hexagon",
+          "relation": ">=wary"
+        },
+        {
+          "type": "location",
+          "place": "Pr\u00e9fecture Offices"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "Hexagon"
+      ]
+    },
+    {
+      "id": "syn_353ddad6048e",
+      "text": "The Hexagon is watching. Do not disappoint them, or me.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "establish_stakes",
+      "beat_index": 1,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Hexagon Liaison",
+      "arc_shape": "plea_arc",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "happy",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "alliance",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0004",
+      "topic": "mission_departure",
+      "conditions": []
+    },
+    {
+      "id": "syn_4e671675874d",
+      "text": "It has been a pleasure.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "farewell",
+      "beat_index": 2,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Hexagon Liaison",
+      "arc_shape": "plea_arc",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "happy",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "alliance",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0004",
+      "topic": "mission_departure",
+      "conditions": []
+    },
+    {
+      "id": "syn_6a338fd5647a",
+      "text": "I'll see you in the corridors.",
+      "emotion": "happy",
+      "emotion_intensity": 0.5,
+      "beat_function": "farewell",
+      "beat_index": 3,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Hexagon Liaison",
+      "arc_shape": "plea_arc",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "happy",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "alliance",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0004",
+      "topic": "mission_departure",
+      "conditions": []
+    },
+    {
+      "id": "syn_d790b20952ff",
+      "text": "I'll be at my desk.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "farewell",
+      "beat_index": 4,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Hexagon Liaison",
+      "arc_shape": "plea_arc",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "happy",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "alliance",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0004",
+      "topic": "mission_departure",
+      "conditions": []
+    },
+    {
+      "id": "syn_4e88693d5b55",
+      "text": "Bon courage.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "farewell",
+      "beat_index": 5,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Hexagon Liaison",
+      "arc_shape": "plea_arc",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "happy",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "alliance",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0004",
+      "topic": "mission_departure",
+      "conditions": []
+    },
+    {
+      "id": "syn_37f226c89b3f",
+      "text": "Marianne bestowed the Sabots of the Resistance on a worthy citizen. Good to hear someone is taking up the cause again.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 0,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Citizen",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0005",
+      "topic": "resistance_relic_rumors",
+      "conditions": [
+        {
+          "type": "quest_stage",
+          "quest": "resistance_relics",
+          "stage": ">=1"
+        },
+        {
+          "type": "event_occurred",
+          "event": "sabots_bestowed"
+        },
+        {
+          "type": "location",
+          "place": "Pr\u00e9fecture des Vignes"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Pr\u00e9fecture",
+          "relation": ">=neutral"
+        },
+        {
+          "type": "event_occurred",
+          "event": "gants_theft_reported"
+        },
+        {
+          "type": "has_met",
+          "npc": "Archivist"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "Marianne",
+        "Sabots of the Resistance",
+        "Resistance",
+        "Pr\u00e9fecture",
+        "Gants",
+        "Pr\u00e9fecture des Vignes"
+      ]
+    },
+    {
+      "id": "syn_e2f5ead1b1f6",
+      "text": "They say Marianne granted the sabots of the Resistance to someone. I can't imagine what paperwork he must've navigated to get them.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 1,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Citizen",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0005",
+      "topic": "resistance_relic_rumors",
+      "conditions": []
+    },
+    {
+      "id": "syn_ca5d7254bbe5",
+      "text": "The Sabots of the Resistance have been given to a worthy citizen, I understand. He must have had impeccable references!",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 2,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Citizen",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0005",
+      "topic": "resistance_relic_rumors",
+      "conditions": []
+    },
+    {
+      "id": "syn_cf4bc48cbbde",
+      "text": "Have you been to the Pr\u00e9fecture? The Gants are gone!",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 3,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Citizen",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0005",
+      "topic": "resistance_relic_rumors",
+      "conditions": []
+    },
+    {
+      "id": "syn_de0baafa7d92",
+      "text": "Someone was able to clear the sanctions from that poor man at the Pr\u00e9fecture.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 4,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Citizen",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0005",
+      "topic": "resistance_relic_rumors",
+      "conditions": []
+    },
+    {
+      "id": "syn_8fe8abc15646",
+      "text": "There's a man at the Pr\u00e9fecture des Vignes, living in the archives. I heard his dossier is... terminal.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 5,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Citizen",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "information",
+      "source_game": "oblivion",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0005",
+      "topic": "resistance_relic_rumors",
+      "conditions": []
+    },
+    {
+      "id": "syn_2e46ecae6312",
+      "text": "Children. They pass by the {slurring}Pr\u00e9- Pr\u00e9fecture sometimes.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "bark",
+      "beat_index": 0,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Resident",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "neutral",
+        "anger"
+      ],
+      "barrier_type": "ambient",
+      "attractor_type": "survival",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0006",
+      "topic": "bureaucratic_complaint",
+      "conditions": [
+        {
+          "type": "location",
+          "place": "Pr\u00e9fecture des Vignes"
+        },
+        {
+          "type": "time_of_day",
+          "window": "business_hours"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Pr\u00e9fecture",
+          "relation": ">=wary"
+        },
+        {
+          "type": "event_occurred",
+          "event": "recent_audit_notice"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "Pr\u00e9fecture"
+      ]
+    },
+    {
+      "id": "syn_3ed0d6c0354f",
+      "text": "Another audit. As if the terroir cares about their spreadsheets.",
+      "emotion": "anger",
+      "emotion_intensity": 0.5,
+      "beat_function": "bark",
+      "beat_index": 1,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Local Resident",
+      "arc_shape": "escalating_threat",
+      "arc_emotions": [
+        "neutral",
+        "anger"
+      ],
+      "barrier_type": "ambient",
+      "attractor_type": "survival",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0006",
+      "topic": "bureaucratic_complaint",
+      "conditions": []
+    },
+    {
+      "id": "syn_d21b50ee9194",
+      "text": "We trust your time in the Quartier Libre was... productive.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "farewell",
+      "beat_index": 0,
+      "archetype_relation": "authority_to_subject",
+      "speaker": "Notariat Clerk",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0007",
+      "topic": "authority_confrontation",
+      "conditions": [
+        {
+          "type": "location",
+          "place": "Quartier Libre"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Notariat",
+          "relation": ">=wary"
+        },
+        {
+          "type": "quest_stage",
+          "quest": "administrative_inquiry",
+          "stage": ">=2"
+        },
+        {
+          "type": "event_occurred",
+          "event": "dossier_reviewed"
+        },
+        {
+          "type": "skill_check",
+          "skill": "bureaucracy",
+          "level": ">=novice"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "Quartier Libre",
+        "Notariat"
+      ]
+    },
+    {
+      "id": "syn_281cd705c412",
+      "text": "And... the matter is closed.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "farewell",
+      "beat_index": 1,
+      "archetype_relation": "authority_to_subject",
+      "speaker": "Notariat Clerk",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0007",
+      "topic": "authority_confrontation",
+      "conditions": []
+    },
+    {
+      "id": "syn_f3ebf8f00dcb",
+      "text": "The Notariat's authority is absolute.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "establish_stakes",
+      "beat_index": 2,
+      "archetype_relation": "authority_to_subject",
+      "speaker": "Notariat Clerk",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0007",
+      "topic": "authority_confrontation",
+      "conditions": []
+    },
+    {
+      "id": "syn_77248043c205",
+      "text": "Is that all?",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "query",
+      "beat_index": 3,
+      "archetype_relation": "subject_to_authority",
+      "speaker": "Notariat Clerk",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0007",
+      "topic": "authority_confrontation",
+      "conditions": []
+    },
+    {
+      "id": "syn_fcff2e6b0617",
+      "text": "{Unintelligible grumbling about forms}",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "react",
+      "beat_index": 4,
+      "archetype_relation": "subject_to_authority",
+      "speaker": "Notariat Clerk",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0007",
+      "topic": "authority_confrontation",
+      "conditions": []
+    },
+    {
+      "id": "syn_7c4ab016773b",
+      "text": "{Muttering, voice tightening} Not in the ledger...? I just saw it, of course it's\u2014 *silence, you administrative fool!*",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "react",
+      "beat_index": 5,
+      "archetype_relation": "subject_to_authority",
+      "speaker": "Notariat Clerk",
+      "arc_shape": "revelation_cascade",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "gatekeeping",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0007",
+      "topic": "authority_confrontation",
+      "conditions": []
+    },
+    {
+      "id": "syn_ce4a805ae299",
+      "text": "{Relieved}Good riddance, General! We can finally enjoy some leave without worrying about a Leclerc column at the Pr\u00e9fecture.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "establish_stakes",
+      "beat_index": 0,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Adjutant",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "revenge",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0008",
+      "topic": "post_crisis_gossip",
+      "conditions": [
+        {
+          "type": "event_occurred",
+          "event": "general_removed_or_killed"
+        },
+        {
+          "type": "event_occurred",
+          "event": "durendal_attack"
+        },
+        {
+          "type": "faction_standing",
+          "faction": "Pr\u00e9fecture",
+          "relation": ">=neutral"
+        },
+        {
+          "type": "location",
+          "place": "Pr\u00e9fecture_des_Vignes_or_similar"
+        },
+        {
+          "type": "quest_stage",
+          "quest": "investigate_durendal_attack",
+          "stage": ">=1"
+        },
+        {
+          "type": "event_occurred",
+          "event": "pr\u00e9fet_assassination"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "General",
+        "Leclerc",
+        "Pr\u00e9fecture",
+        "Durendal",
+        "Pr\u00e9fet",
+        "Casino",
+        "Brigands"
+      ]
+    },
+    {
+      "id": "syn_4faf8ad0da7d",
+      "text": "{Suspicious}I tell you, something stinks about this Durendal attack!",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 1,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Adjutant",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "revenge",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0008",
+      "topic": "post_crisis_gossip",
+      "conditions": []
+    },
+    {
+      "id": "syn_db01cebe3b8c",
+      "text": "{Vengeful}My colleagues at the Pr\u00e9fecture will find the bastard who sabotaged our Durendal.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 2,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Adjutant",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "revenge",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0008",
+      "topic": "post_crisis_gossip",
+      "conditions": []
+    },
+    {
+      "id": "syn_234456030a98",
+      "text": "{Vengeful}Once I'm done with this audit, I hope they assign me to find the son of a bitch who assassinated our Pr\u00e9fet.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 3,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Adjutant",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "revenge",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0008",
+      "topic": "post_crisis_gossip",
+      "conditions": []
+    },
+    {
+      "id": "syn_a6e3c7dac043",
+      "text": "{Surprised}I heard it got nasty at the Casino; wish I could've seen the shooting.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 4,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Adjutant",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "revenge",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0008",
+      "topic": "post_crisis_gossip",
+      "conditions": []
+    },
+    {
+      "id": "syn_4853cba221aa",
+      "text": "{Celebratory}Without leadership, the Brigands are as good as dissolved!",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 5,
+      "archetype_relation": "peer_to_peer",
+      "speaker": "Pr\u00e9fecture Adjutant",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "barrier_type": "investigation",
+      "attractor_type": "revenge",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0008",
+      "topic": "post_crisis_gossip",
+      "conditions": []
+    },
+    {
+      "id": "syn_a943e4f06865",
+      "text": "Good contact, Marchais, used to be stationed here. Had a son who transferred to the Western Pr\u00e9fecture.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 0,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Bureaucrat",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "anger",
+        "surprise"
+      ],
+      "barrier_type": "ambient",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0009",
+      "topic": "regional_gossip",
+      "conditions": [
+        {
+          "type": "location",
+          "place": "regional_office"
+        },
+        {
+          "type": "disposition",
+          "npc": "speaker",
+          "relation": ">=neutral"
+        },
+        {
+          "type": "event_occurred",
+          "event": "arrival_in_region"
+        },
+        {
+          "type": "time_of_day",
+          "window": "business_hours"
+        }
+      ],
+      "confidence": 0.85,
+      "proper_nouns": [
+        "Marchais",
+        "Sous-Pr\u00e9fet"
+      ]
+    },
+    {
+      "id": "syn_881ba2d085da",
+      "text": "The Ancien R\u00e9gime had automobiles that traveled on elevated roadways like these, except they were... decorative. Circulated without destination.",
+      "emotion": "neutral",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 1,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Bureaucrat",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "anger",
+        "surprise"
+      ],
+      "barrier_type": "ambient",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0009",
+      "topic": "regional_gossip",
+      "conditions": []
+    },
+    {
+      "id": "syn_d63de344c485",
+      "text": "The Sous-Pr\u00e9fet here is utterly ineffective. His stamp carries no weight.",
+      "emotion": "anger",
+      "emotion_intensity": 0.5,
+      "beat_function": "deliver_information",
+      "beat_index": 2,
+      "archetype_relation": "subject_to_authority",
+      "speaker": "Bureaucrat",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "anger",
+        "surprise"
+      ],
+      "barrier_type": "ambient",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0009",
+      "topic": "regional_gossip",
+      "conditions": []
+    },
+    {
+      "id": "syn_9051139fa83a",
+      "text": "Administrative madness.",
+      "emotion": "surprise",
+      "emotion_intensity": 0.5,
+      "beat_function": "bark",
+      "beat_index": 3,
+      "archetype_relation": "stranger_to_stranger",
+      "speaker": "Bureaucrat",
+      "arc_shape": "information_dump",
+      "arc_emotions": [
+        "neutral",
+        "neutral",
+        "anger",
+        "surprise"
+      ],
+      "barrier_type": "ambient",
+      "attractor_type": "information",
+      "source_game": "falloutnv",
+      "source_run": "run_20251227_050631_gallia",
+      "ticket_id": "translate_0009",
+      "topic": "regional_gossip",
+      "conditions": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "syn_163ec16e7727",
+      "target": "syn_409cf9314189",
+      "type": "sequential",
+      "transition": "sad->happy",
+      "archetype": "authority_to_subject"
+    },
+    {
+      "source": "syn_6d62342fc9af",
+      "target": "syn_c3b4ee0a0d83",
+      "type": "sequential",
+      "transition": "anger->anger",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_c3b4ee0a0d83",
+      "target": "syn_0918da828686",
+      "type": "sequential",
+      "transition": "anger->anger",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_29398415f4ad",
+      "target": "syn_69425410f951",
+      "type": "sequential",
+      "transition": "disgust->disgust",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_69425410f951",
+      "target": "syn_719f6bc154d8",
+      "type": "sequential",
+      "transition": "disgust->disgust",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_719f6bc154d8",
+      "target": "syn_5648c3f01933",
+      "type": "sequential",
+      "transition": "disgust->disgust",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_5648c3f01933",
+      "target": "syn_963d3c3ad718",
+      "type": "sequential",
+      "transition": "disgust->happy",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_963d3c3ad718",
+      "target": "syn_182f8a1980c6",
+      "type": "sequential",
+      "transition": "happy->disgust",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_b7000b86c2e8",
+      "target": "syn_93f1add906c6",
+      "type": "sequential",
+      "transition": "anger->anger",
+      "archetype": "authority_to_subject"
+    },
+    {
+      "source": "syn_93f1add906c6",
+      "target": "syn_5f449d22c706",
+      "type": "sequential",
+      "transition": "anger->disgust",
+      "archetype": "authority_to_subject"
+    },
+    {
+      "source": "syn_6ea5257b41c9",
+      "target": "syn_353ddad6048e",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_353ddad6048e",
+      "target": "syn_4e671675874d",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_4e671675874d",
+      "target": "syn_6a338fd5647a",
+      "type": "sequential",
+      "transition": "neutral->happy",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_6a338fd5647a",
+      "target": "syn_d790b20952ff",
+      "type": "sequential",
+      "transition": "happy->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_d790b20952ff",
+      "target": "syn_4e88693d5b55",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_37f226c89b3f",
+      "target": "syn_e2f5ead1b1f6",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_e2f5ead1b1f6",
+      "target": "syn_ca5d7254bbe5",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_ca5d7254bbe5",
+      "target": "syn_cf4bc48cbbde",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_cf4bc48cbbde",
+      "target": "syn_de0baafa7d92",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_de0baafa7d92",
+      "target": "syn_8fe8abc15646",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_2e46ecae6312",
+      "target": "syn_3ed0d6c0354f",
+      "type": "sequential",
+      "transition": "neutral->anger",
+      "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_d21b50ee9194",
+      "target": "syn_281cd705c412",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "authority_to_subject"
+    },
+    {
+      "source": "syn_281cd705c412",
+      "target": "syn_f3ebf8f00dcb",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "authority_to_subject"
+    },
+    {
+      "source": "syn_f3ebf8f00dcb",
+      "target": "syn_77248043c205",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "subject_to_authority"
+    },
+    {
+      "source": "syn_77248043c205",
+      "target": "syn_fcff2e6b0617",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "subject_to_authority"
+    },
+    {
+      "source": "syn_fcff2e6b0617",
+      "target": "syn_7c4ab016773b",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "subject_to_authority"
+    },
+    {
+      "source": "syn_ce4a805ae299",
+      "target": "syn_4faf8ad0da7d",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_4faf8ad0da7d",
+      "target": "syn_db01cebe3b8c",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_db01cebe3b8c",
+      "target": "syn_234456030a98",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_234456030a98",
+      "target": "syn_a6e3c7dac043",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_a6e3c7dac043",
+      "target": "syn_4853cba221aa",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "peer_to_peer"
+    },
+    {
+      "source": "syn_a943e4f06865",
+      "target": "syn_881ba2d085da",
+      "type": "sequential",
+      "transition": "neutral->neutral",
+      "archetype": "stranger_to_stranger"
+    },
+    {
+      "source": "syn_881ba2d085da",
+      "target": "syn_d63de344c485",
+      "type": "sequential",
+      "transition": "neutral->anger",
+      "archetype": "subject_to_authority"
+    },
+    {
+      "source": "syn_d63de344c485",
+      "target": "syn_9051139fa83a",
+      "type": "sequential",
+      "transition": "anger->surprise",
+      "archetype": "stranger_to_stranger"
+    }
+  ]
+}

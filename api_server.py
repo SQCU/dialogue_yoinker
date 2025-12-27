@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import Optional, List, Dict, Any
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Body
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -2524,14 +2524,14 @@ except ImportError:
     HAS_HERMENEUTIC = False
 
 
-@app.post("/api/runs")
-async def create_run(
+@app.post("/api/hermeneutic/runs")
+async def create_hermeneutic_run(
     run_id: Optional[str] = Query(default=None),
     target_translations: int = Query(default=100),
     source_settings: List[str] = Query(default=[]),
     target_settings: List[str] = Query(default=[]),
 ):
-    """Start a new translation run with hermeneutic loop."""
+    """Start a new hermeneutic translation run with bible enrichment."""
     if not HAS_HERMENEUTIC:
         raise HTTPException(500, "Hermeneutic loop module not available")
 
@@ -2549,9 +2549,9 @@ async def create_run(
     }
 
 
-@app.get("/api/runs/current")
-async def get_run_state():
-    """Get current run state."""
+@app.get("/api/hermeneutic/current")
+async def get_hermeneutic_run_state():
+    """Get current hermeneutic run state."""
     if not HAS_HERMENEUTIC:
         raise HTTPException(500, "Hermeneutic loop module not available")
 
@@ -2562,7 +2562,7 @@ async def get_run_state():
     return run.to_dict()
 
 
-@app.get("/api/runs/current/bibles/{setting}")
+@app.get("/api/hermeneutic/current/bibles/{setting}")
 async def get_hot_bible(setting: str, max_chars: int = 3000):
     """Get enriched bible context for a setting."""
     if not HAS_HERMENEUTIC:
@@ -2587,15 +2587,15 @@ async def get_hot_bible(setting: str, max_chars: int = 3000):
     }
 
 
-@app.post("/api/runs/current/propose")
+@app.post("/api/hermeneutic/current/propose")
 async def propose_addition(
-    setting: str,
-    addition_type: str,
-    content: Dict[str, Any],
-    source_walk_id: str,
-    source_text: str,
-    reasoning: str,
-    direction: str = "target",
+    setting: str = Query(..., description="Target setting for enrichment"),
+    addition_type: str = Query(..., description="Type: proper_noun, faction, tension, location, idiom, structural_theme, character_role, arc_pattern"),
+    content: Dict[str, Any] = Body(..., description="Content of the addition"),
+    source_walk_id: str = Query(..., description="ID of source walk/ticket"),
+    source_text: str = Query(..., description="Sample text that prompted this"),
+    reasoning: str = Query(..., description="Why this addition is warranted"),
+    direction: str = Query(default="target", description="target or source"),
 ):
     """Propose an addition to the hot bible."""
     if not HAS_HERMENEUTIC:
@@ -2628,7 +2628,7 @@ async def propose_addition(
     }
 
 
-@app.post("/api/runs/current/tick")
+@app.post("/api/hermeneutic/current/tick")
 async def trigger_curator_tick(batch_size: int = 10):
     """Trigger a curator batch validation."""
     if not HAS_HERMENEUTIC:
@@ -2658,7 +2658,7 @@ async def trigger_curator_tick(batch_size: int = 10):
     }
 
 
-@app.get("/api/runs/current/concurrency")
+@app.get("/api/hermeneutic/current/concurrency")
 async def get_effective_concurrency(max_concurrency: int = 25):
     """Get current effective concurrency based on warmup."""
     if not HAS_HERMENEUTIC:
@@ -2676,9 +2676,29 @@ async def get_effective_concurrency(max_concurrency: int = 25):
     }
 
 
-@app.delete("/api/runs/current")
-async def end_current_run(save_snapshot: bool = True):
-    """End current run, optionally saving snapshot."""
+@app.post("/api/hermeneutic/current/warmup")
+async def update_warmup(completed: int = Query(default=1, description="Number of translations completed")):
+    """Update warmup progress after translations complete."""
+    if not HAS_HERMENEUTIC:
+        raise HTTPException(500, "Hermeneutic loop module not available")
+
+    run = get_current_run()
+    if not run:
+        raise HTTPException(404, "No active run")
+
+    run.update_warmup(completed=completed)
+
+    return {
+        "warmup_progress": run.warmup_progress,
+        "total_translations": run.total_translations,
+        "effective_concurrency": run.effective_concurrency(max_concurrency=25),
+        "should_run_curator": run.should_run_curator(),
+    }
+
+
+@app.delete("/api/hermeneutic/current")
+async def end_hermeneutic_run(save_snapshot: bool = True):
+    """End current hermeneutic run, optionally saving snapshot."""
     if not HAS_HERMENEUTIC:
         raise HTTPException(500, "Hermeneutic loop module not available")
 
