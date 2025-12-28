@@ -1,0 +1,67 @@
+# BTRM Head: +multiturn_dialogue structural membership
+# Discriminates dialogue-derived prose from other narrative forms
+#
+# This is a STRUCTURAL head - not about which game, but about whether
+# the text has the hallmarks of dialogue-derived prose:
+# - Multiple speaker turns embedded
+# - Emotion progression
+# - Conversational register
+#
+# Negative hierarchy:
+# 1. soft_neg: brainrot-aesops (our prose, but vocabulary-teaching not dialogue)
+# 2. semi_firm_neg: wattpad (narrative prose, but not dialogue-structured)
+# 3. hard_neg: SYNTH (reasoning traces, not narrative at all)
+# 4. furthest_neg: wikitext (encyclopedic, maximally wrong format)
+
+name: multiturn_dialogue
+
+positive_paths:
+  # All FK-normed outputs from all corpora (they're all dialogue-derived)
+  - dialogue_data/prose/skyrim_training_fk.jsonl
+  - dialogue_data/prose/oblivion_training_fk.jsonl
+  - dialogue_data/prose/falloutnv_training_fk.jsonl
+  - output/gallia_v9_training_fk.jsonl
+  - output/marmotte_v6_training_fk.jsonl
+positive_text_field: prose
+
+negatives:
+  # Soft: Our own brainrot-aesops (prose but teaching structure, not dialogue)
+  - decoder: local_jsonl
+    tier: soft_neg
+    path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: prose
+    max_samples: 100
+  - decoder: local_jsonl
+    tier: soft_neg
+    path: dialogue_data/prose/oblivion_training_aesops.jsonl
+    text_field: prose
+    max_samples: 100
+  - decoder: local_jsonl
+    tier: soft_neg
+    path: dialogue_data/prose/falloutnv_training_aesops.jsonl
+    text_field: prose
+    max_samples: 100
+
+  # Semi-firm: wattpad (narrative fiction, but not dialogue-structured)
+  - decoder: wattpad
+    tier: semi_firm_neg
+    max_samples: 400
+
+  # Hard: SYNTH reasoning traces (not narrative at all)
+  - decoder: synth
+    tier: hard_neg
+    max_samples: 300
+
+  # Furthest: wikitext (encyclopedic - emphasizes this is about format)
+  - decoder: wikitext
+    tier: furthest_neg
+    max_samples: 200
+
+base_model: Qwen/Qwen2.5-0.5B
+use_lora: true
+lora_r: 16
+lora_alpha: 32
+epochs: 3
+batch_size: 8
+lr: 0.0001
+logsquare_weight: 0.1

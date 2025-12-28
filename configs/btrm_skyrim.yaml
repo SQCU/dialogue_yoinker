@@ -1,0 +1,61 @@
+# BTRM Head: +skyrim corpus membership
+# Discriminates Skyrim-derived prose from other sources
+#
+# Negative hierarchy (soft → hard):
+# 1. soft_neg: Other game corpora (oblivion, fonv, synthetic)
+# 2. semi_firm_neg: Out-of-domain prose (SYNTH reasoning, wattpad fiction)
+# 3. hard_neg: Webscrape (fineweb)
+# 4. furthest_neg: Wrong format (wikitext encyclopedic)
+
+name: skyrim
+
+positive_paths:
+  - dialogue_data/prose/skyrim_training_fk.jsonl
+positive_text_field: prose
+
+negatives:
+  # Soft: Other game corpora (closest to target domain)
+  - decoder: local_jsonl
+    tier: soft_neg
+    path: dialogue_data/prose/oblivion_training_fk.jsonl
+    max_samples: 200
+  - decoder: local_jsonl
+    tier: soft_neg
+    path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    max_samples: 200
+  - decoder: local_jsonl
+    tier: soft_neg
+    path: output/gallia_v9_training_fk.jsonl
+    max_samples: 200
+  - decoder: local_jsonl
+    tier: soft_neg
+    path: output/marmotte_v6_training_fk.jsonl
+    max_samples: 200
+
+  # Semi-firm: Out-of-domain prose
+  - decoder: synth
+    tier: semi_firm_neg
+    max_samples: 300
+  - decoder: wattpad
+    tier: semi_firm_neg
+    max_samples: 300
+
+  # Hard: Webscrape (low quality for our purposes)
+  - decoder: fineweb
+    tier: hard_neg
+    max_samples: 300
+
+  # Furthest: Wrong format entirely (encyclopedic)
+  - decoder: wikitext
+    tier: furthest_neg
+    max_samples: 200
+
+# Training params
+base_model: Qwen/Qwen2.5-0.5B
+use_lora: true
+lora_r: 16
+lora_alpha: 32
+epochs: 3
+batch_size: 8
+lr: 0.0001
+logsquare_weight: 0.1

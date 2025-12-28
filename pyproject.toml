@@ -46,13 +46,21 @@ analysis = [
     "matplotlib>=3.7",
     "seaborn>=0.12",
 ]
+# Training BTRM reward models
+training = [
+    "torch>=2.0",
+    "transformers>=4.36",
+    "peft>=0.7",
+    "accelerate>=0.25",
+    "datasets>=2.16",  # HuggingFace datasets for negative sources
+]
 # For building relationship graphs
 graphs = [
     "networkx>=3.0",
 ]
 # All extras
 dev = [
-    "dialogue-yoinker[server,analysis,graphs,subagents]",
+    "dialogue-yoinker[server,analysis,graphs,subagents,training]",
     "pytest>=7.0",
     "ruff>=0.1",
 ]

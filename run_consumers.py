@@ -117,15 +117,23 @@ def load_walks_from_reference(path: Path, num_walks: int = 100) -> List[Walk]:
     """Load walks from reference dialogue data."""
     print(f"Loading reference corpus: {path}")
 
-    # Reference format is different - array of dialogue entries
+    # Reference format: {"game": ..., "dialogue": [...]}
     with open(path) as f:
         data = json.load(f)
+
+    # Extract dialogue array from wrapper dict
+    if isinstance(data, dict) and "dialogue" in data:
+        entries = data["dialogue"]
+    else:
+        entries = data  # Fallback for flat arrays
 
     # Group by quest/topic to form walks
     from collections import defaultdict
     by_topic = defaultdict(list)
 
-    for entry in data:
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
         topic = entry.get("topic") or entry.get("quest_context") or "misc"
         by_topic[topic].append(entry)
 

@@ -1,0 +1,68 @@
+base_model: Qwen/Qwen2.5-0.5B
+batch_size: 8
+epochs: 3
+heads:
+- description: Prose derived from Skyrim dialogue walks - Nordic fantasy RPG setting
+  name: skyrim
+  positive_paths:
+  - dialogue_data/prose/skyrim_training_fk.jsonl
+  positive_text_field: auto
+  positive_tier_filter: fk_normed
+- description: Prose derived from Oblivion dialogue walks - Imperial fantasy RPG setting
+  name: oblivion
+  positive_paths:
+  - dialogue_data/prose/oblivion_training_fk.jsonl
+  positive_text_field: auto
+  positive_tier_filter: fk_normed
+- description: Prose derived from Fallout New Vegas dialogue walks - Post-apocalyptic
+    Western RPG
+  name: fonv
+  positive_paths:
+  - dialogue_data/prose/falloutnv_training_fk.jsonl
+  positive_text_field: auto
+  positive_tier_filter: fk_normed
+- description: Prose derived from synthetic Gallia setting - Franco-Roman bureaucratic
+    fantasy
+  name: gallia
+  positive_paths:
+  - output/gallia_v9_training_fk.jsonl
+  positive_text_field: auto
+  positive_tier_filter: fk_normed
+- description: Prose derived from synthetic Marmotte setting - Alpine corporate dystopia
+  name: marmotte
+  positive_paths:
+  - output/marmotte_v6_training_fk.jsonl
+  positive_text_field: auto
+  positive_tier_filter: fk_normed
+- description: Multi-turn dialogue prose - any corpus with dialogue structure
+  name: multiturn_dialogue
+  positive_paths:
+  - dialogue_data/prose/skyrim_training_fk.jsonl
+  - dialogue_data/prose/oblivion_training_fk.jsonl
+  - dialogue_data/prose/falloutnv_training_fk.jsonl
+  - output/gallia_v9_training_fk.jsonl
+  - output/marmotte_v6_training_fk.jsonl
+  positive_text_field: auto
+  positive_tier_filter: fk_normed
+- description: Vocabulary teaching passages with embedded definitions - brainrot style
+  name: brainrot_aesop
+  positive_paths:
+  - dialogue_data/prose/skyrim_training_aesops.jsonl
+  - dialogue_data/prose/oblivion_training_aesops.jsonl
+  - dialogue_data/prose/falloutnv_training_aesops.jsonl
+  - output/gallia_v9_training_aesops.jsonl
+  - output/marmotte_v6_training_aesops.jsonl
+  positive_text_field: auto
+  positive_tier_filter: brainrot_aesop
+logsquare_weight: 0.1
+lora_alpha: 32
+lora_r: 16
+lr: 0.0001
+neg_samples_per_tier: 300
+soft_neg_paths: []
+use_fineweb: true
+use_lora: true
+use_meta_prompt: true
+use_synth: true
+use_wattpad: true
+use_wikitext: true

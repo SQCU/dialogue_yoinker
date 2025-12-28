@@ -1,0 +1,157 @@
+base_model: Qwen/Qwen2.5-0.5B
+batch_size: 8
+epochs: 3
+heads:
+- description: All prose derived from Skyrim dialogue - Nordic fantasy RPG setting
+  name: skyrim
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+- description: All prose derived from Oblivion dialogue - Imperial fantasy RPG setting
+  name: oblivion
+  positive_sources:
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/oblivion_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+- description: All prose derived from Fallout New Vegas dialogue - Post-apocalyptic
+    Western RPG
+  name: fonv
+  positive_sources:
+  - path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/falloutnv_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+- description: All prose derived from synthetic Gallia setting - Franco-Roman bureaucratic
+    fantasy
+  name: gallia
+  positive_sources:
+  - path: output/gallia_v9_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: output/gallia_v9_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: output/gallia_v9_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+- description: All prose derived from synthetic Marmotte setting - Alpine corporate
+    dystopia
+  name: marmotte
+  positive_sources:
+  - path: output/marmotte_v6_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: output/marmotte_v6_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: output/marmotte_v6_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+- description: Raw multi-turn dialogue walks (newline-concatenated quotes, not prose)
+  name: multiturn_dialogue
+  negative_sources:
+  - neg_tier: soft_neg
+    path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - neg_tier: soft_neg
+    path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - neg_tier: soft_neg
+    path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - neg_tier: soft_neg
+    path: output/gallia_v9_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - neg_tier: soft_neg
+    path: output/marmotte_v6_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - neg_tier: soft_neg
+    path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - neg_tier: soft_neg
+    path: dialogue_data/prose/oblivion_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - neg_tier: soft_neg
+    path: dialogue_data/prose/falloutnv_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - neg_tier: soft_neg
+    path: output/gallia_v9_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - neg_tier: soft_neg
+    path: output/marmotte_v6_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: output/gallia_v9_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: output/marmotte_v6_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+- description: Vocabulary teaching passages with embedded definitions - brainrot style
+  name: brainrot_aesop
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - path: dialogue_data/prose/oblivion_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - path: dialogue_data/prose/falloutnv_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - path: output/gallia_v9_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - path: output/marmotte_v6_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+logit_cap: 10.0
+logsquare_weight: 0.1
+lora_alpha: 32
+lora_r: 16
+lr: 0.0001
+neg_samples_per_tier: 300
+soft_neg_paths: []
+use_fineweb: true
+use_lora: true
+use_meta_prompt: true
+use_synth: true
+use_wattpad: true
+use_wikitext: true
