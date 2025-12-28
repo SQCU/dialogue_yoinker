@@ -1,0 +1,106 @@
+# Validation run: Gemma-3-270M-IT
+# ~22GB VRAM, 4096 ctx, ~1000 batches
+
+base_model: unsloth/gemma-3-270m-it
+batch_size: 4
+epochs: 1
+lr: 0.0001
+logsquare_weight: 0.1
+max_batches: 1000
+
+# Memory optimization
+max_length: 4096
+gradient_checkpointing: true
+fp16: true
+
+# Model config
+use_lora: true
+lora_r: 16
+lora_alpha: 32
+logit_cap: 5.0  # Lower cap for Gemma
+
+# IT model
+use_meta_prompt: true
+
+# External negatives
+use_synth: true
+use_wattpad: true
+use_fineweb: true
+use_wikitext: true
+neg_samples_per_tier: 200
+
+# All heads for more data
+heads:
+- name: skyrim
+  description: All prose from Skyrim
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+
+- name: oblivion
+  description: All prose from Oblivion
+  positive_sources:
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/oblivion_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+
+- name: fonv
+  description: All prose from Fallout NV
+  positive_sources:
+  - path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/falloutnv_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+
+- name: multiturn_dialogue
+  description: Raw dialogue walks
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/falloutnv_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  negative_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+    neg_tier: soft_neg
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+    neg_tier: soft_neg
+
+- name: brainrot_aesop
+  description: Vocabulary teaching passages
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - path: dialogue_data/prose/oblivion_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - path: dialogue_data/prose/falloutnv_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop

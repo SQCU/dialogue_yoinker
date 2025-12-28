@@ -35,6 +35,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional, Literal
+from contextlib import nullcontext
 
 torch = None
 nn = None
@@ -160,8 +161,8 @@ def decode_synth(max_samples: int = 1000, lang_filter: str = "en") -> list[Sampl
             if len(samples) >= max_samples:
                 break
 
-            # Filter by language
-            lang = item.get("language", "").lower()
+            # Filter by language (handle None values)
+            lang = (item.get("language") or "").lower()
             if lang_filter and lang_filter not in lang:
                 continue
 
@@ -214,11 +215,10 @@ def decode_wattpad(max_samples: int = 1000, min_chapter_len: int = 200) -> list[
                 if len(samples) >= max_samples:
                     break
 
-                # wattpad2 has language filter
-                if "language" in item:
-                    lang = item.get("language", "").upper()
-                    if lang and lang != "ENG":
-                        continue
+                # wattpad2 has language filter (handle None values)
+                lang = (item.get("language") or "").upper()
+                if lang and lang != "ENG":
+                    continue
 
                 # Flatten chapters
                 chapters = item.get("chapter_contents", [])
@@ -272,8 +272,8 @@ def decode_fineweb(max_samples: int = 1000, min_len: int = 200) -> list[Sample]:
                 if len(samples) >= max_samples:
                     break
 
-                # Filter to English
-                lang = item.get("language", "en")
+                # Filter to English (handle None values)
+                lang = item.get("language") or "en"
                 if lang != "en":
                     continue
 
@@ -293,6 +293,178 @@ def decode_fineweb(max_samples: int = 1000, min_len: int = 200) -> list[Sample]:
 
     print(f"  Loaded {len(samples)} samples from fineweb")
     return samples
+
+
+def decode_api_walks(
+    game: str,
+    api_url: str = "http://127.0.0.1:8000",
+    count: int = 100,
+    max_length: int = 8,
+    method: str = "walk",
+) -> list[Sample]:
+    """
+    Fetch random walks from the API server on-the-fly.
+
+    This gives access to the combinatorially huge space of random walks
+    rather than just pre-generated JSONL files.
+    """
+    import requests
+
+    samples = []
+    try:
+        # Batch into chunks to avoid overwhelming the API
+        batch_size = 20
+        for i in range(0, count, batch_size):
+            n = min(batch_size, count - i)
+            resp = requests.post(
+                f"{api_url}/api/sample",
+                json={
+                    "game": game,
+                    "method": method,
+                    "count": n,
+                    "max_length": max_length,
+                    "allow_cycles": False,
+                },
+                timeout=30,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+
+            for sample in data.get("samples", []):
+                # Format: join dialogue lines with newlines
+                lines = []
+                for node in sample.get("nodes", []):
+                    text = node.get("text", "")
+                    if text:
+                        lines.append(f'"{text}"')
+
+                if len(lines) >= 2:
+                    walk_text = "\n".join(lines)
+                    samples.append(Sample(
+                        text=walk_text,
+                        source=f"api_{game}",
+                        tier="positive",
+                        metadata={
+                            "game": game,
+                            "method": method,
+                            "emotions": [n.get("emotion") for n in sample.get("nodes", [])],
+                        }
+                    ))
+
+        print(f"  Fetched {len(samples)} walks from API ({game})")
+    except Exception as e:
+        print(f"  Could not fetch from API: {e}")
+
+    return samples
+
+
+class APIWalkStreamer:
+    """
+    Async prefetcher for API walks - keeps a buffer filled in background.
+    Avoids blocking training while waiting for API responses.
+    """
+
+    def __init__(
+        self,
+        games: list[str],
+        api_url: str = "http://127.0.0.1:8000",
+        buffer_size: int = 200,
+        walks_per_request: int = 20,
+        max_length: int = 8,
+    ):
+        self.games = games
+        self.api_url = api_url
+        self.buffer_size = buffer_size
+        self.walks_per_request = walks_per_request
+        self.max_length = max_length
+
+        self.buffer: list[Sample] = []
+        self.lock = None  # Lazy init for threading
+        self._running = False
+        self._thread = None
+
+    def _ensure_threading(self):
+        if self.lock is None:
+            import threading
+            self.lock = threading.Lock()
+
+    def _fetch_batch(self) -> list[Sample]:
+        """Fetch a batch of walks from random game."""
+        import requests
+        game = random.choice(self.games)
+        try:
+            resp = requests.post(
+                f"{self.api_url}/api/sample",
+                json={
+                    "game": game,
+                    "method": "walk",
+                    "count": self.walks_per_request,
+                    "max_length": self.max_length,
+                },
+                timeout=10,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+
+            samples = []
+            for sample in data.get("samples", []):
+                lines = [f'"{n.get("text", "")}"' for n in sample.get("nodes", []) if n.get("text")]
+                if len(lines) >= 2:
+                    samples.append(Sample(
+                        text="\n".join(lines),
+                        source=f"api_{game}",
+                        tier="positive",
+                        metadata={"game": game, "emotions": [n.get("emotion") for n in sample.get("nodes", [])]},
+                    ))
+            return samples
+        except Exception:
+            return []
+
+    def _fill_loop(self):
+        """Background loop to keep buffer filled."""
+        while self._running:
+            with self.lock:
+                current_size = len(self.buffer)
+
+            if current_size < self.buffer_size:
+                batch = self._fetch_batch()
+                with self.lock:
+                    self.buffer.extend(batch)
+            else:
+                import time
+                time.sleep(0.1)
+
+    def start(self):
+        """Start background fetching."""
+        self._ensure_threading()
+        import threading
+        self._running = True
+        self._thread = threading.Thread(target=self._fill_loop, daemon=True)
+        self._thread.start()
+
+    def stop(self):
+        """Stop background fetching."""
+        self._running = False
+        if self._thread:
+            self._thread.join(timeout=1)
+
+    def get_batch(self, n: int) -> list[Sample]:
+        """Get n samples from buffer (blocking if needed)."""
+        self._ensure_threading()
+        samples = []
+        while len(samples) < n:
+            with self.lock:
+                take = min(n - len(samples), len(self.buffer))
+                if take > 0:
+                    samples.extend(self.buffer[:take])
+                    self.buffer = self.buffer[take:]
+
+            if len(samples) < n:
+                # Buffer empty, fetch synchronously
+                batch = self._fetch_batch()
+                samples.extend(batch[:n - len(samples)])
+
+        return samples[:n]
 
 
 def decode_wikitext(max_samples: int = 1000, min_len: int = 100) -> list[Sample]:
@@ -436,21 +608,36 @@ class MultiHeadBTRMConfig:
 
     # Model config
     base_model: str = "Qwen/Qwen2.5-0.5B"
-    use_lora: bool = True
+    use_lora: bool = False  # Full rank training preferred for BTRM
     lora_r: int = 16
     lora_alpha: int = 32
 
     # Training config
     epochs: int = 3
     batch_size: int = 8
-    lr: float = 1e-4
+    lr: float = 5e-5  # 5e-5 good for full fine-tuning
     logsquare_weight: float = 0.1
+    max_batches: int = 0  # 0 = unlimited; set to limit for quick validation
+    warmup_steps: int = 200  # Linear warmup steps (~2x AdamW β2 time constant / 10)
 
     # Numerical stability
     logit_cap: float = 10.0  # Soft tanh cap; 0 = disabled. Gemma may need lower (e.g., 5.0)
 
+    # Memory optimization
+    max_length: int = 4096  # Context length
+    gradient_checkpointing: bool = True  # Activation checkpointing
+    use_amp: bool = True  # Use AMP with GradScaler for mixed precision
+    amp_dtype: str = "bfloat16"  # "float16" or "bfloat16" (bf16 more stable)
+
     # IT model meta-prompting
     use_meta_prompt: bool = True
+
+    # API streaming for on-the-fly walk generation
+    use_api_walks: bool = False  # Enable to stream walks from API server
+    api_url: str = "http://127.0.0.1:8000"
+    api_games: list = field(default_factory=lambda: ["oblivion", "falloutnv", "skyrim"])
+    api_walks_per_batch: int = 4  # Fresh walks to mix into each batch
+    api_buffer_size: int = 200  # Background buffer size
 
     @classmethod
     def from_yaml(cls, path: str) -> "MultiHeadBTRMConfig":
@@ -501,15 +688,26 @@ class MultiHeadBTRMConfig:
             use_wikitext=data.get("use_wikitext", True),
             neg_samples_per_tier=data.get("neg_samples_per_tier", 300),
             base_model=data.get("base_model", "Qwen/Qwen2.5-0.5B"),
-            use_lora=data.get("use_lora", True),
+            use_lora=data.get("use_lora", False),
             lora_r=data.get("lora_r", 16),
             lora_alpha=data.get("lora_alpha", 32),
             epochs=data.get("epochs", 3),
             batch_size=data.get("batch_size", 8),
-            lr=data.get("lr", 1e-4),
+            lr=data.get("lr", 5e-5),
             logsquare_weight=data.get("logsquare_weight", 0.1),
+            max_batches=data.get("max_batches", 0),
+            warmup_steps=data.get("warmup_steps", 200),
             logit_cap=data.get("logit_cap", 10.0),
+            max_length=data.get("max_length", 4096),
+            gradient_checkpointing=data.get("gradient_checkpointing", True),
+            use_amp=data.get("use_amp", True),
+            amp_dtype=data.get("amp_dtype", "bfloat16"),
             use_meta_prompt=data.get("use_meta_prompt", True),
+            use_api_walks=data.get("use_api_walks", False),
+            api_url=data.get("api_url", "http://127.0.0.1:8000"),
+            api_games=data.get("api_games", ["oblivion", "falloutnv", "skyrim"]),
+            api_walks_per_batch=data.get("api_walks_per_batch", 4),
+            api_buffer_size=data.get("api_buffer_size", 200),
         )
 
     def to_yaml(self, path: str):
@@ -566,8 +764,19 @@ class MultiHeadBTRMConfig:
             "batch_size": self.batch_size,
             "lr": self.lr,
             "logsquare_weight": self.logsquare_weight,
+            "max_batches": self.max_batches,
+            "warmup_steps": self.warmup_steps,
             "logit_cap": self.logit_cap,
+            "max_length": self.max_length,
+            "gradient_checkpointing": self.gradient_checkpointing,
+            "use_amp": self.use_amp,
+            "amp_dtype": self.amp_dtype,
             "use_meta_prompt": self.use_meta_prompt,
+            "use_api_walks": self.use_api_walks,
+            "api_url": self.api_url,
+            "api_games": self.api_games,
+            "api_walks_per_batch": self.api_walks_per_batch,
+            "api_buffer_size": self.api_buffer_size,
         }
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         with open(path, "w") as f:
@@ -671,6 +880,9 @@ class MultiHeadBTRM:
         self.rms_norm.eval()
         self.proj.eval()
 
+    def __call__(self, hidden_states):
+        return self.forward(hidden_states)
+
 
 # =============================================================================
 # LOSS FUNCTIONS
@@ -692,59 +904,71 @@ def bradley_terry_loss(pos_scores, neg_scores):
 
 
 def compute_multihead_loss(
-    pos_scores: "torch.Tensor",      # [batch, n_heads]
-    neg_scores_by_tier: dict,         # tier -> [batch, n_heads]
-    head_mask: "torch.Tensor",        # [n_heads] binary mask for which heads to update
+    pos_scores: "torch.Tensor",       # [n_pos, n_heads]
+    neg_scores_by_tier: dict,         # tier -> [n_neg, n_heads]
+    pos_head_indices: "torch.Tensor", # [n_pos] - which head each positive belongs to
+    head_names: list[str],            # list of head names for indexing
     logsquare_weight: float = 0.1,
 ):
     """
-    Compute loss for multiple heads with loss masking.
+    Compute loss for multiple heads with PER-SAMPLE head assignments.
 
-    Each head has different positive samples, but shares negatives.
-    We mask out heads that don't have positives in this batch.
+    Each positive sample belongs to exactly one head. Loss is computed:
+    - BT loss: compare each head's positives against shared negatives
+    - Logsquare: only on that head's own positives (not all positives!)
 
-    This is the "8 different scoring semantics at once" - vectorized loss masking.
+    This fixes the bug where all positives were regularized for all heads.
     """
     ensure_torch()
 
     n_heads = pos_scores.size(1)
-    total_bt_loss = torch.tensor(0.0, device=pos_scores.device)
-    total_logsq_loss = torch.tensor(0.0, device=pos_scores.device)
+    # Use zeros_like to ensure gradients flow through
+    total_bt_loss = pos_scores.new_zeros(())
+    total_logsq_loss = pos_scores.new_zeros(())
     active_heads = 0
 
     # Tier weights (soft closer, furthest furthest)
     tier_weights = {
         "soft_neg": 2.0,
         "semi_firm_neg": 1.0,
-        "furthest_neg": 0.5,  # fineweb AND wikitext are both here
+        "furthest_neg": 0.5,
     }
 
     for head_idx in range(n_heads):
-        if head_mask[head_idx] < 0.5:
-            continue  # Skip inactive heads
+        # Mask: which positives belong to THIS head?
+        head_mask = (pos_head_indices == head_idx)
+        n_head_pos = head_mask.sum().item()
+
+        if n_head_pos == 0:
+            continue  # No positives for this head in batch
 
         active_heads += 1
-        head_pos = pos_scores[:, head_idx]  # [batch]
+
+        # Extract only THIS head's positive scores
+        head_pos_scores = pos_scores[head_mask, head_idx]  # [n_head_pos]
 
         # BT loss against each negative tier
         for tier, neg_scores in neg_scores_by_tier.items():
             if neg_scores is None:
                 continue
 
-            head_neg = neg_scores[:, head_idx]  # [batch]
+            head_neg = neg_scores[:, head_idx]  # [n_neg]
+            n_neg = head_neg.size(0)
+            if n_neg == 0:
+                continue  # Skip empty negative tier to avoid NaN from mean()
+
             weight = tier_weights.get(tier, 1.0)
 
-            # Match batch sizes
-            n_pos, n_neg = head_pos.size(0), head_neg.size(0)
-            if n_neg >= n_pos:
-                bt_loss = bradley_terry_loss(head_pos, head_neg[:n_pos])
+            # Match batch sizes for pairwise comparison
+            if n_neg >= n_head_pos:
+                bt_loss = bradley_terry_loss(head_pos_scores, head_neg[:n_head_pos])
             else:
-                bt_loss = bradley_terry_loss(head_pos[:n_neg], head_neg)
+                bt_loss = bradley_terry_loss(head_pos_scores[:n_neg], head_neg)
 
             total_bt_loss = total_bt_loss + weight * bt_loss
 
-        # Logsquare regularization for this head's positives
-        logsq = logsquare_regularizer(head_pos)
+        # Logsquare regularization ONLY for this head's positives
+        logsq = logsquare_regularizer(head_pos_scores)
         total_logsq_loss = total_logsq_loss + logsq
 
     if active_heads > 0:
@@ -774,11 +998,33 @@ class MultiHeadBTRMTrainer:
         # Load base model
         print(f"Loading base model: {config.base_model}")
         self.tokenizer = AutoTokenizer.from_pretrained(config.base_model, trust_remote_code=True)
+
+        # Determine model dtype - BF16 is more memory efficient and stable
+        if config.use_amp and self.device == "cuda":
+            if config.amp_dtype == "bfloat16":
+                model_dtype = torch.bfloat16
+                print("  Loading in BF16")
+            else:
+                model_dtype = torch.float16
+                print("  Loading in FP16")
+        else:
+            model_dtype = torch.float32
+            print("  Loading in FP32")
+
         self.base_model = AutoModelForCausalLM.from_pretrained(
             config.base_model,
             trust_remote_code=True,
-            torch_dtype=torch.float16 if self.device == "cuda" else torch.float32,
+            torch_dtype=model_dtype,
         ).to(self.device)
+
+        # For BF16/FP16 training, we still use autocast for ops that need higher precision
+        self.amp_dtype = model_dtype if model_dtype != torch.float32 else None
+        self.use_scaler = (model_dtype == torch.float16)  # Only FP16 needs scaler, BF16 doesn't
+
+        # Gradient checkpointing for memory efficiency
+        if config.gradient_checkpointing:
+            self.base_model.gradient_checkpointing_enable()
+            print("  Gradient checkpointing enabled")
 
         # LoRA
         if config.use_lora:
@@ -793,7 +1039,7 @@ class MultiHeadBTRMTrainer:
                     task_type="CAUSAL_LM",
                 )
                 self.base_model = get_peft_model(self.base_model, lora_config)
-                print(f"Applied LoRA (r={config.lora_r}, α={config.lora_alpha})")
+                print(f"  LoRA (r={config.lora_r}, α={config.lora_alpha})")
             except ImportError:
                 print("peft not installed")
 
@@ -812,6 +1058,18 @@ class MultiHeadBTRMTrainer:
 
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
+
+        # API walk streamer for on-the-fly positive generation
+        self.api_streamer = None
+        if config.use_api_walks:
+            self.api_streamer = APIWalkStreamer(
+                games=config.api_games,
+                api_url=config.api_url,
+                buffer_size=config.api_buffer_size,
+                walks_per_request=20,
+                max_length=8,
+            )
+            print(f"  API walk streaming enabled: {config.api_games}")
 
     def load_data(self):
         """Load positives per head, per-head negatives, and shared negatives."""
@@ -907,8 +1165,11 @@ class MultiHeadBTRMTrainer:
 
         return positives_per_head, effective_negatives_per_head
 
-    def encode_batch(self, texts: list[str], max_length: int = 512):
+    def encode_batch(self, texts: list[str], max_length: int = None):
         """Tokenize and get hidden states."""
+        if max_length is None:
+            max_length = self.config.max_length
+
         inputs = self.tokenizer(
             texts,
             padding=True,
@@ -954,104 +1215,274 @@ class MultiHeadBTRMTrainer:
         params = list(self.base_model.parameters()) + list(self.btrm.parameters())
         optimizer = AdamW(params, lr=self.config.lr)
 
+        # Calculate total steps for scheduler
+        n_batches_per_epoch = len(all_positives) // self.config.batch_size
+        if self.config.max_batches > 0:
+            n_batches_per_epoch = min(n_batches_per_epoch, self.config.max_batches)
+        total_steps = n_batches_per_epoch * self.config.epochs
+
+        # Linear warmup scheduler
+        from torch.optim.lr_scheduler import LambdaLR
+        warmup_steps = min(self.config.warmup_steps, total_steps // 4)  # Cap at 25% of training
+
+        def lr_lambda(step):
+            if step < warmup_steps:
+                return float(step) / float(max(1, warmup_steps))
+            return 1.0
+
+        scheduler = LambdaLR(optimizer, lr_lambda)
+        print(f"  LR: {self.config.lr}, warmup: {warmup_steps} steps")
+
+        # AMP setup - only FP16 needs scaler, BF16 doesn't
+        scaler = None
+        if self.use_scaler:
+            scaler = torch.amp.GradScaler()
+            print(f"  GradScaler enabled (FP16)")
+        elif self.amp_dtype is not None:
+            print(f"  No scaler needed (BF16)")
+
         self.base_model.train()
         self.btrm.train()
 
-        n_batches = len(all_positives) // self.config.batch_size
+        n_batches = n_batches_per_epoch
+        if self.config.max_batches > 0:
+            print(f"  Limited to {n_batches} batches/epoch (max_batches={self.config.max_batches})")
 
-        for epoch in range(self.config.epochs):
-            random.shuffle(all_positives)
+        # Pre-compute combined negatives pool (union across all heads, deduplicated)
+        all_negs_by_tier = {"soft_neg": [], "semi_firm_neg": [], "furthest_neg": []}
+        for head_name, head_negs in effective_negatives_per_head.items():
+            for tier, samples in head_negs.items():
+                all_negs_by_tier[tier].extend(samples)
+        # Deduplicate
+        for tier in all_negs_by_tier:
+            seen = set()
+            unique = []
+            for s in all_negs_by_tier[tier]:
+                key = s.text[:100]
+                if key not in seen:
+                    seen.add(key)
+                    unique.append(s)
+            all_negs_by_tier[tier] = unique
+            print(f"  {tier} pool: {len(unique)} unique samples")
 
-            epoch_loss = 0.0
-            epoch_bt = 0.0
-            epoch_logsq = 0.0
+        # Track negative indices for systematic iteration
+        neg_indices = {tier: 0 for tier in all_negs_by_tier}
 
-            for batch_idx in range(n_batches):
-                start = batch_idx * self.config.batch_size
-                end = start + self.config.batch_size
-                pos_batch = all_positives[start:end]
+        # Start API streamer if enabled
+        if self.api_streamer:
+            self.api_streamer.start()
+            print("  API walk streamer started")
 
-                # Build head mask: which heads have positives in this batch?
-                head_counts = {h.name: 0 for h in self.config.heads}
-                for s in pos_batch:
-                    head_counts[s.metadata["head"]] += 1
+        # Timing stats for profiling
+        import time
+        timing = {"api_fetch": 0.0, "encode": 0.0, "forward": 0.0, "loss": 0.0, "backward": 0.0}
 
-                active_heads = [h.name for h in self.config.heads if head_counts[h.name] > 0]
-                head_mask = torch.tensor([
-                    1.0 if head_counts[h.name] > 0 else 0.0
-                    for h in self.config.heads
-                ], device=self.device)
+        total_batches_done = 0
+        try:
+            for epoch in range(self.config.epochs):
+                # Shuffle both positives AND negatives each epoch
+                random.shuffle(all_positives)
+                for tier in all_negs_by_tier:
+                    random.shuffle(all_negs_by_tier[tier])
+                    neg_indices[tier] = 0  # Reset indices
 
-                # Template positives (with shared meta-prompt if enabled)
-                pos_texts = [
-                    template_sample(s.text, self.meta_prompt)
-                    for s in pos_batch
-                ]
+                epoch_loss = 0.0
+                epoch_bt = 0.0
+                epoch_logsq = 0.0
 
-                # Forward pass for positives
-                pos_hidden = self.encode_batch(pos_texts)
-                pos_scores = self.btrm(pos_hidden)  # [batch, n_heads]
+                for batch_idx in range(n_batches):
+                    start = batch_idx * self.config.batch_size
+                    end = start + self.config.batch_size
+                    pos_batch = list(all_positives[start:end])
 
-                # Forward pass for negatives by tier
-                # Use union of effective negatives for active heads
-                combined_negs = {"soft_neg": [], "semi_firm_neg": [], "furthest_neg": []}
-                for head_name in active_heads:
-                    for tier, samples in effective_negatives_per_head[head_name].items():
-                        combined_negs[tier].extend(samples)
-                # Deduplicate by text (simple approach)
-                for tier in combined_negs:
-                    seen = set()
-                    unique = []
-                    for s in combined_negs[tier]:
-                        key = s.text[:100]  # Use prefix as key
-                        if key not in seen:
-                            seen.add(key)
-                            unique.append(s)
-                    combined_negs[tier] = unique
+                    # Mix in fresh API walks if enabled
+                    if self.api_streamer and self.config.api_walks_per_batch > 0:
+                        t0 = time.perf_counter()
+                        api_walks = self.api_streamer.get_batch(self.config.api_walks_per_batch)
+                        # Assign to multiturn_dialogue head (raw walks)
+                        for w in api_walks:
+                            w.metadata["head"] = "multiturn_dialogue"
+                        pos_batch.extend(api_walks)
+                        timing["api_fetch"] += time.perf_counter() - t0
 
-                neg_scores_by_tier = {}
-                for tier, neg_samples in combined_negs.items():
-                    if not neg_samples:
-                        neg_scores_by_tier[tier] = None
-                        continue
+                    # Build pos_head_indices: map each positive to its head index
+                    head_name_to_idx = {h.name: i for i, h in enumerate(self.config.heads)}
+                    pos_head_indices = torch.tensor([
+                        head_name_to_idx[s.metadata["head"]]
+                        for s in pos_batch
+                    ], dtype=torch.long, device=self.device)
+                    head_names = [h.name for h in self.config.heads]
 
-                    n_neg = min(len(neg_samples), self.config.batch_size)
-                    neg_batch = random.sample(neg_samples, n_neg)
-
-                    # Template negatives with same meta-prompt (so model learns from content, not prompt presence)
-                    neg_texts = [
+                    # Template positives (with shared meta-prompt if enabled)
+                    pos_texts = [
                         template_sample(s.text, self.meta_prompt)
-                        for s in neg_batch
+                        for s in pos_batch
                     ]
 
-                    neg_hidden = self.encode_batch(neg_texts)
-                    neg_scores_by_tier[tier] = self.btrm(neg_hidden)  # [batch, n_heads]
+                    # Collect negatives by tier - SYSTEMATIC iteration with wraparound
+                    neg_batches_by_tier = {}
+                    neg_texts_by_tier = {}
+                    for tier, neg_pool in all_negs_by_tier.items():
+                        if not neg_pool:
+                            neg_batches_by_tier[tier] = []
+                            neg_texts_by_tier[tier] = []
+                            continue
 
-                # Compute multi-head loss with masking
-                loss, l_bt, l_logsq = compute_multihead_loss(
-                    pos_scores,
-                    neg_scores_by_tier,
-                    head_mask,
-                    self.config.logsquare_weight,
-                )
+                        n_neg = min(len(neg_pool), self.config.batch_size)
+                        idx = neg_indices[tier]
 
-                # Backward
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
+                        # Get next batch of negatives, wrapping around if needed
+                        if idx + n_neg <= len(neg_pool):
+                            neg_batch = neg_pool[idx:idx + n_neg]
+                            neg_indices[tier] = idx + n_neg
+                        else:
+                            # Wrap around
+                            neg_batch = neg_pool[idx:] + neg_pool[:n_neg - (len(neg_pool) - idx)]
+                            neg_indices[tier] = n_neg - (len(neg_pool) - idx)
 
-                epoch_loss += loss.item()
-                epoch_bt += l_bt.item()
-                epoch_logsq += l_logsq.item()
+                        neg_batches_by_tier[tier] = neg_batch
+                        neg_texts_by_tier[tier] = [
+                            template_sample(s.text, self.meta_prompt)
+                            for s in neg_batch
+                        ]
 
-                if (batch_idx + 1) % 10 == 0:
-                    print(f"  Epoch {epoch+1}/{self.config.epochs} | "
-                          f"Batch {batch_idx+1}/{n_batches} | "
-                          f"Loss: {loss.item():.4f} "
-                          f"(BT: {l_bt.item():.4f}, LogSq: {l_logsq.item():.4f})")
+                    # BATCHED FORWARD: Concatenate all texts, one encode, one BTRM forward
+                    all_texts = pos_texts.copy()
+                    tier_slices = {"positive": (0, len(pos_texts))}
+                    offset = len(pos_texts)
 
-            avg = epoch_loss / max(n_batches, 1)
-            print(f"Epoch {epoch+1} | Avg Loss: {avg:.4f}")
+                    for tier in ["soft_neg", "semi_firm_neg", "furthest_neg"]:
+                        texts = neg_texts_by_tier.get(tier, [])
+                        if texts:
+                            tier_slices[tier] = (offset, offset + len(texts))
+                            all_texts.extend(texts)
+                            offset += len(texts)
+                        else:
+                            tier_slices[tier] = None
+
+                    # Batched forward - split into chunks to manage memory
+                    # Memory scales ~1.6GB per 2 samples at 2048 tokens
+                    max_chunk = 4  # Process at most 4 samples per forward pass
+
+                    if self.device == "cuda":
+                        torch.cuda.synchronize()
+                    t0_encode = time.perf_counter()
+                    t_forward = 0.0
+
+                    # Use autocast for mixed precision forward
+                    amp_context = torch.amp.autocast(
+                        device_type="cuda", dtype=self.amp_dtype
+                    ) if self.amp_dtype else nullcontext()
+
+                    with amp_context:
+                        if len(all_texts) <= max_chunk:
+                            all_hidden = self.encode_batch(all_texts)
+                            if self.device == "cuda":
+                                torch.cuda.synchronize()
+                            timing["encode"] += time.perf_counter() - t0_encode
+
+                            t0 = time.perf_counter()
+                            all_scores = self.btrm(all_hidden)
+                            timing["forward"] += time.perf_counter() - t0
+                        else:
+                            # Chunked: encode + BTRM per chunk, concat scores (not hidden)
+                            score_chunks = []
+                            for i in range(0, len(all_texts), max_chunk):
+                                chunk = all_texts[i:i + max_chunk]
+                                chunk_hidden = self.encode_batch(chunk)
+
+                                t0 = time.perf_counter()
+                                chunk_scores = self.btrm(chunk_hidden)
+                                t_forward += time.perf_counter() - t0
+
+                                score_chunks.append(chunk_scores)
+                                del chunk_hidden  # Free memory immediately
+
+                            all_scores = torch.cat(score_chunks, dim=0)
+
+                            if self.device == "cuda":
+                                torch.cuda.synchronize()
+                            timing["encode"] += time.perf_counter() - t0_encode - t_forward
+                            timing["forward"] += t_forward
+
+                    # Split scores by tier
+                    pos_start, pos_end = tier_slices["positive"]
+                    pos_scores = all_scores[pos_start:pos_end]
+
+                    neg_scores_by_tier = {}
+                    for tier in ["soft_neg", "semi_firm_neg", "furthest_neg"]:
+                        if tier_slices[tier]:
+                            start, end = tier_slices[tier]
+                            neg_scores_by_tier[tier] = all_scores[start:end]
+                        else:
+                            neg_scores_by_tier[tier] = None
+
+                    # Compute multi-head loss with per-sample head assignments
+                    if self.device == "cuda":
+                        torch.cuda.synchronize()
+                    t0 = time.perf_counter()
+                    loss, l_bt, l_logsq = compute_multihead_loss(
+                        pos_scores,
+                        neg_scores_by_tier,
+                        pos_head_indices,
+                        head_names,
+                        self.config.logsquare_weight,
+                    )
+                    timing["loss"] += time.perf_counter() - t0
+
+                    # Backward with AMP scaler
+                    t0 = time.perf_counter()
+                    optimizer.zero_grad()
+
+                    if scaler is not None:
+                        scaler.scale(loss).backward()
+                        scaler.unscale_(optimizer)
+                        all_params = list(self.base_model.parameters()) + list(self.btrm.parameters())
+                        torch.nn.utils.clip_grad_norm_(all_params, max_norm=1.0)
+                        scaler.step(optimizer)
+                        scaler.update()
+                    else:
+                        loss.backward()
+                        all_params = list(self.base_model.parameters()) + list(self.btrm.parameters())
+                        torch.nn.utils.clip_grad_norm_(all_params, max_norm=1.0)
+                        optimizer.step()
+
+                    scheduler.step()
+
+                    if self.device == "cuda":
+                        torch.cuda.synchronize()
+                    timing["backward"] += time.perf_counter() - t0
+
+                    epoch_loss += loss.item()
+                    epoch_bt += l_bt.item()
+                    epoch_logsq += l_logsq.item()
+                    total_batches_done += 1
+
+                    if (batch_idx + 1) % 100 == 0:
+                        current_lr = scheduler.get_last_lr()[0]
+                        print(f"  Epoch {epoch+1}/{self.config.epochs} | "
+                              f"Batch {batch_idx+1}/{n_batches} | "
+                              f"Loss: {loss.item():.4f} "
+                              f"(BT: {l_bt.item():.4f}, LogSq: {l_logsq.item():.4f}) | "
+                              f"LR: {current_lr:.2e}")
+
+                avg = epoch_loss / max(n_batches, 1)
+                print(f"Epoch {epoch+1} | Avg Loss: {avg:.4f}")
+
+        finally:
+            # Stop API streamer
+            if self.api_streamer:
+                self.api_streamer.stop()
+                print("  API walk streamer stopped")
+
+            # Print timing stats
+            if total_batches_done > 0:
+                print(f"\nTiming (total {total_batches_done} batches):")
+                total_time = sum(timing.values())
+                for op, t in sorted(timing.items(), key=lambda x: -x[1]):
+                    pct = 100 * t / total_time if total_time > 0 else 0
+                    per_batch = 1000 * t / total_batches_done
+                    print(f"  {op:12s}: {t:7.2f}s ({pct:5.1f}%) - {per_batch:.1f}ms/batch")
 
         if save_path:
             self.save(save_path)
@@ -1093,6 +1524,177 @@ class MultiHeadBTRMTrainer:
         if head_name:
             return {head_name: all_scores[head_name]}
         return all_scores
+
+    def probe_all_positions(self, text: str) -> dict:
+        """
+        Score at EVERY token position in one forward pass.
+
+        Returns dict with:
+        - tokens: list of token strings
+        - token_ids: list of token ids
+        - n_tokens: total token count
+        - scores_by_head: {head_name: [score at each position]}
+
+        This is the proper way - hidden states exist at every position,
+        so we project to scores at every position in one pass.
+        """
+        ensure_torch()
+        self.base_model.eval()
+        self.btrm.eval()
+
+        # Tokenize full text
+        full_text = template_sample(text, self.meta_prompt) if self.meta_prompt else text
+        encoding = self.tokenizer(full_text, return_tensors="pt", truncation=True, max_length=self.config.max_length)
+        token_ids = encoding.input_ids[0].tolist()
+        n_tokens = len(token_ids)
+
+        # Decode individual tokens for display
+        tokens = [self.tokenizer.decode([tid]) for tid in token_ids]
+
+        with torch.no_grad():
+            # ONE forward pass
+            inputs = encoding.to(self.device)
+            outputs = self.base_model(
+                **inputs,
+                output_hidden_states=True,
+                return_dict=True,
+            )
+            hidden = outputs.hidden_states[-1]  # [1, seq_len, hidden_dim]
+
+            # Score at EVERY position
+            # hidden: [1, seq_len, hidden_dim]
+            # We need to project each position through RMSNorm + proj
+            seq_len = hidden.size(1)
+
+            # Reshape for batch projection: [seq_len, hidden_dim]
+            hidden_flat = hidden[0]  # [seq_len, hidden_dim]
+            normed = self.btrm.rms_norm(hidden_flat)  # [seq_len, hidden_dim]
+            all_scores = self.btrm.proj(normed)  # [seq_len, n_heads]
+
+            # Apply soft tanh capping
+            if self.btrm.logit_cap > 0:
+                all_scores = self.btrm.logit_cap * torch.tanh(all_scores / self.btrm.logit_cap)
+
+            # Convert to per-head lists
+            scores_by_head = {}
+            for h_idx, h_name in enumerate(self.btrm.head_names):
+                scores_by_head[h_name] = all_scores[:, h_idx].cpu().tolist()
+
+        return {
+            "tokens": tokens,
+            "token_ids": token_ids,
+            "n_tokens": n_tokens,
+            "scores_by_head": scores_by_head,
+        }
+
+    def probe_prefixes(
+        self,
+        text: str,
+        n_points: int = 20,
+        min_tokens: int = 10,
+    ) -> dict:
+        """
+        DEPRECATED: Use probe_all_positions() instead.
+        This was doing multiple forward passes; the new version does one.
+        Kept for backward compat, but just wraps probe_all_positions.
+        """
+        results = self.probe_all_positions(text)
+
+        # Subsample to n_points for display
+        n_tokens = results["n_tokens"]
+        if n_tokens <= min_tokens:
+            probe_points = [n_tokens - 1]
+        else:
+            step = max(1, (n_tokens - min_tokens) // (n_points - 1))
+            probe_points = list(range(min_tokens, n_tokens, step))
+            if probe_points[-1] != n_tokens - 1:
+                probe_points.append(n_tokens - 1)
+
+        # Extract scores at probe points
+        subsampled_scores = {}
+        for h, scores in results["scores_by_head"].items():
+            subsampled_scores[h] = [scores[i] for i in probe_points]
+
+        return {
+            "tokens": results["tokens"],
+            "token_ids": results["token_ids"],
+            "n_tokens": n_tokens,
+            "probe_points": probe_points,
+            "scores_by_head": subsampled_scores,
+            "all_scores": results["scores_by_head"],  # Full trajectory included
+        }
+
+    def print_probe_results(self, results: dict, show_text: bool = False, show_all: bool = False):
+        """Pretty-print probe results."""
+        print(f"\n{'='*60}")
+        print(f"Token-wise Score Probe ({results['n_tokens']} tokens)")
+        print(f"{'='*60}")
+
+        heads = list(results["scores_by_head"].keys())
+
+        # Use full scores if available and requested, else subsampled
+        if show_all and "all_scores" in results:
+            scores_to_show = results["all_scores"]
+            positions = list(range(results["n_tokens"]))
+            tokens = results["tokens"]
+        else:
+            scores_to_show = results["scores_by_head"]
+            positions = results.get("probe_points", list(range(len(list(scores_to_show.values())[0]))))
+            tokens = results["tokens"]
+
+        # Header
+        header = f"{'Pos':>5} {'Token':>15} | " + " | ".join(f"{h:>12}" for h in heads)
+        print(header)
+        print("-" * len(header))
+
+        # Score trajectory
+        for i, pos in enumerate(positions):
+            scores = [scores_to_show[h][i] for h in heads]
+            tok = tokens[pos] if pos < len(tokens) else "?"
+            tok_display = tok[:12].replace("\n", "\\n").replace("\t", "\\t")
+            row = f"{pos:>5} {tok_display:>15} | " + " | ".join(f"{s:>12.4f}" for s in scores)
+            print(row)
+
+        # Summary: score deltas and statistics
+        print(f"\n{'Score summary':}")
+        for h in heads:
+            scores = scores_to_show[h]
+            if len(scores) > 1:
+                delta = scores[-1] - scores[0]
+                min_s, max_s = min(scores), max(scores)
+                mean_s = sum(scores) / len(scores)
+                print(f"  {h}: {scores[0]:.4f} → {scores[-1]:.4f} "
+                      f"(Δ={delta:+.4f}, min={min_s:.4f}, max={max_s:.4f}, μ={mean_s:.4f})")
+
+    def print_sparkline(self, results: dict):
+        """Print ASCII sparkline of score trajectories."""
+        # Use full scores if available
+        scores_dict = results.get("all_scores", results["scores_by_head"])
+        heads = list(scores_dict.keys())
+
+        # Sparkline chars (8 levels)
+        sparks = "▁▂▃▄▅▆▇█"
+
+        print(f"\nSparklines (token {0} → {results['n_tokens']-1}):")
+        for h in heads:
+            scores = scores_dict[h]
+            min_s, max_s = min(scores), max(scores)
+            range_s = max_s - min_s if max_s > min_s else 1
+
+            # Subsample to ~80 chars if too long
+            if len(scores) > 80:
+                step = len(scores) // 80
+                scores = scores[::step]
+
+            # Convert to sparkline
+            line = ""
+            for s in scores:
+                idx = int((s - min_s) / range_s * 7)
+                idx = max(0, min(7, idx))
+                line += sparks[idx]
+
+            print(f"  {h:>20}: {line}")
+            print(f"  {'':>20}  [{min_s:.2f} to {max_s:.2f}]")
 
 
 # =============================================================================
@@ -1245,6 +1847,17 @@ def main():
     # Test decoders
     test_parser = subparsers.add_parser("test-decoders", help="Test dataset decoders")
 
+    # Probe - token-wise score evolution
+    probe_parser = subparsers.add_parser("probe", help="Probe score evolution along token positions")
+    probe_parser.add_argument("--model", "-m", required=True, help="Model directory")
+    probe_parser.add_argument("--text", "-t", help="Text to probe (or reads from stdin)")
+    probe_parser.add_argument("--file", "-f", help="File containing text to probe")
+    probe_parser.add_argument("--points", "-n", type=int, default=20, help="Number of probe points to display")
+    probe_parser.add_argument("--min-tokens", type=int, default=10, help="Minimum tokens before first probe")
+    probe_parser.add_argument("--all", action="store_true", help="Show scores at ALL token positions")
+    probe_parser.add_argument("--sparkline", action="store_true", help="Show ASCII sparkline visualization")
+    probe_parser.add_argument("--json", action="store_true", help="Output JSON instead of table")
+
     args = parser.parse_args()
 
     if args.command == "gen-config":
@@ -1309,6 +1922,48 @@ def main():
 
         print("\n=== Wikitext ===")
         decode_wikitext(max_samples=5)
+
+    elif args.command == "probe":
+        ensure_torch()
+        config = MultiHeadBTRMConfig.from_yaml(f"{args.model}/config.yaml")
+        trainer = MultiHeadBTRMTrainer(config)
+
+        # Load BTRM weights
+        checkpoint = torch.load(f"{args.model}/btrm_heads.pt", map_location=trainer.device)
+        trainer.btrm.load_state_dict(checkpoint["btrm_state_dict"])
+
+        # Get text to probe
+        if args.text:
+            text = args.text
+        elif args.file:
+            with open(args.file) as f:
+                text = f.read()
+        else:
+            import sys
+            print("Reading text from stdin (Ctrl+D to end)...")
+            text = sys.stdin.read()
+
+        if not text.strip():
+            print("No text provided")
+            sys.exit(1)
+
+        # Probe - one forward pass, scores at every position
+        results = trainer.probe_prefixes(
+            text.strip(),
+            n_points=args.points,
+            min_tokens=args.min_tokens,
+        )
+
+        if args.json:
+            # JSON output (includes all_scores for full trajectory)
+            print(json.dumps(results, indent=2))
+        else:
+            # Pretty print
+            trainer.print_probe_results(results, show_all=getattr(args, 'all', False))
+
+            # Sparkline visualization
+            if args.sparkline:
+                trainer.print_sparkline(results)
 
     else:
         parser.print_help()

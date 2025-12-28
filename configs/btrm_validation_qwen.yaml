@@ -1,0 +1,67 @@
+# Quick validation run: Qwen2.5-0.5B
+# ~22GB VRAM, 4096 ctx, ~1000 batches
+
+base_model: Qwen/Qwen2.5-0.5B
+batch_size: 4  # Conservative for 4096 ctx
+epochs: 1
+lr: 0.0001
+logsquare_weight: 0.1
+max_batches: 1000  # Quick validation
+
+# Memory optimization
+max_length: 4096
+gradient_checkpointing: true
+fp16: true
+
+# Model config
+use_lora: true
+lora_r: 16
+lora_alpha: 32
+logit_cap: 10.0
+
+# IT model
+use_meta_prompt: true
+
+# External negatives
+use_synth: true
+use_wattpad: true
+use_fineweb: true
+use_wikitext: true
+neg_samples_per_tier: 200
+
+# Just test with 3 heads for speed
+heads:
+- name: skyrim
+  description: All prose derived from Skyrim dialogue
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+
+- name: multiturn_dialogue
+  description: Raw dialogue walks (newline-concatenated quotes)
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  negative_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+    neg_tier: soft_neg
+
+- name: brainrot_aesop
+  description: Vocabulary teaching passages
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
+  - path: dialogue_data/prose/oblivion_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop

@@ -1,0 +1,66 @@
+# Validation run with API walk streaming
+# Tests on-the-fly walk generation from the API server
+
+base_model: Qwen/Qwen2.5-0.5B
+batch_size: 4
+epochs: 1
+lr: 0.0001
+logsquare_weight: 0.1
+max_batches: 100  # Short run for validation
+
+# Memory optimization
+max_length: 4096
+gradient_checkpointing: true
+fp16: true
+
+# Model config
+use_lora: true
+lora_r: 16
+lora_alpha: 32
+logit_cap: 10.0
+
+# IT model
+use_meta_prompt: true
+
+# API walk streaming - the key feature being tested
+use_api_walks: true
+api_url: http://127.0.0.1:8000
+api_games:
+- oblivion
+- falloutnv
+api_walks_per_batch: 3  # Mix 3 fresh walks per batch
+api_buffer_size: 100
+
+# External negatives
+use_synth: true
+use_wattpad: true
+use_fineweb: true
+use_wikitext: true
+neg_samples_per_tier: 200
+
+# Minimal heads for quick test
+heads:
+- name: multiturn_dialogue
+  description: Raw dialogue walks (from files + API)
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  - path: dialogue_data/prose/oblivion_training_fk.jsonl
+    text_field: auto
+    tier_filter: flattened
+  negative_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+    neg_tier: soft_neg
+
+- name: skyrim
+  description: All Skyrim prose
+  positive_sources:
+  - path: dialogue_data/prose/skyrim_training_fk.jsonl
+    text_field: auto
+    tier_filter: fk_normed
+  - path: dialogue_data/prose/skyrim_training_aesops.jsonl
+    text_field: auto
+    tier_filter: brainrot_aesop
