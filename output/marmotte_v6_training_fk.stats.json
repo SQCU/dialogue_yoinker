@@ -1,0 +1,19 @@
+{
+  "tier1_count": 46,
+  "tier2_total": 184,
+  "tier2_passed": 30,
+  "tier2_failed": 154,
+  "pass_rate": 0.16304347826086957,
+  "fk_distribution": {
+    "9": 15,
+    "6": 13,
+    "3": 2
+  },
+  "failure_reasons": {
+    "fk": 122,
+    "too": 2,
+    "llm": 5,
+    "meta": 24,
+    "dialogue": 1
+  }
+}
